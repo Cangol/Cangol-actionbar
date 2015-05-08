@@ -8,6 +8,7 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,7 +54,12 @@ public class ActionModeView extends LinearLayout {
 	public CharSequence getTitle() {
 		return mTitleText.getText();
 	}
-
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		super.onTouchEvent(ev);
+	    return true;
+	}
+	
 	public void setOnActionClickListener(OnActionClickListener onActionClickListener) {
 		mActionMenu.setOnActionClickListener(onActionClickListener);
 	}

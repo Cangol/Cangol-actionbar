@@ -47,7 +47,7 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
 		 mMoreButton=(ImageView) this.findViewById(R.id.actionbar_menu_more);
 	}
 	private void initPopuMenu(Context context){
-    	View popuLayout=mInflater.inflate(R.layout.actionbar_popup, null);
+    	View popuLayout=mInflater.inflate(R.layout.actionbar_popup_actions, null);
     	mPopupActionsView=(LinearLayout) popuLayout.findViewById(R.id.actionbar_popup_actions);
     	int width=(int) (180*context.getResources().getDisplayMetrics().density);
     	mPopuMenu=new PopupWindow(popuLayout, width, LayoutParams.WRAP_CONTENT, true);

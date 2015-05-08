@@ -1,33 +1,19 @@
 package com.example.demo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
+import mobi.cangol.mobile.actionbar.ActionMode;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 @SuppressLint("ResourceAsColor")
 public class MainActivity extends ActionBarActivity implements OnClickListener{
-	private DeleteActionMode mDeleteActionMode;
-	static Map<String, String> map1 = new HashMap<String, String>();  
-	static Map<String, String> map2 = new HashMap<String, String>();  
-	static Map<String, String> map3 = new HashMap<String, String>();
-	static{
-	        map1.put("name", "新闻");  
-	        map2.put("name", "游戏"); 
-	        map3.put("name", "壁纸"); 
-	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,31 +21,24 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		this.setStatusBarTintColor(R.color.red);
 		this.setNavigationBarTintColor(R.color.blue);
 		findViews();
-		this.setTitle("Home");
+		this.setTitle("首页");
 		this.setFullScreen(false);
 		this.setActionbarShow(true);
 		this.setActionbarOverlay(false);
 		this.getCustomActionBar().setDisplayHomeAsUpEnabled(true);
 		this.getCustomActionBar().setBackgroundResource(R.color.red);
+		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
 		//this.setScreenBackgroundResource(R.color.green);
-		
-		
-		List<Map<String, String>> list=new ArrayList<Map<String, String>>();
-		list.add(map1);
-		list.add(map2);
-		list.add(map3);
-		final BaseAdapter adapter=new SimpleAdapter(this,list,android.R.layout.simple_list_item_1,  
-                new String[]{"name"},            //每行显示一个姓名  
-                new int[]{android.R.id.text1});  
-		this.getCustomActionBar().setListNavigationCallbacks(adapter, new OnNavigationListener(){
+		final String[] navs={"首页","游戏","壁纸","资讯"};
+		this.getCustomActionBar().setListNavigationCallbacks(navs, new OnNavigationListener(){
 
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition,
 					long itemId) {
-				showToast("Navigation "+adapter.getItem(itemPosition));
+				showToast("Navigation "+navs[itemPosition]);
+				getCustomActionBar().setTitle(navs[itemPosition]);
 				return false;
 			}
-			
 		});
 		
 		
@@ -88,8 +67,26 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 				this.getCustomActionBar().stopSearchMode();
 				break;
 			case R.id.button5:
-				mDeleteActionMode=new DeleteActionMode();
-				this.startCustomActionMode(mDeleteActionMode);
+				this.startCustomActionMode(new ActionMode.Callback(){
+
+					@Override
+					public void onCreateActionMode(ActionMode mode,
+							ActionMenu actionMenu) {
+						
+					}
+
+					@Override
+					public boolean onActionItemClicked(ActionMode mode,
+							ActionMenuItem menuItem) {
+						return false;
+					}
+
+					@Override
+					public void onDestroyActionMode(ActionMode mode) {
+						
+					}
+					
+				});
 				break;
 			case R.id.button6:
 				showToast("Locale.ENGLISH");

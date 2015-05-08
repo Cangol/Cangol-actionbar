@@ -12,6 +12,7 @@ import android.speech.RecognizerIntent;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ public class SearchView extends LinearLayout {
 	private ImageView mIndicatoButton;
 	private OnSearchTextListener mOnSearchTextListener;
 	private OnVoiceClickListener mOnVoiceClickListener;
+	private boolean mVoiceEnable=false;
 	public SearchView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		LayoutInflater inflater = (LayoutInflater) context .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -72,7 +74,7 @@ public class SearchView extends LinearLayout {
 
 			@Override
 			public void onClick(View v) {
-				if(mOnVoiceClickListener!=null)
+				if(mVoiceEnable&&mOnVoiceClickListener!=null)
 					mOnVoiceClickListener.onVoiceClick();
 			}
 		
@@ -86,7 +88,21 @@ public class SearchView extends LinearLayout {
 		
 		});
 	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		super.onTouchEvent(ev);
+	    return true;
+	}
 	
+	public void setVoiceSearchEnable(boolean mVoiceEnable) {
+		this.mVoiceEnable = mVoiceEnable;
+		if(mVoiceEnable){
+        	mVoiceButton.setVisibility(View.VISIBLE);
+        }else{
+        	mVoiceButton.setVisibility(View.GONE);
+        }
+	}
 	public void setOnSearchTextListener(OnSearchTextListener mOnSearchTextListener) {
 		this.mOnSearchTextListener = mOnSearchTextListener;
 	}

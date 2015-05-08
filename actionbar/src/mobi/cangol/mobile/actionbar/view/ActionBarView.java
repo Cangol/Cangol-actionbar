@@ -17,14 +17,18 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -33,6 +37,7 @@ public class ActionBarView extends RelativeLayout {
     private LayoutInflater mInflater;
     private View mRootView;
     private ImageView mIndicator;
+    private LinearLayout mTitleLayout;
     private TextView mTitleView;
     private PopupWindow mPopuMenu;
     private ProgressView mProgressView;
@@ -54,6 +59,7 @@ public class ActionBarView extends RelativeLayout {
         mInflater.inflate(R.layout.actionbar_layout, this);
         mRootView=this.findViewById(R.id.actionbar_main_layout);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
+        mTitleLayout= (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
         mProgressView= (ProgressView) this.findViewById(R.id.actionbar_main_progress);
         mSearchView = (SearchView) this.findViewById(R.id.actionbar_main_search);
@@ -70,6 +76,8 @@ public class ActionBarView extends RelativeLayout {
 		mRootView.setBackgroundResource(resId);
 	}
     private void initListeners(){
+    	mDrawerArrowDrawable.setParameter(0);
+    	mIndicator.setImageDrawable(mDrawerArrowDrawable);
     	mIndicator.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -91,7 +99,33 @@ public class ActionBarView extends RelativeLayout {
     		
     	});
     }
-    public void setListNavigationCallbacks(BaseAdapter adapter, OnNavigationListener onNavigationListener){
+    public void setListNavigationCallbacks(final String[] navs, OnNavigationListener onNavigationListener){
+    	BaseAdapter adapter=new BaseAdapter(){
+
+			@Override
+			public int getCount() {
+				return navs.length;
+			}
+
+			@Override
+			public String getItem(int position) {
+				return navs[position];
+			}
+
+			@Override
+			public long getItemId(int position) {
+				return position;
+			}
+
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				View view = mInflater.inflate(R.layout.actionbar_navigation_list_item, parent, false);
+		        TextView labelView =(TextView) view.findViewById(R.id.actionbar_navigation_item_text);
+		        labelView.setText(navs[position]);
+				return view;
+			}
+    		
+    	};
     	initNavigationPopuMenu(mActionBarActivity,adapter,onNavigationListener);
     }
     public void clearListNavigation(){
@@ -100,12 +134,21 @@ public class ActionBarView extends RelativeLayout {
     }
 	private void initNavigationPopuMenu(Context context,BaseAdapter adapter, final OnNavigationListener onNavigationListener){
     	final View popuLayout=mInflater.inflate(R.layout.actionbar_navigation_list, null);
-    	ListView listView=(ListView) popuLayout.findViewById(R.id.actionbar_popup_actions_list);
+    	ListView listView=(ListView) popuLayout.findViewById(R.id.actionbar_popup_navigation_list);
     	listView.setAdapter(adapter);
     	final int width=(int) (200*context.getResources().getDisplayMetrics().density);
     	mPopuMenu=new PopupWindow(popuLayout, width, LayoutParams.WRAP_CONTENT, true);
     	mPopuMenu.setBackgroundDrawable(new BitmapDrawable()); 
-    	
+    	mPopuMenu.setOnDismissListener(new OnDismissListener(){
+
+			@Override
+			public void onDismiss() {
+				Drawable imgV = getResources().getDrawable(R.drawable.actionbar_dropdown);
+		    	imgV.setBounds(0, 0, imgV.getIntrinsicWidth(), imgV.getIntrinsicHeight());      
+		    	mTitleView.setCompoundDrawables(null, null, imgV, null);
+			}
+    		
+    	});
     	listView.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
@@ -119,14 +162,22 @@ public class ActionBarView extends RelativeLayout {
     	});
     	Drawable imgV = getResources().getDrawable(R.drawable.actionbar_dropdown);
     	imgV.setBounds(0, 0, imgV.getIntrinsicWidth(), imgV.getIntrinsicHeight());      
-    	mTitleView.setCompoundDrawables(imgV, null, null, null);
+    	mTitleView.setCompoundDrawables(null, null, imgV, null);
     	mTitleView.setOnClickListener(new OnClickListener(){
 
  			@Override
  			public void onClick(View v) {
  				if(!mPopuMenu.isShowing()){
+ 					Drawable imgV = getResources().getDrawable(R.drawable.actionbar_dropup);
+ 			    	imgV.setBounds(0, 0, imgV.getIntrinsicWidth(), imgV.getIntrinsicHeight());      
+ 			    	mTitleView.setCompoundDrawables(null, null, imgV, null);
+ 			    	
  					int xoff=-(width-mTitleView.getWidth())/2;
- 					mPopuMenu.showAsDropDown(mTitleView, xoff, 0);
+ 					if(mTitleView.getGravity()==Gravity.CENTER){
+ 						mPopuMenu.showAsDropDown(mTitleView, xoff, 0);
+ 					}else{
+ 						mPopuMenu.showAsDropDown(mTitleView, 0, 0);
+ 					}
  				}
  			}
      		
@@ -167,7 +218,8 @@ public class ActionBarView extends RelativeLayout {
         mTitleView.setText(resid);
     }
     public void setTitleGravity(int gravity) {
-        mTitleView.setGravity(gravity);
+    	mTitleLayout.setGravity(gravity);
+    	mTitleView.setGravity(gravity);
     }
     public void setOnTitleClickListener(OnClickListener listener) {
         mTitleView.setOnClickListener(listener);

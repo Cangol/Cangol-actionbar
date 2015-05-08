@@ -4,6 +4,7 @@ import mobi.cangol.mobile.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -52,5 +53,10 @@ public class ProgressView extends LinearLayout {
 
 	public boolean isProgress(){
 		return this.getVisibility()==View.VISIBLE;
+	}
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		super.onTouchEvent(ev);
+	    return true;
 	}
 }

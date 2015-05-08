@@ -23,9 +23,9 @@ public class ActionBarImpl extends ActionBar{
     }
 
 	@Override
-	public void setListNavigationCallbacks(BaseAdapter adapter,
+	public void setListNavigationCallbacks(String[] navs,
 			OnNavigationListener onNavigationListener) {
-		mActionBarView.setListNavigationCallbacks(adapter,onNavigationListener);		
+		mActionBarView.setListNavigationCallbacks(navs,onNavigationListener);		
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 
  public abstract class ActionBar {
 
-	abstract public void setListNavigationCallbacks(BaseAdapter adapter,
+	abstract public void setListNavigationCallbacks(String[] navs,
 			OnNavigationListener onNavigationListener);
 
 	abstract public void clearListNavigation();
