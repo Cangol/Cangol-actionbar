@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		this.getCustomActionBar().setDisplayHomeAsUpEnabled(true);
 		this.getCustomActionBar().setBackgroundResource(R.color.red);
 		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
-		//this.setScreenBackgroundResource(R.color.green);
+		
 		final String[] navs={"首页","游戏","壁纸","资讯"};
 		this.getCustomActionBar().setListNavigationCallbacks(navs, new OnNavigationListener(){
 
