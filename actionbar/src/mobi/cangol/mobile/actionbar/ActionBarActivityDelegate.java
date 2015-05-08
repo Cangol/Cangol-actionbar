@@ -93,13 +93,11 @@ public class ActionBarActivityDelegate {
 		int background = a.getResourceId(0, 0);
 		a.recycle();	
 		
-		//如果已设置过颜色 则不继承theme颜色
-		if(mContentView.getBackground()==null){
-			mContentView.setBackgroundResource(background);
-		}
-		
 		ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 		ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+		
+//		if(decorChild.getBackground()==null)
+//			decorChild.setBackgroundResource(background);
 		
 		decor.removeView(decorChild);
 		decor.addView(layout);
