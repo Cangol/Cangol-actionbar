@@ -12,6 +12,12 @@
     <color name="actionbar_popup_item">#F2F2F2</color>
     <color name="actionbar_popup_item_pressed">#ddd</color>
 	<color name="actionbar_popup_item_driver">#ddd</color>
+		
+	<!--  
+	<color name="actionbar_popup_text_dark">#333333</color>
+    <color name="actionbar_popup_item_dark">#F2F2F2</color>
+    <color name="actionbar_popup_item_pressed_dark">#ddd</color>
+	<color name="actionbar_popup_item_driver_dark">#ddd</color>-->
 	
 	<color name="actionbar_search_background">#E4000000</color>
 	<color name="actionbar_progress_background">#E4000000</color>

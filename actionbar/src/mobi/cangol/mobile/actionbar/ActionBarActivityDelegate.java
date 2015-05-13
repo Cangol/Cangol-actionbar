@@ -96,8 +96,8 @@ public class ActionBarActivityDelegate {
 		ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 		ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
 		
-//		if(decorChild.getBackground()==null)
-//			decorChild.setBackgroundResource(background);
+		if(decorChild.getBackground()==null)
+			decorChild.setBackgroundResource(background);
 		
 		decor.removeView(decorChild);
 		decor.addView(layout);

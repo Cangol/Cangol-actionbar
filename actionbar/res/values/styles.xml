@@ -8,10 +8,11 @@
     <style name="ActionBarTitle">
         <item name="android:textSize">18.0sp</item>
         <item name="android:textColor">@color/actionbar_title</item>
+        <!-- 
         <item name="android:shadowColor">@color/actionbar_title_shadow</item>
         <item name="android:shadowDx">0.0</item>
         <item name="android:shadowDy">1.0</item>
-        <item name="android:shadowRadius">1.5</item>
+        <item name="android:shadowRadius">1.5</item> -->
     </style>
 	<style name="ActionBarItem">
         <item name="android:layout_width">wrap_content</item>
