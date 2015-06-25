@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionMode.Callback;
 import mobi.cangol.mobile.actionbar.view.SearchView;
-import android.graphics.drawable.Drawable;
 import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
 
  public abstract class ActionBar {
 

@@ -107,9 +107,9 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
        		 	mActionsView.addView(action.isIcon()?inflateActionIcon(action):inflateActionText(action));
        		 	mMoreButton.setVisibility(View.GONE);
     	   	}else{
+    	   		mHideActions++;
     	   		mPopupActionsView.addView(inflateMenuAction(action));
     	   		mMoreButton.setVisibility(View.VISIBLE);
-    	   		mHideActions++;
     	   	}
         }else{
         	mHideActions++;

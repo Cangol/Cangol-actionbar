@@ -24,6 +24,7 @@
         android:drawableLeft="@drawable/actionbar_search"
         android:drawablePadding="4dp"
         android:singleLine="true"
+        android:imeOptions="actionSearch"  
         android:textColor="@android:color/white" />
 
     <ImageView

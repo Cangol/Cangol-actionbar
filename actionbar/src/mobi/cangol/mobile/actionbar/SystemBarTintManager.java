@@ -26,6 +26,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -53,7 +54,7 @@ public class SystemBarTintManager {
     private boolean mNavBarTintEnabled;
     private View mStatusBarTintView;
     private View mNavBarTintView;
-
+    private Activity mActivity;
     /**
      * Constructor. Call this in the host activity onCreate method after its
      * content view has been set. You should always create new instances when
@@ -63,7 +64,7 @@ public class SystemBarTintManager {
      */
     @TargetApi(19)
     public SystemBarTintManager(Activity activity) {
-
+    	this.mActivity=activity;
         Window win = activity.getWindow();
         ViewGroup decorViewGroup = (ViewGroup) win.getDecorView();
 
@@ -79,6 +80,7 @@ public class SystemBarTintManager {
                 a.recycle();
             }
 
+            /**
             // check window flags
             WindowManager.LayoutParams winParams = win.getAttributes();
             int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
@@ -88,9 +90,10 @@ public class SystemBarTintManager {
             bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
             if ((winParams.flags & bits) != 0) {
                 mNavBarAvailable = true;
-            }
+            }**/
+            mStatusBarAvailable=true;
+            mNavBarAvailable=true;
         }
-
         mConfig = new SystemBarConfig(activity, mStatusBarAvailable, mNavBarAvailable);
         // device might not have virtual navigation keys
         if (!mConfig.hasNavigtionBar()) {
@@ -104,7 +107,31 @@ public class SystemBarTintManager {
             setupNavBarView(activity, decorViewGroup);
         }
     }
-
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+	public void setTranslucentStatus(boolean on) {
+    	Window win = mActivity.getWindow();
+		WindowManager.LayoutParams winParams = win.getAttributes();
+		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+		if (on) {
+			winParams.flags |= bits;
+		} else {
+			winParams.flags &= ~bits;
+		}
+		win.setAttributes(winParams);
+	}
+    
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void setTranslucentNagivation(boolean on) {
+    	Window win = mActivity.getWindow();
+		WindowManager.LayoutParams winParams = win.getAttributes();
+		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
+		if (on) {
+			winParams.flags |= bits;
+		} else {
+			winParams.flags &= ~bits;
+		}
+		win.setAttributes(winParams);
+	}
     /**
      * Enable tinting of the system status bar.
      *
@@ -116,6 +143,7 @@ public class SystemBarTintManager {
      */
     public void setStatusBarTintEnabled(boolean enabled) {
         mStatusBarTintEnabled = enabled;
+        setTranslucentStatus(enabled);
         if (mStatusBarAvailable) {
             mStatusBarTintView.setVisibility(enabled ? View.VISIBLE : View.GONE);
         }
@@ -132,6 +160,7 @@ public class SystemBarTintManager {
      */
     public void setNavigationBarTintEnabled(boolean enabled) {
         mNavBarTintEnabled = enabled;
+        setTranslucentNagivation(enabled);
         if (mNavBarAvailable) {
             mNavBarTintView.setVisibility(enabled ? View.VISIBLE : View.GONE);
         }

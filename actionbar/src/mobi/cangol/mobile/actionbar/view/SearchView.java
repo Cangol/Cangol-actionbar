@@ -126,4 +126,8 @@ public class SearchView extends LinearLayout {
 		boolean onSearchText(String keywords);
         
     }
+
+	public void clearText() {
+		mSearchText.setText(null);
+	}
 }

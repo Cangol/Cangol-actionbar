@@ -92,15 +92,14 @@ public class ActionBarActivityDelegate {
 		TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 		int background = a.getResourceId(0, 0);
 		a.recycle();	
+		//mContainerView.setBackgroundResource(background);
 		
 		ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 		ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
-		
 		if(decorChild.getBackground()==null)
 			decorChild.setBackgroundResource(background);
-		
 		decor.removeView(decorChild);
-		decor.addView(layout);
+		decor.addView(layout,0);
 		setContent(decorChild);
 	}
 	public void setContent(View view) {

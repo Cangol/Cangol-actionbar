@@ -20,12 +20,7 @@ public class ActionBarActivity extends FragmentActivity{
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mDelegate = new ActionBarActivityDelegate(this);
 		mDelegate.onCreate(savedInstanceState);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			setTranslucentStatus(true);
-		}
 		mTintManager = new SystemBarTintManager(this);
-		mTintManager.setStatusBarTintEnabled(true);
-		mTintManager.setNavigationBarTintEnabled(true);
 	}
 	public void setWindowBackground(int resId){
 		//替换背景
@@ -33,10 +28,12 @@ public class ActionBarActivity extends FragmentActivity{
 	}
 	@TargetApi(19) 
 	public void setStatusBarTintColor(int colorId){
+		mTintManager.setStatusBarTintEnabled(true);
 		mTintManager.setStatusBarTintResource(colorId);
 	}
 	@TargetApi(19) 
 	public void setNavigationBarTintColor(int colorId){
+		mTintManager.setNavigationBarTintEnabled(true);
 		mTintManager.setNavigationBarTintResource(colorId);
 	}
 	
@@ -57,7 +54,7 @@ public class ActionBarActivity extends FragmentActivity{
 		mDelegate.setBackgroundResource(resId);
 	}
 	@TargetApi(19) 
-	private void setTranslucentStatus(boolean on) {
+	public void setTranslucent(boolean on) {
 		Window win = getWindow();
 		WindowManager.LayoutParams winParams = win.getAttributes();
 		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS|WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
@@ -146,6 +143,6 @@ public class ActionBarActivity extends FragmentActivity{
 		}else{
 			this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		}
-		
+		mTintManager.setStatusBarTintEnabled(!fullscreen);
 	}
 }

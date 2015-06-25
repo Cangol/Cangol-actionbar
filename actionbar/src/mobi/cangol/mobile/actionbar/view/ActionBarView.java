@@ -253,6 +253,7 @@ public class ActionBarView extends RelativeLayout {
     
     public void stopSearchMode(){
     	mIsSearchMode=false;
+    	mSearchView.clearText();
     	mSearchView.setVisibility(View.GONE);
     }
 
