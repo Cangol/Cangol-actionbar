@@ -3,6 +3,7 @@ package mobi.cangol.mobile.actionbar;
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
+import android.view.View;
 
 public interface ActionMenu {
 	
@@ -17,6 +18,8 @@ public interface ActionMenu {
 	int size();
 	
 	ActionMenuItem getAction(int index);
+	
+	View getActionMenuItemView(int id);
 
 	void setOnActionClickListener(OnActionClickListener onActionClickListener);	
 }
