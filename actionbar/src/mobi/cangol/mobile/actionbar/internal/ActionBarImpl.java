@@ -10,10 +10,8 @@ import mobi.cangol.mobile.actionbar.ActionMode.Callback;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
 import mobi.cangol.mobile.actionbar.view.SearchView;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
 
 public class ActionBarImpl extends ActionBar{
    	private ActionBarView mActionBarView;
@@ -106,7 +104,6 @@ public class ActionBarImpl extends ActionBar{
 
 	@Override
 	public SearchView startSearchMode() {
-		// TODO Auto-generated method stub
 		return mActionBarView.startSearchMode();
 	}
 
