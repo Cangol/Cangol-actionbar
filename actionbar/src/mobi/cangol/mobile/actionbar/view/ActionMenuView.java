@@ -80,7 +80,14 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
     	final Object tag = view.getTag();
         if (tag instanceof ActionMenuItem) {
             final ActionMenuItem action = (ActionMenuItem) tag;
-            Toast toast = Toast.makeText(this.getContext(), action.getText(), Toast.LENGTH_SHORT);
+            
+            Toast toast=null;
+            if(action.getText()==-1){
+            	toast= Toast.makeText(this.getContext(), action.getText(), Toast.LENGTH_SHORT);
+            }else{
+            	toast= Toast.makeText(this.getContext(), action.getText(), Toast.LENGTH_SHORT);
+            }
+            
             int left=(mHideActions>0?mMoreButton.getWidth():0)+view.getWidth()*(mActionMenu.size()-mHideActions)-view.getLeft();
             toast.setGravity(Gravity.RIGHT | Gravity.TOP,  left,  this.getBottom());
             toast.show();
@@ -146,7 +153,12 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
         View view = mInflater.inflate(R.layout.actionbar_item_text, mActionsView, false);
 
         TextView labelView =(TextView) view.findViewById(R.id.actionbar_item);
-        labelView.setText(action.getText());
+        if(action.getText()!=-1){
+        	labelView.setText(action.getText());
+        }else{
+        	labelView.setText(action.getTextStr());
+        }
+        
         
         view.setId(action.getId());
         view.setTag(action);
@@ -164,7 +176,11 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
         	img.setBounds(0, 0, img.getIntrinsicWidth(), img.getIntrinsicHeight());
         	labelView.setCompoundDrawables(img, null, null, null);
         }**/
-        labelView.setText(action.getText());
+        if(action.getText()!=-1){
+        	labelView.setText(action.getText());
+        }else{
+        	labelView.setText(action.getTextStr());
+        }
         view.setId(action.getId());
         view.setTag(action);
         view.setOnClickListener(this);
