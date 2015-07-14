@@ -56,7 +56,8 @@ public class ActionBarActivityDelegate {
 		if(mActionbarOverlay){
 			((RelativeLayout.LayoutParams)mContentView.getLayoutParams()).topMargin=0;
 		}else {
-			((RelativeLayout.LayoutParams)mContentView.getLayoutParams()).topMargin=(int) (48*displayMetrics.density);
+		//	((RelativeLayout.LayoutParams)mContentView.getLayoutParams()).topMargin=(int) (48*displayMetrics.density);
+			((RelativeLayout.LayoutParams)mContentView.getLayoutParams()).topMargin=(int) (mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height));
 		}
 		this.mActionbarOverlay = mActionbarOverlay;
 	}
@@ -86,18 +87,22 @@ public class ActionBarActivityDelegate {
 		}
 	}
 
-	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	
 	private void attachToActivity(Activity activity,View layout) {
 		// get the window background
 		TypedArray a = activity.getTheme().obtainStyledAttributes(new int[] {android.R.attr.windowBackground});
 		int background = a.getResourceId(0, 0);
 		a.recycle();	
-		//mContainerView.setBackgroundResource(background);
 		
 		ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
 		ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
-		if(decorChild.getBackground()==null)
-			decorChild.setBackgroundResource(background);
+		if(decorChild.getBackground()!=null){
+			mContainerView.setBackgroundDrawable(decorChild.getBackground());
+			decorChild.setBackgroundDrawable(null);
+		}else{
+			if(mContainerView.getBackground()==null)
+				mContainerView.setBackgroundResource(background);
+		}
 		decor.removeView(decorChild);
 		decor.addView(layout,0);
 		setContent(decorChild);

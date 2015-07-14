@@ -2,7 +2,6 @@ package mobi.cangol.mobile.actionbar;
 
 import mobi.cangol.mobile.actionbar.ActionMode.Callback;
 import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
@@ -27,14 +26,14 @@ public class ActionBarActivity extends FragmentActivity{
 		this.getWindow().setBackgroundDrawableResource(resId);
 	}
 	@TargetApi(19) 
-	public void setStatusBarTintColor(int colorId){
+	public void setStatusBarTintColor(int color){
 		mTintManager.setStatusBarTintEnabled(true);
-		mTintManager.setStatusBarTintResource(colorId);
+		mTintManager.setStatusBarTintColor(color);
 	}
 	@TargetApi(19) 
-	public void setNavigationBarTintColor(int colorId){
+	public void setNavigationBarTintColor(int color){
 		mTintManager.setNavigationBarTintEnabled(true);
-		mTintManager.setNavigationBarTintResource(colorId);
+		mTintManager.setNavigationBarTintColor(color);
 	}
 	
 	@Override
