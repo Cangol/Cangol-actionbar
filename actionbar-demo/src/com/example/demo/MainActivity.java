@@ -18,27 +18,28 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		this.setBackgroundResource(R.color.red);
 //		this.setStatusBarTintColor(R.color.red);
 //		this.setNavigationBarTintColor(R.color.blue);
-		findViews();
-		this.setTitle("首页");
-		this.setActionbarShow(true);
-		this.setActionbarOverlay(false);
-		this.getCustomActionBar().setDisplayHomeAsUpEnabled(true);
-		this.getCustomActionBar().setBackgroundResource(R.color.red);
-		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
-		this.setFullScreen(true);
-		final String[] navs={"首页","游戏","壁纸","资讯"};
-		this.getCustomActionBar().setListNavigationCallbacks(navs, new OnNavigationListener(){
-
-			@Override
-			public boolean onNavigationItemSelected(int itemPosition,
-					long itemId) {
-				showToast("Navigation "+navs[itemPosition]);
-				getCustomActionBar().setTitle(navs[itemPosition]);
-				return false;
-			}
-		});
+//		findViews();
+//		this.setTitle("首页");
+//		this.setActionbarShow(true);
+//		this.setActionbarOverlay(false);
+//		this.getCustomActionBar().setDisplayHomeAsUpEnabled(true);
+//		this.getCustomActionBar().setBackgroundResource(R.color.red);
+//		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
+////		this.setFullScreen(true);
+//		final String[] navs={"首页","游戏","壁纸","资讯"};
+//		this.getCustomActionBar().setListNavigationCallbacks(navs, new OnNavigationListener(){
+//
+//			@Override
+//			public boolean onNavigationItemSelected(int itemPosition,
+//					long itemId) {
+//				showToast("Navigation "+navs[itemPosition]);
+//				getCustomActionBar().setTitle(navs[itemPosition]);
+//				return false;
+//			}
+//		});
 		
 		
 	}

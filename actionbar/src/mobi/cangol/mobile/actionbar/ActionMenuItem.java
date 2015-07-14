@@ -9,15 +9,28 @@ public  class ActionMenuItem implements Parcelable{
 	private int id=-1;
 	private int text=-1;
 	private int show=-1;
+	private String textStr=null;
 	public ActionMenuItem(int id,int text,int drawable){
 		this.id=id;
 		this.text=text;
 		this.drawable=drawable;
 		this.show=1;
 	}
+	public ActionMenuItem(int id,String textStr,int drawable){
+		this.id=id;
+		this.textStr=textStr;
+		this.drawable=drawable;
+		this.show=1;
+	}
 	public ActionMenuItem(int id,int text,int drawable,int show){
 		this.id=id;
 		this.text=text;
+		this.drawable=drawable;
+		this.show=show;
+	}
+	public ActionMenuItem(int id,String textStr,int drawable,int show){
+		this.id=id;
+		this.textStr=textStr;
 		this.drawable=drawable;
 		this.show=show;
 	}
@@ -51,6 +64,13 @@ public  class ActionMenuItem implements Parcelable{
 	public void setShow(int show) {
 		this.show = show;
 	}
+	
+	public String getTextStr() {
+		return textStr;
+	}
+	public void setTextStr(String textStr) {
+		this.textStr = textStr;
+	}
 	@Override
 	public int describeContents() {
 		// TODO Auto-generated method stub
@@ -62,6 +82,7 @@ public  class ActionMenuItem implements Parcelable{
 		dest.writeInt(id);
 		dest.writeInt(text);
 		dest.writeInt(show);
+		dest.writeString(textStr);
 	}
 
 	public static final Parcelable.Creator<ActionMenuItem> CREATOR = new Creator<ActionMenuItem>() {
@@ -73,6 +94,7 @@ public  class ActionMenuItem implements Parcelable{
 			p.setId(source.readInt());
 			p.setText(source.readInt());
 			p.setShow(source.readInt());
+			p.setTextStr(source.readString());
 			return p;
 		}
 
