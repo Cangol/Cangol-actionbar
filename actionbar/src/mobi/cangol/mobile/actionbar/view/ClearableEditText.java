@@ -17,7 +17,7 @@ import android.widget.EditText;
 */
 public class ClearableEditText extends EditText {
 
-    final Drawable imgX = getResources().getDrawable(R.drawable.actionbar_clear);// X image //android.R.drawable.presence_offline 
+    final Drawable imgX = getResources().getDrawable(R.drawable.actionbar_search_clear);// X image //android.R.drawable.presence_offline 
 
     public ClearableEditText(Context context) {
         super(context);

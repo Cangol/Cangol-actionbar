@@ -13,7 +13,6 @@ import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -47,14 +46,15 @@ public class ActionBarView extends RelativeLayout {
     private ActionBarActivity mActionBarActivity;
     private boolean mIsSearchMode;
    	private DrawerArrowDrawable mDrawerArrowDrawable;
-   	
+   	private boolean mIsCustomHomeAsUpIndicator;
+   	private int mHomeId,mUpId;
     public ActionBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mActionBarActivity=(ActionBarActivity) context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
         mDrawerArrowDrawable=new DrawerArrowDrawable(context.getResources(),false);
-        mDrawerArrowDrawable.setStrokeColor(Color.WHITE);
+        mDrawerArrowDrawable.setStrokeColor(getResources().getColor(R.color.actionbar_indicator));
         
         mInflater.inflate(R.layout.actionbar_layout, this);
         mRootView=this.findViewById(R.id.actionbar_main_layout);
@@ -76,6 +76,7 @@ public class ActionBarView extends RelativeLayout {
 		mRootView.setBackgroundResource(resId);
 	}
     private void initListeners(){
+    	if(!mIsCustomHomeAsUpIndicator)
     	mDrawerArrowDrawable.setParameter(0);
     	mIndicator.setImageDrawable(mDrawerArrowDrawable);
     	mIndicator.setOnClickListener(new OnClickListener(){
@@ -183,29 +184,52 @@ public class ActionBarView extends RelativeLayout {
      		
      	});
 	}
-	
+	public void setCustomHomeAsUpIndicator(int homeId,int upId){
+		mIsCustomHomeAsUpIndicator=true;
+		mHomeId=homeId;
+		mUpId=upId;
+		mIndicator.setImageResource(homeId);
+	}
     public void setDisplayHomeAsUpEnabled(boolean show) {
     	mIndicator.setVisibility(show? View.VISIBLE : View.INVISIBLE);
     }
     public void displayHomeIndicator() {
-    	mDrawerArrowDrawable.setParameter(0);
-    	mIndicator.setImageDrawable(mDrawerArrowDrawable);
+    	if(!mIsCustomHomeAsUpIndicator){
+    		mDrawerArrowDrawable.setParameter(0);
+        	mIndicator.setImageDrawable(mDrawerArrowDrawable);
+    	}else{
+    		mIndicator.setImageResource(mHomeId);
+    	}
 	}
 	public void displayUpIndicator() {
-		mDrawerArrowDrawable.setParameter(1);
-		mIndicator.setImageDrawable(mDrawerArrowDrawable);
+		if(!mIsCustomHomeAsUpIndicator){
+			mDrawerArrowDrawable.setParameter(1);
+			mIndicator.setImageDrawable(mDrawerArrowDrawable);
+		}else{
+    		mIndicator.setImageResource(mUpId);
+    	}
 	}
 	public void displayIndicator(float slideOffset) {
-		if(slideOffset >= .995) {
-			mDrawerArrowDrawable.setFlip(true);
-        }else if (slideOffset <= .005) {
-        	mDrawerArrowDrawable.setFlip(false);
-        }
-		mDrawerArrowDrawable.setParameter(slideOffset);
-		mIndicator.setImageDrawable(mDrawerArrowDrawable);
+		if(!mIsCustomHomeAsUpIndicator){
+			if(slideOffset >= .995) {
+				mDrawerArrowDrawable.setFlip(true);
+	        }else if (slideOffset <= .005) {
+	        	mDrawerArrowDrawable.setFlip(false);
+	        }
+			mDrawerArrowDrawable.setParameter(slideOffset);
+			mIndicator.setImageDrawable(mDrawerArrowDrawable);
+		}else{
+			if(slideOffset >= .995) {
+				mIndicator.setImageResource(mUpId);
+	        }else if (slideOffset <= .005) {
+	        	mDrawerArrowDrawable.setFlip(false);
+	        	mIndicator.setImageResource(mHomeId);
+	        }
+		}
 	}
 	public void setIndicatorColor(int color) {
-		mDrawerArrowDrawable.setStrokeColor(color);
+		if(!mIsCustomHomeAsUpIndicator)
+			mDrawerArrowDrawable.setStrokeColor(color);
 	}
 	public String getTitle(){
     	return (String) mTitleView.getText()	;

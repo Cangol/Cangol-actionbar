@@ -12,6 +12,8 @@ import android.view.View.OnClickListener;
 			OnNavigationListener onNavigationListener);
 
 	abstract public void clearListNavigation();
+	
+	abstract public void setCustomHomeAsUpIndicator(int homeId,int upId);
 
 	abstract public void setDisplayHomeAsUpEnabled(boolean show);
 

@@ -28,12 +28,11 @@ import android.widget.TextView.OnEditorActionListener;
 
 public class SearchView extends LinearLayout {
 	private static final String	TAG = "SearchView";
-	public final static int VOICE_REQUEST_CODE=701;
 	private ClearableEditText mSearchText;
-	private ImageView mVoiceButton;
+	private ImageView mActionButton;
 	private ImageView mIndicatoButton;
 	private OnSearchTextListener mOnSearchTextListener;
-	private OnVoiceClickListener mOnVoiceClickListener;
+	private OnActionClickListener mOnActionClickListener;
 	private boolean mVoiceEnable=false;
 	public SearchView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -46,19 +45,19 @@ public class SearchView extends LinearLayout {
 		PackageManager pm =this.getContext().getPackageManager();
         List<ResolveInfo> list = pm.queryIntentActivities(new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
         if(list.size()!=0){
-        	mVoiceButton.setVisibility(View.VISIBLE);
+        	mVoiceEnable=true;
         }else{
-        	mVoiceButton.setVisibility(View.GONE);
+        	mVoiceEnable=false;
         }
 	}
 	private void initViews(){
 		DrawerArrowDrawable arror=new DrawerArrowDrawable(this.getResources(),true);
-		arror.setStrokeColor(Color.LTGRAY);
+		arror.setStrokeColor(getResources().getColor(R.color.actionbar_indicator));
 		arror.setParameter(1);
 		mIndicatoButton=(ImageView) this.findViewById(R.id.actionbar_search_indicator);
 		mIndicatoButton.setImageDrawable(arror);
 		mSearchText=(ClearableEditText) this.findViewById(R.id.actionbar_search_text);
-		mVoiceButton=(ImageView) this.findViewById(R.id.actionbar_search_voice);
+		mActionButton=(ImageView) this.findViewById(R.id.actionbar_search_action);
 		mSearchText.setOnEditorActionListener(new OnEditorActionListener() {
 			
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -70,12 +69,12 @@ public class SearchView extends LinearLayout {
 			}
 			
 		});
-		mVoiceButton.setOnClickListener(new OnClickListener(){
+		mActionButton.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				if(mVoiceEnable&&mOnVoiceClickListener!=null)
-					mOnVoiceClickListener.onVoiceClick();
+				if(mVoiceEnable&&mOnActionClickListener!=null)
+					mOnActionClickListener.onActionClick();
 			}
 		
 		});
@@ -87,6 +86,7 @@ public class SearchView extends LinearLayout {
 			}
 		
 		});
+		setActionButtonEnable(mVoiceEnable);
 	}
 
 	@Override
@@ -95,19 +95,22 @@ public class SearchView extends LinearLayout {
 	    return true;
 	}
 	
-	public void setVoiceSearchEnable(boolean mVoiceEnable) {
+	public void setActionButtonEnable(boolean mVoiceEnable) {
 		this.mVoiceEnable = mVoiceEnable;
 		if(mVoiceEnable){
-        	mVoiceButton.setVisibility(View.VISIBLE);
+			mActionButton.setVisibility(View.VISIBLE);
         }else{
-        	mVoiceButton.setVisibility(View.GONE);
+        	mActionButton.setVisibility(View.INVISIBLE);
         }
 	}
 	public void setOnSearchTextListener(OnSearchTextListener mOnSearchTextListener) {
 		this.mOnSearchTextListener = mOnSearchTextListener;
 	}
-	public void setOnVoiceClickListener(OnVoiceClickListener mOnVoiceClickListener) {
-		this.mOnVoiceClickListener = mOnVoiceClickListener;
+	public void setActioImageResource(int resId) {
+		this.mActionButton.setImageResource(resId);
+	}
+	public void setOnActionClickListener(OnActionClickListener mOnActionClickListener) {
+		this.mOnActionClickListener = mOnActionClickListener;
 	}
 	public void setSearchText(String keywords){
 		mSearchText.setText(keywords);
@@ -115,9 +118,9 @@ public class SearchView extends LinearLayout {
 	public void setSearchTextHint(String hint){
 		mSearchText.setHint(hint);
 	}
-	public interface OnVoiceClickListener {
+	public interface OnActionClickListener {
 
-        boolean onVoiceClick();
+        boolean onActionClick();
         
     }
 	

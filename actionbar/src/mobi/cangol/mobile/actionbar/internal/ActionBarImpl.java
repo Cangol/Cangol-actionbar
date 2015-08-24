@@ -30,7 +30,10 @@ public class ActionBarImpl extends ActionBar{
 	public void clearListNavigation() {
 		mActionBarView.clearListNavigation();
 	}
-
+	@Override
+	public void setCustomHomeAsUpIndicator(int homeId,int upId){
+		mActionBarView.setCustomHomeAsUpIndicator(homeId, upId);
+	}
 	@Override
 	public void setDisplayHomeAsUpEnabled(boolean show) {
 		mActionBarView.setDisplayHomeAsUpEnabled(show);

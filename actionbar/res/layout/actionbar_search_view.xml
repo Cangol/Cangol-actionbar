@@ -21,18 +21,17 @@
         android:layout_marginRight="8dp"
         android:layout_weight="1"
         android:background="@drawable/actionbar_searchview"
-        android:drawableLeft="@drawable/actionbar_search"
-        android:drawablePadding="4dp"
         android:singleLine="true"
         android:imeOptions="actionSearch"  
-        android:textColor="@android:color/white" />
+        android:textColorHint="@color/actionbar_search_hint"
+        android:textColor="@color/actionbar_search_text" />
 
     <ImageView
-        android:id="@+id/actionbar_search_voice"
+        android:id="@+id/actionbar_search_action"
         style="@style/ActionBarItem"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/actionbar_height"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/actionbar_voice" />
+        android:src="@drawable/actionbar_search_voice" />
 
 </LinearLayout>

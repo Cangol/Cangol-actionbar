@@ -7,6 +7,7 @@
     <color name="actionbar_item">#00000000</color>
     <color name="actionbar_item_pressed">#66000000</color>
     <color name="actionbar_item_text">#ffffff</color>
+    <color name="actionbar_indicator">#ffffff</color>
     
     <color name="actionbar_popup_text">#333333</color>
     <color name="actionbar_popup_item">#F2F2F2</color>
@@ -20,6 +21,8 @@
 	<color name="actionbar_popup_item_driver_dark">#ddd</color>-->
 	
 	<color name="actionbar_search_background">#E4000000</color>
+	<color name="actionbar_search_text">#FFFFFF</color>
+	<color name="actionbar_search_hint">#EEEEEE</color>
 	<color name="actionbar_progress_background">#E4000000</color>
 	
 	<color name="actionbar_mode_text">#333333</color>
