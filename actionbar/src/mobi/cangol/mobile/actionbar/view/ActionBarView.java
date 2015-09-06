@@ -8,10 +8,14 @@ import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
 import mobi.cangol.mobile.actionbar.ActionMode.Callback;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
+import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
+import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabCheckedListener;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -43,6 +47,7 @@ public class ActionBarView extends RelativeLayout {
     private SearchView mSearchView;
     private ActionMenu mActionMenu;
     private ActionMode  mActionMode;
+    private ActionTab mActionTab;
     private ActionBarActivity mActionBarActivity;
     private boolean mIsSearchMode;
    	private DrawerArrowDrawable mDrawerArrowDrawable;
@@ -63,6 +68,7 @@ public class ActionBarView extends RelativeLayout {
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
         mProgressView= (ProgressView) this.findViewById(R.id.actionbar_main_progress);
         mSearchView = (SearchView) this.findViewById(R.id.actionbar_main_search);
+        mActionTab=new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu=new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
         mActionMode=new ActionModeImpl(mActionBarActivity,(ActionModeView) this.findViewById(R.id.actionbar_main_mode));
         setTitle(context.getApplicationInfo().name);
@@ -99,6 +105,16 @@ public class ActionBarView extends RelativeLayout {
 			}
     		
     	});
+    	mActionTab.setOnTabCheckedListener(new OnTabCheckedListener() {
+			
+			@Override
+			public boolean onTabChecked(ActionTabItem tab) {
+				if(mActionBarActivity!=null){
+					return mActionBarActivity.onTabActionChecked(tab);
+				}
+				return false;
+			}
+		});
     }
     public void setListNavigationCallbacks(final String[] navs, OnNavigationListener onNavigationListener){
     	BaseAdapter adapter=new BaseAdapter(){
@@ -296,7 +312,19 @@ public class ActionBarView extends RelativeLayout {
 	public void addActions(ArrayList<ActionMenuItem> actions) {
 		mActionMenu.addActions(actions);
 	}
-	
+	public ActionTab getActionTab() {
+		return mActionTab;
+	}
+	public void clearActionTabs() {
+		mActionTab.removeAllTabs();
+	}
+
+	public void addTabs(ArrayList<ActionTabItem> tabs) {
+		mActionTab.addTabs(tabs);
+	}
+	public ArrayList<ActionTabItem> getTabs() {
+		return mActionTab.getTabs();
+	}
 	public boolean onBackPressed(){
 		if(mProgressView.isProgress())
 			mProgressView.stopProgress();
@@ -312,4 +340,5 @@ public class ActionBarView extends RelativeLayout {
 		
 		return false;
 	}
+	
 }

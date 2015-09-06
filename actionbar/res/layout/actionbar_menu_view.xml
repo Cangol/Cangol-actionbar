@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <LinearLayout
         android:id="@+id/actionbar_menu_actions"
@@ -10,13 +10,15 @@
         android:orientation="horizontal"
         android:padding="0dp" >
     </LinearLayout>
+
     <ImageView
         android:id="@+id/actionbar_menu_more"
         style="@style/ActionBarItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-	android:contentDescription="@string/app_name"
+        android:contentDescription="@string/app_name"
         android:scaleType="fitCenter"
         android:src="@drawable/actionbar_more"
         android:visibility="gone" />
+
 </merge>

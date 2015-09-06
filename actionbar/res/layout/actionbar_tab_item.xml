@@ -1,0 +1,7 @@
+<RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actionbar_tab_item"
+    style="@style/ActionBarTabItem"
+    android:gravity="center"
+    android:singleLine="true"
+    android:text="@string/app_name"
+    android:visibility="visible" />

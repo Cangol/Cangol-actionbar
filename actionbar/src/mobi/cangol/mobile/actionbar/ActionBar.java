@@ -64,4 +64,14 @@ import android.view.View.OnClickListener;
 	abstract public void setBackgroundColor(int color);
 	
 	abstract public void setBackgroundResource(int resId);
+	
+	abstract public ActionTab getActionTab();
+
+	abstract public ArrayList<ActionTabItem> getTabs();
+
+	
+	abstract public void clearActionTabs();
+
+	abstract public void addTabs(ArrayList<ActionTabItem> tabs);
+
 }

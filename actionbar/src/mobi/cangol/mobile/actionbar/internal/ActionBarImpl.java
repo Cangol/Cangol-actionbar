@@ -7,6 +7,8 @@ import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
 import mobi.cangol.mobile.actionbar.ActionMode.Callback;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
 import mobi.cangol.mobile.actionbar.view.SearchView;
@@ -156,6 +158,26 @@ public class ActionBarImpl extends ActionBar{
 	@Override
 	public boolean isShow() {
 		return mActionBarView.getVisibility()==View.VISIBLE;
+	}
+
+	@Override
+	public void clearActionTabs() {
+		mActionBarView.clearActionTabs();
+	}
+
+	@Override
+	public void addTabs(ArrayList<ActionTabItem> tabs) {
+		mActionBarView.addTabs(tabs);
+	}
+
+	@Override
+	public ActionTab getActionTab() {
+		return mActionBarView.getActionTab();
+	}
+
+	@Override
+	public ArrayList<ActionTabItem> getTabs() {
+		return mActionBarView.getTabs();
 	}
 	
 }

@@ -13,6 +13,11 @@
     <color name="actionbar_popup_item">#F2F2F2</color>
     <color name="actionbar_popup_item_pressed">#ddd</color>
 	<color name="actionbar_popup_item_driver">#ddd</color>
+	
+	<color name="actionbar_tab_bg">@color/actionbar_background</color>
+    <color name="actionbar_tab_line">@color/actionbar_title</color>
+    <color name="actionbar_tab_text">@color/actionbar_title_shadow</color>
+	<color name="actionbar_tab_text_checked">@color/actionbar_title</color>
 		
 	<!--  
 	<color name="actionbar_popup_text_dark">#333333</color>

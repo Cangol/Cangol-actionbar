@@ -4,7 +4,10 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
 import android.annotation.SuppressLint;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -94,7 +97,19 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 	}
 
 	private void showToast(String string) {
-		Toast.makeText(this, string, 0);
+		Toast.makeText(this, string, 0).show();
+	}
+	@Override
+	public void onTabActionCreated(ActionTab actionTab) {
+		super.onTabActionCreated(actionTab);
+		actionTab.addTabItem(new ActionTabItem(1,"Left","Left",1));
+		actionTab.addTabItem(new ActionTabItem(2,"Center","Center",0));
+		actionTab.addTabItem(new ActionTabItem(3,"Right","Right",0));
+	}
+	@Override
+	public boolean onTabActionChecked(ActionTabItem tab){
+		showToast(tab.getTitle());
+		return super.onTabActionChecked(tab);
 	}
 	@Override
 	public void onMenuActionCreated(ActionMenu actionMenu) {

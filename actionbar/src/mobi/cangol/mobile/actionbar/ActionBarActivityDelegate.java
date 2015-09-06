@@ -82,8 +82,14 @@ public class ActionBarActivityDelegate {
 			ArrayList<ActionMenuItem> actions=savedInstanceState.getParcelableArrayList("ActionBar.actions");
 			mActionBar.clearActions();
 			mActionBar.addActions(actions);
+			
+			ArrayList<ActionTabItem> tabs=savedInstanceState.getParcelableArrayList("ActionBar.tabs");
+			mActionBar.clearActionTabs();
+			mActionBar.addTabs(tabs);
+			
 		}else{
 			mActivity.onMenuActionCreated(mActionBar.getActionMenu());
+			mActivity.onTabActionCreated(mActionBar.getActionTab());
 		}
 	}
 
@@ -141,6 +147,7 @@ public class ActionBarActivityDelegate {
 	public void onSaveInstanceState(Bundle outState) {
 		outState.putString("ActionBar.title", mActionBar.getTitle());
 		outState.putParcelableArrayList("ActionBar.actions", mActionBar.getActions());
+		outState.putParcelableArrayList("ActionBar.tabs", mActionBar.getTabs());
 	}
 
 	public void setTitle(int titleId) {
