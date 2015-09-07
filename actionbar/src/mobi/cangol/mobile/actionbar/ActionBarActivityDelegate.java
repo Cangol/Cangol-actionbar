@@ -89,8 +89,12 @@ public class ActionBarActivityDelegate {
 			
 		}else{
 			mActivity.onMenuActionCreated(mActionBar.getActionMenu());
-			mActivity.onTabActionCreated(mActionBar.getActionTab());
 		}
+		
+		if(mActionBar.getTabs().size()>0)
+			mActionBar.setTitleVisibility(View.GONE);
+		else 
+			mActionBar.setTitleVisibility(View.VISIBLE);
 	}
 
 	

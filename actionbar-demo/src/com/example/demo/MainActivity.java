@@ -100,18 +100,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		Toast.makeText(this, string, 0).show();
 	}
 	@Override
-	public void onTabActionCreated(ActionTab actionTab) {
-		super.onTabActionCreated(actionTab);
-		actionTab.addTabItem(new ActionTabItem(1,"Left","Left",1));
-		actionTab.addTabItem(new ActionTabItem(2,"Center","Center",0));
-		actionTab.addTabItem(new ActionTabItem(3,"Right","Right",0));
-	}
-	@Override
-	public boolean onTabActionChecked(ActionTabItem tab){
-		showToast(tab.getTitle());
-		return super.onTabActionChecked(tab);
-	}
-	@Override
 	public void onMenuActionCreated(ActionMenu actionMenu) {
 		super.onMenuActionCreated(actionMenu);
 		actionMenu.add(new ActionMenuItem(1,R.string.action_delete,-1,0));

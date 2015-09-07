@@ -18,7 +18,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class ActionTabView extends RadioGroup implements OnCheckedChangeListener {
 	private LayoutInflater mInflater;
 	private ActionTab mActionTab;
-	private OnTabCheckedListener mOnTabCheckedListener;
+	private OnTabSelectedListener mOnTabSelectedListener;
 
 	public ActionTabView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -50,18 +50,18 @@ public class ActionTabView extends RadioGroup implements OnCheckedChangeListener
 
 		RadioButton labelView = (RadioButton) view.findViewById(R.id.actionbar_tab_item);
 		labelView.setId(tabItem.getId());
-		labelView.setTag(tabItem);
 		labelView.setText(tabItem.getTitle());
-		labelView.setChecked(1 == tabItem.getChecked());
+		labelView.setChecked(1 == tabItem.getSelected());
+		labelView.setTag(tabItem);
 		return view;
 	}
 
-	public void setOnTabCheckedListener(OnTabCheckedListener onTabCheckedListener) {
-		this.mOnTabCheckedListener = onTabCheckedListener;
+	public void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener) {
+		this.mOnTabSelectedListener = onTabSelectedListener;
 	}
 
-	public interface OnTabCheckedListener {
-		boolean onTabChecked(ActionTabItem tab);
+	public interface OnTabSelectedListener {
+		boolean onTabSelected(ActionTabItem tab);
 	}
 
 	@Override
@@ -72,13 +72,17 @@ public class ActionTabView extends RadioGroup implements OnCheckedChangeListener
 		Log.d(VIEW_LOG_TAG, "first view=null");
 		if (view.getTag() instanceof ActionTabItem) {
 			final ActionTabItem tab = (ActionTabItem) view.getTag();
-			if (mOnTabCheckedListener != null)
-				mOnTabCheckedListener.onTabChecked(tab);
+			if (mOnTabSelectedListener != null)
+				mOnTabSelectedListener.onTabSelected(tab);
 		}
 	}
 
 	public ArrayList<ActionTabItem> getTabs() {
 		return mActionTab.getTabs();
+	}
+
+	public void setTabSelected(int id) {
+		this.check(id);
 	}
 
 }

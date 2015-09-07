@@ -5,31 +5,23 @@ import android.os.Parcelable;
 
 public  class ActionTabItem implements Parcelable{
 	private int id=-1;
-	private String tag=null;
 	private String title=null;
-	private int checked=0;
+	private int selected=0;
 	public ActionTabItem(){
 		
 	}
 	
-	public ActionTabItem(int id, String tag, String title, int checked) {
+	public ActionTabItem(int id,String title, int selected) {
 		super();
 		this.id = id;
-		this.tag = tag;
 		this.title = title;
-		this.checked = checked;
+		this.selected = selected;
 	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getTag() {
-		return tag;
-	}
-	public void setTag(String tag) {
-		this.tag = tag;
 	}
 	public String getTitle() {
 		return title;
@@ -38,12 +30,13 @@ public  class ActionTabItem implements Parcelable{
 		this.title = title;
 	}
 	
-	public int getChecked() {
-		return checked;
+
+	public int getSelected() {
+		return selected;
 	}
 
-	public void setChecked(int checked) {
-		this.checked = checked;
+	public void setSelected(int selected) {
+		this.selected = selected;
 	}
 
 	@Override
@@ -53,9 +46,8 @@ public  class ActionTabItem implements Parcelable{
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeInt(id);
-		dest.writeString(tag);
 		dest.writeString(title);
-		dest.writeInt(checked);
+		dest.writeInt(selected);
 	}
 
 	public static final Parcelable.Creator<ActionTabItem> CREATOR = new Creator<ActionTabItem>() {
@@ -64,9 +56,8 @@ public  class ActionTabItem implements Parcelable{
 		public ActionTabItem createFromParcel(Parcel source) {
 			ActionTabItem p = new ActionTabItem();
 			p.setId(source.readInt());
-			p.setTag(source.readString());
 			p.setTitle(source.readString());
-			p.setChecked(source.readInt());
+			p.setSelected(source.readInt());
 			return p;
 		}
 

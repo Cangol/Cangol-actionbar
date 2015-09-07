@@ -114,27 +114,6 @@ public class ActionBarActivity extends FragmentActivity{
 		return false;
 	}
 	
-	
-	public void onTabActionCreated(ActionTab actionTab) {
-		
-	}
-	
-	public boolean onTabActionChecked(ActionTabItem tabItem) {
-		return false;
-	}
-	
-	protected boolean dispatchTabActionChecked(ActionTabItem tabItem) {
-		if(onTabActionChecked(tabItem)){
-			return true;
-		}else{
-			return dispatchFragmentTabActionChecked(tabItem);
-		}
-	}
-	
-	protected boolean dispatchFragmentTabActionChecked(ActionTabItem tabItem) {
-		return false;
-	}
-	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);

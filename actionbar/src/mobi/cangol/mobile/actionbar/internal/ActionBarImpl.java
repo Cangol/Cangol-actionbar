@@ -162,6 +162,7 @@ public class ActionBarImpl extends ActionBar{
 
 	@Override
 	public void clearActionTabs() {
+		mActionBarView.setTitleVisibility(View.VISIBLE);
 		mActionBarView.clearActionTabs();
 	}
 
@@ -171,7 +172,8 @@ public class ActionBarImpl extends ActionBar{
 	}
 
 	@Override
-	public ActionTab getActionTab() {
+	public ActionTab createdActionTab() {
+		mActionBarView.setTitleVisibility(View.GONE);
 		return mActionBarView.getActionTab();
 	}
 
@@ -179,5 +181,8 @@ public class ActionBarImpl extends ActionBar{
 	public ArrayList<ActionTabItem> getTabs() {
 		return mActionBarView.getTabs();
 	}
-	
+	@Override
+	public void setTitleVisibility(int visibility){
+		mActionBarView.setTitleVisibility(visibility);
+	}
 }

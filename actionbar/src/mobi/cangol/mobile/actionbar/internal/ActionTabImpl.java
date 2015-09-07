@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import mobi.cangol.mobile.actionbar.ActionTab;
 import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.view.ActionTabView;
-import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabCheckedListener;
+import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener;
 
 public class ActionTabImpl implements ActionTab{
 	private ActionTabView mActionTabView;
@@ -13,12 +13,6 @@ public class ActionTabImpl implements ActionTab{
 	public ActionTabImpl(ActionTabView view){
 		this.mActionTabView=view;
 		mActionTabView.setActionTab(this);
-	}
-	
-	@Override
-	public void addTabItem(ActionTabItem tab) {
-		mTabs.add(tab);
-		mActionTabView.addTabItem(tab);
 	}
 
 	@Override
@@ -32,15 +26,30 @@ public class ActionTabImpl implements ActionTab{
 		mTabs.clear();
 		mActionTabView.removeAllTabs();
 	}
-
-	@Override
-	public void setOnTabCheckedListener(OnTabCheckedListener onTabCheckedListener) {
-		mActionTabView.setOnTabCheckedListener(onTabCheckedListener);
-	}
-
+	
 	@Override
 	public ArrayList<ActionTabItem> getTabs() {
 		return mTabs;
 	}
+	
+	@Override
+	public void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener) {
+		mActionTabView.setOnTabSelectedListener(onTabSelectedListener);
+	}
+
+	@Override
+	public ActionTabItem newTab(int id,String title,int selected) {
+		ActionTabItem item=new ActionTabItem(id,title,selected);
+		mTabs.add(item);
+		mActionTabView.addTabItem(item);
+		return item;
+	}
+
+	@Override
+	public void setTabSelected(int id) {
+		mActionTabView.setTabSelected(id);
+	}
+
+	
 
 }

@@ -15,7 +15,6 @@ import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
-import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabCheckedListener;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -105,16 +104,6 @@ public class ActionBarView extends RelativeLayout {
 			}
     		
     	});
-    	mActionTab.setOnTabCheckedListener(new OnTabCheckedListener() {
-			
-			@Override
-			public boolean onTabChecked(ActionTabItem tab) {
-				if(mActionBarActivity!=null){
-					return mActionBarActivity.onTabActionChecked(tab);
-				}
-				return false;
-			}
-		});
     }
     public void setListNavigationCallbacks(final String[] navs, OnNavigationListener onNavigationListener){
     	BaseAdapter adapter=new BaseAdapter(){
@@ -339,6 +328,9 @@ public class ActionBarView extends RelativeLayout {
 		}
 		
 		return false;
+	}
+	public void setTitleVisibility(int visibility) {
+		mTitleLayout.setVisibility(visibility);
 	}
 	
 }

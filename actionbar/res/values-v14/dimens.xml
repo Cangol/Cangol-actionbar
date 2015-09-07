@@ -3,4 +3,6 @@
 	<dimen name="actionbar_height">54dp</dimen>
     <dimen name="actionbar_item_height">54dp</dimen>
     <dimen name="actionbar_item_min_width">54dp</dimen>
+    <dimen name="actionbar_tab_top">54dp</dimen>
+    <dimen name="actionbar_tab_top_checked">51dp</dimen>
 </resources>
