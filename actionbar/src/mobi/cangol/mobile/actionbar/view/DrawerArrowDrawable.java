@@ -278,7 +278,7 @@ public class DrawerArrowDrawable extends Drawable {
 
   /**
    * Sets the rotation of this drawable based on {@code parameter} between 0 and 1. Usually driven
-   * via {@link DrawerListener#onDrawerSlide(View, float)}'s {@code slideOffset} parameter.
+   *
    */
   public void setParameter(float parameter) {
     if (parameter > 1 || parameter < 0) {

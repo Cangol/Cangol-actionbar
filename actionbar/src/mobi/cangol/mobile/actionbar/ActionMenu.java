@@ -1,9 +1,10 @@
 package mobi.cangol.mobile.actionbar;
 
+import android.view.View;
+
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
-import android.view.View;
 
 public interface ActionMenu {
 	

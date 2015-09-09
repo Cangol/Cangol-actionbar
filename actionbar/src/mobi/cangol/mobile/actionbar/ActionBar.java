@@ -1,10 +1,11 @@
 package mobi.cangol.mobile.actionbar;
 
+import android.view.View.OnClickListener;
+
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionMode.Callback;
 import mobi.cangol.mobile.actionbar.view.SearchView;
-import android.view.View.OnClickListener;
 
  public abstract class ActionBar {
 

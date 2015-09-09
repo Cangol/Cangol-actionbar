@@ -1,13 +1,9 @@
 package mobi.cangol.mobile.actionbar.view;
 
-import java.util.List;
-
-import mobi.cangol.mobile.R;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -19,11 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.util.List;
+
+import mobi.cangol.mobile.actionbar.R;
+
 /**
-* @Description: 
-* @version $Revision: 1.0 $ 
+* @version $Revision: 1.0 $
 * @author xuewu.wei
-* @date: 2014-6-5
 */
 
 public class SearchView extends LinearLayout {

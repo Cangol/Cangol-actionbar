@@ -1,11 +1,5 @@
 package mobi.cangol.mobile.actionbar.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import mobi.cangol.mobile.R;
-import mobi.cangol.mobile.actionbar.ActionTab;
-import mobi.cangol.mobile.actionbar.ActionTabItem;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,6 +8,13 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mobi.cangol.mobile.actionbar.R;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
 
 public class ActionTabView extends RadioGroup implements OnCheckedChangeListener {
 	private LayoutInflater mInflater;

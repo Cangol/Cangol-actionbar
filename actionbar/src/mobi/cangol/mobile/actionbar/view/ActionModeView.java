@@ -1,10 +1,5 @@
 package mobi.cangol.mobile.actionbar.view;
 
-import mobi.cangol.mobile.R;
-import mobi.cangol.mobile.actionbar.ActionMenu;
-import mobi.cangol.mobile.actionbar.ActionMode;
-import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
-import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -13,6 +8,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import mobi.cangol.mobile.actionbar.R;
+import mobi.cangol.mobile.actionbar.ActionMenu;
+import mobi.cangol.mobile.actionbar.ActionMode;
+import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
+import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 
 public class ActionModeView extends LinearLayout {
 	private LayoutInflater mInflater;

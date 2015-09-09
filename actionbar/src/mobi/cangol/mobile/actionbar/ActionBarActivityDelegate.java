@@ -1,14 +1,7 @@
 package mobi.cangol.mobile.actionbar;
 
-import java.util.ArrayList;
-
-import mobi.cangol.mobile.R;
-import mobi.cangol.mobile.actionbar.internal.ActionBarImpl;
-import mobi.cangol.mobile.actionbar.view.ActionBarView;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
@@ -18,6 +11,11 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
+
+import mobi.cangol.mobile.actionbar.internal.ActionBarImpl;
+import mobi.cangol.mobile.actionbar.view.ActionBarView;
 
 
 public class ActionBarActivityDelegate {

@@ -1,6 +1,5 @@
 package mobi.cangol.mobile.actionbar;
 
-import mobi.cangol.mobile.actionbar.ActionMode.Callback;
 import android.annotation.TargetApi;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +7,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import mobi.cangol.mobile.actionbar.ActionMode.Callback;
 
 
 public class ActionBarActivity extends FragmentActivity{

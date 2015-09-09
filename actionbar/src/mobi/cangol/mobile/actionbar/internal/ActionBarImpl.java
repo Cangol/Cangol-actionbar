@@ -1,5 +1,8 @@
 package mobi.cangol.mobile.actionbar.internal;
 
+import android.view.View;
+import android.view.View.OnClickListener;
+
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionBar;
@@ -12,8 +15,6 @@ import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
 import mobi.cangol.mobile.actionbar.view.SearchView;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 public class ActionBarImpl extends ActionBar{
    	private ActionBarView mActionBarView;

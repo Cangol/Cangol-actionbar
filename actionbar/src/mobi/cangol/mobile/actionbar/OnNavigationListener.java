@@ -16,9 +16,7 @@
 package mobi.cangol.mobile.actionbar;
 
 /**
- * @Description OnNavigationListener.java 
  * @author Cangol
- * @date 2014-10-18
  */
 public interface OnNavigationListener {
 	

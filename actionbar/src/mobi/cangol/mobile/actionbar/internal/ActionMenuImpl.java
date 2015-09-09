@@ -1,12 +1,13 @@
 package mobi.cangol.mobile.actionbar.internal;
 
+import android.view.View;
+
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
-import android.view.View;
 
 public class ActionMenuImpl implements ActionMenu{
 	private ArrayList<ActionMenuItem> mActions=new ArrayList<ActionMenuItem>();

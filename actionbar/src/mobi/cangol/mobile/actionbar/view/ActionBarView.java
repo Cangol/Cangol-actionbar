@@ -1,20 +1,5 @@
 package mobi.cangol.mobile.actionbar.view;
 
-import java.util.ArrayList;
-
-import mobi.cangol.mobile.R;
-import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.ActionMenu;
-import mobi.cangol.mobile.actionbar.ActionMenuItem;
-import mobi.cangol.mobile.actionbar.ActionMode;
-import mobi.cangol.mobile.actionbar.ActionMode.Callback;
-import mobi.cangol.mobile.actionbar.ActionTab;
-import mobi.cangol.mobile.actionbar.ActionTabItem;
-import mobi.cangol.mobile.actionbar.OnNavigationListener;
-import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
-import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
-import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
-import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -33,6 +18,22 @@ import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import mobi.cangol.mobile.actionbar.R;
+import mobi.cangol.mobile.actionbar.ActionBarActivity;
+import mobi.cangol.mobile.actionbar.ActionMenu;
+import mobi.cangol.mobile.actionbar.ActionMenuItem;
+import mobi.cangol.mobile.actionbar.ActionMode;
+import mobi.cangol.mobile.actionbar.ActionMode.Callback;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
+import mobi.cangol.mobile.actionbar.OnNavigationListener;
+import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
+import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
+import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
+import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 
 public class ActionBarView extends RelativeLayout {
 	public static final String TAG    = "ActionBar";

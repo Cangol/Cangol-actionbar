@@ -1,13 +1,7 @@
 package mobi.cangol.mobile.actionbar.view;
 
-import java.util.List;
-
-import mobi.cangol.mobile.R;
-import mobi.cangol.mobile.actionbar.ActionMenu;
-import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+
+import mobi.cangol.mobile.actionbar.R;
+import mobi.cangol.mobile.actionbar.ActionMenu;
+import mobi.cangol.mobile.actionbar.ActionMenuItem;
 
 public class ActionMenuView extends LinearLayout implements OnClickListener, OnLongClickListener{
 	

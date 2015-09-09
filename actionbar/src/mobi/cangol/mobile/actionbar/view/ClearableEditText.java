@@ -1,6 +1,5 @@
 package mobi.cangol.mobile.actionbar.view;
 
-import mobi.cangol.mobile.R;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -9,11 +8,11 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+
+import mobi.cangol.mobile.actionbar.R;
 /**
-* @Description: 
-* @version $Revision: 1.0 $ 
+* @version $Revision: 1.0 $
 * @author xuewu.wei
-* @date: 2012-6-5
 */
 public class ClearableEditText extends EditText {
 
