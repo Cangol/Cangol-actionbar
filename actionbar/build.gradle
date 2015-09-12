@@ -32,69 +32,16 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
-    defaultConfig {
-    }
-    productFlavors {
-    }
-    buildTypes {
-        debug {
-            versionNameSuffix '1.0'
-        }
-        release {
-            versionNameSuffix '1.0'
-        }
-    }
 }
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
 
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
 
 // Bintray
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 version = properties.getProperty("LIBRARY_VERSION")
-
-bintray {
-    user = properties.getProperty("BINTRAY.USER")
-    key = properties.getProperty("BINTRAY.APIKEY")
-
-    configurations = ['archives']
-    pkg {
-        repo = 'maven'
-        name = properties.getProperty("LIBRARY_NAME")
-        desc = properties.getProperty("LIBRARY_DESCRIPTION")
-        websiteUrl = properties.getProperty("SITE_URL")
-        vcsUrl = properties.getProperty("GIT_URL")
-        licenses = ["Apache-2.0"]
-        labels = ['android','actionbar','custom actionbar']
-        publish = true
-        publicDownloadNumbers = true
-        version {
-            desc = properties.getProperty("LIBRARY_DESCRIPTION")
-            gpg {
-                sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = properties.getProperty("BINTRAY.GPG.PASSWORD")
-                //Optional. The passphrase for GPG signing'
-            }
-        }
-    }
-}
+group=properties.getProperty("GROUP_ID")
 
 install {
     repositories.mavenInstaller {
@@ -102,11 +49,9 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId properties.getProperty("GROUP_ID")
-                artifactId properties.getProperty("ARTIFACT_NAME")
 
                 // Add your description here
-                name properties.getProperty("LIBRARY_NAME")
+                name properties.getProperty("ARTIFACT_NAME")
                 description properties.getProperty("LIBRARY_DESCRIPTION")
                 url properties.getProperty("SITE_URL")
 
@@ -130,6 +75,52 @@ install {
                     url properties.getProperty("SITE_URL")
 
                 }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    //archives javadocJar
+    archives sourcesJar
+}
+
+bintray {
+    user = properties.getProperty("BINTRAY_USER")
+    key = properties.getProperty("BINTRAY_APIKEY")
+
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = properties.getProperty("LIBRARY_NAME")
+        desc = properties.getProperty("LIBRARY_DESCRIPTION")
+        websiteUrl = properties.getProperty("SITE_URL")
+        vcsUrl = properties.getProperty("GIT_URL")
+        licenses = ["Apache-2.0"]
+        labels = ['android','actionbar','custom actionbar']
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = properties.getProperty("LIBRARY_DESCRIPTION")
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = properties.getProperty("BINTRAY_GPG_PASSWORD")
+                //Optional. The passphrase for GPG signing'
             }
         }
     }

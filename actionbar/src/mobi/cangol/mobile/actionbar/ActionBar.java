@@ -4,7 +4,12 @@ import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
 
-import mobi.cangol.mobile.actionbar.ActionMode.Callback;
+import mobi.cangol.mobile.actionbar.ActionMenu;
+import mobi.cangol.mobile.actionbar.ActionMenuItem;
+import mobi.cangol.mobile.actionbar.ActionMode;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
+import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
  public abstract class ActionBar {
@@ -36,7 +41,7 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 
 	abstract public void setOnTitleClickListener(OnClickListener listener);
 
-	abstract public ActionMode startActionMode(Callback callback);
+	abstract public ActionMode startActionMode(ActionMode.Callback callback);
 
 	abstract public void stopActionMode();
 

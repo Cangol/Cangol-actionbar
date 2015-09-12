@@ -33,7 +33,6 @@ import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
-import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 
 public class ActionBarView extends RelativeLayout {
 	public static final String TAG    = "ActionBar";
@@ -94,7 +93,7 @@ public class ActionBarView extends RelativeLayout {
 			}
     		
     	});
-    	mActionMenu.setOnActionClickListener(new OnActionClickListener(){
+    	mActionMenu.setOnActionClickListener(new ActionMenuView.OnActionClickListener(){
 
 			@Override
 			public boolean onActionClick(ActionMenuItem action) {

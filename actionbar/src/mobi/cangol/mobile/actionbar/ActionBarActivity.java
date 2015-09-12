@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import mobi.cangol.mobile.actionbar.ActionMode.Callback;
-
 
 public class ActionBarActivity extends FragmentActivity{
 	private ActionBarActivityDelegate mDelegate;
@@ -123,7 +121,7 @@ public class ActionBarActivity extends FragmentActivity{
 	public ActionBar getCustomActionBar(){
 		return mDelegate.getCustomActionBar();
 	}
-	public ActionMode startCustomActionMode(Callback callback){
+	public ActionMode startCustomActionMode(ActionMode.Callback callback){
 		return getCustomActionBar().startActionMode(callback);
 	}
 	public boolean onSupportNavigateUp() {

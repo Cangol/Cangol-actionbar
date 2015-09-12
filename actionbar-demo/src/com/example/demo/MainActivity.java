@@ -4,10 +4,8 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
-import mobi.cangol.mobile.actionbar.ActionTab;
-import mobi.cangol.mobile.actionbar.ActionTabItem;
+
 import android.annotation.SuppressLint;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
