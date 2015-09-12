@@ -1,6 +1,11 @@
+/.idea
+/gradlew
+/gradlew.bat
 # built application files
+/.gradle
 *.apk
 *.ap_
+/Cangol-actionbar.iml
 
 # files for the dex VM
 *.dex
