@@ -4,9 +4,12 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
+import mobi.cangol.mobile.actionbar.OnNavigationListener;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -18,27 +21,27 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		this.setBackgroundResource(R.color.red);
-//		this.setStatusBarTintColor(R.color.red);
-//		this.setNavigationBarTintColor(R.color.blue);
-//		findViews();
-//		this.setTitle("首页");
-//		this.setActionbarShow(true);
-//		this.setActionbarOverlay(false);
-//		this.getCustomActionBar().setDisplayHomeAsUpEnabled(true);
-//		this.getCustomActionBar().setBackgroundResource(R.color.red);
-//		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
-////		this.setFullScreen(true);
-//		final String[] navs={"首页","游戏","壁纸","资讯"};
-//		this.getCustomActionBar().setListNavigationCallbacks(navs, new OnNavigationListener(){
-//
-//			@Override
-//			public boolean onNavigationItemSelected(int itemPosition,
-//					long itemId) {
-//				showToast("Navigation "+navs[itemPosition]);
-//				getCustomActionBar().setTitle(navs[itemPosition]);
-//				return false;
-//			}
-//		});
+		this.setStatusBarTintColor(Color.BLUE);
+		this.setNavigationBarTintColor(Color.BLUE);
+		findViews();
+		this.setTitle("首页");
+		this.setActionbarShow(true);
+		this.setActionbarOverlay(false);
+		this.getCustomActionBar().setDisplayHomeAsUpEnabled(true);
+		this.getCustomActionBar().setBackgroundResource(R.color.blue);
+		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
+//		this.setFullScreen(true);
+		final String[] navs={"首页","游戏","壁纸","资讯"};
+		this.getCustomActionBar().setListNavigationCallbacks(navs, new OnNavigationListener(){
+
+			@Override
+			public boolean onNavigationItemSelected(int itemPosition,
+					long itemId) {
+				showToast("Navigation "+navs[itemPosition]);
+				getCustomActionBar().setTitle(navs[itemPosition]);
+				return false;
+			}
+		});
 		
 		
 	}
@@ -108,13 +111,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 	public boolean onMenuActionSelected(ActionMenuItem action) {
 		switch(action.getId()){
 			case 1:
-				Toast.makeText(this, R.string.action_delete, 0).show();
+				Toast.makeText(this, R.string.action_delete, Toast.LENGTH_SHORT).show();
 				break;
 			case 2:
-				Toast.makeText(this, R.string.action_selectAll, 0).show();
+				Toast.makeText(this, R.string.action_selectAll, Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				Toast.makeText(this, R.string.action_invert, 0).show();
+				Toast.makeText(this, R.string.action_invert, Toast.LENGTH_SHORT).show();
 				break;
 		}
 		return super.onMenuActionSelected(action);

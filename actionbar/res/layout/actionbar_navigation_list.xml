@@ -9,6 +9,8 @@
         android:orientation="vertical" >
          <ListView
         android:id="@+id/actionbar_popup_navigation_list"
+        android:divider="@color/actionbar_popup_item_driver"
+        android:dividerHeight="1px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
