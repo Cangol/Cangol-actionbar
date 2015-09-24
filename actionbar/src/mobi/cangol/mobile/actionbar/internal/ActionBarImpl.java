@@ -38,8 +38,8 @@ public class ActionBarImpl extends ActionBar{
 		mActionBarView.setCustomHomeAsUpIndicator(homeId, upId);
 	}
 	@Override
-	public void setDisplayHomeAsUpEnabled(boolean show) {
-		mActionBarView.setDisplayHomeAsUpEnabled(show);
+	public void setDisplayShowHomeEnabled(boolean show) {
+		mActionBarView.setDisplayShowHomeEnabled(show);
 	}
 
 	@Override

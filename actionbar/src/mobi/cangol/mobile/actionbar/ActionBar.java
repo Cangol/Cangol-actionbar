@@ -21,7 +21,7 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 	
 	abstract public void setCustomHomeAsUpIndicator(int homeId,int upId);
 
-	abstract public void setDisplayHomeAsUpEnabled(boolean show);
+	abstract public void setDisplayShowHomeEnabled(boolean show);
 
 	abstract public void displayHomeIndicator();
 
