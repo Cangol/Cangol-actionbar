@@ -27,7 +27,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		this.setTitle("首页");
 		this.setActionbarShow(true);
 		this.setActionbarOverlay(false);
-		this.getCustomActionBar().setDisplayHomeAsUpEnabled(true);
+		this.getCustomActionBar().setDisplayShowHomeEnabled(true);
 		this.getCustomActionBar().setBackgroundResource(R.color.blue);
 		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
 //		this.setFullScreen(true);
@@ -42,8 +42,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 				return false;
 			}
 		});
-		
-		
 	}
 	public void findViews(){
 		this.findViewById(R.id.button1).setOnClickListener(this);

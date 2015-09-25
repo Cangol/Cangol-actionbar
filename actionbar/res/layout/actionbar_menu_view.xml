@@ -15,7 +15,7 @@
         android:id="@+id/actionbar_menu_more"
         style="@style/ActionBarItem"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/actionbar_height"
         android:contentDescription="@string/app_name"
         android:scaleType="fitCenter"
         android:src="@drawable/actionbar_more"
