@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-
+/**
+ * @author Cangol
+ */
 public class ActionBarActivity extends FragmentActivity{
 	private ActionBarActivityDelegate mDelegate;
 	private SystemBarTintManager mTintManager;
@@ -20,37 +22,73 @@ public class ActionBarActivity extends FragmentActivity{
 		mDelegate.onCreate(savedInstanceState);
 		mTintManager = new SystemBarTintManager(this);
 	}
-	public void setWindowBackground(int resId){
-		//替换背景
-		this.getWindow().setBackgroundDrawableResource(resId);
-	}
-	@TargetApi(19) 
-	public void setStatusBarTintColor(int color){
-		mTintManager.setStatusBarTintEnabled(true);
-		mTintManager.setStatusBarTintColor(color);
-	}
-	@TargetApi(19) 
-	public void setNavigationBarTintColor(int color){
-		mTintManager.setNavigationBarTintEnabled(true);
-		mTintManager.setNavigationBarTintColor(color);
-	}
-	
+    /**
+     * 设置标题
+     * @param title
+     */
 	@Override
 	public void setTitle(CharSequence title) {
 		mDelegate.setTitle(title);
 	}
+
+    /**
+     * 设置标题
+     * @param titleId
+     */
 	@Override
 	public void setTitle(int titleId) {
-		// TODO Auto-generated method stub
 		mDelegate.setTitle(titleId);
 	}
+
+    /**
+     * 设置背景颜色
+     * @param color
+     */
 	public void setBackgroundColor(int color){
 		mDelegate.setBackgroundColor(color);
 	}
-	
+
+    /**
+     * 设置背景颜色
+     * @param resId
+     */
 	public void setBackgroundResource(int resId){
 		mDelegate.setBackgroundResource(resId);
 	}
+
+
+    /**
+     * 设置window背景颜色
+     * @param resId
+     */
+    public void setWindowBackground(int resId){
+        //替换背景
+        this.getWindow().setBackgroundDrawableResource(resId);
+    }
+    /**
+     * 设置状态栏颜色
+     * @param color
+     */
+    @TargetApi(19)
+    public void setStatusBarTintColor(int color){
+        mTintManager.setStatusBarTintEnabled(true);
+        mTintManager.setStatusBarTintColor(color);
+    }
+
+    /**
+     * 设置导航栏颜色
+     * @param color
+     */
+    @TargetApi(19)
+    public void setNavigationBarTintColor(int color){
+        mTintManager.setNavigationBarTintEnabled(true);
+        mTintManager.setNavigationBarTintColor(color);
+    }
+
+    /**
+     * 设置为导航栏 状态栏 透明
+     * @param on
+     */
 	@TargetApi(19) 
 	public void setTranslucent(boolean on) {
 		Window win = getWindow();
@@ -63,7 +101,22 @@ public class ActionBarActivity extends FragmentActivity{
 		}
 		win.setAttributes(winParams);
 	}
-	@Override
+    /**
+     * 设置全屏
+     * @param fullscreen
+     */
+    public void setFullScreen(boolean fullscreen) {
+        if(fullscreen){
+            this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }else{
+            this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+        mTintManager.setStatusBarTintEnabled(!fullscreen);
+    }
+
+
+    @Override
 	public void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		mDelegate.onPostCreate(savedInstanceState);
@@ -76,12 +129,27 @@ public class ActionBarActivity extends FragmentActivity{
 			return v;
 		return mDelegate.findViewById(id);
 	}
+
+    /**
+     * 返回actionbar是否悬浮
+     * @return
+     */
 	public boolean isActionbarOverlay() {
 		return mDelegate.isActionbarOverlay();
 	}
+
+    /**
+     * 设置actionbar是否悬浮
+     * @param mActionbarOverlay
+     */
 	public void setActionbarOverlay(boolean mActionbarOverlay) {
 		this.mDelegate.setActionbarOverlay(mActionbarOverlay);
 	}
+
+    /**
+     * 设置actionbar的显示
+     * @param show
+     */
 	public void setActionbarShow(boolean show) {
 		if(show){
 			this.mDelegate.setActionbarOverlay(false);
@@ -92,16 +160,36 @@ public class ActionBarActivity extends FragmentActivity{
 		
 	}
 
+    /**
+     * 获取菜单的Inflater
+     * @return
+     */
 	public ActionMenuInflater getActionMenuInflater() {
         return mDelegate.getActionMenuInflater();
 	}
+
+    /**
+     * menu菜单创建方法
+     * @param actionMenu
+     */
 	public void onMenuActionCreated(ActionMenu actionMenu) {
 		
 	}
-	
+
+    /**
+     * menu菜单选择监听方法
+     * @param actionMenu
+     * @return
+     */
 	public boolean onMenuActionSelected(ActionMenuItem actionMenu) {
 		return false;
 	}
+
+    /**
+     * 指派菜单监听事件
+     * @param actionMenu
+     * @return
+     */
 	protected boolean dispatchActionSelected(ActionMenuItem actionMenu) {
 		if(onMenuActionSelected(actionMenu)){
 			return true;
@@ -109,6 +197,11 @@ public class ActionBarActivity extends FragmentActivity{
 			return dispatchFragmentActionSelected(actionMenu);
 		}
 	}
+    /**
+     * 指派菜单监听事件到fragment
+     * @param actionMenu
+     * @return
+     */
 	protected boolean dispatchFragmentActionSelected(ActionMenuItem actionMenu) {
 		return false;
 	}
@@ -118,29 +211,37 @@ public class ActionBarActivity extends FragmentActivity{
 		super.onSaveInstanceState(outState);
 		mDelegate.onSaveInstanceState(outState);
 	}
+
+    /**
+     * 获取自定义actionbar
+     * @return
+     */
 	public ActionBar getCustomActionBar(){
 		return mDelegate.getCustomActionBar();
 	}
+
+    /**
+     * 启动自定义actionmode
+     * @param callback
+     * @return
+     */
 	public ActionMode startCustomActionMode(ActionMode.Callback callback){
 		return getCustomActionBar().startActionMode(callback);
 	}
-	public boolean onSupportNavigateUp() {
-		this.onBackPressed();
-		return true;
-	}
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		boolean b = mDelegate.onKeyUp(keyCode, event);
-		if (b) return b;
-		return super.onKeyUp(keyCode, event);
-	}
-	public void setFullScreen(boolean fullscreen) {
-		if(fullscreen){
-			this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		            WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		}else{
-			this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		}
-		mTintManager.setStatusBarTintEnabled(!fullscreen);
-	}
+    /**
+     * 导航回调
+     * @return
+     */
+
+    public boolean onSupportNavigateUp() {
+        this.onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        boolean b = mDelegate.onKeyUp(keyCode, event);
+        if (b) return b;
+        return super.onKeyUp(keyCode, event);
+    }
 }

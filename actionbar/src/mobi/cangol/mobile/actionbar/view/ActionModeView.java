@@ -14,7 +14,9 @@ import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMode;
 import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
-
+/**
+ * @author Cangol
+ */
 public class ActionModeView extends LinearLayout {
 	private LayoutInflater mInflater;
 	private ImageView mDoneButton;

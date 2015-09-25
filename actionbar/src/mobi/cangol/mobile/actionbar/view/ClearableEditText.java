@@ -11,8 +11,7 @@ import android.widget.EditText;
 
 import mobi.cangol.mobile.actionbar.R;
 /**
-* @version $Revision: 1.0 $
-* @author xuewu.wei
+* @author Cangol
 */
 public class ClearableEditText extends EditText {
 

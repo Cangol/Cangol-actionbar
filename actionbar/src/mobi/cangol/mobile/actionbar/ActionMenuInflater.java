@@ -5,15 +5,17 @@ import android.util.AttributeSet;
 
 import org.xmlpull.v1.XmlPullParser;
 
-
+/**
+ * @author Cangol
+ */
 public class ActionMenuInflater {
 
 	private ActionMenu mActionMenu;
 	private Activity mActivity;
 	
-	public ActionMenuInflater(ActionMenu menu, Activity mActivity) {
+	public ActionMenuInflater(ActionMenu menu, Activity activity) {
 		mActionMenu=menu;
-		mActivity=mActivity;
+		mActivity=activity;
 	}
 
 	public void inflater(int menuRes,ActionMenu menu) {

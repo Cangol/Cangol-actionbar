@@ -8,8 +8,11 @@ import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 import mobi.cangol.mobile.actionbar.view.ActionModeView;
-
-public class ActionModeImpl extends ActionMode {
+/**
+ * @author Cangol
+ * @hide
+ */
+public final class ActionModeImpl extends ActionMode {
 	private ActionModeView mActionModeView;
 	private ActionMode.Callback mActionModeCallback;
 	private boolean isActionMode;

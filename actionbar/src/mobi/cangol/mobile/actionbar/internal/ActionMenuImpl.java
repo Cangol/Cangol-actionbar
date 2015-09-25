@@ -8,8 +8,11 @@ import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
-
-public class ActionMenuImpl implements ActionMenu{
+/**
+ * @author Cangol
+ * @hide
+ */
+public final class ActionMenuImpl implements ActionMenu{
 	private ArrayList<ActionMenuItem> mActions=new ArrayList<ActionMenuItem>();
 	private ActionMenuView mActionMenuView;
 	

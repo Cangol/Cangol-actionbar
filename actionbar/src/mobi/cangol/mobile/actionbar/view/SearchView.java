@@ -20,8 +20,7 @@ import java.util.List;
 import mobi.cangol.mobile.actionbar.R;
 
 /**
-* @version $Revision: 1.0 $
-* @author xuewu.wei
+* @author Cangol
 */
 
 public class SearchView extends LinearLayout {

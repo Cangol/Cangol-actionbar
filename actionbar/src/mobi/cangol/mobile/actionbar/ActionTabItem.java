@@ -2,10 +2,21 @@ package mobi.cangol.mobile.actionbar;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+/**
+ * @author Cangol
+ */
 public  class ActionTabItem implements Parcelable{
+    /**
+     * 唯一标识
+     */
 	private int id=-1;
+    /**
+     * 标题文本
+     */
 	private String title=null;
+    /**
+     * 是否选中
+     */
 	private int selected=0;
 	public ActionTabItem(){
 		

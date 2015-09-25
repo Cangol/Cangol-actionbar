@@ -2,7 +2,6 @@ package mobi.cangol.mobile.actionbar.internal;
 
 import android.view.View;
 import android.view.View.OnClickListener;
-
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionBar;
@@ -16,7 +15,11 @@ import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
-public class ActionBarImpl extends ActionBar{
+/**
+ * @author Cangol
+ * @hide
+ */
+public final class ActionBarImpl extends ActionBar{
    	private ActionBarView mActionBarView;
    	
     public ActionBarImpl(ActionBarView view){
@@ -72,8 +75,8 @@ public class ActionBarImpl extends ActionBar{
 	}
 
 	@Override
-	public void setTitle(int resid) {
-		mActionBarView.setTitle(resid);
+	public void setTitle(int resId) {
+		mActionBarView.setTitle(resId);
 	}
 
 	@Override

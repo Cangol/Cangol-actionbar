@@ -3,82 +3,227 @@ package mobi.cangol.mobile.actionbar;
 import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
-
-import mobi.cangol.mobile.actionbar.ActionMenu;
-import mobi.cangol.mobile.actionbar.ActionMenuItem;
-import mobi.cangol.mobile.actionbar.ActionMode;
-import mobi.cangol.mobile.actionbar.ActionTab;
-import mobi.cangol.mobile.actionbar.ActionTabItem;
-import mobi.cangol.mobile.actionbar.OnNavigationListener;
+/**
+ * @author Cangol
+ */
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
- public abstract class ActionBar {
+public abstract class ActionBar {
+    /**
+     * 设置导航菜单
+     *
+     * @param navs                 导航菜单
+     * @param onNavigationListener 导航监听
+     */
+    abstract public void setListNavigationCallbacks(String[] navs,
+                                                    OnNavigationListener onNavigationListener);
 
-	abstract public void setListNavigationCallbacks(String[] navs,
-			OnNavigationListener onNavigationListener);
+    /**
+     * 清除导航菜单
+     */
+    abstract public void clearListNavigation();
 
-	abstract public void clearListNavigation();
-	
-	abstract public void setCustomHomeAsUpIndicator(int homeId,int upId);
+    /**
+     * 设置自定义的home和up
+     *
+     * @param homeId
+     * @param upId
+     */
+    abstract public void setCustomHomeAsUpIndicator(int homeId, int upId);
 
-	abstract public void setDisplayShowHomeEnabled(boolean show);
+    /**
+     * 设置home的显示
+     *
+     * @param show
+     */
+    abstract public void setDisplayShowHomeEnabled(boolean show);
 
-	abstract public void displayHomeIndicator();
+    /**
+     * 显示home指示器
+     */
+    abstract public void displayHomeIndicator();
 
-	abstract public void displayUpIndicator();
+    /**
+     * 显示Up指示器
+     */
+    abstract public void displayUpIndicator();
 
-	abstract public void displayIndicator(float slideOffset);
-	
-	abstract public void setIndicatorColor(int color);
+    /**
+     * 设置指示器显示的offset，只对原生指示器起作用
+     *
+     * @param slideOffset
+     */
+    abstract public void displayIndicator(float slideOffset);
 
-	abstract public String getTitle();
+    /**
+     * 设置指示器显示的颜色，只对原生指示器起作用
+     *
+     * @param color
+     */
+    abstract public void setIndicatorColor(int color);
 
-	abstract public void setTitle(CharSequence title);
+    /**
+     * 获取标题
+     *
+     * @return
+     */
+    abstract public String getTitle();
 
-	abstract public void setTitle(int resid);
+    /**
+     * 设置标题
+     *
+     * @param title
+     */
+    abstract public void setTitle(CharSequence title);
 
-	abstract public void setTitleGravity(int gravity);
+    /**
+     * 设置标题
+     *
+     * @param resid
+     */
+    abstract public void setTitle(int resid);
 
-	abstract public void setOnTitleClickListener(OnClickListener listener);
+    /**
+     * 设置标题对其方式
+     *
+     * @param gravity
+     */
+    abstract public void setTitleGravity(int gravity);
 
-	abstract public ActionMode startActionMode(ActionMode.Callback callback);
+    /**
+     * 设置标题点击事件监听
+     *
+     * @param listener
+     */
+    abstract public void setOnTitleClickListener(OnClickListener listener);
 
-	abstract public void stopActionMode();
+    /**
+     * 启动ActionMode
+     *
+     * @param callback
+     * @return
+     */
+    abstract public ActionMode startActionMode(ActionMode.Callback callback);
 
-	abstract public void startProgress();
+    /**
+     * 停止ActionMode
+     */
+    abstract public void stopActionMode();
 
-	abstract public void stopProgress();
+    /**
+     * 开启进度模式
+     */
+    abstract public void startProgress();
 
-	abstract public SearchView startSearchMode();
+    /**
+     * 关闭进度模式
+     */
+    abstract public void stopProgress();
 
-	abstract public void stopSearchMode();
+    /**
+     * 开启搜索模式，与stopSearchMode成对使用
+     *
+     * @return
+     */
+    abstract public SearchView startSearchMode();
 
-	abstract public ActionMenu getActionMenu();
+    /**
+     * 停止搜索模式
+     */
+    abstract public void stopSearchMode();
 
-	abstract public void clearActions();
+    /**
+     * 获取actionMenu
+     *
+     * @return
+     */
+    abstract public ActionMenu getActionMenu();
 
-	abstract public ArrayList<ActionMenuItem> getActions();
+    /**
+     * 清除所有菜单按钮
+     */
+    abstract public void clearActions();
 
-	abstract public void addActions(ArrayList<ActionMenuItem> actions);
+    /**
+     * 获取所有菜单按钮
+     *
+     * @return
+     */
+    abstract public ArrayList<ActionMenuItem> getActions();
 
-	abstract public boolean onBackPressed();
+    /**
+     * 添加 菜单按钮
+     *
+     * @param actions
+     */
+    abstract protected void addActions(ArrayList<ActionMenuItem> actions);
 
-	abstract public void setShow(boolean show);
-	
-	abstract public boolean isShow();
-	
-	abstract public void setBackgroundColor(int color);
-	
-	abstract public void setBackgroundResource(int resId);
-	
-	abstract public ActionTab createdActionTab();
+    /**
+     * back时执行
+     *
+     * @return
+     */
+    abstract protected boolean onBackPressed();
 
-	abstract public ArrayList<ActionTabItem> getTabs();
-	
-	abstract public void clearActionTabs();
+    /**
+     * 设置显示
+     *
+     * @param show
+     */
+    abstract public void setShow(boolean show);
 
-	abstract public void addTabs(ArrayList<ActionTabItem> tabs);
+    /**
+     * 返回是否显示
+     *
+     * @return
+     */
+    abstract public boolean isShow();
 
-	abstract public  void setTitleVisibility(int visibly);
+    /**
+     * 设置背景颜色
+     *
+     * @param color
+     */
+    abstract public void setBackgroundColor(int color);
+
+    /**
+     * 设置背景
+     *
+     * @param resId
+     */
+    abstract public void setBackgroundResource(int resId);
+
+    /**
+     * 创建ActionTab
+     *
+     * @return
+     */
+    abstract public ActionTab createdActionTab();
+
+    /**
+     * 获取所有tabItem
+     *
+     * @return
+     */
+    abstract protected ArrayList<ActionTabItem> getTabs();
+
+    /**
+     * 清除所有tabItem
+     */
+    abstract public void clearActionTabs();
+
+    /**
+     * 添加在标题栏添加tabItem
+     *
+     * @param tabs
+     */
+    abstract protected void addTabs(ArrayList<ActionTabItem> tabs);
+
+    /**
+     * 设置标题的对其方式
+     *
+     * @param visibly
+     */
+    abstract public void setTitleVisibility(int visibly);
 
 }

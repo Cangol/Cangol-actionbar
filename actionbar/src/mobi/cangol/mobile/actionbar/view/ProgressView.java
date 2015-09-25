@@ -13,8 +13,7 @@ import android.widget.TextView;
 import mobi.cangol.mobile.actionbar.R;
 
 /**
-* @version $Revision: 1.0 $
-* @author xuewu.wei
+* @author Cangol
 */
 
 public class ProgressView extends LinearLayout {

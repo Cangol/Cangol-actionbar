@@ -19,7 +19,9 @@ import java.util.List;
 import mobi.cangol.mobile.actionbar.R;
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
-
+/**
+ * @author Cangol
+ */
 public class ActionMenuView extends LinearLayout implements OnClickListener, OnLongClickListener{
 	
 	private LayoutInflater mInflater;

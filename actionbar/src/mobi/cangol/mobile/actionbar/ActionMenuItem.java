@@ -2,13 +2,29 @@ package mobi.cangol.mobile.actionbar;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+/**
+ * @author Cangol
+ */
 public  class ActionMenuItem implements Parcelable{
-	public static final int SHOW=1;
+    /**
+     * 图片id -1标示无图片，即文本按钮
+     */
 	private int drawable=-1;
+    /**
+     * 唯一标示
+     */
 	private int id=-1;
+    /**
+     * 标题文本ID
+     */
 	private int text=-1;
+    /**
+     * 是否显示 1为在actionbar上显示，0或其他为在more菜单中显示（）
+     */
 	private int show=-1;
+    /**
+     * 标题文本
+     */
 	private String textStr=null;
 	public ActionMenuItem(int id,int text,int drawable){
 		this.id=id;
@@ -59,7 +75,7 @@ public  class ActionMenuItem implements Parcelable{
 		return drawable!=-1;
 	}
 	public boolean isShow() {
-		return show==SHOW;
+		return show==1;
 	}
 	public void setShow(int show) {
 		this.show = show;

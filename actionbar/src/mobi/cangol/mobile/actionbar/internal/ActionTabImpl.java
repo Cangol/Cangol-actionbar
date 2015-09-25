@@ -6,8 +6,10 @@ import mobi.cangol.mobile.actionbar.ActionTab;
 import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.view.ActionTabView;
 import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener;
-
-public class ActionTabImpl implements ActionTab{
+/**
+ * @hide
+ */
+public final class ActionTabImpl implements ActionTab{
 	private ActionTabView mActionTabView;
 	private ArrayList<ActionTabItem> mTabs=new ArrayList<ActionTabItem>();
 	public ActionTabImpl(ActionTabView view){

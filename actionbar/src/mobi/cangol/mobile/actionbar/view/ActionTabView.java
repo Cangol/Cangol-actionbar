@@ -15,7 +15,9 @@ import java.util.List;
 import mobi.cangol.mobile.actionbar.R;
 import mobi.cangol.mobile.actionbar.ActionTab;
 import mobi.cangol.mobile.actionbar.ActionTabItem;
-
+/**
+ * @author Cangol
+ */
 public class ActionTabView extends RadioGroup implements OnCheckedChangeListener {
 	private LayoutInflater mInflater;
 	private ActionTab mActionTab;

@@ -20,5 +20,5 @@ package mobi.cangol.mobile.actionbar;
  */
 public interface OnNavigationListener {
 	
-	public boolean onNavigationItemSelected(int itemPosition, long itemId);
+	 boolean onNavigationItemSelected(int itemPosition, long itemId);
 }

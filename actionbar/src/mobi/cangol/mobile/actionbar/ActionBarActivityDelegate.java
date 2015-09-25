@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import mobi.cangol.mobile.actionbar.internal.ActionBarImpl;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
 
-
+/**
+ * @author Cangol
+ */
 public class ActionBarActivityDelegate {
 	
 	private ActionBarActivity mActivity;
@@ -50,11 +52,9 @@ public class ActionBarActivityDelegate {
 	
 	public void setActionbarOverlay(boolean mActionbarOverlay) {
 		this.mActionbarOverlay = mActionbarOverlay;
-		DisplayMetrics displayMetrics = mActivity.getResources().getDisplayMetrics(); 
 		if(mActionbarOverlay){
 			((RelativeLayout.LayoutParams)mContentView.getLayoutParams()).topMargin=0;
 		}else {
-		//	((RelativeLayout.LayoutParams)mContentView.getLayoutParams()).topMargin=(int) (48*displayMetrics.density);
 			((RelativeLayout.LayoutParams)mContentView.getLayoutParams()).topMargin=(int) (mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height));
 		}
 		this.mActionbarOverlay = mActionbarOverlay;

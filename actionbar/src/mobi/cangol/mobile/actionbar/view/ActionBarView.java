@@ -33,7 +33,10 @@ import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
-
+/**
+ * @author Cangol
+ * @hide
+ */
 public class ActionBarView extends RelativeLayout {
     public static final String TAG = "ActionBar";
     private LayoutInflater mInflater;
