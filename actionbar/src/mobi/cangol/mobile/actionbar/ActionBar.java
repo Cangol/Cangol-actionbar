@@ -220,7 +220,7 @@ public abstract class ActionBar {
     abstract protected void addTabs(ArrayList<ActionTabItem> tabs);
 
     /**
-     * 设置标题的对其方式
+     * 设置标题显示
      *
      * @param visibly
      */

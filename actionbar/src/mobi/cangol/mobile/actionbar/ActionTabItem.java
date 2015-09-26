@@ -11,9 +11,9 @@ public  class ActionTabItem implements Parcelable{
      */
 	private int id=-1;
     /**
-     * 标题文本
+     * 文本
      */
-	private String title=null;
+	private String text=null;
     /**
      * 是否选中
      */
@@ -22,10 +22,10 @@ public  class ActionTabItem implements Parcelable{
 		
 	}
 	
-	public ActionTabItem(int id,String title, int selected) {
+	public ActionTabItem(int id,String text, int selected) {
 		super();
 		this.id = id;
-		this.title = title;
+		this.text = text;
 		this.selected = selected;
 	}
 	public int getId() {
@@ -34,11 +34,11 @@ public  class ActionTabItem implements Parcelable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTitle() {
-		return title;
+	public String getText() {
+		return text;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setText(String text) {
+		this.text = text;
 	}
 	
 
@@ -57,7 +57,7 @@ public  class ActionTabItem implements Parcelable{
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeInt(id);
-		dest.writeString(title);
+		dest.writeString(text);
 		dest.writeInt(selected);
 	}
 
@@ -67,7 +67,7 @@ public  class ActionTabItem implements Parcelable{
 		public ActionTabItem createFromParcel(Parcel source) {
 			ActionTabItem p = new ActionTabItem();
 			p.setId(source.readInt());
-			p.setTitle(source.readString());
+			p.setText(source.readString());
 			p.setSelected(source.readInt());
 			return p;
 		}
