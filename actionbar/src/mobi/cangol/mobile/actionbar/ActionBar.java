@@ -10,20 +10,6 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 
 public abstract class ActionBar {
     /**
-     * 设置导航菜单
-     *
-     * @param navs                 导航菜单
-     * @param onNavigationListener 导航监听
-     */
-    abstract public void setListNavigationCallbacks(String[] navs,
-                                                    OnNavigationListener onNavigationListener);
-
-    /**
-     * 清除导航菜单
-     */
-    abstract public void clearListNavigation();
-
-    /**
      * 设置自定义的home和up
      *
      * @param homeId
@@ -63,6 +49,41 @@ public abstract class ActionBar {
     abstract public void setIndicatorColor(int color);
 
     /**
+     * back时执行
+     *
+     * @return
+     */
+    abstract protected boolean onBackPressed();
+
+    /**
+     * 设置显示
+     *
+     * @param show
+     */
+    abstract public void setShow(boolean show);
+
+    /**
+     * 返回是否显示
+     *
+     * @return
+     */
+    abstract public boolean isShow();
+
+    /**
+     * 设置背景颜色
+     *
+     * @param color
+     */
+    abstract public void setBackgroundColor(int color);
+
+    /**
+     * 设置背景
+     *
+     * @param resId
+     */
+    abstract public void setBackgroundResource(int resId);
+
+    /**
      * 获取标题
      *
      * @return
@@ -91,8 +112,15 @@ public abstract class ActionBar {
     abstract public void setTitleGravity(int gravity);
 
     /**
-     * 设置标题点击事件监听
+     * 设置标题显示
      *
+     * @param visibly
+     */
+    abstract public void setTitleVisibility(int visibly);
+
+    /**
+     * 设置标题点击事件监听
+     * 此事件与setOnNavigationListener相冲突，只有后设置的有效
      * @param listener
      */
     abstract public void setOnTitleClickListener(OnClickListener listener);
@@ -133,72 +161,67 @@ public abstract class ActionBar {
     abstract public void stopSearchMode();
 
     /**
+     * 设置导航菜单
+     * @param navs
+     */
+    abstract public void setListNavigation(String[] navs);
+    /**
+     * 设置导航菜单
+     * 此事件与setOnTitleClickListener相冲突，只有后设置的有效
+     * @param onNavigationListener 导航监听
+     */
+    abstract public void setOnNavigationListener(OnNavigationListener onNavigationListener);
+
+    /**
+     * 获取导航菜单
+     */
+    abstract public String[] getListNavigation();
+
+    /**
+     * 清除导航菜单
+     */
+    abstract public void clearListNavigation();
+
+
+    /**
      * 获取actionMenu
      *
      * @return
      */
-    abstract public ActionMenu getActionMenu();
-
-    /**
-     * 清除所有菜单按钮
-     */
-    abstract public void clearActions();
-
-    /**
-     * 获取所有菜单按钮
-     *
-     * @return
-     */
-    abstract public ArrayList<ActionMenuItem> getActions();
+    abstract protected ActionMenu getActionMenu();
 
     /**
      * 添加 菜单按钮
      *
      * @param actions
      */
-    abstract protected void addActions(ArrayList<ActionMenuItem> actions);
+    abstract protected void addMenus(ArrayList<ActionMenuItem> actions);
 
     /**
-     * back时执行
+     * 获取所有菜单按钮
      *
      * @return
      */
-    abstract protected boolean onBackPressed();
+    abstract protected ArrayList<ActionMenuItem> getMenus();
 
     /**
-     * 设置显示
-     *
-     * @param show
+     * 清除所有菜单按钮
      */
-    abstract public void setShow(boolean show);
-
-    /**
-     * 返回是否显示
-     *
-     * @return
-     */
-    abstract public boolean isShow();
-
-    /**
-     * 设置背景颜色
-     *
-     * @param color
-     */
-    abstract public void setBackgroundColor(int color);
-
-    /**
-     * 设置背景
-     *
-     * @param resId
-     */
-    abstract public void setBackgroundResource(int resId);
+    abstract protected void clearActionMenus();
 
     /**
      * 创建ActionTab
      *
      * @return
      */
-    abstract public ActionTab createdActionTab();
+    abstract public ActionTab getActionTab();
+
+    /**
+     * 添加在标题栏添加tabItem
+     *
+     * @param tabs
+     */
+    abstract protected void addTabs(ArrayList<ActionTabItem> tabs);
 
     /**
      * 获取所有tabItem
@@ -210,20 +233,7 @@ public abstract class ActionBar {
     /**
      * 清除所有tabItem
      */
-    abstract public void clearActionTabs();
+    abstract protected void clearActionTabs();
 
-    /**
-     * 添加在标题栏添加tabItem
-     *
-     * @param tabs
-     */
-    abstract protected void addTabs(ArrayList<ActionTabItem> tabs);
-
-    /**
-     * 设置标题显示
-     *
-     * @param visibly
-     */
-    abstract public void setTitleVisibility(int visibly);
 
 }

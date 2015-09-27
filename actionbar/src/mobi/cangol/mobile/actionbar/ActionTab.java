@@ -6,23 +6,23 @@ import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener;
 /**
  * @author Cangol
  */
-public interface ActionTab {
+public abstract class ActionTab {
 
     /**
      * 获取所有tabItem
      */
 
-	ArrayList<ActionTabItem> getTabs();
+    public  abstract ArrayList<ActionTabItem> getTabs();
 
     /**
      * 添加tabItem列表
      */
-	void addTabs(ArrayList<ActionTabItem> tabs);
+    public abstract void addTabs(ArrayList<ActionTabItem> tabs);
 
     /**
      * 移除所有tabItem
      */
-	void removeAllTabs();
+    public abstract void removeAllTabs();
 
     /**
      * 新增tabItem
@@ -31,17 +31,17 @@ public interface ActionTab {
      * @param selected 选择状态：1为选择，0或其他为未选中
      * @return
      */
-	ActionTabItem newTab(int id,String title,int selected);
+    public abstract ActionTabItem newTab(int id,String title,int selected);
 
     /**
      * 选择tab
      * @param id tabItem唯一标示
      */
-	void setTabSelected(int id);
+    public abstract void setTabSelected(int id);
 
     /**
      * 设置tab选择监听
      * @param onTabSelectedListener
      */
-	void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener);
+    public abstract void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener);
 }

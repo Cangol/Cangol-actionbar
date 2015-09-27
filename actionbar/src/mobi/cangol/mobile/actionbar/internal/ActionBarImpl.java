@@ -2,6 +2,7 @@ package mobi.cangol.mobile.actionbar.internal;
 
 import android.view.View;
 import android.view.View.OnClickListener;
+
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionBar;
@@ -19,174 +20,191 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
  * @author Cangol
  * @hide
  */
-public final class ActionBarImpl extends ActionBar{
-   	private ActionBarView mActionBarView;
-   	
-    public ActionBarImpl(ActionBarView view){
-    	this.mActionBarView=view;
+public final class ActionBarImpl extends ActionBar {
+    private ActionBarView mActionBarView;
+
+    public ActionBarImpl(ActionBarView view) {
+        this.mActionBarView = view;
     }
 
-	@Override
-	public void setListNavigationCallbacks(String[] navs,
-			OnNavigationListener onNavigationListener) {
-		mActionBarView.setListNavigationCallbacks(navs,onNavigationListener);		
-	}
+    @Override
+    public void setCustomHomeAsUpIndicator(int homeId, int upId) {
+        mActionBarView.setCustomHomeAsUpIndicator(homeId, upId);
+    }
 
-	@Override
-	public void clearListNavigation() {
-		mActionBarView.clearListNavigation();
-	}
-	@Override
-	public void setCustomHomeAsUpIndicator(int homeId,int upId){
-		mActionBarView.setCustomHomeAsUpIndicator(homeId, upId);
-	}
-	@Override
-	public void setDisplayShowHomeEnabled(boolean show) {
-		mActionBarView.setDisplayShowHomeEnabled(show);
-	}
+    @Override
+    public void setDisplayShowHomeEnabled(boolean show) {
+        mActionBarView.setDisplayShowHomeEnabled(show);
+    }
 
-	@Override
-	public void displayIndicator(float slideOffset){
-		mActionBarView.displayIndicator(slideOffset);
-	}
+    @Override
+    public void displayIndicator(float slideOffset) {
+        mActionBarView.displayIndicator(slideOffset);
+    }
 
-	@Override
-	public void displayHomeIndicator() {
-		mActionBarView.displayHomeIndicator();
-	}
+    @Override
+    public void displayHomeIndicator() {
+        mActionBarView.displayHomeIndicator();
+    }
 
-	@Override
-	public void displayUpIndicator() {
-		mActionBarView.displayUpIndicator();
-	}
-	@Override
-	public void setIndicatorColor(int color) {
-		mActionBarView.setIndicatorColor(color);
-		
-	}
-	@Override
-	public String getTitle() {
-		return mActionBarView.getTitle();
-	}
+    @Override
+    public void displayUpIndicator() {
+        mActionBarView.displayUpIndicator();
+    }
 
-	@Override
-	public void setTitle(CharSequence title) {
-		mActionBarView.setTitle(title);
-	}
+    @Override
+    public void setIndicatorColor(int color) {
+        mActionBarView.setIndicatorColor(color);
 
-	@Override
-	public void setTitle(int resId) {
-		mActionBarView.setTitle(resId);
-	}
+    }
 
-	@Override
-	public void setTitleGravity(int gravity) {
-		mActionBarView.setTitleGravity(gravity);
-	}
+    @Override
+    public boolean onBackPressed() {
+        return mActionBarView.onBackPressed();
+    }
 
-	@Override
-	public void setOnTitleClickListener(OnClickListener listener) {
-		mActionBarView.setOnTitleClickListener(listener);
-	}
+    @Override
+    public void setShow(boolean show) {
+        mActionBarView.setVisibility(show ? View.VISIBLE : View.GONE);
 
-	@Override
-	public ActionMode startActionMode(Callback callback) {
-		return mActionBarView.startActionMode(callback);
-	}
+    }
 
-	@Override
-	public void stopActionMode() {
-		mActionBarView.stopActionMode();
-		
-	}
+    public void setBackgroundColor(int color) {
+        mActionBarView.setBackgroundColor(color);
+    }
 
-	@Override
-	public void startProgress() {
-		mActionBarView.startProgress();
-		
-	}
+    public void setBackgroundResource(int resId) {
+        mActionBarView.setBackgroundResource(resId);
+    }
 
-	@Override
-	public void stopProgress() {
-		mActionBarView.stopProgress();
-	}
+    @Override
+    public boolean isShow() {
+        return mActionBarView.getVisibility() == View.VISIBLE;
+    }
 
-	@Override
-	public SearchView startSearchMode() {
-		return mActionBarView.startSearchMode();
-	}
+    @Override
+    public String getTitle() {
+        return mActionBarView.getTitle();
+    }
 
-	@Override
-	public void stopSearchMode() {
-		mActionBarView.stopSearchMode();
-	}
+    @Override
+    public void setTitle(CharSequence title) {
+        mActionBarView.setTitle(title);
+    }
 
-	@Override
-	public ActionMenu getActionMenu() {
-		return mActionBarView.getActionMenu();
-	}
+    @Override
+    public void setTitle(int resId) {
+        mActionBarView.setTitle(resId);
+    }
 
-	@Override
-	public void clearActions() {
-		mActionBarView.clearActions();
-	}
+    @Override
+    public void setTitleGravity(int gravity) {
+        mActionBarView.setTitleGravity(gravity);
+    }
 
-	@Override
-	public ArrayList<ActionMenuItem> getActions() {
-		return mActionBarView.getActions();
-	}
+    @Override
+    public void setTitleVisibility(int visibility) {
+        mActionBarView.setTitleVisibility(visibility);
+    }
 
-	@Override
-	public void addActions(ArrayList<ActionMenuItem> actions) {
-		mActionBarView.addActions(actions);
-	}
+    @Override
+    public void setOnTitleClickListener(OnClickListener listener) {
+        mActionBarView.setOnTitleClickListener(listener);
+    }
 
-	@Override
-	public boolean onBackPressed() {
-		return mActionBarView.onBackPressed();
-	}
+    @Override
+    public ActionMode startActionMode(Callback callback) {
+        return mActionBarView.startActionMode(callback);
+    }
 
-	@Override
-	public void setShow(boolean show) {
-		mActionBarView.setVisibility(show?View.VISIBLE:View.GONE);
-		
-	}
-	public void setBackgroundColor(int color){
-		mActionBarView.setBackgroundColor(color);
-	}
-	
-	public void setBackgroundResource(int resId){
-		mActionBarView.setBackgroundResource(resId);
-	}
 
-	@Override
-	public boolean isShow() {
-		return mActionBarView.getVisibility()==View.VISIBLE;
-	}
+    @Override
+    public void stopActionMode() {
+        mActionBarView.stopActionMode();
 
-	@Override
-	public void clearActionTabs() {
-		mActionBarView.setTitleVisibility(View.VISIBLE);
-		mActionBarView.clearActionTabs();
-	}
+    }
 
-	@Override
-	public void addTabs(ArrayList<ActionTabItem> tabs) {
-		mActionBarView.addTabs(tabs);
-	}
+    @Override
+    public void startProgress() {
+        mActionBarView.startProgress();
 
-	@Override
-	public ActionTab createdActionTab() {
-		mActionBarView.setTitleVisibility(View.GONE);
-		return mActionBarView.getActionTab();
-	}
+    }
 
-	@Override
-	public ArrayList<ActionTabItem> getTabs() {
-		return mActionBarView.getTabs();
-	}
-	@Override
-	public void setTitleVisibility(int visibility){
-		mActionBarView.setTitleVisibility(visibility);
-	}
+    @Override
+    public void stopProgress() {
+        mActionBarView.stopProgress();
+    }
+
+    @Override
+    public SearchView startSearchMode() {
+        return mActionBarView.startSearchMode();
+    }
+
+    @Override
+    public void stopSearchMode() {
+        mActionBarView.stopSearchMode();
+    }
+
+    @Override
+    public void setListNavigation(String[] navs) {
+        mActionBarView.setListNavigation(navs);
+    }
+
+    @Override
+    public void setOnNavigationListener(OnNavigationListener onNavigationListener) {
+        mActionBarView.setOnNavigationListener(onNavigationListener);
+    }
+
+    @Override
+    public String[] getListNavigation() {
+        return mActionBarView.getListNavigation();
+    }
+
+    @Override
+    public void clearListNavigation() {
+        mActionBarView.clearListNavigation();
+    }
+
+
+    @Override
+    public ActionMenu getActionMenu() {
+        return mActionBarView.getActionMenu();
+    }
+
+    @Override
+    public void addMenus(ArrayList<ActionMenuItem> actions) {
+        mActionBarView.addActions(actions);
+    }
+
+    @Override
+    public ArrayList<ActionMenuItem> getMenus() {
+        return mActionBarView.getActions();
+    }
+
+    @Override
+    public void clearActionMenus() {
+        mActionBarView.clearActions();
+    }
+
+    @Override
+    public ActionTab getActionTab() {
+        return mActionBarView.getActionTab();
+    }
+
+    @Override
+    public void addTabs(ArrayList<ActionTabItem> tabs) {
+        mActionBarView.addTabs(tabs);
+    }
+
+    @Override
+    public ArrayList<ActionTabItem> getTabs() {
+        return mActionBarView.getTabs();
+    }
+
+    @Override
+    public void clearActionTabs() {
+        mActionBarView.setTitleVisibility(View.VISIBLE);
+        mActionBarView.clearActionTabs();
+    }
+
 }

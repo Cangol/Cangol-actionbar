@@ -8,53 +8,57 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 /**
  * @author Cangol
  */
-public interface ActionMenu {
+public abstract class ActionMenu {
     /**
      * 获取所有menuItem
      * @return
      */
-	ArrayList<ActionMenuItem>  getActions();
+    public abstract ArrayList<ActionMenuItem>  getActions();
 
     /**
-     * 添加menuItem
-     * @param action
+     * 添加menu
+     * @param id
+     * @param text
+     * @param drawable
+     * @param show
+     * @return
      */
-	void add(ActionMenuItem action);
+    public abstract ActionMenuItem addMenu(int id, String text, int drawable, int show);
 
     /**
      * 添加menuItem列表
      * @param actions
      */
-	void addActions(ArrayList<ActionMenuItem> actions);
+    public abstract void addActions(ArrayList<ActionMenuItem> actions);
 
     /**
      * 清除菜单
      */
-	void clear();
+    public abstract void clear();
 
     /**
      * 获取菜单数据
      * @return
      */
-	int size();
+    public abstract int size();
 
     /**
      * 通过索引获取菜单
      * @param index
      * @return
      */
-	ActionMenuItem getAction(int index);
+    public abstract ActionMenuItem getAction(int index);
 
     /**
      * 通过id获取menu的view
      * @param id
      * @return
      */
-	View getActionMenuItemView(int id);
+    public abstract View getActionMenuItemView(int id);
 
     /**
      * 设置事件监听
      * @param onActionClickListener
      */
-	void setOnActionClickListener(OnActionClickListener onActionClickListener);	
+    public abstract void setOnActionClickListener(OnActionClickListener onActionClickListener);
 }

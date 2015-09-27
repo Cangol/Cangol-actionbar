@@ -12,7 +12,7 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
  * @author Cangol
  * @hide
  */
-public final class ActionMenuImpl implements ActionMenu{
+public final class ActionMenuImpl extends ActionMenu{
 	private ArrayList<ActionMenuItem> mActions=new ArrayList<ActionMenuItem>();
 	private ActionMenuView mActionMenuView;
 	
@@ -22,49 +22,51 @@ public final class ActionMenuImpl implements ActionMenu{
 	}
 	
 	@Override
-	public ArrayList<ActionMenuItem> getActions() {
+    public ArrayList<ActionMenuItem> getActions() {
 		return mActions;
 	}
 
 	@Override
-	public void add(ActionMenuItem action) {
-		mActions.add(action);
-		mActionMenuView.addAction(action);
+    public ActionMenuItem addMenu(int id,String text,int drawable,int show) {
+        ActionMenuItem item=new ActionMenuItem(id,text,drawable,show);
+		mActions.add(item);
+		mActionMenuView.addAction(item);
+        return item;
 	}
 
 	@Override
-	public void addActions(ArrayList<ActionMenuItem> actions) {
+    public void addActions(ArrayList<ActionMenuItem> actions) {
 		mActions.addAll(actions);
 		mActionMenuView.addActions(actions);
 		
 	}
 
 	@Override
-	public void clear() {
+    public void clear() {
 		mActions.clear();
 		mActionMenuView.removeAllActions();
 		
 	}
 
 	@Override
-	public int size() {
+    public int size() {
 		return mActions.size();
 	}
 
 	@Override
-	public ActionMenuItem getAction(int index) {
+    public ActionMenuItem getAction(int index) {
 		return mActions.get(index);
 	}
 
 	@Override
-	public void setOnActionClickListener(
+    public void setOnActionClickListener(
 			OnActionClickListener onActionClickListener) {
 		mActionMenuView.setOnActionClickListener(onActionClickListener);
 		
 	}
 
 	@Override
-	public View getActionMenuItemView(int id) {
+    public View getActionMenuItemView(int id) {
 		return mActionMenuView.findViewById(id);
 	}
 

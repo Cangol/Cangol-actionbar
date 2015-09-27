@@ -56,6 +56,7 @@ public class ActionBarView extends RelativeLayout {
     private boolean mIsCustomHomeAsUpIndicator;
     private boolean mDisplayShowHomeEnabled;
     private int mHomeId, mUpId;
+    private String[] mListNavigation;
 
     public ActionBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -112,18 +113,29 @@ public class ActionBarView extends RelativeLayout {
 
         });
     }
+    public String[] getListNavigation() {
+        return mListNavigation;
+    }
+    public void clearListNavigation() {
+        mTitleView.setCompoundDrawables(null, null, null, null);
+        mTitleView.setOnClickListener(null);
+    }
 
-    public void setListNavigationCallbacks(final String[] navs, OnNavigationListener onNavigationListener) {
+    public void setListNavigation(final String[] listNavigation) {
+        this.mListNavigation = listNavigation;
+    }
+
+    public void setOnNavigationListener(final OnNavigationListener onNavigationListener) {
         BaseAdapter adapter = new BaseAdapter() {
 
             @Override
             public int getCount() {
-                return navs.length;
+                return mListNavigation.length;
             }
 
             @Override
             public String getItem(int position) {
-                return navs[position];
+                return mListNavigation[position];
             }
 
             @Override
@@ -135,20 +147,15 @@ public class ActionBarView extends RelativeLayout {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = mInflater.inflate(R.layout.actionbar_navigation_list_item, parent, false);
                 TextView labelView = (TextView) view.findViewById(R.id.actionbar_navigation_item_text);
-                labelView.setText(navs[position]);
+                labelView.setText(mListNavigation[position]);
                 return view;
             }
 
         };
-        initNavigationPopuMenu(mActionBarActivity, adapter, onNavigationListener);
+        initNavigationPopuMenu(mActionBarActivity, adapter,onNavigationListener);
     }
 
-    public void clearListNavigation() {
-        mTitleView.setCompoundDrawables(null, null, null, null);
-        mTitleView.setOnClickListener(null);
-    }
-
-    private void initNavigationPopuMenu(Context context, BaseAdapter adapter, final OnNavigationListener onNavigationListener) {
+    private void initNavigationPopuMenu(Context context, BaseAdapter adapter,final OnNavigationListener onNavigationListener) {
         final View popuLayout = mInflater.inflate(R.layout.actionbar_navigation_list, null);
         ListView listView = (ListView) popuLayout.findViewById(R.id.actionbar_popup_navigation_list);
         listView.setAdapter(adapter);
@@ -264,8 +271,8 @@ public class ActionBarView extends RelativeLayout {
         mTitleView.setText(title);
     }
 
-    public void setTitle(int resid) {
-        mTitleView.setText(resid);
+    public void setTitle(int resId) {
+        mTitleView.setText(resId);
     }
 
     public void setTitleGravity(int gravity) {
@@ -332,9 +339,11 @@ public class ActionBarView extends RelativeLayout {
 
     public void clearActionTabs() {
         mActionTab.removeAllTabs();
+        setTitleVisibility(View.VISIBLE);
     }
 
     public void addTabs(ArrayList<ActionTabItem> tabs) {
+        setTitleVisibility(View.GONE);
         mActionTab.addTabs(tabs);
     }
 

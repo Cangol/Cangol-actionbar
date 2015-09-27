@@ -3,7 +3,6 @@ package mobi.cangol.mobile.actionbar;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,21 +76,25 @@ public class ActionBarActivityDelegate {
 		if(savedInstanceState!=null){
 			String title=savedInstanceState.getString("ActionBar.title");
 			mActionBar.setTitle(title);
-			ArrayList<ActionMenuItem> actions=savedInstanceState.getParcelableArrayList("ActionBar.actions");
-			mActionBar.clearActions();
-			mActionBar.addActions(actions);
-			
-			ArrayList<ActionTabItem> tabs=savedInstanceState.getParcelableArrayList("ActionBar.tabs");
+
+            String[] navs=savedInstanceState.getStringArray("ActionBar.navs");
+            mActionBar.clearListNavigation();
+
+			ArrayList<ActionMenuItem> menus=savedInstanceState.getParcelableArrayList("ActionBar.menus");
+			mActionBar.clearActionMenus();
+			mActionBar.addMenus(menus);
+
+            ArrayList<ActionTabItem> tabs=savedInstanceState.getParcelableArrayList("ActionBar.tabs");
 			mActionBar.clearActionTabs();
 			mActionBar.addTabs(tabs);
 			
 		}else{
 			mActivity.onMenuActionCreated(mActionBar.getActionMenu());
 		}
-		
+
 		if(mActionBar.getTabs().size()>0)
 			mActionBar.setTitleVisibility(View.GONE);
-		else 
+		else
 			mActionBar.setTitleVisibility(View.VISIBLE);
 	}
 
@@ -148,7 +151,8 @@ public class ActionBarActivityDelegate {
 
 	public void onSaveInstanceState(Bundle outState) {
 		outState.putString("ActionBar.title", mActionBar.getTitle());
-		outState.putParcelableArrayList("ActionBar.actions", mActionBar.getActions());
+        outState.putStringArray("ActionBar.navs",mActionBar.getListNavigation());
+		outState.putParcelableArrayList("ActionBar.menus", mActionBar.getMenus());
 		outState.putParcelableArrayList("ActionBar.tabs", mActionBar.getTabs());
 	}
 

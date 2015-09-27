@@ -31,7 +31,7 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
     private PopupWindow mPopuMenu;
     private ActionMenu mActionMenu;
     private OnActionClickListener mOnActionClickListener;
-    private int mHideActions=0;
+    private int mShowActions=0;
     public ActionMenuView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -84,13 +84,10 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
             final ActionMenuItem action = (ActionMenuItem) tag;
             
             Toast toast=null;
-            if(action.getText()==-1){
+            if(action.getText()!=null)
             	toast= Toast.makeText(this.getContext(), action.getText(), Toast.LENGTH_SHORT);
-            }else{
-            	toast= Toast.makeText(this.getContext(), action.getText(), Toast.LENGTH_SHORT);
-            }
-            
-            int left=(mHideActions>0?mMoreButton.getWidth():0)+view.getWidth()*(mActionMenu.size()-mHideActions)-view.getLeft();
+
+            int left=((mActionMenu.size()-mShowActions)>0?mMoreButton.getWidth():0)+view.getWidth()*(mShowActions)-view.getLeft();
             toast.setGravity(Gravity.RIGHT | Gravity.TOP,  left,  this.getBottom());
             toast.show();
         }
@@ -108,22 +105,36 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
      * @param action the action to add
      */
     public void addAction(ActionMenuItem action) {
-    	
-    	final int size = mActionMenu.size();
-        int showActions=size-mHideActions;
+
+    	//final int size = mActionMenu.size();
+        //int showActions=size-c;
         if(action.isShow()){
-        	if(showActions<2){
-       		 	mActionsView.addView(action.isIcon()?inflateActionIcon(action):inflateActionText(action));
+        	if(mShowActions<1){
+       		 	mActionsView.addView(action.isIcon() ? inflateActionIcon(action) : inflateActionText(action));
        		 	mMoreButton.setVisibility(View.GONE);
-    	   	}else{
-    	   		mHideActions++;
-    	   		mPopupActionsView.addView(inflateMenuAction(action));
-    	   		mMoreButton.setVisibility(View.VISIBLE);
+                mShowActions++;
+    	   	}else if(mShowActions<2&&mActionMenu.size()==2){
+                mActionsView.addView(action.isIcon() ? inflateActionIcon(action) : inflateActionText(action));
+                mMoreButton.setVisibility(View.GONE);
+                mShowActions++;
+            }else{
+                if(mShowActions==2){
+                    mActionsView.removeViewAt(1);
+                    mPopupActionsView.addView(inflateMenuAction(mActionMenu.getAction(2)));
+                    mMoreButton.setVisibility(View.VISIBLE);
+                }
+                mPopupActionsView.addView(inflateMenuAction(action));
+                mMoreButton.setVisibility(View.VISIBLE);
     	   	}
         }else{
-        	mHideActions++;
-        	mPopupActionsView.addView(inflateMenuAction(action));
-	   		mMoreButton.setVisibility(View.VISIBLE);
+            if(mShowActions==2){
+                mActionsView.removeViewAt(1);
+                mPopupActionsView.addView(inflateMenuAction(mActionMenu.getAction(2)));
+                mMoreButton.setVisibility(View.VISIBLE);
+            }
+            mPopupActionsView.addView(inflateMenuAction(action));
+            mMoreButton.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -131,7 +142,7 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
      * Removes all action views from this action bar
      */
     public void removeAllActions() {
-    	mHideActions=0;
+        mShowActions=0;
         mActionsView.removeAllViews();
         mPopupActionsView.removeAllViews();
         mMoreButton.setVisibility(View.GONE);
@@ -155,13 +166,10 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
         View view = mInflater.inflate(R.layout.actionbar_item_text, mActionsView, false);
 
         TextView labelView =(TextView) view.findViewById(R.id.actionbar_item);
-        if(action.getText()!=-1){
+        if(action.getText()!=null){
         	labelView.setText(action.getText());
-        }else{
-        	labelView.setText(action.getTextStr());
         }
-        
-        
+
         view.setId(action.getId());
         view.setTag(action);
         view.setOnClickListener(this);
@@ -178,10 +186,8 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
         	img.setBounds(0, 0, img.getIntrinsicWidth(), img.getIntrinsicHeight());
         	labelView.setCompoundDrawables(img, null, null, null);
         }**/
-        if(action.getText()!=-1){
-        	labelView.setText(action.getText());
-        }else{
-        	labelView.setText(action.getTextStr());
+        if(action.getText()!=null){
+            labelView.setText(action.getText());
         }
         view.setId(action.getId());
         view.setTag(action);

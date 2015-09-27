@@ -44,11 +44,11 @@ public abstract class ActionMode {
      */
     public interface Callback {
     	
-        public void onCreateActionMode(ActionMode mode,ActionMenu actionMenu);
+         void onCreateActionMode(ActionMode mode,ActionMenu actionMenu);
 
-        public boolean onActionItemClicked(ActionMode mode, ActionMenuItem menuItem);
+         boolean onActionItemClicked(ActionMode mode, ActionMenuItem menuItem);
 
-        public void onDestroyActionMode(ActionMode mode);
+         void onDestroyActionMode(ActionMode mode);
     }
 
     /**
