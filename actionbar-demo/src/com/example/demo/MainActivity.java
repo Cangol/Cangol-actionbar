@@ -24,13 +24,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         this.setTitle("首页");
 //        this.setFullScreen(true);
 //        this.setWindowBackground(Color.BLACK);
-		this.setBackgroundResource(R.color.red);
-		this.setStatusBarTintColor(Color.BLUE);
-		this.setNavigationBarTintColor(Color.BLUE);
+//		this.setBackgroundResource(R.color.red);
+//		this.setStatusBarTintColor(Color.BLUE);
+//		this.setNavigationBarTintColor(Color.BLUE);
 		this.setActionbarShow(true);
 		this.setActionbarOverlay(false);
 		this.getCustomActionBar().setDisplayShowHomeEnabled(true);
-		this.getCustomActionBar().setBackgroundResource(R.color.blue);
+//		this.getCustomActionBar().setBackgroundResource(R.color.blue);
 		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
 		final String[] navs={"首页","游戏","壁纸","资讯"};
         this.getCustomActionBar().setListNavigation(navs);

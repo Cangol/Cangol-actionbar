@@ -3,7 +3,8 @@ Cangol-actionbar
 
 An android library,custom simple actionbar
 
-###Usage Maven
+###Usage 
+Maven
 
      <dependency>
          <groupId>mobi.cangol.mobile</groupId>
@@ -11,11 +12,15 @@ An android library,custom simple actionbar
          <version>1.0.0</version>
          <type>aar</type>
      </dependency>
-###Usage Gradle
+Gradle
  
     compile 'mobi.cangol.mobile:actionbar:1.0.0@aar'
 
-###Document
+###Screenshot
+
+![ ](https://github.com/Cangol/Cangol-actionbar/raw/master/art/device-screenshot-1.png?raw=true) 
+
+###Documentation
 [Wiki] (https://github.com/Cangol/Cangol-actionbar/wiki)  
 
 *   [Title] (https://github.com/Cangol/Cangol-actionbar/wiki/Usage-Title)   
