@@ -1,14 +1,5 @@
 package com.example.demo;
 
-import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.ActionMenu;
-import mobi.cangol.mobile.actionbar.ActionMenuItem;
-import mobi.cangol.mobile.actionbar.ActionMode;
-import mobi.cangol.mobile.actionbar.ActionTab;
-import mobi.cangol.mobile.actionbar.ActionTabItem;
-import mobi.cangol.mobile.actionbar.OnNavigationListener;
-import mobi.cangol.mobile.actionbar.view.ActionTabView;
-
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +7,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
+
+import mobi.cangol.mobile.actionbar.ActionBarActivity;
+import mobi.cangol.mobile.actionbar.ActionMenu;
+import mobi.cangol.mobile.actionbar.ActionMenuItem;
+import mobi.cangol.mobile.actionbar.ActionMode;
+import mobi.cangol.mobile.actionbar.OnNavigationListener;
 
 @SuppressLint("ResourceAsColor")
 public class MainActivity extends ActionBarActivity implements OnClickListener{
@@ -25,8 +22,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		setContentView(R.layout.activity_main);
         findViews();
         this.setTitle("首页");
-        this.setFullScreen(true);
-        this.setWindowBackground(Color.BLACK);
+//        this.setFullScreen(true);
+//        this.setWindowBackground(Color.BLACK);
 		this.setBackgroundResource(R.color.red);
 		this.setStatusBarTintColor(Color.BLUE);
 		this.setNavigationBarTintColor(Color.BLUE);
@@ -36,7 +33,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 		this.getCustomActionBar().setBackgroundResource(R.color.blue);
 		this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
 		final String[] navs={"首页","游戏","壁纸","资讯"};
-		this.getCustomActionBar().setListNavigationCallbacks(navs, new OnNavigationListener() {
+        this.getCustomActionBar().setListNavigation(navs);
+		this.getCustomActionBar().setOnNavigationListener(new OnNavigationListener() {
 
             @Override
             public boolean onNavigationItemSelected(int itemPosition,
@@ -46,25 +44,25 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
                 return true;
             }
         });
-        this.getCustomActionBar().clearListNavigation();
+//        this.getCustomActionBar().clearListNavigation();
 
-        ActionTab actionTab=this.getCustomActionBar().createdActionTab();
-        actionTab.newTab(1, "推荐", 1);
-        actionTab.newTab(2, "关注", 0);
-        actionTab.setOnTabSelectedListener(new ActionTabView.OnTabSelectedListener() {
-            @Override
-            public boolean onTabSelected(ActionTabItem tab) {
-                switch (tab.getId()) {
-                    case 1:
-                        Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
-                        break;
-                }
-                return false;
-            }
-        });
+//        ActionTab actionTab=this.getCustomActionBar().getActionTab();
+//        actionTab.newTab(1, "推荐", 1);
+//        actionTab.newTab(2, "关注", 0);
+//        actionTab.setOnTabSelectedListener(new ActionTabView.OnTabSelectedListener() {
+//            @Override
+//            public boolean onTabSelected(ActionTabItem tab) {
+//                switch (tab.getId()) {
+//                    case 1:
+//                        Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case 2:
+//                        Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
 
         //设置标题
         this.getCustomActionBar().setTitle("Home");
@@ -73,12 +71,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         //这是标题显示
         this.getCustomActionBar().setTitleVisibility(View.VISIBLE);
         //设置标题点击事件
-        this.getCustomActionBar().setOnTitleClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Click Title", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        this.getCustomActionBar().setOnTitleClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(MainActivity.this, "Click Title", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        this.getCustomActionBar().stopActionMode();
+
 	}
 	public void findViews(){
 		this.findViewById(R.id.button1).setOnClickListener(this);
@@ -138,9 +138,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 	@Override
 	public void onMenuActionCreated(ActionMenu actionMenu) {
         super.onMenuActionCreated(actionMenu);
-		//actionMenu.add(new ActionMenuItem(1,R.string.action_delete,-1,1));
-		//actionMenu.add(new ActionMenuItem(2,R.string.action_selectAll,R.drawable.ic_action_select,1));
-		//actionMenu.add(new ActionMenuItem(3,R.string.action_invert,R.drawable.ic_action_unselect,0));
+		actionMenu.addMenu(1, getString(R.string.action_delete), -1, 1);
+		actionMenu.addMenu(2, getString(R.string.action_selectAll), R.drawable.ic_action_select, 1);
+		actionMenu.addMenu(3, getString(R.string.action_invert), R.drawable.ic_action_unselect,0);
 	}
 	@Override
 	public boolean onMenuActionSelected(ActionMenuItem action) {
