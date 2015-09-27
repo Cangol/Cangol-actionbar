@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -12,7 +11,10 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
+import mobi.cangol.mobile.actionbar.view.ActionTabView;
 
 @SuppressLint("ResourceAsColor")
 public class MainActivity extends ActionBarActivity implements OnClickListener{
@@ -138,8 +140,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 	@Override
 	public void onMenuActionCreated(ActionMenu actionMenu) {
         super.onMenuActionCreated(actionMenu);
-		actionMenu.addMenu(1, getString(R.string.action_delete), -1, 1);
-		actionMenu.addMenu(2, getString(R.string.action_selectAll), R.drawable.ic_action_select, 1);
+	//	actionMenu.addMenu(1, getString(R.string.action_delete), -1, 1);
+	//	actionMenu.addMenu(2, getString(R.string.action_selectAll), R.drawable.ic_action_select, 1);
 		actionMenu.addMenu(3, getString(R.string.action_invert), R.drawable.ic_action_unselect,0);
 	}
 	@Override
