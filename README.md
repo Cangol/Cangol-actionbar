@@ -18,7 +18,7 @@ Gradle
 
 ###Screenshot
 
-![ ](https://github.com/Cangol/Cangol-actionbar/raw/master/art/device-screenshot-1.png?raw=true) 
+![ ](https://github.com/Cangol/Cangol-actionbar/raw/master/art/device-screenshot.png?raw=true) 
 
 ###Documentation
 [Wiki] (https://github.com/Cangol/Cangol-actionbar/wiki)  
