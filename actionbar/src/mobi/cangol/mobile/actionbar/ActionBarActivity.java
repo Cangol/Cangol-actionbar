@@ -232,7 +232,6 @@ public class ActionBarActivity extends FragmentActivity{
      * 导航回调
      * @return
      */
-
     public boolean onSupportNavigateUp() {
         this.onBackPressed();
         return true;

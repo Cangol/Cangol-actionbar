@@ -60,7 +60,7 @@ public abstract class ActionBar {
      *
      * @param show
      */
-    abstract public void setShow(boolean show);
+    abstract protected void setShow(boolean show);
 
     /**
      * 返回是否显示
