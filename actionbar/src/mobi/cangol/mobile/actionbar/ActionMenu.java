@@ -23,7 +23,7 @@ public abstract class ActionMenu {
      * @param show
      * @return
      */
-    public abstract ActionMenuItem addMenu(int id, String text, int drawable, int show);
+    public abstract ActionMenuItem addMenu(int id, int text, int drawable, int show);
 
     /**
      * 添加menuItem列表

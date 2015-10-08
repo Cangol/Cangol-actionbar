@@ -17,12 +17,12 @@ public  class ActionMenuItem implements Parcelable{
     /**
      * 标题文本
      */
-	private String text=null;
+	private int text=-1;
     /**
      * 是否显示 1为在actionbar上显示，0或其他为在more菜单中显示（）
      */
 	private int show=-1;
-	public ActionMenuItem(int id,String text,int drawable,int show){
+	public ActionMenuItem(int id,int text,int drawable,int show){
 		this.id=id;
 		this.text=text;
 		this.drawable=drawable;
@@ -33,7 +33,7 @@ public  class ActionMenuItem implements Parcelable{
 	public int getId(){
 		return this.id;
 	}
-	public String getText(){
+	public int getText(){
 		return this.text;
 	}
     public int getDrawable(){
@@ -46,7 +46,7 @@ public  class ActionMenuItem implements Parcelable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setText(String text) {
+	public void setText(int text) {
 		this.text = text;
 	}
 	public boolean isIcon() {
@@ -67,7 +67,7 @@ public  class ActionMenuItem implements Parcelable{
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeInt(drawable);
 		dest.writeInt(id);
-		dest.writeString(text);
+		dest.writeInt(text);
 		dest.writeInt(show);
 	}
 
@@ -78,7 +78,7 @@ public  class ActionMenuItem implements Parcelable{
 			ActionMenuItem p = new ActionMenuItem();
 			p.setDrawable(source.readInt());
 			p.setId(source.readInt());
-			p.setText(source.readString());
+			p.setText(source.readInt());
 			p.setShow(source.readInt());
 			return p;
 		}

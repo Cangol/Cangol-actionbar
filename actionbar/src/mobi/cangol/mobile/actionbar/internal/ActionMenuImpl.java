@@ -27,7 +27,7 @@ public final class ActionMenuImpl extends ActionMenu{
 	}
 
 	@Override
-    public ActionMenuItem addMenu(int id,String text,int drawable,int show) {
+    public ActionMenuItem addMenu(int id,int text,int drawable,int show) {
         ActionMenuItem item=new ActionMenuItem(id,text,drawable,show);
 		mActions.add(item);
 		mActionMenuView.addAction(item);

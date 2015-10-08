@@ -84,7 +84,7 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
             final ActionMenuItem action = (ActionMenuItem) tag;
             
             Toast toast=null;
-            if(action.getText()!=null)
+            if(action.getText()!=-1)
             	toast= Toast.makeText(this.getContext(), action.getText(), Toast.LENGTH_SHORT);
 
             int left=((mActionMenu.size()-mShowActions)>0?mMoreButton.getWidth():0)+view.getWidth()*(mShowActions)-view.getLeft();
@@ -166,9 +166,7 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
         View view = mInflater.inflate(R.layout.actionbar_item_text, mActionsView, false);
 
         TextView labelView =(TextView) view.findViewById(R.id.actionbar_item);
-        if(action.getText()!=null){
-        	labelView.setText(action.getText());
-        }
+        labelView.setText(action.getText());
 
         view.setId(action.getId());
         view.setTag(action);
@@ -186,9 +184,8 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
         	img.setBounds(0, 0, img.getIntrinsicWidth(), img.getIntrinsicHeight());
         	labelView.setCompoundDrawables(img, null, null, null);
         }**/
-        if(action.getText()!=null){
-            labelView.setText(action.getText());
-        }
+        labelView.setText(action.getText());
+
         view.setId(action.getId());
         view.setTag(action);
         view.setOnClickListener(this);

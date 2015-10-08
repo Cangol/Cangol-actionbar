@@ -188,26 +188,26 @@ public abstract class ActionBar {
      *
      * @return
      */
-    abstract protected ActionMenu getActionMenu();
+    abstract public ActionMenu getActionMenu();
 
     /**
      * 添加 菜单按钮
      *
      * @param actions
      */
-    abstract protected void addMenus(ArrayList<ActionMenuItem> actions);
+    abstract public void addMenus(ArrayList<ActionMenuItem> actions);
 
     /**
      * 获取所有菜单按钮
      *
      * @return
      */
-    abstract protected ArrayList<ActionMenuItem> getMenus();
+    abstract public ArrayList<ActionMenuItem> getMenus();
 
     /**
      * 清除所有菜单按钮
      */
-    abstract protected void clearActionMenus();
+    abstract public void clearActionMenus();
 
     /**
      * 创建ActionTab
@@ -221,19 +221,19 @@ public abstract class ActionBar {
      *
      * @param tabs
      */
-    abstract protected void addTabs(ArrayList<ActionTabItem> tabs);
+    abstract public void addTabs(ArrayList<ActionTabItem> tabs);
 
     /**
      * 获取所有tabItem
      *
      * @return
      */
-    abstract protected ArrayList<ActionTabItem> getTabs();
+    abstract public ArrayList<ActionTabItem> getTabs();
 
     /**
      * 清除所有tabItem
      */
-    abstract protected void clearActionTabs();
+    abstract public void clearActionTabs();
 
 
 }
