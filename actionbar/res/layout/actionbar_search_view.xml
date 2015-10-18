@@ -8,30 +8,26 @@
 
     <ImageView
         android:id="@+id/actionbar_search_indicator"
-        style="@style/ActionBarItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name" />
+        style="@style/ActionBarIconItem"
+        android:scaleType="centerInside"
+        />
 
     <mobi.cangol.mobile.actionbar.view.ClearableEditText
         android:id="@+id/actionbar_search_text"
+        style="@style/ActionBarSearchText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="4dp"
         android:layout_weight="1"
-        android:background="@drawable/actionbar_searchview"
         android:singleLine="true"
-        android:imeOptions="actionSearch"  
-        android:textColorHint="@color/actionbar_search_hint"
-        android:textColor="@color/actionbar_search_text" />
+        android:hint="@string/search_hint"
+        android:imeOptions="actionSearch"/>
 
     <ImageView
         android:id="@+id/actionbar_search_action"
-        style="@style/ActionBarItem"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/actionbar_height"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/actionbar_search_voice" />
+        style="@style/ActionBarIconItem"
+        android:scaleType="centerInside"
+        android:src="@drawable/actionbar_search" />
 
 </LinearLayout>

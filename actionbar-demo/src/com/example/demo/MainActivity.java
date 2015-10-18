@@ -15,6 +15,7 @@ import mobi.cangol.mobile.actionbar.ActionTab;
 import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.view.ActionTabView;
+import mobi.cangol.mobile.actionbar.view.SearchView;
 
 @SuppressLint("ResourceAsColor")
 public class MainActivity extends ActionBarActivity implements OnClickListener {
@@ -36,7 +37,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.setActionbarShow(true);
         this.setActionbarOverlay(false);
         this.getCustomActionBar().setDisplayShowHomeEnabled(true);
-        this.getCustomActionBar().setBackgroundResource(R.color.blue);
+        //this.getCustomActionBar().setBackgroundResource(R.color.blue);
 
     }
 
@@ -63,7 +64,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                 this.getCustomActionBar().stopProgress();
                 break;
             case R.id.button_search_1:
-                this.getCustomActionBar().startSearchMode();
+                SearchView searchView= this.getCustomActionBar().startSearchMode();
+                searchView.setOnActionClickListener(new SearchView.OnActionClickListener() {
+                    @Override
+                    public boolean onActionClick(String keywords) {
+
+                        return false;
+                    }
+                });
                 break;
             case R.id.button_search_2:
                 this.getCustomActionBar().stopSearchMode();

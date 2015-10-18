@@ -3,5 +3,4 @@
     style="@style/ActionBarTabItem"
     android:gravity="center"
     android:singleLine="true"
-    android:text="@string/app_name"
     android:visibility="visible" />
