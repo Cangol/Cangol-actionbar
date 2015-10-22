@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import mobi.cangol.mobile.actionbar.R;
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
@@ -30,6 +29,7 @@ import mobi.cangol.mobile.actionbar.ActionMode.Callback;
 import mobi.cangol.mobile.actionbar.ActionTab;
 import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
+import mobi.cangol.mobile.actionbar.R;
 import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
@@ -46,12 +46,10 @@ public class ActionBarView extends RelativeLayout {
     private TextView mTitleView;
     private PopupWindow mPopuMenu;
     private ProgressView mProgressView;
-    private SearchView mSearchView;
     private ActionMenu mActionMenu;
     private ActionMode mActionMode;
     private ActionTab mActionTab;
     private ActionBarActivity mActionBarActivity;
-    private boolean mIsSearchMode;
     private DrawerArrowDrawable mDrawerArrowDrawable;
     private boolean mIsCustomHomeAsUpIndicator;
     private boolean mDisplayShowHomeEnabled;
@@ -72,7 +70,6 @@ public class ActionBarView extends RelativeLayout {
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
         mProgressView = (ProgressView) this.findViewById(R.id.actionbar_main_progress);
-        mSearchView = (SearchView) this.findViewById(R.id.actionbar_main_search);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
         mActionMode = new ActionModeImpl(mActionBarActivity, (ActionModeView) this.findViewById(R.id.actionbar_main_mode));
@@ -152,7 +149,7 @@ public class ActionBarView extends RelativeLayout {
             }
 
         };
-        initNavigationPopuMenu(mActionBarActivity, adapter,onNavigationListener);
+        initNavigationPopuMenu(mActionBarActivity, adapter, onNavigationListener);
     }
 
     private void initNavigationPopuMenu(Context context, BaseAdapter adapter,final OnNavigationListener onNavigationListener) {
@@ -305,18 +302,6 @@ public class ActionBarView extends RelativeLayout {
         mProgressView.stopProgress();
     }
 
-    public SearchView startSearchMode() {
-        mIsSearchMode = true;
-        mSearchView.setVisibility(View.VISIBLE);
-        return mSearchView;
-    }
-
-    public void stopSearchMode() {
-        mIsSearchMode = false;
-        mSearchView.clearText();
-        mSearchView.setVisibility(View.GONE);
-    }
-
     public ActionMenu getActionMenu() {
         return mActionMenu;
     }
@@ -355,10 +340,6 @@ public class ActionBarView extends RelativeLayout {
         if (mProgressView.isProgress())
             mProgressView.stopProgress();
 
-        if (mIsSearchMode) {
-            stopSearchMode();
-            return true;
-        }
         if (mActionMode.isActionMode()) {
             stopActionMode();
             return true;

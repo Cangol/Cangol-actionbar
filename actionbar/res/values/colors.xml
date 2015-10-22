@@ -27,6 +27,7 @@
     <color name="actionbar_search_text">#FFFFFF</color>
     <color name="actionbar_search_hint">#ccc</color>
     <color name="actionbar_search_background">@color/actionbar_background</color>
+    <color name="actionbar_search_mask_background">#af000000</color>
 
     <color name="actionbar_progress_background">@color/actionbar_background</color>
 

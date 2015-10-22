@@ -18,10 +18,4 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
         android:visibility="gone"/>
-
-    <mobi.cangol.mobile.actionbar.view.SearchView
-        android:id="@+id/actionbar_main_search"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_height"
-        android:visibility="gone"/>
 </FrameLayout>

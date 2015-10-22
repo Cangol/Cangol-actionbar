@@ -38,7 +38,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.setActionbarOverlay(false);
         this.getCustomActionBar().setDisplayShowHomeEnabled(true);
         //this.getCustomActionBar().setBackgroundResource(R.color.blue);
-
+//        this.setMaskView(R.layout.activity_mask);
+//        this.displayMaskView(true);
+//        this.findViewById(R.id.button_mask).setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                displayMaskView(false);
+//            }
+//        });
     }
 
     public void findViews() {
@@ -64,17 +71,24 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                 this.getCustomActionBar().stopProgress();
                 break;
             case R.id.button_search_1:
-                SearchView searchView= this.getCustomActionBar().startSearchMode();
+                SearchView searchView= this.startSearchMode();
                 searchView.setOnActionClickListener(new SearchView.OnActionClickListener() {
                     @Override
                     public boolean onActionClick(String keywords) {
 
-                        return false;
+                        return true;
+                    }
+                });
+                searchView.setOnSearchTextListener(new SearchView.OnSearchTextListener() {
+                    @Override
+                    public boolean onSearchText(String keywords) {
+
+                        return true;
                     }
                 });
                 break;
             case R.id.button_search_2:
-                this.getCustomActionBar().stopSearchMode();
+                this.stopSearchMode();
                 break;
             case R.id.button_mode_1:
                 actionMode();

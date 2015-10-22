@@ -60,7 +60,7 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
  			public void onClick(View v) {
  				mPopuMenu.showAsDropDown(mMoreButton);
  			}
-     		
+
      	});
 	}
     @Override

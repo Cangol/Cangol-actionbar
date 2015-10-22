@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.internal.ActionBarImpl;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
+import mobi.cangol.mobile.actionbar.view.SearchView;
 
 /**
  * @author Cangol
@@ -25,6 +26,8 @@ public class ActionBarActivityDelegate {
 	private ViewGroup mContainerView;
 	private ActionBar mActionBar;
 	private FrameLayout	mContentView;
+    private FrameLayout	mMaskView;
+    private SearchView mSearchView;
 	private ActionMenuInflater mActionMenuInflater;
 	private boolean mActionbarOverlay = false;
 	
@@ -35,6 +38,8 @@ public class ActionBarActivityDelegate {
 	protected void onCreate(Bundle savedInstanceState){
 		mContainerView =  (ViewGroup) LayoutInflater.from(mActivity).inflate(R.layout.actionbar_activity_main, null);
 		mContentView=(FrameLayout) mContainerView.findViewById(R.id.actionbar_content_view);
+        mMaskView= (FrameLayout) mContainerView.findViewById(R.id.actionbar_mask_view);
+        mSearchView= (SearchView) mContainerView.findViewById(R.id.actionbar_search_view);
 		mActionBar= new ActionBarImpl((ActionBarView) mContainerView.findViewById(R.id.actionbar_view));
 	}
 	
@@ -72,7 +77,7 @@ public class ActionBarActivityDelegate {
 		mContainerView.setBackgroundResource(resId);
 	}
 	protected void onPostCreate(Bundle savedInstanceState){
-		attachToActivity(mActivity,mContainerView);
+		attachToActivity(mActivity, mContainerView);
 		if(savedInstanceState!=null){
 			String title=savedInstanceState.getString("ActionBar.title");
 			mActionBar.setTitle(title);
@@ -115,7 +120,7 @@ public class ActionBarActivityDelegate {
 				mContainerView.setBackgroundResource(background);
 		}
 		decor.removeView(decorChild);
-		decor.addView(layout,0);
+		decor.addView(layout, 0);
 		setContent(decorChild);
 	}
 	public void setContent(View view) {
@@ -129,7 +134,7 @@ public class ActionBarActivityDelegate {
 	
 	public void setContentView(View v,LayoutParams params) {
 		mContentView.removeAllViews();
-		mContentView.addView(v,params);
+		mContentView.addView(v, params);
 	}
 	
 	public View findViewById(int id) {
@@ -143,9 +148,14 @@ public class ActionBarActivityDelegate {
 	}
 
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if(keyCode == KeyEvent.KEYCODE_BACK && event.isTracking() && !event.isCanceled()) {
-			return mActionBar.onBackPressed();
-		}
+        if(mSearchView.getVisibility()==View.GONE){
+            if(keyCode == KeyEvent.KEYCODE_BACK && event.isTracking() && !event.isCanceled()) {
+                return mActionBar.onBackPressed();
+            }
+        }else{
+            mSearchView.setVisibility(View.GONE);
+            return true;
+        }
 		return false;
 	}
 
@@ -163,5 +173,25 @@ public class ActionBarActivityDelegate {
 	public void setTitle(CharSequence title) {
 		mActionBar.setTitle(title);
 	}
-	
+
+    public void setMaskView(int id) {
+        mMaskView.removeAllViews();
+        mMaskView.addView(View.inflate(mActivity, id, null));
+    }
+    public void setMaskView(View view) {
+        mMaskView.removeAllViews();
+        mMaskView.addView(view);
+    }
+    public void displayMaskView(boolean display) {
+        mMaskView.setVisibility(display ? View.VISIBLE : View.GONE);
+    }
+
+    public SearchView startSearchMode() {
+        mSearchView.show();
+        return mSearchView;
+    }
+
+    public void stopSearchMode() {
+        mSearchView.hide();
+    }
 }

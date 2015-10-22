@@ -149,18 +149,6 @@ public abstract class ActionBar {
     abstract public void stopProgress();
 
     /**
-     * 开启搜索模式，与stopSearchMode成对使用
-     *
-     * @return
-     */
-    abstract public SearchView startSearchMode();
-
-    /**
-     * 停止搜索模式
-     */
-    abstract public void stopSearchMode();
-
-    /**
      * 设置导航菜单
      * @param navs
      */

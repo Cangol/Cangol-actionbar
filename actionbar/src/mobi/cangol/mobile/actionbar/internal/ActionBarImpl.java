@@ -136,16 +136,6 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public SearchView startSearchMode() {
-        return mActionBarView.startSearchMode();
-    }
-
-    @Override
-    public void stopSearchMode() {
-        mActionBarView.stopSearchMode();
-    }
-
-    @Override
     public void setListNavigation(String[] navs) {
         mActionBarView.setListNavigation(navs);
     }
