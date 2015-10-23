@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -49,6 +50,7 @@ public class ActionBarView extends RelativeLayout {
     private ActionMenu mActionMenu;
     private ActionMode mActionMode;
     private ActionTab mActionTab;
+    private FrameLayout mCustomLayout;
     private ActionBarActivity mActionBarActivity;
     private DrawerArrowDrawable mDrawerArrowDrawable;
     private boolean mIsCustomHomeAsUpIndicator;
@@ -70,6 +72,7 @@ public class ActionBarView extends RelativeLayout {
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
         mProgressView = (ProgressView) this.findViewById(R.id.actionbar_main_progress);
+        mCustomLayout= (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
         mActionMode = new ActionModeImpl(mActionBarActivity, (ActionModeView) this.findViewById(R.id.actionbar_main_mode));
@@ -350,6 +353,18 @@ public class ActionBarView extends RelativeLayout {
 
     public void setTitleVisibility(int visibility) {
         mTitleLayout.setVisibility(visibility);
+    }
+
+    public void setCustomView(View view){
+        mCustomLayout.removeAllViews();
+        mCustomLayout.addView(view);
+        mTitleLayout.setVisibility(View.GONE);
+        mActionTab.removeAllTabs();
+    }
+
+    public void removeCustomView(){
+        mCustomLayout.removeAllViews();
+        mTitleLayout.setVisibility(View.VISIBLE);
     }
 
 }

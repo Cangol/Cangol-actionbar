@@ -197,4 +197,14 @@ public final class ActionBarImpl extends ActionBar {
         mActionBarView.clearActionTabs();
     }
 
+    @Override
+    public void setCustomView(View view) {
+        mActionBarView.setCustomView(view);
+    }
+    @Override
+    public void removeCustomView(){
+        mActionBarView.removeCustomView();
+    }
+
+
 }

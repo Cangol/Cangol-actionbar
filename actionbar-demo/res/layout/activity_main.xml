@@ -112,5 +112,26 @@
             android:layout_alignParentTop="true"
             android:text="Stop Tab"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_custom_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Start CustomView"/>
+
+        <Button
+            android:id="@+id/button_custom_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Stop CustomView"/>
+    </LinearLayout>
 
 </LinearLayout>

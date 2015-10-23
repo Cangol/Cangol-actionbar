@@ -35,6 +35,8 @@
             android:scrollHorizontally="true"
             android:singleLine="true" />
     </LinearLayout>
+
+
     <mobi.cangol.mobile.actionbar.view.ActionTabView
         android:id="@+id/actionbar_main_tabview"
         android:layout_width="match_parent"
@@ -51,4 +53,13 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true" />
 
+    <FrameLayout
+        android:id="@+id/actionbar_main_custom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_toLeftOf="@+id/actionbar_main_menu"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/actionbar_height">
+
+    </FrameLayout>
 </RelativeLayout>

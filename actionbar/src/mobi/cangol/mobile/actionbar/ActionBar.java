@@ -1,5 +1,6 @@
 package mobi.cangol.mobile.actionbar;
 
+import android.view.View;
 import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
@@ -223,5 +224,15 @@ public abstract class ActionBar {
      */
     abstract public void clearActionTabs();
 
+    /**
+     * 添加自定义view
+     * 背景透明，所占空间为[指示器右侧到menu左侧]
+     * 此时title会被隐藏，tab会被移除
+     */
+    abstract public void setCustomView(View view);
 
+    /**
+     *移除自定义view
+     */
+    abstract public void removeCustomView();
 }

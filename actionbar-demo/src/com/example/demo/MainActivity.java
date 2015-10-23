@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
@@ -46,6 +49,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 //                displayMaskView(false);
 //            }
 //        });
+
     }
 
     public void findViews() {
@@ -59,6 +63,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.findViewById(R.id.button_progress_2).setOnClickListener(this);
         this.findViewById(R.id.button_tab_1).setOnClickListener(this);
         this.findViewById(R.id.button_tab_2).setOnClickListener(this);
+        this.findViewById(R.id.button_custom_1).setOnClickListener(this);
+        this.findViewById(R.id.button_custom_2).setOnClickListener(this);
     }
 
     @Override
@@ -108,6 +114,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                 break;
             case R.id.button_tab_2:
                 this.getCustomActionBar().getActionTab().removeAllTabs();
+                break;
+            case R.id.button_custom_1:
+                this.getCustomActionBar().setCustomView(new EditText(this));
+                break;
+            case R.id.button_custom_2:
+                this.getCustomActionBar().removeCustomView();
                 break;
         }
     }
