@@ -72,6 +72,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                 break;
             case R.id.button_search_1:
                 SearchView searchView= this.startSearchMode();
+                //searchView.setSearchHistoryEnable(false);
                 searchView.setOnActionClickListener(new SearchView.OnActionClickListener() {
                     @Override
                     public boolean onActionClick(String keywords) {
