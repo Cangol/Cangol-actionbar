@@ -7,7 +7,7 @@ import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.view.ActionTabView;
 import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener;
 /**
- * @hide
+ * @author Cangol
  */
 public final class ActionTabImpl extends ActionTab{
 	private ActionTabView mActionTabView;

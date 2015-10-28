@@ -18,7 +18,6 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 
 /**
  * @author Cangol
- * @hide
  */
 public final class ActionBarImpl extends ActionBar {
     private ActionBarView mActionBarView;

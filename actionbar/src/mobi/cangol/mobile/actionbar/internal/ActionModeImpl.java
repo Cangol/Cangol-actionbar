@@ -10,7 +10,6 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 import mobi.cangol.mobile.actionbar.view.ActionModeView;
 /**
  * @author Cangol
- * @hide
  */
 public final class ActionModeImpl extends ActionMode {
 	private ActionModeView mActionModeView;

@@ -10,7 +10,6 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 /**
  * @author Cangol
- * @hide
  */
 public final class ActionMenuImpl extends ActionMenu{
 	private ArrayList<ActionMenuItem> mActions=new ArrayList<ActionMenuItem>();

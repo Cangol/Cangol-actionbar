@@ -4,10 +4,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
+
 /**
  * @author Cangol
  */
-import mobi.cangol.mobile.actionbar.view.SearchView;
 
 public abstract class ActionBar {
     /**
@@ -68,7 +68,7 @@ public abstract class ActionBar {
      *
      * @return
      */
-    abstract public boolean isShow();
+    abstract protected boolean isShow();
 
     /**
      * 设置背景颜色

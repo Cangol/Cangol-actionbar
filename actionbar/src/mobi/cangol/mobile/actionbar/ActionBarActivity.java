@@ -220,7 +220,13 @@ public class ActionBarActivity extends FragmentActivity {
         this.mDelegate.setActionbarShow(show);
 
     }
+    /**
+     * 返回actionbar的显示
+     */
+    public boolean isActionbarShow() {
+        return mDelegate.isActionbarShow();
 
+    }
     /**
      * 获取菜单的Inflater
      *

@@ -194,4 +194,8 @@ public class ActionBarActivityDelegate {
     public void stopSearchMode() {
         mSearchView.hide();
     }
+
+    public boolean isActionbarShow() {
+        return mActionBar.isShow();
+    }
 }
