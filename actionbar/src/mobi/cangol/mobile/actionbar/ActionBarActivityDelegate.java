@@ -208,4 +208,8 @@ public class ActionBarActivityDelegate {
     public boolean isActionbarShow() {
         return mActionBar.isShow();
     }
+
+    public boolean isActionbarShow() {
+        return mActionBar.isShow();
+    }
 }
