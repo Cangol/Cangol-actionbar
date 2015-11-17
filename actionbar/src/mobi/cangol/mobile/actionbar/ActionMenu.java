@@ -26,10 +26,10 @@ public abstract class ActionMenu {
     public abstract ActionMenuItem addMenu(int id, int text, int drawable, int show);
 
     /**
-     * 添加menuItem列表
+     * 设置menuItem列表
      * @param actions
      */
-    public abstract void addActions(ArrayList<ActionMenuItem> actions);
+    public abstract void setActions(ArrayList<ActionMenuItem> actions);
 
     /**
      * 清除菜单

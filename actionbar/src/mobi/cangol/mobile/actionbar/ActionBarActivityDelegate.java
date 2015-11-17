@@ -39,7 +39,6 @@ public class ActionBarActivityDelegate {
 		mContainerView =  (ViewGroup) LayoutInflater.from(mActivity).inflate(R.layout.actionbar_activity_main, null);
 		mContentView=(FrameLayout) mContainerView.findViewById(R.id.actionbar_content_view);
         mMaskView= (FrameLayout) mContainerView.findViewById(R.id.actionbar_mask_view);
-        mSearchView= (SearchView) mContainerView.findViewById(R.id.actionbar_search_view);
 		mActionBar= new ActionBarImpl((ActionBarView) mContainerView.findViewById(R.id.actionbar_view));
 	}
 	
@@ -84,14 +83,16 @@ public class ActionBarActivityDelegate {
 
             String[] navs=savedInstanceState.getStringArray("ActionBar.navs");
             mActionBar.clearListNavigation();
+            mActionBar.setListNavigation(navs);
+
 
 			ArrayList<ActionMenuItem> menus=savedInstanceState.getParcelableArrayList("ActionBar.menus");
 			mActionBar.clearActionMenus();
-			mActionBar.addMenus(menus);
+			mActionBar.setMenus(menus);
 
             ArrayList<ActionTabItem> tabs=savedInstanceState.getParcelableArrayList("ActionBar.tabs");
 			mActionBar.clearActionTabs();
-			mActionBar.addTabs(tabs);
+			mActionBar.setTabs(tabs);
 			
 		}else{
 			mActivity.onMenuActionCreated(mActionBar.getActionMenu());
@@ -148,15 +149,15 @@ public class ActionBarActivityDelegate {
 	}
 
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if(mSearchView.getVisibility()==View.GONE){
-            if(keyCode == KeyEvent.KEYCODE_BACK && event.isTracking() && !event.isCanceled()) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.isTracking() && !event.isCanceled()) {
+            if(mSearchView!=null){
+                stopSearchMode();
+                return true;
+            }else{
                 return mActionBar.onBackPressed();
             }
-        }else{
-            mSearchView.setVisibility(View.GONE);
-            return true;
         }
-		return false;
+        return false;
 	}
 
 	public void onSaveInstanceState(Bundle outState) {
@@ -187,12 +188,21 @@ public class ActionBarActivityDelegate {
     }
 
     public SearchView startSearchMode() {
+        RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
+        mSearchView= new SearchView(this.mActivity);
+        int aIndex=mContainerView.indexOfChild(mContainerView.findViewById(R.id.actionbar_view));
+        mContainerView.addView(mSearchView, aIndex+1,layoutParams);
         mSearchView.show();
         return mSearchView;
     }
 
     public void stopSearchMode() {
-        mSearchView.hide();
+        if(mSearchView!=null){
+            mContainerView.removeView(mSearchView);
+            mSearchView.hide();
+            mSearchView=null;
+        }
     }
 
     public boolean isActionbarShow() {

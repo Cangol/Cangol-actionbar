@@ -180,11 +180,11 @@ public abstract class ActionBar {
     abstract public ActionMenu getActionMenu();
 
     /**
-     * 添加 菜单按钮
+     * 设置菜单按钮
      *
      * @param actions
      */
-    abstract public void addMenus(ArrayList<ActionMenuItem> actions);
+    abstract protected void setMenus(ArrayList<ActionMenuItem> actions);
 
     /**
      * 获取所有菜单按钮
@@ -206,11 +206,11 @@ public abstract class ActionBar {
     abstract public ActionTab getActionTab();
 
     /**
-     * 添加在标题栏添加tabItem
+     * 设置标题栏tabItems
      *
      * @param tabs
      */
-    abstract public void addTabs(ArrayList<ActionTabItem> tabs);
+    abstract protected void setTabs(ArrayList<ActionTabItem> tabs);
 
     /**
      * 获取所有tabItem

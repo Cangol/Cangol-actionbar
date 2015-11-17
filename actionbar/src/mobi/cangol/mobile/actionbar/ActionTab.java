@@ -15,9 +15,9 @@ public abstract class ActionTab {
     public  abstract ArrayList<ActionTabItem> getTabs();
 
     /**
-     * 添加tabItem列表
+     * 设置tabItem列表
      */
-    public abstract void addTabs(ArrayList<ActionTabItem> tabs);
+    public abstract void setTabs(ArrayList<ActionTabItem> tabs);
 
     /**
      * 移除所有tabItem

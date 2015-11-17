@@ -316,8 +316,8 @@ public class ActionBarView extends RelativeLayout {
         return mActionMenu.getActions();
     }
 
-    public void addActions(ArrayList<ActionMenuItem> actions) {
-        mActionMenu.addActions(actions);
+    public void setActions(ArrayList<ActionMenuItem> actions) {
+        mActionMenu.setActions(actions);
     }
 
     public ActionTab getActionTab() {
@@ -329,9 +329,9 @@ public class ActionBarView extends RelativeLayout {
         setTitleVisibility(View.VISIBLE);
     }
 
-    public void addTabs(ArrayList<ActionTabItem> tabs) {
+    public void setTabs(ArrayList<ActionTabItem> tabs) {
         setTitleVisibility(View.GONE);
-        mActionTab.addTabs(tabs);
+        mActionTab.setTabs(tabs);
     }
 
     public ArrayList<ActionTabItem> getTabs() {

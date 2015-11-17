@@ -161,8 +161,8 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public void addMenus(ArrayList<ActionMenuItem> actions) {
-        mActionBarView.addActions(actions);
+    public void setMenus(ArrayList<ActionMenuItem> actions) {
+        mActionBarView.setActions(actions);
     }
 
     @Override
@@ -181,8 +181,8 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public void addTabs(ArrayList<ActionTabItem> tabs) {
-        mActionBarView.addTabs(tabs);
+    public void setTabs(ArrayList<ActionTabItem> tabs) {
+        mActionBarView.setTabs(tabs);
     }
 
     @Override

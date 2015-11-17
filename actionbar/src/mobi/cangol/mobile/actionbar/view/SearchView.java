@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -61,6 +62,14 @@ public class SearchView extends LinearLayout {
     private SharedPreferences mSharedPreferences;
     private boolean isSearchHistory=true;
     private boolean onTouchOutsiteDimiss=false;
+    public SearchView(Context context) {
+        super(context);
+        mContext = context;
+        mSharedPreferences = mContext.getSharedPreferences("search_history", Context.MODE_PRIVATE);
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater.inflate(R.layout.actionbar_search_view, this, true);
+        initViews();
+    }
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public SearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -237,6 +246,8 @@ public class SearchView extends LinearLayout {
         this.clearSearchText();
     }
     public void hide(){
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(geSearchEditText().getWindowToken(), 0);
         this.setVisibility(View.GONE);
         this.clearSearchText();
     }

@@ -34,8 +34,11 @@ public final class ActionMenuImpl extends ActionMenu{
 	}
 
 	@Override
-    public void addActions(ArrayList<ActionMenuItem> actions) {
-		mActions.addAll(actions);
+    public void setActions(ArrayList<ActionMenuItem> actions) {
+        if(mActions==null)
+            mActions=actions;
+        else
+		    mActions.addAll(actions);
 		mActionMenuView.addActions(actions);
 		
 	}
