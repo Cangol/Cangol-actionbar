@@ -3,6 +3,9 @@ Cangol-actionbar
 
 An android library,custom simple actionbar
 
+[![Download](https://api.bintray.com/packages/cangol/maven/Cangol-actionbar/images/download.svg) ](https://bintray.com/cangol/maven/Cangol-actionbar/_latestVersion)
+[![Build Status](https://travis-ci.org/Cangol/Cangol-actionbar.svg?branch=master)](https://travis-ci.org/Cangol/Cangol-actionbar)
+
 ###Usage
 -
 Maven
@@ -10,12 +13,12 @@ Maven
      <dependency>
          <groupId>mobi.cangol.mobile</groupId>
          <artifactId>actionbar</artifactId>
-         <version>1.0.0</version>
+         <version>1.0.1</version>
          <type>aar</type>
      </dependency>
 Gradle
  
-    compile 'mobi.cangol.mobile:actionbar:1.0.0@aar'
+    compile 'mobi.cangol.mobile:actionbar:1.0.1@aar'
 
 ###Screenshot
 -
