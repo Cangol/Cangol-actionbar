@@ -1,0 +1,4 @@
+<resources>
+  <string name="progress_text">正在载入&#8230;</string>
+    <string name="search_hint">搜索&#8230;</string>
+</resources>
