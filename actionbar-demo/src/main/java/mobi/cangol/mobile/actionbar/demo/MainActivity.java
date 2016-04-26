@@ -1,4 +1,4 @@
-package mobi.cangol.mobile.actionbar;
+package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
