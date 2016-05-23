@@ -5,7 +5,8 @@ An android library,custom simple actionbar
 
 [![Download](https://api.bintray.com/packages/cangol/maven/Cangol-actionbar/images/download.svg) ](https://bintray.com/cangol/maven/Cangol-actionbar/_latestVersion)
 [![Build Status](https://travis-ci.org/Cangol/Cangol-actionbar.svg?branch=master)](https://travis-ci.org/Cangol/Cangol-actionbar)
-
+[![Coverage Status](https://coveralls.io/repos/github/Cangol/Cangol-actionbar/badge.svg?branch=master)](https://coveralls.io/github/Cangol/Cangol-actionbar?branch=master)
+[![Gitter](https://badges.gitter.im/Cangol/Cangol-actionbar.svg)](https://gitter.im/Cangol/Cangol-actionbar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ###Usage
 -
 Maven
