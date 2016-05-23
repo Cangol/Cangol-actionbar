@@ -1,7 +1,7 @@
 <resources>
 
-    <style name="AppBaseTheme" parent="android:Theme.NoTitleBar">
-        <!-- API 11 theme customizations can go here. -->
+    <style name="ActionBarTheme" parent="android:Theme.NoTitleBar">
+
     </style>
 
     <!-- ActionBar -->

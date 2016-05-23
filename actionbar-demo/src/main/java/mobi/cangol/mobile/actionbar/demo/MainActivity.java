@@ -32,6 +32,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         //this.setWindowBackground(Color.BLACK);
         //this.setBackgroundResource(R.color.activity_background);
 
+        this.getCustomActionBar().setDisplayShowHomeEnabled(false);
         this.setStatusBarTintColor(R.color.blue);
         this.setNavigationBarTintColor(R.color.red);
 
