@@ -2,17 +2,11 @@ package mobi.cangol.mobile.actionbar.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.speech.RecognizerIntent;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,12 +19,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-
-import junit.framework.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,7 +44,7 @@ public class SearchView extends LinearLayout {
     private LinearLayout mContentView;
     private SearchAdapter mSearchAdapter;
     private OnSearchTextListener mOnSearchTextListener;
-    private OnActionClickListener mOnActionClickListener;
+    private OnIndicatorClickListener mOnIndicatorClickListener;
 
     private Context mContext;
     private LayoutInflater mInflater;
@@ -122,8 +112,8 @@ public class SearchView extends LinearLayout {
                     mSearchEditText.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.shake));
                 } else {
                     String keywords = mSearchEditText.getText().toString().trim();
-                    if (mOnActionClickListener != null)
-                        mOnActionClickListener.onActionClick(keywords);
+                    if (mOnSearchTextListener != null)
+                        mOnSearchTextListener.onSearchText(keywords);
                     saveSearchHistory(keywords);
                     hide();
                 }
@@ -135,8 +125,9 @@ public class SearchView extends LinearLayout {
 
             @Override
             public void onClick(View v) {
-
                 hide();
+                if(mOnIndicatorClickListener!=null)
+                    mOnIndicatorClickListener.onIndicatorClick();
             }
 
         });
@@ -176,7 +167,17 @@ public class SearchView extends LinearLayout {
             }
         });
     }
-
+    public void setSearchIconShow(boolean show) {
+        mActionButton.setVisibility(show?View.VISIBLE:View.GONE);
+    }
+    public void setSearchDrawableShow(boolean show) {
+        Drawable imgSearch = getResources().getDrawable(R.drawable.actionbar_search);
+        imgSearch.setBounds(0, 0, imgSearch.getIntrinsicWidth(), imgSearch.getIntrinsicHeight());
+        mSearchEditText.setCompoundDrawables(show?imgSearch:null,
+                mSearchEditText.getCompoundDrawables()[1],
+                mSearchEditText.getCompoundDrawables()[2],
+                mSearchEditText.getCompoundDrawables()[3]);
+    }
     private void showHistoryList() {
         if(!isSearchHistory)return;
         List<String> list = new ArrayList<>();
@@ -244,6 +245,11 @@ public class SearchView extends LinearLayout {
         }
         this.setVisibility(View.VISIBLE);
         this.clearSearchText();
+
+        geSearchEditText().requestFocus();
+        //geSearchEditText().setFocusable(true);
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(geSearchEditText(),0);
     }
     public void hide(){
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -262,13 +268,14 @@ public class SearchView extends LinearLayout {
         this.mOnSearchTextListener = mOnSearchTextListener;
     }
 
+    public void setOnIndicatorClickListener(OnIndicatorClickListener onIndicatorClickListener) {
+        this.mOnIndicatorClickListener = onIndicatorClickListener;
+    }
+
     public void setActioImageResource(int resId) {
         this.mActionButton.setImageResource(resId);
     }
 
-    public void setOnActionClickListener(OnActionClickListener mOnActionClickListener) {
-        this.mOnActionClickListener = mOnActionClickListener;
-    }
 
     public ClearableEditText geSearchEditText() {
         return mSearchEditText;
@@ -282,12 +289,11 @@ public class SearchView extends LinearLayout {
         mSearchEditText.setHint(hint);
     }
 
-    public interface OnActionClickListener {
+    public interface OnIndicatorClickListener {
 
-        boolean onActionClick(String keywords);
+        boolean onIndicatorClick();
 
     }
-
     public interface OnSearchTextListener {
 
         boolean onSearchText(String keywords);

@@ -4,7 +4,7 @@
     <color name="actionbar_title">#ffffff</color>
     <color name="actionbar_title_shadow">#333333</color>
     <color name="actionbar_indicator">#ffffff</color>
-    <color name="actionbar_background">#000000</color>
+    <color name="actionbar_background">#111111</color>
 
     <!--actionbar action menu-->
     <color name="actionbar_item">#00000000</color>
@@ -26,7 +26,7 @@
     <!--actionbar searchmode-->
     <color name="actionbar_search_text">#FFFFFF</color>
     <color name="actionbar_search_history_text">#999999</color>
-    <color name="actionbar_search_hint">#ccc</color>
+    <color name="actionbar_search_hint">#8fcccccc</color>
     <color name="actionbar_search_background">@color/actionbar_background</color>
     <color name="actionbar_search_mask_background">#af000000</color>
 

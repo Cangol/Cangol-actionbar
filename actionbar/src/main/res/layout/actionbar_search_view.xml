@@ -29,13 +29,15 @@
             android:layout_weight="1"
             android:hint="@string/search_hint"
             android:imeOptions="actionSearch"
+            android:drawablePadding="4dp"
             android:singleLine="true"/>
 
         <ImageView
             android:id="@+id/actionbar_search_action"
             style="@style/ActionBarIconItem"
             android:scaleType="centerInside"
-            android:src="@drawable/actionbar_search"/>
+            android:src="@drawable/actionbar_search"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

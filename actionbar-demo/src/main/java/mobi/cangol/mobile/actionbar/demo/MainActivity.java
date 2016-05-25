@@ -32,13 +32,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         //this.setWindowBackground(Color.BLACK);
         //this.setBackgroundResource(R.color.activity_background);
 
-        this.getCustomActionBar().setDisplayShowHomeEnabled(false);
-        this.setStatusBarTintColor(R.color.blue);
-        this.setNavigationBarTintColor(R.color.red);
+        //this.getCustomActionBar().setDisplayShowHomeEnabled(false);
+        //this.setStatusBarTintColor(R.color.blue);
+        //this.setNavigationBarTintColor(R.color.red);
 
-        this.setActionbarShow(true);
-        this.setActionbarOverlay(false);
-        this.getCustomActionBar().setDisplayShowHomeEnabled(true);
+        //this.setActionbarShow(true);
+        //this.setActionbarOverlay(false);
+        //this.getCustomActionBar().setDisplayShowHomeEnabled(true);
         //this.getCustomActionBar().setBackgroundResource(R.color.blue);
 //        this.setMaskView(R.layout.activity_mask);
 //        this.displayMaskView(true);
@@ -78,13 +78,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             case R.id.button_search_1:
                 SearchView searchView= this.startSearchMode();
                 //searchView.setSearchHistoryEnable(false);
-                searchView.setOnActionClickListener(new SearchView.OnActionClickListener() {
-                    @Override
-                    public boolean onActionClick(String keywords) {
-
-                        return true;
-                    }
-                });
+                searchView.setSearchDrawableShow(true);
                 searchView.setOnSearchTextListener(new SearchView.OnSearchTextListener() {
                     @Override
                     public boolean onSearchText(String keywords) {
