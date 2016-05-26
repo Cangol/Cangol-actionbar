@@ -310,6 +310,7 @@ public class ActionBarActivity extends FragmentActivity {
      * @return
      */
     public boolean onSupportNavigateUp() {
+        finish();
         return true;
     }
 
