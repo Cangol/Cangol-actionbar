@@ -161,7 +161,7 @@ public class ActionBarActivityDelegate {
 	}
 
 	public void onSaveInstanceState(Bundle outState) {
-		outState.putString("ActionBar.title", mActionBar.getTitle());
+		outState.putCharSequence("ActionBar.title", mActionBar.getTitle());
         outState.putStringArray("ActionBar.navs",mActionBar.getListNavigation());
 		outState.putParcelableArrayList("ActionBar.menus", mActionBar.getMenus());
 		outState.putParcelableArrayList("ActionBar.tabs", mActionBar.getTabs());

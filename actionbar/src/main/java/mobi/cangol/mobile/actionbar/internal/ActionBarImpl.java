@@ -82,7 +82,7 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public String getTitle() {
+    public CharSequence getTitle() {
         return mActionBarView.getTitle();
     }
 

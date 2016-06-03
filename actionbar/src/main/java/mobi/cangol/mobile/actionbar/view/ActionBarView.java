@@ -262,8 +262,8 @@ public class ActionBarView extends RelativeLayout {
             mDrawerArrowDrawable.setStrokeColor(color);
     }
 
-    public String getTitle() {
-        return (String) mTitleView.getText();
+    public CharSequence getTitle() {
+        return  mTitleView.getText();
     }
 
     public void setTitle(CharSequence title) {

@@ -89,7 +89,7 @@ public abstract class ActionBar {
      *
      * @return
      */
-    abstract public String getTitle();
+    abstract public CharSequence getTitle();
 
     /**
      * 设置标题
