@@ -78,7 +78,7 @@ public class ActionBarActivityDelegate {
 	protected void onPostCreate(Bundle savedInstanceState){
 		attachToActivity(mActivity, mContainerView);
 		if(savedInstanceState!=null){
-			String title=savedInstanceState.getString("ActionBar.title");
+			CharSequence title=savedInstanceState.getCharSequence("ActionBar.title");
 			mActionBar.setTitle(title);
 
             String[] navs=savedInstanceState.getStringArray("ActionBar.navs");
