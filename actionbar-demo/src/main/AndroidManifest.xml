@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mobi.cangol.mobile.actionbar.demo"
-    android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="20" />
+    package="mobi.cangol.mobile.actionbar.demo">
 	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
     <application
         android:allowBackup="true"
