@@ -34,6 +34,7 @@ import mobi.cangol.mobile.actionbar.R;
 import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl;
 import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
+
 /**
  * @author Cangol
  */
@@ -71,7 +72,7 @@ public class ActionBarView extends RelativeLayout {
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
         mProgressView = (ProgressView) this.findViewById(R.id.actionbar_main_progress);
-        mCustomLayout= (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
+        mCustomLayout = (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
         mActionMode = new ActionModeImpl(mActionBarActivity, (ActionModeView) this.findViewById(R.id.actionbar_main_mode));
@@ -112,16 +113,18 @@ public class ActionBarView extends RelativeLayout {
 
         });
     }
+
     public String[] getListNavigation() {
         return mListNavigation;
-    }
-    public void clearListNavigation() {
-        mTitleView.setCompoundDrawables(null, null, null, null);
-        mTitleView.setOnClickListener(null);
     }
 
     public void setListNavigation(final String[] listNavigation) {
         this.mListNavigation = listNavigation;
+    }
+
+    public void clearListNavigation() {
+        mTitleView.setCompoundDrawables(null, null, null, null);
+        mTitleView.setOnClickListener(null);
     }
 
     public void setOnNavigationListener(final OnNavigationListener onNavigationListener) {
@@ -154,7 +157,7 @@ public class ActionBarView extends RelativeLayout {
         initNavigationPopuMenu(mActionBarActivity, adapter, onNavigationListener);
     }
 
-    private void initNavigationPopuMenu(Context context, BaseAdapter adapter,final OnNavigationListener onNavigationListener) {
+    private void initNavigationPopuMenu(Context context, BaseAdapter adapter, final OnNavigationListener onNavigationListener) {
         final View popuLayout = mInflater.inflate(R.layout.actionbar_navigation_list, null);
         ListView listView = (ListView) popuLayout.findViewById(R.id.actionbar_popup_navigation_list);
         listView.setAdapter(adapter);
@@ -263,15 +266,15 @@ public class ActionBarView extends RelativeLayout {
     }
 
     public CharSequence getTitle() {
-        return  mTitleView.getText();
-    }
-
-    public void setTitle(CharSequence title) {
-        mTitleView.setText(title);
+        return mTitleView.getText();
     }
 
     public void setTitle(int resId) {
         mTitleView.setText(resId);
+    }
+
+    public void setTitle(CharSequence title) {
+        mTitleView.setText(title);
     }
 
     public void setTitleGravity(int gravity) {
@@ -329,13 +332,13 @@ public class ActionBarView extends RelativeLayout {
         setTitleVisibility(View.VISIBLE);
     }
 
+    public ArrayList<ActionTabItem> getTabs() {
+        return mActionTab.getTabs();
+    }
+
     public void setTabs(ArrayList<ActionTabItem> tabs) {
         setTitleVisibility(View.GONE);
         mActionTab.setTabs(tabs);
-    }
-
-    public ArrayList<ActionTabItem> getTabs() {
-        return mActionTab.getTabs();
     }
 
     public boolean onBackPressed() {
@@ -354,14 +357,14 @@ public class ActionBarView extends RelativeLayout {
         mTitleLayout.setVisibility(visibility);
     }
 
-    public void setCustomView(View view){
+    public void setCustomView(View view) {
         mCustomLayout.removeAllViews();
         mCustomLayout.addView(view);
         mTitleLayout.setVisibility(View.GONE);
         mActionTab.removeAllTabs();
     }
 
-    public void removeCustomView(){
+    public void removeCustomView() {
         mCustomLayout.removeAllViews();
         mTitleLayout.setVisibility(View.VISIBLE);
     }

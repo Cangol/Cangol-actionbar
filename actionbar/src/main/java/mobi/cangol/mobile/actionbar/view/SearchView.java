@@ -50,8 +50,9 @@ public class SearchView extends LinearLayout {
     private LayoutInflater mInflater;
     private Set<String> mSearchHistory = new HashSet<String>();
     private SharedPreferences mSharedPreferences;
-    private boolean isSearchHistory=true;
-    private boolean onTouchOutsiteDimiss=false;
+    private boolean isSearchHistory = true;
+    private boolean onTouchOutsiteDimiss = false;
+
     public SearchView(Context context) {
         super(context);
         mContext = context;
@@ -60,6 +61,7 @@ public class SearchView extends LinearLayout {
         mInflater.inflate(R.layout.actionbar_search_view, this, true);
         initViews();
     }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public SearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -126,7 +128,7 @@ public class SearchView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 hide();
-                if(mOnIndicatorClickListener!=null)
+                if (mOnIndicatorClickListener != null)
                     mOnIndicatorClickListener.onIndicatorClick();
             }
 
@@ -158,28 +160,31 @@ public class SearchView extends LinearLayout {
             }
         });
 
-        mContentView= (LinearLayout) this.findViewById(R.id.actionbar_search_content);
+        mContentView = (LinearLayout) this.findViewById(R.id.actionbar_search_content);
         mContentView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onTouchOutsiteDimiss)
+                if (onTouchOutsiteDimiss)
                     hide();
             }
         });
     }
+
     public void setSearchIconShow(boolean show) {
-        mActionButton.setVisibility(show?View.VISIBLE:View.GONE);
+        mActionButton.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
     public void setSearchDrawableShow(boolean show) {
         Drawable imgSearch = getResources().getDrawable(R.drawable.actionbar_search);
         imgSearch.setBounds(0, 0, imgSearch.getIntrinsicWidth(), imgSearch.getIntrinsicHeight());
-        mSearchEditText.setCompoundDrawables(show?imgSearch:null,
+        mSearchEditText.setCompoundDrawables(show ? imgSearch : null,
                 mSearchEditText.getCompoundDrawables()[1],
                 mSearchEditText.getCompoundDrawables()[2],
                 mSearchEditText.getCompoundDrawables()[3]);
     }
+
     private void showHistoryList() {
-        if(!isSearchHistory)return;
+        if (!isSearchHistory) return;
         List<String> list = new ArrayList<>();
         Iterator<String> iterator = mSearchHistory.iterator();
         while (iterator.hasNext()) {
@@ -196,32 +201,33 @@ public class SearchView extends LinearLayout {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void saveSearchHistory(String keywords) {
-        if(!isSearchHistory)return;
+        if (!isSearchHistory) return;
         mSearchHistory.add(keywords);
         mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void removeSearchHistory(String keywords) {
-        if(!isSearchHistory)return;
+        if (!isSearchHistory) return;
         mSearchHistory.remove(keywords);
         mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void setSearchHistory(String[] keywords) {
-        if(!isSearchHistory)return;
+        if (!isSearchHistory) return;
         mSearchHistory.addAll(Arrays.asList(keywords));
         mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
     }
 
     public void clearSearchHistory() {
-        if(!isSearchHistory)return;
+        if (!isSearchHistory) return;
         mSearchHistory.clear();
         mSharedPreferences.edit().clear().commit();
     }
+
     public void setSearchHistoryEnable(boolean enable) {
-        isSearchHistory=enable;
+        isSearchHistory = enable;
         if (isSearchHistory) {
             if (mSearchAdapter.getList().size() > 0) {
                 mListView.setVisibility(View.VISIBLE);
@@ -238,8 +244,8 @@ public class SearchView extends LinearLayout {
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void show(){
-        if(isSearchHistory){
+    public void show() {
+        if (isSearchHistory) {
             mSearchHistory = mSharedPreferences.getStringSet("history", new HashSet<String>());
             showHistoryList();
         }
@@ -249,14 +255,16 @@ public class SearchView extends LinearLayout {
         geSearchEditText().requestFocus();
         //geSearchEditText().setFocusable(true);
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(geSearchEditText(),0);
+        imm.showSoftInput(geSearchEditText(), 0);
     }
-    public void hide(){
+
+    public void hide() {
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(geSearchEditText().getWindowToken(), 0);
         this.setVisibility(View.GONE);
         this.clearSearchText();
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         super.onTouchEvent(ev);
@@ -289,19 +297,20 @@ public class SearchView extends LinearLayout {
         mSearchEditText.setHint(hint);
     }
 
+    public void clearSearchText() {
+        mSearchEditText.setText(null);
+    }
+
     public interface OnIndicatorClickListener {
 
         boolean onIndicatorClick();
 
     }
+
     public interface OnSearchTextListener {
 
         boolean onSearchText(String keywords);
 
-    }
-
-    public void clearSearchText() {
-        mSearchEditText.setText(null);
     }
 }
 
@@ -309,6 +318,7 @@ class SearchAdapter extends BaseAdapter {
     List<String> list;
     Context context;
     LayoutInflater inflater;
+    private OnClearClickListener onClearClickListener;
 
     public SearchAdapter(Context context) {
         this.context = context;
@@ -369,21 +379,19 @@ class SearchAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder {
-        TextView labelView;
-        ImageView clearView;
-    }
-
-    private OnClearClickListener onClearClickListener;
-
-
     public void setOnClearClickListener(OnClearClickListener onClearClickListener) {
         this.onClearClickListener = onClearClickListener;
     }
+
 
     public interface OnClearClickListener {
 
         void onClearClick(int position);
 
+    }
+
+    class ViewHolder {
+        TextView labelView;
+        ImageView clearView;
     }
 }

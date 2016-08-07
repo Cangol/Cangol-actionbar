@@ -10,9 +10,10 @@ import android.view.View;
 import android.widget.EditText;
 
 import mobi.cangol.mobile.actionbar.R;
+
 /**
-* @author Cangol
-*/
+ * @author Cangol
+ */
 public class ClearableEditText extends EditText {
 
     final Drawable imgX = getResources().getDrawable(R.drawable.actionbar_search_clear);// X image //android.R.drawable.presence_offline 
@@ -36,12 +37,12 @@ public class ClearableEditText extends EditText {
     }
 
 
-    void init()  {
+    void init() {
         // Set bounds of our X button
-        imgX.setBounds(0, 0, imgX.getIntrinsicWidth(), imgX.getIntrinsicHeight());      
+        imgX.setBounds(0, 0, imgX.getIntrinsicWidth(), imgX.getIntrinsicHeight());
 
         // There may be initial text in the field, so we may need to display the button
-        manageClearButton(); 
+        manageClearButton();
 
         this.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -65,12 +66,12 @@ public class ClearableEditText extends EditText {
         this.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            	
+
             }
 
             @Override
             public void afterTextChanged(Editable arg0) {
-            	manageClearButton();
+                manageClearButton();
             }
 
             @Override
@@ -78,36 +79,38 @@ public class ClearableEditText extends EditText {
             }
         });
         this.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if(!hasFocus){
-					removeClearButton();
-				}else {
-					manageClearButton();
-				}
-			}
-		});
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    removeClearButton();
+                } else {
+                    manageClearButton();
+                }
+            }
+        });
     }
 
     void manageClearButton() {
-        if (this.getText().toString().equals("")){
-        	removeClearButton();
-        }else if(this.hasFocus()){
-        	addClearButton();
+        if (this.getText().toString().equals("")) {
+            removeClearButton();
+        } else if (this.hasFocus()) {
+            addClearButton();
         }
-            
+
     }
+
     void addClearButton() {
-        this.setCompoundDrawables(this.getCompoundDrawables()[0], 
+        this.setCompoundDrawables(this.getCompoundDrawables()[0],
                 this.getCompoundDrawables()[1],
-                getError()==null?imgX: this.getCompoundDrawables()[2],
+                getError() == null ? imgX : this.getCompoundDrawables()[2],
                 this.getCompoundDrawables()[3]);
     }
+
     void removeClearButton() {
-        this.setCompoundDrawables(this.getCompoundDrawables()[0], 
+        this.setCompoundDrawables(this.getCompoundDrawables()[0],
                 this.getCompoundDrawables()[1],
-                getError()==null?null: this.getCompoundDrawables()[2],
+                getError() == null ? null : this.getCompoundDrawables()[2],
                 this.getCompoundDrawables()[3]);
     }
 

@@ -8,68 +8,71 @@ import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
+
 /**
  * @author Cangol
  */
-public final class ActionMenuImpl extends ActionMenu{
-	private ArrayList<ActionMenuItem> mActions=new ArrayList<ActionMenuItem>();
-	private ActionMenuView mActionMenuView;
-	
-	public ActionMenuImpl(ActionMenuView view){
-		this.mActionMenuView=view;
-		this.mActionMenuView.setActionMenu(this);
-	}
-	
-	@Override
+public final class ActionMenuImpl extends ActionMenu {
+    private ArrayList<ActionMenuItem> mActions = new ArrayList<ActionMenuItem>();
+    private ActionMenuView mActionMenuView;
+
+    public ActionMenuImpl(ActionMenuView view) {
+        this.mActionMenuView = view;
+        this.mActionMenuView.setActionMenu(this);
+    }
+
+    @Override
     public ArrayList<ActionMenuItem> getActions() {
-		return mActions;
-	}
+        return mActions;
+    }
 
-	@Override
-    public ActionMenuItem addMenu(int id,int text,int drawable,int show) {
-        ActionMenuItem item=new ActionMenuItem(id,text,drawable,show);
-		mActions.add(item);
-		mActionMenuView.addAction(item);
-        return item;
-	}
-
-	@Override
+    @Override
     public void setActions(ArrayList<ActionMenuItem> actions) {
-        if(mActions==null)
-            mActions=actions;
-        else
-		    mActions.addAll(actions);
-		mActionMenuView.addActions(actions);
-		
-	}
+        if (mActions == null) {
+            mActions = actions;
+        } else {
+            mActions.addAll(actions);
+        }
 
-	@Override
+        mActionMenuView.addActions(actions);
+
+    }
+
+    @Override
+    public ActionMenuItem addMenu(int id, int text, int drawable, int show) {
+        ActionMenuItem item = new ActionMenuItem(id, text, drawable, show);
+        mActions.add(item);
+        mActionMenuView.addAction(item);
+        return item;
+    }
+
+    @Override
     public void clear() {
-		mActions.clear();
-		mActionMenuView.removeAllActions();
-		
-	}
+        mActions.clear();
+        mActionMenuView.removeAllActions();
 
-	@Override
+    }
+
+    @Override
     public int size() {
-		return mActions.size();
-	}
+        return mActions.size();
+    }
 
-	@Override
+    @Override
     public ActionMenuItem getAction(int index) {
-		return mActions.get(index);
-	}
+        return mActions.get(index);
+    }
 
-	@Override
+    @Override
     public void setOnActionClickListener(
-			OnActionClickListener onActionClickListener) {
-		mActionMenuView.setOnActionClickListener(onActionClickListener);
-		
-	}
+            OnActionClickListener onActionClickListener) {
+        mActionMenuView.setOnActionClickListener(onActionClickListener);
 
-	@Override
+    }
+
+    @Override
     public View getActionMenuItemView(int id) {
-		return mActionMenuView.findViewById(id);
-	}
+        return mActionMenuView.findViewById(id);
+    }
 
 }

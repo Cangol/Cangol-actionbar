@@ -130,7 +130,7 @@ public class ActionBarActivity extends FragmentActivity {
      * @return
      */
     public SearchView startSearchMode() {
-         return mDelegate.startSearchMode();
+        return mDelegate.startSearchMode();
     }
 
     /**
@@ -207,6 +207,14 @@ public class ActionBarActivity extends FragmentActivity {
     }
 
     /**
+     * 返回actionbar的显示
+     */
+    public boolean isActionbarShow() {
+        return mDelegate.isActionbarShow();
+
+    }
+
+    /**
      * 设置actionbar的显示
      *
      * @param show
@@ -220,13 +228,7 @@ public class ActionBarActivity extends FragmentActivity {
         this.mDelegate.setActionbarShow(show);
 
     }
-    /**
-     * 返回actionbar的显示
-     */
-    public boolean isActionbarShow() {
-        return mDelegate.isActionbarShow();
 
-    }
     /**
      * 获取菜单的Inflater
      *

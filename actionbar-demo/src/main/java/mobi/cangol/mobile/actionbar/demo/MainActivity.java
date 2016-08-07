@@ -1,6 +1,7 @@
 package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -33,8 +34,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         //this.setBackgroundResource(R.color.activity_background);
 
         //this.getCustomActionBar().setDisplayShowHomeEnabled(false);
-        //this.setStatusBarTintColor(R.color.blue);
-        //this.setNavigationBarTintColor(R.color.red);
+        //this.setStatusBarTintColor(getResources().getColor(R.color.blue));
+        //this.setNavigationBarTintColor(getResources().getColor(R.color.red));
 
         //this.setActionbarShow(true);
         //this.setActionbarOverlay(false);

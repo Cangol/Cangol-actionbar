@@ -57,18 +57,18 @@ public abstract class ActionBar {
     abstract protected boolean onBackPressed();
 
     /**
-     * 设置显示
-     *
-     * @param show
-     */
-    abstract protected void setShow(boolean show);
-
-    /**
      * 返回是否显示
      *
      * @return
      */
     abstract protected boolean isShow();
+
+    /**
+     * 设置显示
+     *
+     * @param show
+     */
+    abstract protected void setShow(boolean show);
 
     /**
      * 设置背景颜色
@@ -94,16 +94,16 @@ public abstract class ActionBar {
     /**
      * 设置标题
      *
-     * @param title
+     * @param resid
      */
-    abstract public void setTitle(CharSequence title);
+    abstract public void setTitle(int resid);
 
     /**
      * 设置标题
      *
-     * @param resid
+     * @param title
      */
-    abstract public void setTitle(int resid);
+    abstract public void setTitle(CharSequence title);
 
     /**
      * 设置标题对其方式
@@ -122,6 +122,7 @@ public abstract class ActionBar {
     /**
      * 设置标题点击事件监听
      * 此事件与setOnNavigationListener相冲突，只有后设置的有效
+     *
      * @param listener
      */
     abstract public void setOnTitleClickListener(OnClickListener listener);
@@ -151,12 +152,8 @@ public abstract class ActionBar {
 
     /**
      * 设置导航菜单
-     * @param navs
-     */
-    abstract public void setListNavigation(String[] navs);
-    /**
-     * 设置导航菜单
      * 此事件与setOnTitleClickListener相冲突，只有后设置的有效
+     *
      * @param onNavigationListener 导航监听
      */
     abstract public void setOnNavigationListener(OnNavigationListener onNavigationListener);
@@ -165,6 +162,13 @@ public abstract class ActionBar {
      * 获取导航菜单
      */
     abstract public String[] getListNavigation();
+
+    /**
+     * 设置导航菜单
+     *
+     * @param navs
+     */
+    abstract public void setListNavigation(String[] navs);
 
     /**
      * 清除导航菜单
@@ -180,18 +184,18 @@ public abstract class ActionBar {
     abstract public ActionMenu getActionMenu();
 
     /**
-     * 设置菜单按钮
-     *
-     * @param actions
-     */
-    abstract protected void setMenus(ArrayList<ActionMenuItem> actions);
-
-    /**
      * 获取所有菜单按钮
      *
      * @return
      */
     abstract public ArrayList<ActionMenuItem> getMenus();
+
+    /**
+     * 设置菜单按钮
+     *
+     * @param actions
+     */
+    abstract protected void setMenus(ArrayList<ActionMenuItem> actions);
 
     /**
      * 清除所有菜单按钮
@@ -206,18 +210,18 @@ public abstract class ActionBar {
     abstract public ActionTab getActionTab();
 
     /**
-     * 设置标题栏tabItems
-     *
-     * @param tabs
-     */
-    abstract protected void setTabs(ArrayList<ActionTabItem> tabs);
-
-    /**
      * 获取所有tabItem
      *
      * @return
      */
     abstract public ArrayList<ActionTabItem> getTabs();
+
+    /**
+     * 设置标题栏tabItems
+     *
+     * @param tabs
+     */
+    abstract protected void setTabs(ArrayList<ActionTabItem> tabs);
 
     /**
      * 清除所有tabItem
@@ -232,7 +236,7 @@ public abstract class ActionBar {
     abstract public void setCustomView(View view);
 
     /**
-     *移除自定义view
+     * 移除自定义view
      */
     abstract public void removeCustomView();
 }

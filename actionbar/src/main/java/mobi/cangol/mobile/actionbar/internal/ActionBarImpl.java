@@ -14,7 +14,6 @@ import mobi.cangol.mobile.actionbar.ActionTab;
 import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.OnNavigationListener;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
-import mobi.cangol.mobile.actionbar.view.SearchView;
 
 /**
  * @author Cangol
@@ -62,12 +61,6 @@ public final class ActionBarImpl extends ActionBar {
         return mActionBarView.onBackPressed();
     }
 
-    @Override
-    public void setShow(boolean show) {
-        mActionBarView.setVisibility(show ? View.VISIBLE : View.GONE);
-
-    }
-
     public void setBackgroundColor(int color) {
         mActionBarView.setBackgroundColor(color);
     }
@@ -82,18 +75,24 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void setShow(boolean show) {
+        mActionBarView.setVisibility(show ? View.VISIBLE : View.GONE);
+
+    }
+
+    @Override
     public CharSequence getTitle() {
         return mActionBarView.getTitle();
     }
 
     @Override
-    public void setTitle(CharSequence title) {
-        mActionBarView.setTitle(title);
+    public void setTitle(int resId) {
+        mActionBarView.setTitle(resId);
     }
 
     @Override
-    public void setTitle(int resId) {
-        mActionBarView.setTitle(resId);
+    public void setTitle(CharSequence title) {
+        mActionBarView.setTitle(title);
     }
 
     @Override
@@ -135,11 +134,6 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public void setListNavigation(String[] navs) {
-        mActionBarView.setListNavigation(navs);
-    }
-
-    @Override
     public void setOnNavigationListener(OnNavigationListener onNavigationListener) {
         mActionBarView.setOnNavigationListener(onNavigationListener);
     }
@@ -147,6 +141,11 @@ public final class ActionBarImpl extends ActionBar {
     @Override
     public String[] getListNavigation() {
         return mActionBarView.getListNavigation();
+    }
+
+    @Override
+    public void setListNavigation(String[] navs) {
+        mActionBarView.setListNavigation(navs);
     }
 
     @Override
@@ -161,13 +160,13 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public void setMenus(ArrayList<ActionMenuItem> actions) {
-        mActionBarView.setActions(actions);
+    public ArrayList<ActionMenuItem> getMenus() {
+        return mActionBarView.getActions();
     }
 
     @Override
-    public ArrayList<ActionMenuItem> getMenus() {
-        return mActionBarView.getActions();
+    public void setMenus(ArrayList<ActionMenuItem> actions) {
+        mActionBarView.setActions(actions);
     }
 
     @Override
@@ -181,13 +180,13 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public void setTabs(ArrayList<ActionTabItem> tabs) {
-        mActionBarView.setTabs(tabs);
+    public ArrayList<ActionTabItem> getTabs() {
+        return mActionBarView.getTabs();
     }
 
     @Override
-    public ArrayList<ActionTabItem> getTabs() {
-        return mActionBarView.getTabs();
+    public void setTabs(ArrayList<ActionTabItem> tabs) {
+        mActionBarView.setTabs(tabs);
     }
 
     @Override
@@ -200,8 +199,9 @@ public final class ActionBarImpl extends ActionBar {
     public void setCustomView(View view) {
         mActionBarView.setCustomView(view);
     }
+
     @Override
-    public void removeCustomView(){
+    public void removeCustomView() {
         mActionBarView.removeCustomView();
     }
 

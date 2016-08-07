@@ -35,9 +35,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout.LayoutParams;
 
 /**
- * Class to manage status and navigation bar tint effects when using KitKat 
+ * Class to manage status and navigation bar tint effects when using KitKat
  * translucent system UI modes.
- *
  */
 public class SystemBarTintManager {
 
@@ -54,6 +53,7 @@ public class SystemBarTintManager {
     private View mStatusBarTintView;
     private View mNavBarTintView;
     private Activity mActivity;
+
     /**
      * Constructor. Call this in the host activity onCreate method after its
      * content view has been set. You should always create new instances when
@@ -63,7 +63,7 @@ public class SystemBarTintManager {
      */
     @TargetApi(19)
     public SystemBarTintManager(Activity activity) {
-    	this.mActivity=activity;
+        this.mActivity = activity;
         Window win = activity.getWindow();
         ViewGroup decorViewGroup = (ViewGroup) win.getDecorView();
 
@@ -80,18 +80,18 @@ public class SystemBarTintManager {
             }
 
             /**
-            // check window flags
-            WindowManager.LayoutParams winParams = win.getAttributes();
-            int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-            if ((winParams.flags & bits) != 0) {
-                mStatusBarAvailable = true;
-            }
-            bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
-            if ((winParams.flags & bits) != 0) {
-                mNavBarAvailable = true;
-            }**/
-            mStatusBarAvailable=true;
-            mNavBarAvailable=true;
+             // check window flags
+             WindowManager.LayoutParams winParams = win.getAttributes();
+             int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+             if ((winParams.flags & bits) != 0) {
+             mStatusBarAvailable = true;
+             }
+             bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
+             if ((winParams.flags & bits) != 0) {
+             mNavBarAvailable = true;
+             }**/
+            mStatusBarAvailable = true;
+            mNavBarAvailable = true;
         }
         mConfig = new SystemBarConfig(activity, mStatusBarAvailable, mNavBarAvailable);
         // device might not have virtual navigation keys
@@ -106,51 +106,36 @@ public class SystemBarTintManager {
             setupNavBarView(activity, decorViewGroup);
         }
     }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
-	public void setTranslucentStatus(boolean on) {
-    	Window win = mActivity.getWindow();
-		WindowManager.LayoutParams winParams = win.getAttributes();
-		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-		if (on) {
-			winParams.flags |= bits;
-		} else {
-			winParams.flags &= ~bits;
-		}
-		win.setAttributes(winParams);
-	}
-    
+    public void setTranslucentStatus(boolean on) {
+        Window win = mActivity.getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
+    }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setTranslucentNagivation(boolean on) {
-    	Window win = mActivity.getWindow();
-		WindowManager.LayoutParams winParams = win.getAttributes();
-		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
-		if (on) {
-			winParams.flags |= bits;
-		} else {
-			winParams.flags &= ~bits;
-		}
-		win.setAttributes(winParams);
-	}
-    /**
-     * Enable tinting of the system status bar.
-     *
-     * If the platform is running Jelly Bean or earlier, or translucent system
-     * UI modes have not been enabled in either the theme or via window flags,
-     * then this method does nothing.
-     *
-     * @param enabled True to enable tinting, false to disable it (default).
-     */
-    public void setStatusBarTintEnabled(boolean enabled) {
-        mStatusBarTintEnabled = enabled;
-        setTranslucentStatus(enabled);
-        if (mStatusBarAvailable) {
-            mStatusBarTintView.setVisibility(enabled ? View.VISIBLE : View.GONE);
+        Window win = mActivity.getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
         }
+        win.setAttributes(winParams);
     }
 
     /**
      * Enable tinting of the system navigation bar.
-     *
+     * <p/>
      * If the platform does not have soft navigation keys, is running Jelly Bean
      * or earlier, or translucent system UI modes have not been enabled in either
      * the theme or via window flags, then this method does nothing.
@@ -316,6 +301,23 @@ public class SystemBarTintManager {
     }
 
     /**
+     * Enable tinting of the system status bar.
+     * <p/>
+     * If the platform is running Jelly Bean or earlier, or translucent system
+     * UI modes have not been enabled in either the theme or via window flags,
+     * then this method does nothing.
+     *
+     * @param enabled True to enable tinting, false to disable it (default).
+     */
+    public void setStatusBarTintEnabled(boolean enabled) {
+        mStatusBarTintEnabled = enabled;
+        setTranslucentStatus(enabled);
+        if (mStatusBarAvailable) {
+            mStatusBarTintView.setVisibility(enabled ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    /**
      * Is tinting enabled for the system navigation bar?
      *
      * @return True if enabled, False otherwise.
@@ -356,7 +358,6 @@ public class SystemBarTintManager {
     /**
      * Class which describes system bar sizing and other characteristics for the current
      * device configuration.
-     *
      */
     public static class SystemBarConfig {
 
@@ -413,6 +414,8 @@ public class SystemBarTintManager {
                         key = NAV_BAR_HEIGHT_LANDSCAPE_RES_NAME;
                     }
                     return getInternalDimensionSize(res, key);
+                } else {
+                    //
                 }
             }
             return result;
@@ -425,6 +428,8 @@ public class SystemBarTintManager {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 if (getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
                     return getInternalDimensionSize(res, NAV_BAR_WIDTH_RES_NAME);
+                } else {
+                    //
                 }
             }
             return result;
