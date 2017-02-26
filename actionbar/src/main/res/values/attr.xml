@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ActionBarTheme">
+        <eat-comment />
+        <!-- actionbar -->
+        <attr name="actionbar_title" format="reference|color" />
+        <attr name="actionbar_title_shadow" format="reference|color" />
+        <attr name="actionbar_indicator" format="reference|color" />
+        <attr name="actionbar_background" format="reference|color" />
+
+        <!--actionbar action menu-->
+        <attr name="actionbar_item" format="reference|color" />
+        <attr name="actionbar_item_pressed" format="reference|color" />
+        <attr name="actionbar_item_text" format="reference|color" />
+
+        <!--actionbar popup menu-->
+        <attr name="actionbar_popup_text" format="reference|color" />
+        <attr name="actionbar_popup_item" format="reference|color" />
+        <attr name="actionbar_popup_item_pressed" format="reference|color" />
+        <attr name="actionbar_popup_item_driver" format="reference|color" />
+
+        <!--actionbar tab item-->
+        <attr name="actionbar_tab_bg" format="reference|color" />
+        <attr name="actionbar_tab_line" format="reference|color" />
+        <attr name="actionbar_tab_text" format="reference|color" />
+        <attr name="actionbar_tab_text_checked" format="reference|color" />
+
+        <!--actionbar search mode-->
+        <attr name="actionbar_search_text" format="reference|color" />
+        <attr name="actionbar_search_history_text" format="reference|color" />
+        <attr name="actionbar_search_hint" format="reference|color" />
+        <attr name="actionbar_search_background" format="reference|color" />
+        <attr name="actionbar_search_mask_background" format="reference|color" />
+
+        <!--actionbar progress mode-->
+        <attr name="actionbar_progress_background" format="reference|color" />
+
+        <!--actionbar action mode-->
+        <attr name="actionbar_mode_text" format="reference|color" />
+        <attr name="actionbar_mode_bg" format="reference|color" />
+        <attr name="actionbar_mode_bottom_line" format="reference|color" />
+        <attr name="actionbar_mode_split" format="reference|color" />
+
+    </declare-styleable>
+</resources>

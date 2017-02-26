@@ -6,12 +6,12 @@
 
     <!-- ActionBar -->
     <style name="ActionBar">
-        <item name="android:background">@color/actionbar_background</item>
+        <item name="android:background">?actionbar_background</item>
     </style>
 
     <style name="ActionBarTitle">
         <item name="android:textSize">18.0sp</item>
-        <item name="android:textColor">@color/actionbar_title</item>
+        <item name="android:textColor">?actionbar_title</item>
         <!--
         <item name="android:shadowColor">@color/actionbar_title_shadow</item>
         <item name="android:shadowDx">0.0</item>
@@ -24,7 +24,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/actionbar_height</item>
         <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
-        <item name="android:background">@drawable/actionbar_item_bg</item>
+        <item name="android:background">@drawable/actionbar_item_bg_selector</item>
         <item name="android:padding">8dp</item>
     </style>
 
@@ -33,8 +33,8 @@
         <item name="android:layout_height">@dimen/actionbar_height</item>
         <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
         <item name="android:textSize">16.0sp</item>
-        <item name="android:textColor">@color/actionbar_item_text</item>
-        <item name="android:background">@drawable/actionbar_item_bg</item>
+        <item name="android:textColor">?actionbar_item_text</item>
+        <item name="android:background">@drawable/actionbar_item_bg_selector</item>
         <item name="android:padding">8dp</item>
     </style>
 
@@ -42,7 +42,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/actionbar_height</item>
         <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
-        <item name="android:background">@drawable/actionbar_item_bg</item>
+        <item name="android:background">@drawable/actionbar_item_bg_selector</item>
         <item name="android:padding">8dp</item>
     </style>
 
@@ -51,7 +51,7 @@
         <item name="android:layout_height">@dimen/actionbar_height</item>
         <item name="android:textSize">14.0sp</item>
         <item name="android:padding">8dp</item>
-        <item name="android:textColor">@color/actionbar_popup_text</item>
+        <item name="android:textColor">?actionbar_popup_text</item>
     </style>
 
     <style name="ActionBarNavItem">
@@ -59,14 +59,14 @@
         <item name="android:layout_height">@dimen/actionbar_height</item>
         <item name="android:textSize">16.0sp</item>
         <item name="android:padding">8dp</item>
-        <item name="android:textColor">@color/actionbar_popup_text</item>
+        <item name="android:textColor">?actionbar_popup_text</item>
     </style>
     <style name="ActionBarSearchItem">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16.0sp</item>
         <item name="android:padding">12dp</item>
-        <item name="android:textColor">@color/actionbar_search_history_text</item>
+        <item name="android:textColor">?actionbar_search_history_text</item>
         <item name="android:gravity">left|center_vertical</item>
     </style>
 
@@ -88,8 +88,8 @@
     </style>
 
     <style name="ActionBarSearchText">
-        <item name="android:textColor">@color/actionbar_search_text</item>
-        <item name="android:textColorHint">@color/actionbar_search_hint</item>
+        <item name="android:textColor">?actionbar_search_text</item>
+        <item name="android:textColorHint">?actionbar_search_hint</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:padding">4dp</item>
     </style>

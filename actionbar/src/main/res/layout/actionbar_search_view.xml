@@ -3,13 +3,13 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/actionbar_search_mask_background"
+              android:background="?actionbar_search_mask_background"
               android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        android:background="@color/actionbar_search_background"
+        android:background="?actionbar_search_background"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/actionbar_popup_bg"
-            android:divider="@color/actionbar_popup_item_driver"
+            android:divider="?actionbar_popup_item_driver"
             android:dividerHeight="1px">
         </ListView>
     </LinearLayout>

@@ -18,7 +18,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/actionbar_mode_split" />
+        android:background="?actionbar_mode_split" />
 
     <TextView
         android:id="@+id/actionbar_mode_title"
@@ -27,7 +27,7 @@
         android:gravity="center_vertical"
         android:layout_weight="1"
         android:singleLine="true"
-        android:textColor="@color/actionbar_mode_text" />
+        android:textColor="?actionbar_mode_text" />
 
     <mobi.cangol.mobile.actionbar.view.ActionMenuView
 	     android:id="@+id/actionbar_mode_menu"
