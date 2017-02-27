@@ -13,6 +13,7 @@
         <item name="actionbar_item_text">#ffffff</item>
 
         <!--actionbar popup menu-->
+        <item name="actionbar_popup_background">#FFFFFF</item>
         <item name="actionbar_popup_text">#333333</item>
         <item name="actionbar_popup_item">#F2F2F2</item>
         <item name="actionbar_popup_item_pressed">#ddd</item>
@@ -54,6 +55,7 @@
         <item name="actionbar_item_text">#ffffff</item>
 
         <!--actionbar popup menu-->
+        <item name="actionbar_popup_background">#FFFFFF</item>
         <item name="actionbar_popup_text">#333333</item>
         <item name="actionbar_popup_item">#F2F2F2</item>
         <item name="actionbar_popup_item_pressed">#ddd</item>
@@ -80,5 +82,6 @@
         <item name="actionbar_mode_bg">#F2F2F2</item>
         <item name="actionbar_mode_bottom_line">?attr/actionbar_background</item>
         <item name="actionbar_mode_split">#aaa</item>
+
     </style>
 </resources>
