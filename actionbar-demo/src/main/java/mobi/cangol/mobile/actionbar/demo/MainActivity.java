@@ -1,13 +1,24 @@
 package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
@@ -20,14 +31,65 @@ import mobi.cangol.mobile.actionbar.view.ActionTabView;
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
 @SuppressLint("ResourceAsColor")
-public class MainActivity extends ActionBarActivity implements OnClickListener {
-
+public class MainActivity extends ActionBarActivity{
+    private ListView mListView;
+    private List<Class<? extends ActionBarActivity >> activities=new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViews();
-        this.setTitle("首页");
+        setTitle("首页");
+        this.getCustomActionBar().setDisplayShowHomeEnabled(true);
+        activities.add(SearchViewActivity.class);
+        activities.add(ActionModeActivity.class);
+        activities.add(ProgressActivity.class);
+        activities.add(TabViewActivity.class);
+        activities.add(NavViewActivity.class);
+        activities.add(MenuActivity.class);
+        activities.add(CustomViewActivity.class);
+        mListView= (ListView) this.findViewById(R.id.listView);
+        mListView.setAdapter(new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return activities.size();
+            }
+
+            @Override
+            public Class getItem(int position) {
+                return activities.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                ViewHolder holder = null;
+                final Class item = getItem(position);
+                if (null != convertView) {
+                    holder = (ViewHolder) convertView.getTag();
+                } else {
+                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_view, parent, false);
+                    holder = new ViewHolder();
+                    holder.text = (TextView) convertView.findViewById(R.id.textView);
+                    convertView.setTag(holder);
+                }
+                holder.text.setText(item.getSimpleName().replace("Activity",""));
+                return convertView;
+            }
+            class ViewHolder {
+                TextView text;
+            }
+        });
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Class clazz= (Class) parent.getItemAtPosition(position);
+                startActivity(new Intent(MainActivity.this,clazz));
+            }
+        });
 
         //this.setFullScreen(true);
         //this.setWindowBackground(Color.BLACK);
@@ -49,107 +111,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 //                displayMaskView(false);
 //            }
 //        });
-
     }
-
-    public void findViews() {
-        this.findViewById(R.id.button_search_1).setOnClickListener(this);
-        this.findViewById(R.id.button_search_2).setOnClickListener(this);
-        this.findViewById(R.id.button_mode_1).setOnClickListener(this);
-        this.findViewById(R.id.button_mode_2).setOnClickListener(this);
-        this.findViewById(R.id.button_nav_1).setOnClickListener(this);
-        this.findViewById(R.id.button_nav_2).setOnClickListener(this);
-        this.findViewById(R.id.button_progress_1).setOnClickListener(this);
-        this.findViewById(R.id.button_progress_2).setOnClickListener(this);
-        this.findViewById(R.id.button_tab_1).setOnClickListener(this);
-        this.findViewById(R.id.button_tab_2).setOnClickListener(this);
-        this.findViewById(R.id.button_custom_1).setOnClickListener(this);
-        this.findViewById(R.id.button_custom_2).setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_progress_1:
-                this.getCustomActionBar().startProgress();
-                break;
-            case R.id.button_progress_2:
-                this.getCustomActionBar().stopProgress();
-                break;
-            case R.id.button_search_1:
-                SearchView searchView= this.startSearchMode();
-                //searchView.setSearchHistoryEnable(false);
-                searchView.setSearchDrawableShow(true);
-                searchView.setOnSearchTextListener(new SearchView.OnSearchTextListener() {
-                    @Override
-                    public boolean onSearchText(String keywords) {
-
-                        return true;
-                    }
-                });
-                break;
-            case R.id.button_search_2:
-                this.stopSearchMode();
-                break;
-            case R.id.button_mode_1:
-                actionMode();
-                break;
-            case R.id.button_mode_2:
-                this.getCustomActionBar().stopActionMode();
-                break;
-            case R.id.button_nav_1:
-                actionNav();
-                break;
-            case R.id.button_nav_2:
-                this.getCustomActionBar().clearListNavigation();
-                break;
-            case R.id.button_tab_1:
-                actionTab();
-                break;
-            case R.id.button_tab_2:
-                this.getCustomActionBar().getActionTab().removeAllTabs();
-                break;
-            case R.id.button_custom_1:
-                this.getCustomActionBar().setCustomView(new EditText(this));
-                break;
-            case R.id.button_custom_2:
-                this.getCustomActionBar().removeCustomView();
-                break;
-        }
-    }
-
-    private void showToast(String string) {
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-    }
-
-    private void showToast(int id) {
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onMenuActionCreated(ActionMenu actionMenu) {
-        super.onMenuActionCreated(actionMenu);
-        actionMenu.addMenu(1, R.string.action_delete, -1, 1);
-        actionMenu.addMenu(2, R.string.action_selectAll, R.drawable.ic_action_select, 1);
-        actionMenu.addMenu(3, R.string.action_invert, R.drawable.ic_action_unselect, 0);
-    }
-
-    @Override
-    public boolean onMenuActionSelected(ActionMenuItem action) {
-        switch (action.getId()) {
-            case 1:
-                showToast(R.string.action_delete);
-                break;
-            case 2:
-                showToast(R.string.action_selectAll);
-                break;
-            case 3:
-                showToast(R.string.action_invert);
-                break;
-        }
-        return super.onMenuActionSelected(action);
-    }
-
     public void title() {
         //设置标题
         this.getCustomActionBar().setTitle("Home");
@@ -161,65 +123,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.getCustomActionBar().setOnTitleClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Click Title");
-            }
-        });
-    }
-
-    public void actionMode() {
-        this.startCustomActionMode(new ActionMode.Callback() {
-
-            @Override
-            public void onCreateActionMode(ActionMode mode,
-                                           ActionMenu actionMenu) {
-
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode,
-                                               ActionMenuItem menuItem) {
-                return false;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-
-            }
-
-        });
-    }
-
-    public void actionNav() {
-        final String[] navs = {"首页", "游戏", "壁纸", "资讯"};
-        this.getCustomActionBar().setListNavigation(navs);
-        this.getCustomActionBar().setOnNavigationListener(new OnNavigationListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(int itemPosition,
-                                                    long itemId) {
-                showToast("Navigation " + navs[itemPosition]);
-                getCustomActionBar().setTitle(navs[itemPosition]);
-                return true;
-            }
-        });
-    }
-
-    public void actionTab() {
-        ActionTab actionTab = this.getCustomActionBar().getActionTab();
-        actionTab.newTab(1, "推荐", 1);
-        actionTab.newTab(2, "关注", 0);
-        actionTab.setOnTabSelectedListener(new ActionTabView.OnTabSelectedListener() {
-            @Override
-            public boolean onTabSelected(ActionTabItem tab) {
-                switch (tab.getId()) {
-                    case 1:
-                        Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(MainActivity.this, tab.getText(), Toast.LENGTH_SHORT).show();
-                        break;
-                }
-                return false;
+                Toast.makeText(MainActivity.this, "Click Title", Toast.LENGTH_SHORT).show();
             }
         });
     }

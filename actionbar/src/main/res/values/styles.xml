@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="ActionBarTheme" parent="android:Theme.NoTitleBar">
+    <style name="ActionBarTheme" parent="android:Theme.Light.NoTitleBar">
 
     </style>
 
