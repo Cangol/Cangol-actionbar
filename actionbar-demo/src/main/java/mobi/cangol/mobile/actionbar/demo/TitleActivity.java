@@ -19,61 +19,52 @@ package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.view.SearchView;
+import mobi.cangol.mobile.actionbar.ActionTab;
+import mobi.cangol.mobile.actionbar.ActionTabItem;
+import mobi.cangol.mobile.actionbar.view.ActionTabView;
 
 @SuppressLint("ResourceAsColor")
-public class SearchViewActivity extends ActionBarActivity{
-    private SearchView searchView;
+public class TitleActivity extends ActionBarActivity{
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_view);
+        setContentView(R.layout.activity_title_view);
         this.getCustomActionBar().displayUpIndicator();
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }
 
     public void findViews() {
-        this.findViewById(R.id.button_search_1).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_title_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchView=startSearchMode();
-                searchView.setOnSearchTextListener(new SearchView.OnSearchTextListener() {
-                    @Override
-                    public boolean onSearchText(String keywords) {
-                        Toast.makeText(getApplicationContext(),keywords,Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });
+                getCustomActionBar().setTitleGravity(Gravity.CENTER);
             }
         });
-        this.findViewById(R.id.button_search_2).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_title_2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopSearchMode();
-            }
-        });
-        this.findViewById(R.id.button_search_3).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(searchView!=null){
-                    searchView.setSearchHistoryEnable(!searchView.searchHistoryEnable());
+                if(getCustomActionBar().getTitleVisibility()==View.VISIBLE){
+                    getCustomActionBar().setTitleVisibility(View.VISIBLE);
+                }else{
+                    getCustomActionBar().setTitleVisibility(View.INVISIBLE);
                 }
             }
         });
-        this.findViewById(R.id.button_search_4).setOnClickListener(new OnClickListener() {
+        //设置标题点击事件
+        this.getCustomActionBar().setOnTitleClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(searchView!=null)
-                    searchView.clearSearchHistory();
+                Toast.makeText(getApplicationContext(), "Click Title", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
+
 }

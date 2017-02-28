@@ -281,6 +281,9 @@ public class ActionBarView extends RelativeLayout {
         mTitleLayout.setGravity(gravity);
         mTitleView.setGravity(gravity);
     }
+    public int getTitleGravity() {
+        return mTitleView.getVisibility();
+    }
 
     public void setOnTitleClickListener(OnClickListener listener) {
         mTitleView.setOnClickListener(listener);
@@ -355,6 +358,10 @@ public class ActionBarView extends RelativeLayout {
 
     public void setTitleVisibility(int visibility) {
         mTitleLayout.setVisibility(visibility);
+    }
+
+    public int getTitleVisibility() {
+        return mTitleLayout.getVisibility();
     }
 
     public void setCustomView(View view) {

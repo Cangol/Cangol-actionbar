@@ -27,7 +27,6 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionTab;
 import mobi.cangol.mobile.actionbar.ActionTabItem;
 import mobi.cangol.mobile.actionbar.view.ActionTabView;
-import mobi.cangol.mobile.actionbar.view.SearchView;
 
 @SuppressLint("ResourceAsColor")
 public class TabViewActivity extends ActionBarActivity{

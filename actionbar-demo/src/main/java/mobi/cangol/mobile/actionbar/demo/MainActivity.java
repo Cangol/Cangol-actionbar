@@ -90,41 +90,5 @@ public class MainActivity extends ActionBarActivity{
                 startActivity(new Intent(MainActivity.this,clazz));
             }
         });
-
-        //this.setFullScreen(true);
-        //this.setWindowBackground(Color.BLACK);
-        //this.setBackgroundResource(R.color.activity_background);
-
-        //this.getCustomActionBar().setDisplayShowHomeEnabled(false);
-        //this.setStatusBarTintColor(getResources().getColor(R.color.blue));
-        //this.setNavigationBarTintColor(getResources().getColor(R.color.red));
-
-        //this.setActionbarShow(true);
-        //this.setActionbarOverlay(false);
-        //this.getCustomActionBar().setDisplayShowHomeEnabled(true);
-        //this.getCustomActionBar().setBackgroundResource(R.color.blue);
-//        this.setMaskView(R.layout.activity_mask);
-//        this.displayMaskView(true);
-//        this.findViewById(R.id.button_mask).setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                displayMaskView(false);
-//            }
-//        });
-    }
-    public void title() {
-        //设置标题
-        this.getCustomActionBar().setTitle("Home");
-        //设置标题居中对其
-        this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
-        //这是标题显示
-        this.getCustomActionBar().setTitleVisibility(View.VISIBLE);
-        //设置标题点击事件
-        this.getCustomActionBar().setOnTitleClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Click Title", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

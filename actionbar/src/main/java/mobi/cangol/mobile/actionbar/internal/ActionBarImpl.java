@@ -101,8 +101,18 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public int getTitleGravity() {
+        return mActionBarView.getTitleGravity();
+    }
+
+    @Override
     public void setTitleVisibility(int visibility) {
         mActionBarView.setTitleVisibility(visibility);
+    }
+
+    @Override
+    public int getTitleVisibility() {
+        return mActionBarView.getTitleVisibility();
     }
 
     @Override

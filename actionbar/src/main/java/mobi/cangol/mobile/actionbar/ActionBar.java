@@ -113,11 +113,22 @@ public abstract class ActionBar {
     abstract public void setTitleGravity(int gravity);
 
     /**
+     * 获取标题对其方式
+     * @return
+     */
+    abstract public int getTitleGravity();
+
+    /**
      * 设置标题显示
      *
      * @param visibly
      */
     abstract public void setTitleVisibility(int visibly);
+
+    /**
+     * 获取标题显示
+     */
+    abstract public int getTitleVisibility();
 
     /**
      * 设置标题点击事件监听

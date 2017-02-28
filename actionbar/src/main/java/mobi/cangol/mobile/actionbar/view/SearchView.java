@@ -238,7 +238,9 @@ public class SearchView extends LinearLayout {
             mListView.setVisibility(View.GONE);
         }
     }
-
+    public boolean searchHistoryEnable() {
+        return isSearchHistory;
+    }
     public void setOnTouchOutsiteDimiss(boolean onTouchOutsiteDimiss) {
         this.onTouchOutsiteDimiss = onTouchOutsiteDimiss;
     }
