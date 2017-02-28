@@ -35,4 +35,20 @@
         android:layout_alignParentTop="true"
         android:text="@string/stopSearchMode"/>
 
+    <Button
+        android:id="@+id/button_search_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="显示搜索历史"/>
+
+    <Button
+        android:id="@+id/button_search_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="清除搜索历史"/>
+
 </LinearLayout>

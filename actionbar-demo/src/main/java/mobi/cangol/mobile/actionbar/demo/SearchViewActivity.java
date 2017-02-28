@@ -37,7 +37,7 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 
 @SuppressLint("ResourceAsColor")
 public class SearchViewActivity extends ActionBarActivity{
-
+    private SearchView searchView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +51,11 @@ public class SearchViewActivity extends ActionBarActivity{
         this.findViewById(R.id.button_search_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchView searchView= startSearchMode();
-                searchView.setSearchHistoryEnable(false);
-                searchView.setSearchDrawableShow(true);
+                searchView=startSearchMode();
                 searchView.setOnSearchTextListener(new SearchView.OnSearchTextListener() {
                     @Override
                     public boolean onSearchText(String keywords) {
-
+                        Toast.makeText(getApplicationContext(),keywords,Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
@@ -69,5 +67,22 @@ public class SearchViewActivity extends ActionBarActivity{
                 stopSearchMode();
             }
         });
+        this.findViewById(R.id.button_search_3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(searchView!=null){
+                    //searchView.setSearchHistoryEnable(searchView.searchHistoryEnable());
+                }
+            }
+        });
+        this.findViewById(R.id.button_search_4).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(searchView!=null)
+                    searchView.clearSearchHistory();
+            }
+        });
+
+
     }
 }
