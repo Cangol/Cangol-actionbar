@@ -4,7 +4,6 @@
         <!-- actionbar -->
         <item name="actionbar_title">#ffffff</item>
         <item name="actionbar_title_shadow">#333333</item>
-        <item name="actionbar_indicator">@color/actionbar_indicator</item>
         <item name="actionbar_background">#111111</item>
 
         <!--actionbar action menu-->
@@ -46,7 +45,6 @@
         <!-- actionbar -->
         <item name="actionbar_title">#ffffff</item>
         <item name="actionbar_title_shadow">#333333</item>
-        <item name="actionbar_indicator">@color/actionbar_indicator</item>
         <item name="actionbar_background">#111111</item>
 
         <!--actionbar action menu-->

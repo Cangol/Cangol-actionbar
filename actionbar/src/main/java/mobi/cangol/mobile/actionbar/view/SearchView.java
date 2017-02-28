@@ -3,6 +3,7 @@ package mobi.cangol.mobile.actionbar.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
@@ -74,7 +75,7 @@ public class SearchView extends LinearLayout {
 
     private void initViews() {
         DrawerArrowDrawable arror = new DrawerArrowDrawable(this.getResources(), true);
-        arror.setStrokeColor(getResources().getColor(R.color.actionbar_indicator));
+        arror.setStrokeColor(Color.WHITE);
         arror.setParameter(1);
         mIndicatoButton = (ImageView) this.findViewById(R.id.actionbar_search_indicator);
         mIndicatoButton.setImageDrawable(arror);

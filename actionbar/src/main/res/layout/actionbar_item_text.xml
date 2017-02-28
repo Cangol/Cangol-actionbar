@@ -4,7 +4,7 @@
     style="@style/ActionBarTextItem"
     android:layout_centerVertical="true"
     android:gravity="center"
-    android:singleLine="true"
+    android:lines="1"
     android:visibility="visible"
     android:textColor="?actionbar_item_text"
     />

@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/startCustomActionMode"/>
+        android:text="启动ActionMode"/>
 
     <Button
         android:id="@+id/button_mode_2"
@@ -34,5 +34,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/startCustomActionMode"/>
+        android:text="关闭ActionMode"/>
 </LinearLayout>

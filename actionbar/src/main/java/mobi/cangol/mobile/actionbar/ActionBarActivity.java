@@ -305,7 +305,13 @@ public class ActionBarActivity extends FragmentActivity {
     public ActionMode startCustomActionMode(ActionMode.Callback callback) {
         return getCustomActionBar().startActionMode(callback);
     }
-
+    /**
+     * 停止自定义actionmode
+     *
+     */
+    public void stopCustomActionMode() {
+         getCustomActionBar().stopActionMode();
+    }
     /**
      * 导航回调
      *

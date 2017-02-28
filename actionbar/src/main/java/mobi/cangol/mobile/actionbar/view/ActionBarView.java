@@ -1,6 +1,7 @@
 package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -64,7 +65,7 @@ public class ActionBarView extends RelativeLayout {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mDrawerArrowDrawable = new DrawerArrowDrawable(context.getResources(), false);
-        mDrawerArrowDrawable.setStrokeColor(getResources().getColor(R.color.actionbar_indicator));
+        mDrawerArrowDrawable.setStrokeColor(Color.WHITE);
 
         mInflater.inflate(R.layout.actionbar_layout, this);
         mRootView = this.findViewById(R.id.actionbar_main_layout);

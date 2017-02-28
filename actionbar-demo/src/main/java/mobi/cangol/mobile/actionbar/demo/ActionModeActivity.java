@@ -51,37 +51,33 @@ public class ActionModeActivity extends ActionBarActivity {
         this.findViewById(R.id.button_mode_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopSearchMode();
+                startCustomActionMode(new ActionMode.Callback() {
+
+                    @Override
+                    public void onCreateActionMode(ActionMode mode,
+                                                   ActionMenu actionMenu) {
+
+                    }
+
+                    @Override
+                    public boolean onActionItemClicked(ActionMode mode,
+                                                       ActionMenuItem menuItem) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onDestroyActionMode(ActionMode mode) {
+
+                    }
+
+                });
             }
         });
         this.findViewById(R.id.button_mode_2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                actionMode();
+                stopCustomActionMode();
             }
-        });
-    }
-
-    public void actionMode() {
-        this.startCustomActionMode(new ActionMode.Callback() {
-
-            @Override
-            public void onCreateActionMode(ActionMode mode,
-                                           ActionMenu actionMenu) {
-
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode,
-                                               ActionMenuItem menuItem) {
-                return false;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-
-            }
-
         });
     }
 }

@@ -5,6 +5,6 @@
     android:layout_gravity="center"
     android:layout_centerVertical="true"
     android:scaleType="centerInside"
-    android:singleLine="true"
+    android:lines="1"
     android:visibility="visible"
     />

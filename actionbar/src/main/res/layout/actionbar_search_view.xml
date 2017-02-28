@@ -26,10 +26,10 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="4dp"
             android:layout_weight="1"
+            android:drawablePadding="4dp"
             android:hint="@string/search_hint"
             android:imeOptions="actionSearch"
-            android:drawablePadding="4dp"
-            android:singleLine="true"/>
+            android:lines="1"/>
 
         <ImageView
             android:id="@+id/actionbar_search_action"
@@ -45,17 +45,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <ViewStub
             android:id="@+id/actionbar_search_stub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
         <ListView
             android:id="@+id/actionbar_search_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/actionbar_popup_bg"
             android:divider="?actionbar_popup_item_driver"
-            android:dividerHeight="1px">
-        </ListView>
+            android:dividerHeight="1px"/>
     </LinearLayout>
 </LinearLayout>

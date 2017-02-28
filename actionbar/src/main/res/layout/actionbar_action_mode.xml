@@ -26,7 +26,7 @@
         android:layout_height="@dimen/actionbar_height"
         android:gravity="center_vertical"
         android:layout_weight="1"
-        android:singleLine="true"
+        android:lines="1"
         android:textColor="?actionbar_mode_text" />
 
     <mobi.cangol.mobile.actionbar.view.ActionMenuView
