@@ -45,6 +45,9 @@
         <item name="android:background">@drawable/actionbar_item_bg_selector</item>
         <item name="android:padding">8dp</item>
     </style>
+    <style name="ActionBarPopup">
+        <item name="android:background">@drawable/actionbar_popup_bg</item>
+    </style>
 
     <style name="ActionBarPopupItem">
         <item name="android:layout_width">wrap_content</item>
