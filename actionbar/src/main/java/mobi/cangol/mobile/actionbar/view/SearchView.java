@@ -51,8 +51,8 @@ public class SearchView extends LinearLayout {
     private LayoutInflater mInflater;
     private Set<String> mSearchHistory = new HashSet<String>();
     private SharedPreferences mSharedPreferences;
-    private boolean isSearchHistory = true;
-    private boolean onTouchOutsiteDimiss = false;
+    private boolean mIsSearchHistory = true;
+    private boolean mOnTouchOutSiteDismiss = false;
 
     public SearchView(Context context) {
         super(context);
@@ -74,11 +74,11 @@ public class SearchView extends LinearLayout {
     }
 
     private void initViews() {
-        DrawerArrowDrawable arror = new DrawerArrowDrawable(this.getResources(), true);
-        arror.setStrokeColor(Color.WHITE);
-        arror.setParameter(1);
+        DrawerArrowDrawable arrow = new DrawerArrowDrawable(this.getResources(), true);
+        arrow.setStrokeColor(Color.WHITE);
+        arrow.setParameter(1);
         mIndicatoButton = (ImageView) this.findViewById(R.id.actionbar_search_indicator);
-        mIndicatoButton.setImageDrawable(arror);
+        mIndicatoButton.setImageDrawable(arrow);
         mSearchEditText = (ClearableEditText) this.findViewById(R.id.actionbar_search_text);
         mActionButton = (ImageView) this.findViewById(R.id.actionbar_search_action);
         mSearchEditText.setOnEditorActionListener(new OnEditorActionListener() {
@@ -165,7 +165,7 @@ public class SearchView extends LinearLayout {
         mContentView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onTouchOutsiteDimiss)
+                if (mOnTouchOutSiteDismiss)
                     hide();
             }
         });
@@ -185,7 +185,7 @@ public class SearchView extends LinearLayout {
     }
 
     private void showHistoryList() {
-        if (!isSearchHistory) return;
+        if (!mIsSearchHistory) return;
         List<String> list = new ArrayList<>();
         Iterator<String> iterator = mSearchHistory.iterator();
         while (iterator.hasNext()) {
@@ -202,34 +202,34 @@ public class SearchView extends LinearLayout {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void saveSearchHistory(String keywords) {
-        if (!isSearchHistory) return;
+        if (!mIsSearchHistory) return;
         mSearchHistory.add(keywords);
         mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void removeSearchHistory(String keywords) {
-        if (!isSearchHistory) return;
+        if (!mIsSearchHistory) return;
         mSearchHistory.remove(keywords);
         mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void setSearchHistory(String[] keywords) {
-        if (!isSearchHistory) return;
+    public void setmIsSearchHistory(String[] keywords) {
+        if (!mIsSearchHistory) return;
         mSearchHistory.addAll(Arrays.asList(keywords));
         mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
     }
 
     public void clearSearchHistory() {
-        if (!isSearchHistory) return;
+        if (!mIsSearchHistory) return;
         mSearchHistory.clear();
         mSharedPreferences.edit().clear().commit();
     }
 
     public void setSearchHistoryEnable(boolean enable) {
-        isSearchHistory = enable;
-        if (isSearchHistory) {
+        mIsSearchHistory = enable;
+        if (mIsSearchHistory) {
             if (mSearchAdapter.getList().size() > 0) {
                 mListView.setVisibility(View.VISIBLE);
             } else {
@@ -240,15 +240,15 @@ public class SearchView extends LinearLayout {
         }
     }
     public boolean searchHistoryEnable() {
-        return isSearchHistory;
+        return mIsSearchHistory;
     }
-    public void setOnTouchOutsiteDimiss(boolean onTouchOutsiteDimiss) {
-        this.onTouchOutsiteDimiss = onTouchOutsiteDimiss;
+    public void setmOnTouchOutSiteDismiss(boolean mOnTouchOutSiteDismiss) {
+        this.mOnTouchOutSiteDismiss = mOnTouchOutSiteDismiss;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void show() {
-        if (isSearchHistory) {
+        if (mIsSearchHistory) {
             mSearchHistory = mSharedPreferences.getStringSet("history", new HashSet<String>());
             showHistoryList();
         }
