@@ -1,9 +1,7 @@
 <resources>
-
-    <style name="ActionBarTheme" parent="android:Theme.Light.NoTitleBar">
+    <style name="ActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
     </style>
-
     <!-- ActionBar -->
     <style name="ActionBar">
         <item name="android:background">?actionbar_background</item>
@@ -73,10 +71,12 @@
         <item name="android:gravity">left|center_vertical</item>
     </style>
 
-    <style name="ActionBarProgressBar" parent="android:Widget.ProgressBar.Horizontal">
-        <item name="android:indeterminateDrawable">@drawable/actionbar_progress_horizontal</item>
-        <item name="android:minHeight">7dip</item>
-        <item name="android:maxHeight">7dip</item>
+    <style name="ActionBarRefresh" parent="android:Widget.ProgressBar">
+        <item name="android:indeterminateDrawable">?actionbar_refresh</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/actionbar_height</item>
+        <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
+        <item name="android:minHeight">@dimen/actionbar_item_min_width</item>
     </style>
 
     <style name="ActionBarTabItem">

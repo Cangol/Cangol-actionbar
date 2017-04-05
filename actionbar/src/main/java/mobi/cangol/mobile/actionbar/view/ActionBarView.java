@@ -1,10 +1,10 @@
 package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -47,7 +48,7 @@ public class ActionBarView extends RelativeLayout {
     private LinearLayout mTitleLayout;
     private TextView mTitleView;
     private PopupWindow mPopuMenu;
-    private ProgressView mProgressView;
+    private ProgressBar mProgressBar;
     private ActionMenu mActionMenu;
     private ActionMode mActionMode;
     private ActionTab mActionTab;
@@ -65,14 +66,16 @@ public class ActionBarView extends RelativeLayout {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mDrawerArrowDrawable = new DrawerArrowDrawable(context.getResources(), false);
-        mDrawerArrowDrawable.setStrokeColor(Color.WHITE);
+
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.actionbar_indicator, typedValue, true);
+        mDrawerArrowDrawable.setStrokeColor(typedValue.data);
 
         mInflater.inflate(R.layout.actionbar_layout, this);
         mRootView = this.findViewById(R.id.actionbar_main_layout);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
-        mProgressView = (ProgressView) this.findViewById(R.id.actionbar_main_progress);
         mCustomLayout = (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
@@ -155,10 +158,10 @@ public class ActionBarView extends RelativeLayout {
             }
 
         };
-        initNavigationPopuMenu(mActionBarActivity, adapter, onNavigationListener);
+        initNavigationPopupMenu(mActionBarActivity, adapter, onNavigationListener);
     }
 
-    private void initNavigationPopuMenu(Context context, BaseAdapter adapter, final OnNavigationListener onNavigationListener) {
+    private void initNavigationPopupMenu(final Context context, BaseAdapter adapter, final OnNavigationListener onNavigationListener) {
         final View popuLayout = mInflater.inflate(R.layout.actionbar_navigation_list, null);
         ListView listView = (ListView) popuLayout.findViewById(R.id.actionbar_popup_navigation_list);
         listView.setAdapter(adapter);
@@ -169,7 +172,9 @@ public class ActionBarView extends RelativeLayout {
 
             @Override
             public void onDismiss() {
-                Drawable imgV = getResources().getDrawable(R.drawable.actionbar_dropdown);
+                TypedValue typedValue = new TypedValue();
+                context.getTheme().resolveAttribute(R.attr.actionbar_dropdown, typedValue, true);
+                Drawable imgV = getResources().getDrawable(typedValue.resourceId);
                 imgV.setBounds(0, 0, imgV.getIntrinsicWidth(), imgV.getIntrinsicHeight());
                 mTitleView.setCompoundDrawables(null, null, imgV, null);
             }
@@ -186,7 +191,9 @@ public class ActionBarView extends RelativeLayout {
             }
 
         });
-        Drawable imgV = getResources().getDrawable(R.drawable.actionbar_dropdown);
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.actionbar_dropdown, typedValue, true);
+        Drawable imgV = getResources().getDrawable(typedValue.resourceId);
         imgV.setBounds(0, 0, imgV.getIntrinsicWidth(), imgV.getIntrinsicHeight());
         mTitleView.setCompoundDrawables(null, null, imgV, null);
         mTitleView.setOnClickListener(new OnClickListener() {
@@ -194,7 +201,9 @@ public class ActionBarView extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 if (!mPopuMenu.isShowing()) {
-                    Drawable imgV = getResources().getDrawable(R.drawable.actionbar_dropup);
+                    TypedValue typedValue = new TypedValue();
+                    context.getTheme().resolveAttribute(R.attr.actionbar_dropup, typedValue, true);
+                    Drawable imgV = getResources().getDrawable(typedValue.resourceId);
                     imgV.setBounds(0, 0, imgV.getIntrinsicWidth(), imgV.getIntrinsicHeight());
                     mTitleView.setCompoundDrawables(null, null, imgV, null);
 
@@ -303,14 +312,6 @@ public class ActionBarView extends RelativeLayout {
         }
     }
 
-    public void startProgress() {
-        mProgressView.startProgress();
-    }
-
-    public void stopProgress() {
-        mProgressView.stopProgress();
-    }
-
     public ActionMenu getActionMenu() {
         return mActionMenu;
     }
@@ -346,9 +347,6 @@ public class ActionBarView extends RelativeLayout {
     }
 
     public boolean onBackPressed() {
-        if (mProgressView.isProgress())
-            mProgressView.stopProgress();
-
         if (mActionMode.isActionMode()) {
             stopActionMode();
             return true;

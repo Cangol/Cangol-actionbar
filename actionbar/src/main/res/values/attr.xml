@@ -42,6 +42,13 @@
         <attr name="actionbar_mode_bottom_line" format="reference|color" />
         <attr name="actionbar_mode_split" format="reference|color" />
 
-
+        <attr name="actionbar_more" format="reference" />
+        <attr name="actionbar_dropdown" format="reference" />
+        <attr name="actionbar_dropup" format="reference" />
+        <attr name="actionbar_search" format="reference" />
+        <attr name="actionbar_clear" format="reference" />
+        <attr name="actionbar_voice" format="reference" />
+        <attr name="actionbar_done" format="reference" />
+        <attr name="actionbar_refresh" format="reference" />
     </declare-styleable>
 </resources>

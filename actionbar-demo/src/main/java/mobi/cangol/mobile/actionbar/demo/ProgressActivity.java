@@ -41,13 +41,13 @@ public class ProgressActivity extends ActionBarActivity{
         this.findViewById(R.id.button_progress_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCustomActionBar().startProgress();
+                //getCustomActionBar().startProgress();
             }
         });
         this.findViewById(R.id.button_progress_2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCustomActionBar().stopProgress();
+                //getCustomActionBar().stopProgress();
             }
         });
     }

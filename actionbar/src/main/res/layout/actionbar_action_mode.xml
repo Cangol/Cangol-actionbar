@@ -10,7 +10,7 @@
         style="@style/ActionBarItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/actionbar_done" />
+        android:src="?actionbar_done" />
 
     <View
         android:layout_width="1px"

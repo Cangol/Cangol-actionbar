@@ -2,9 +2,11 @@ package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -14,9 +16,9 @@ import mobi.cangol.mobile.actionbar.R;
 /**
  * @author Cangol
  */
-public class ClearableEditText extends EditText {
+public class ClearableEditText extends AppCompatEditText {
 
-    final Drawable imgX = getResources().getDrawable(R.drawable.actionbar_search_clear);// X image //android.R.drawable.presence_offline 
+    Drawable imgX;
 
     public ClearableEditText(Context context) {
         super(context);
@@ -38,6 +40,10 @@ public class ClearableEditText extends EditText {
 
 
     void init() {
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(R.attr.actionbar_clear, typedValue, true);
+        imgX = getResources().getDrawable(typedValue.resourceId);
+
         // Set bounds of our X button
         imgX.setBounds(0, 0, imgX.getIntrinsicWidth(), imgX.getIntrinsicHeight());
 

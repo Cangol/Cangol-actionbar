@@ -152,16 +152,6 @@ public abstract class ActionBar {
     abstract public void stopActionMode();
 
     /**
-     * 开启进度模式
-     */
-    abstract public void startProgress();
-
-    /**
-     * 关闭进度模式
-     */
-    abstract public void stopProgress();
-
-    /**
      * 设置导航菜单
      * 此事件与setOnTitleClickListener相冲突，只有后设置的有效
      *

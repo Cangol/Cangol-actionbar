@@ -3,11 +3,13 @@ package mobi.cangol.mobile.actionbar.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -75,8 +77,11 @@ public class SearchView extends LinearLayout {
 
     private void initViews() {
         DrawerArrowDrawable arrow = new DrawerArrowDrawable(this.getResources(), true);
-        arrow.setStrokeColor(Color.WHITE);
+        TypedValue typedValue = new TypedValue();
+        mContext.getTheme().resolveAttribute(R.attr.actionbar_indicator, typedValue, true);
+        arrow.setStrokeColor(typedValue.data);
         arrow.setParameter(1);
+
         mIndicatoButton = (ImageView) this.findViewById(R.id.actionbar_search_indicator);
         mIndicatoButton.setImageDrawable(arrow);
         mSearchEditText = (ClearableEditText) this.findViewById(R.id.actionbar_search_text);
@@ -176,7 +181,9 @@ public class SearchView extends LinearLayout {
     }
 
     public void setSearchDrawableShow(boolean show) {
-        Drawable imgSearch = getResources().getDrawable(R.drawable.actionbar_search);
+        TypedValue typedValue = new TypedValue();
+        mContext.getTheme().resolveAttribute(R.attr.actionbar_search, typedValue, true);
+        Drawable imgSearch = getResources().getDrawable(typedValue.resourceId);
         imgSearch.setBounds(0, 0, imgSearch.getIntrinsicWidth(), imgSearch.getIntrinsicHeight());
         mSearchEditText.setCompoundDrawables(show ? imgSearch : null,
                 mSearchEditText.getCompoundDrawables()[1],

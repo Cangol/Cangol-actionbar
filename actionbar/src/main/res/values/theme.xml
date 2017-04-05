@@ -2,30 +2,31 @@
 <resources>
     <style name="ActionBarTheme.Light" parent="ActionBarTheme">
         <!-- actionbar -->
-        <item name="actionbar_title">#ffffff</item>
-        <item name="actionbar_title_shadow">#333333</item>
-        <item name="actionbar_background">#111111</item>
+        <item name="actionbar_title">#444444</item>
+        <item name="actionbar_indicator">#444444</item>
+        <item name="actionbar_title_shadow">#eee</item>
+        <item name="actionbar_background">#F8f8F8</item>
 
         <!--actionbar action menu-->
         <item name="actionbar_item">#00000000</item>
-        <item name="actionbar_item_pressed">#66000000</item>
-        <item name="actionbar_item_text">#ffffff</item>
+        <item name="actionbar_item_pressed">#1f000000</item>
+        <item name="actionbar_item_text">?attr/actionbar_title</item>
 
         <!--actionbar popup menu-->
-        <item name="actionbar_popup_background">#FFFFFF</item>
-        <item name="actionbar_popup_text">#333333</item>
-        <item name="actionbar_popup_item">#F2F2F2</item>
-        <item name="actionbar_popup_item_pressed">#ddd</item>
-        <item name="actionbar_popup_item_driver">#ddd</item>
+        <item name="actionbar_popup_background">#F8f8F8</item>
+        <item name="actionbar_popup_text">#444444</item>
+        <item name="actionbar_popup_item">#F8f8F8</item>
+        <item name="actionbar_popup_item_pressed">#eee</item>
+        <item name="actionbar_popup_item_driver">#eee</item>
 
         <!--actionbar tab item-->
         <item name="actionbar_tab_bg">#00000000</item>
-        <item name="actionbar_tab_line">?attr/actionbar_title</item>
-        <item name="actionbar_tab_text">#aaa</item>
-        <item name="actionbar_tab_text_checked">?attr/actionbar_title</item>
+        <item name="actionbar_tab_line">#eee</item>
+        <item name="actionbar_tab_text">#eee</item>
+        <item name="actionbar_tab_text_checked">#444444</item>
 
         <!--actionbar search mode-->
-        <item name="actionbar_search_text">#FFFFFF</item>
+        <item name="actionbar_search_text">?attr/actionbar_title</item>
         <item name="actionbar_search_history_text">#999999</item>
         <item name="actionbar_search_hint">#8fcccccc</item>
         <item name="actionbar_search_background">?attr/actionbar_background</item>
@@ -35,15 +36,25 @@
         <item name="actionbar_progress_background">?attr/actionbar_background</item>
 
         <!--actionbar action mode-->
-        <item name="actionbar_mode_text">#333333</item>
-        <item name="actionbar_mode_bg">#F2F2F2</item>
-        <item name="actionbar_mode_bottom_line">?attr/actionbar_background</item>
+        <item name="actionbar_mode_text">#444444</item>
+        <item name="actionbar_mode_bg">#F8f8F8</item>
+        <item name="actionbar_mode_bottom_line">#eee</item>
         <item name="actionbar_mode_split">#aaa</item>
+
+        <item name="actionbar_more">@drawable/actionbar_more_light</item>
+        <item name="actionbar_dropdown">@drawable/actionbar_dropdown_light</item>
+        <item name="actionbar_dropup">@drawable/actionbar_dropup_light</item>
+        <item name="actionbar_search">@drawable/actionbar_search_light</item>
+        <item name="actionbar_clear">@drawable/actionbar_clear_light</item>
+        <item name="actionbar_voice">@drawable/actionbar_voice_light</item>
+        <item name="actionbar_done">@drawable/actionbar_done_light</item>
+        <item name="actionbar_refresh">@drawable/actionbar_refresh_light</item>
     </style>
 
     <style name="ActionBarTheme.Dark" parent="ActionBarTheme">
         <!-- actionbar -->
         <item name="actionbar_title">#ffffff</item>
+        <item name="actionbar_indicator">#ffffff</item>
         <item name="actionbar_title_shadow">#333333</item>
         <item name="actionbar_background">#111111</item>
 
@@ -81,5 +92,13 @@
         <item name="actionbar_mode_bottom_line">?attr/actionbar_background</item>
         <item name="actionbar_mode_split">#aaa</item>
 
+        <item name="actionbar_more">@drawable/actionbar_more_dark</item>
+        <item name="actionbar_dropdown">@drawable/actionbar_dropdown_dark</item>
+        <item name="actionbar_dropup">@drawable/actionbar_dropup_dark</item>
+        <item name="actionbar_search">@drawable/actionbar_search_dark</item>
+        <item name="actionbar_clear">@drawable/actionbar_clear_dark</item>
+        <item name="actionbar_voice">@drawable/actionbar_voice_dark</item>
+        <item name="actionbar_done">@drawable/actionbar_done_dark</item>
+        <item name="actionbar_refresh">@drawable/actionbar_refresh_dark</item>
     </style>
 </resources>

@@ -19,7 +19,7 @@
         android:id="@+id/actionbar_search_item_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/actionbar_search_clear"
+        android:src="?actionbar_clear"
         android:padding="8dp"
         />
 </LinearLayout>

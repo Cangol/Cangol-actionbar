@@ -35,7 +35,7 @@
             android:id="@+id/actionbar_search_action"
             style="@style/ActionBarIconItem"
             android:scaleType="centerInside"
-            android:src="@drawable/actionbar_search"
+            android:src="?actionbar_search"
             android:visibility="gone"/>
 
     </LinearLayout>

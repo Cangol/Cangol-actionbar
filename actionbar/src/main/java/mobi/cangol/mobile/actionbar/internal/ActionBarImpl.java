@@ -133,17 +133,6 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public void startProgress() {
-        mActionBarView.startProgress();
-
-    }
-
-    @Override
-    public void stopProgress() {
-        mActionBarView.stopProgress();
-    }
-
-    @Override
     public void setOnNavigationListener(OnNavigationListener onNavigationListener) {
         mActionBarView.setOnNavigationListener(onNavigationListener);
     }

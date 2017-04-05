@@ -34,6 +34,7 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 public class MainActivity extends ActionBarActivity{
     private ListView mListView;
     private List<Class<? extends ActionBarActivity >> activities=new ArrayList<>();
+    private static boolean light=true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
