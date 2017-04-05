@@ -23,31 +23,42 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.view.SearchView;
 
 @SuppressLint("ResourceAsColor")
-public class ProgressActivity extends ActionBarActivity{
+public class RefreshActivity extends ActionBarActivity{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progress_view);
+        setContentView(R.layout.activity_refresh_view);
         this.getCustomActionBar().displayUpIndicator();
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }
 
     public void findViews() {
-        this.findViewById(R.id.button_progress_1).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_refresh_0).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getCustomActionBar().startProgress();
+                getCustomActionBar().enableRefresh(true);
             }
         });
-        this.findViewById(R.id.button_progress_2).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_refresh_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getCustomActionBar().stopProgress();
+                getCustomActionBar().enableRefresh(false);
+            }
+        });
+        this.findViewById(R.id.button_refresh_2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCustomActionBar().refreshing(true);
+            }
+        });
+        this.findViewById(R.id.button_refresh_3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCustomActionBar().refreshing(false);
             }
         });
     }

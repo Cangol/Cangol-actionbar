@@ -1,6 +1,8 @@
 package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -18,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -47,8 +48,8 @@ public class ActionBarView extends RelativeLayout {
     private ImageView mIndicator;
     private LinearLayout mTitleLayout;
     private TextView mTitleView;
-    private PopupWindow mPopuMenu;
-    private ProgressBar mProgressBar;
+    private PopupWindow mPopupMenu;
+    private ImageView mRefreshView;
     private ActionMenu mActionMenu;
     private ActionMode mActionMode;
     private ActionTab mActionTab;
@@ -76,6 +77,7 @@ public class ActionBarView extends RelativeLayout {
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
+        mRefreshView= (ImageView) this.findViewById(R.id.actionbar_main_refresh);
         mCustomLayout = (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
@@ -166,9 +168,9 @@ public class ActionBarView extends RelativeLayout {
         ListView listView = (ListView) popuLayout.findViewById(R.id.actionbar_popup_navigation_list);
         listView.setAdapter(adapter);
         final int width = (int) (200 * context.getResources().getDisplayMetrics().density);
-        mPopuMenu = new PopupWindow(popuLayout, width, LayoutParams.WRAP_CONTENT, true);
-        mPopuMenu.setBackgroundDrawable(new BitmapDrawable());
-        mPopuMenu.setOnDismissListener(new OnDismissListener() {
+        mPopupMenu = new PopupWindow(popuLayout, width, LayoutParams.WRAP_CONTENT, true);
+        mPopupMenu.setBackgroundDrawable(new BitmapDrawable());
+        mPopupMenu.setOnDismissListener(new OnDismissListener() {
 
             @Override
             public void onDismiss() {
@@ -187,7 +189,7 @@ public class ActionBarView extends RelativeLayout {
                                     int position, long id) {
                 if (onNavigationListener != null)
                     onNavigationListener.onNavigationItemSelected(position, id);
-                mPopuMenu.dismiss();
+                mPopupMenu.dismiss();
             }
 
         });
@@ -200,7 +202,7 @@ public class ActionBarView extends RelativeLayout {
 
             @Override
             public void onClick(View v) {
-                if (!mPopuMenu.isShowing()) {
+                if (!mPopupMenu.isShowing()) {
                     TypedValue typedValue = new TypedValue();
                     context.getTheme().resolveAttribute(R.attr.actionbar_dropup, typedValue, true);
                     Drawable imgV = getResources().getDrawable(typedValue.resourceId);
@@ -209,9 +211,9 @@ public class ActionBarView extends RelativeLayout {
 
                     int xoff = -(width - mTitleView.getWidth()) / 2;
                     if (mTitleView.getGravity() == Gravity.CENTER) {
-                        mPopuMenu.showAsDropDown(mTitleView, xoff, 0);
+                        mPopupMenu.showAsDropDown(mTitleView, xoff, 0);
                     } else {
-                        mPopuMenu.showAsDropDown(mTitleView, 0, 0);
+                        mPopupMenu.showAsDropDown(mTitleView, 0, 0);
                     }
                 }
             }
@@ -374,5 +376,22 @@ public class ActionBarView extends RelativeLayout {
         mCustomLayout.removeAllViews();
         mTitleLayout.setVisibility(View.VISIBLE);
     }
-
+    public void enableRefresh(boolean enable) {
+        Animatable ad = (Animatable ) mRefreshView.getDrawable();
+        if(enable){
+            mRefreshView.setVisibility(View.VISIBLE);
+            ad.stop();
+        }else{
+            mRefreshView.setVisibility(View.GONE);
+            ad.stop();
+        }
+    }
+    public void refreshing(boolean refresh) {
+        Animatable ad = (Animatable ) mRefreshView.getDrawable();
+       if(refresh){
+           ad.start();
+       }else{
+           ad.stop();
+       }
+    }
 }

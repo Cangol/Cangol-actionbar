@@ -71,12 +71,10 @@
         <item name="android:gravity">left|center_vertical</item>
     </style>
 
-    <style name="ActionBarRefresh" parent="android:Widget.ProgressBar">
-        <item name="android:indeterminateDrawable">?actionbar_refresh</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/actionbar_height</item>
-        <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
-        <item name="android:minHeight">@dimen/actionbar_item_min_width</item>
+    <style name="ActionBarRefresh" >
+        <item name="android:layout_width">@dimen/actionbar_item_min_width</item>
+        <item name="android:layout_height">@dimen/actionbar_item_min_width</item>
+        <item name="android:src">@drawable/anim_progress</item>
     </style>
 
     <style name="ActionBarTabItem">

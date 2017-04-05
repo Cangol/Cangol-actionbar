@@ -8,9 +8,12 @@
     <string name="action_selectAll">全选</string>
     <string name="action_invert">反选</string>
     <string name="action_setting">设置</string>
-    
-    <string name="startProgress">启动Progress</string>
-    <string name="stopProgress">停止Progress</string>
+
+    <string name="on_refresh">启动刷新</string>
+    <string name="off_refresh"> 关闭刷新</string>
+
+    <string name="start_refresh">启动刷新</string>
+    <string name="stop_refresh">停止刷新</string>
     <string name="startSearchMode">启动搜索模式</string>
     <string name="stopSearchMode">停止搜索模式</string>
 

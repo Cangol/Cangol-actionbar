@@ -133,6 +133,16 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void enableRefresh(boolean enable) {
+        mActionBarView.enableRefresh(enable);
+    }
+
+    @Override
+    public void refreshing(boolean refresh) {
+        mActionBarView.refreshing(refresh);
+    }
+
+    @Override
     public void setOnNavigationListener(OnNavigationListener onNavigationListener) {
         mActionBarView.setOnNavigationListener(onNavigationListener);
     }

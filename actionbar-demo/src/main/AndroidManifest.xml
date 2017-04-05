@@ -23,7 +23,7 @@
             android:name=".ActionModeActivity"
             android:configChanges="layoutDirection|locale"/>
         <activity
-            android:name=".ProgressActivity"
+            android:name=".RefreshActivity"
             android:configChanges="layoutDirection|locale"/>
         <activity
             android:name=".TabViewActivity"

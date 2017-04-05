@@ -152,8 +152,17 @@ public abstract class ActionBar {
     abstract public void stopActionMode();
 
     /**
+     * 开启/关闭 刷新
+     */
+    abstract public void enableRefresh(boolean enable);
+    /**
+     * 开始/停止 刷新
+     */
+    abstract public void refreshing(boolean refresh);
+
+    /**
      * 设置导航菜单
-     * 此事件与setOnTitleClickListener相冲突，只有后设置的有效
+     * 此事件与setOnTitleClickListener相冲r突，只有后设置的有效
      *
      * @param onNavigationListener 导航监听
      */

@@ -20,19 +20,35 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
     <Button
-    android:id="@+id/button_progress_1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-    android:text="@string/startProgress"/>
-
-    <Button
-        android:id="@+id/button_progress_2"
+        android:id="@+id/button_refresh_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/stopProgress"/>
+        android:text="@string/on_refresh"/>
+
+    <Button
+        android:id="@+id/button_refresh_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/off_refresh"/>
+    
+    <Button
+    android:id="@+id/button_refresh_2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:text="@string/start_refresh"/>
+
+    <Button
+        android:id="@+id/button_refresh_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/stop_refresh"/>
 
 </LinearLayout>

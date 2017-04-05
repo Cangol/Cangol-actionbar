@@ -46,6 +46,16 @@
         android:layout_marginRight="@dimen/actionbar_height"
         android:gravity="center_horizontal"/>
 
+    <ImageView
+        android:id="@+id/actionbar_main_refresh"
+        style="@style/ActionBarRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:layout_toLeftOf="@+id/actionbar_main_menu"/>
+
     <mobi.cangol.mobile.actionbar.view.ActionMenuView
         android:id="@+id/actionbar_main_menu"
         android:layout_width="wrap_content"
