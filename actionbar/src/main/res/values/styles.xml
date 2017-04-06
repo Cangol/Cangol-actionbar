@@ -74,7 +74,7 @@
     <style name="ActionBarRefresh" >
         <item name="android:layout_width">@dimen/actionbar_item_min_width</item>
         <item name="android:layout_height">@dimen/actionbar_item_min_width</item>
-        <item name="android:src">@drawable/anim_progress</item>
+        <item name="android:src">@drawable/anim_refresh</item>
     </style>
 
     <style name="ActionBarTabItem">
