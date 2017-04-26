@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- actionbar -->
+    <color name="actionbar_title_dark">#ffffff</color>
+    <color name="actionbar_indicator_dark">#ffffff</color>
+    <color name="actionbar_title_shadow_dark">#333333</color>
+    <color name="actionbar_background_dark">#111111</color>
+
+    <!--actionbar action menu-->
+    <color name="actionbar_item_dark">#00000000</color>
+    <color name="actionbar_item_pressed_dark">#66000000</color>
+    <color name="actionbar_item_text_dark">#ffffff</color>
+
+    <!--actionbar popup menu-->
+    <color name="actionbar_popup_background_dark">#FFFFFF</color>
+    <color name="actionbar_popup_text_dark">#333333</color>
+    <color name="actionbar_popup_item_dark">#F2F2F2</color>
+    <color name="actionbar_popup_item_pressed_dark">#ddd</color>
+    <color name="actionbar_popup_item_driver_dark">#ddd</color>
+
+    <!--actionbar tab item-->
+    <color name="actionbar_tab_bg_dark">#00000000</color>
+    <color name="actionbar_tab_line_dark">@color/actionbar_title_dark</color>
+    <color name="actionbar_tab_text_dark">#aaa</color>
+    <color name="actionbar_tab_text_checked_dark">@color/actionbar_title_dark</color>
+
+    <!--actionbar search mode-->
+    <color name="actionbar_search_text_dark">@color/actionbar_title_dark</color>
+    <color name="actionbar_search_history_text_dark">#999999</color>
+    <color name="actionbar_search_hint_dark">#8fcccccc</color>
+    <color name="actionbar_search_background_dark">@color/actionbar_background_dark</color>
+    <color name="actionbar_search_mask_background_dark">#af000000</color>
+
+    <!--actionbar progress mode-->
+    <color name="actionbar_progress_background_dark">@color/actionbar_background_dark</color>
+
+    <!--actionbar action mode-->
+    <color name="actionbar_mode_text_dark">#333333</color>
+    <color name="actionbar_mode_bg_dark">#F2F2F2</color>
+    <color name="actionbar_mode_bottom_line_dark">@color/actionbar_background_dark</color>
+    <color name="actionbar_mode_split_dark">#aaa</color>
+</resources>

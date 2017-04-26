@@ -9,9 +9,9 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 
 import mobi.cangol.mobile.actionbar.R;
+
 
 /**
  * @author Cangol
@@ -22,24 +22,20 @@ public class ClearableEditText extends AppCompatEditText {
 
     public ClearableEditText(Context context) {
         super(context);
-
-        init();
+        initViews();
     }
 
     public ClearableEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        init();
+        initViews();
     }
 
     public ClearableEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        init();
+        initViews();
     }
 
-
-    void init() {
+    void initViews() {
         TypedValue typedValue = new TypedValue();
         getContext().getTheme().resolveAttribute(R.attr.actionbar_clear, typedValue, true);
         imgX = getResources().getDrawable(typedValue.resourceId);

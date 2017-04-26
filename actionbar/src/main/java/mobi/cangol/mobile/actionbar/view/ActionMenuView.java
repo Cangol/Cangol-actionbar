@@ -2,6 +2,9 @@ package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -34,21 +37,37 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
     private OnActionClickListener mOnActionClickListener;
     private int mShowActions = 0;
 
+    public ActionMenuView(Context context) {
+        super(context);
+        initViews(context);
+    }
+
+    public ActionMenuView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initViews(context);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public ActionMenuView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initViews(context);
+    }
+
     public ActionMenuView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mInflater.inflate(R.layout.actionbar_menu_view, this, true);
-        initViews();
-        initPopuMenu(context);
+        initViews(context);
     }
 
     public void setActionMenu(ActionMenu mActionMenu) {
         this.mActionMenu = mActionMenu;
     }
 
-    private void initViews() {
+    private void initViews(Context context) {
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater.inflate(R.layout.actionbar_menu_view, this, true);
         mActionsView = (LinearLayout) this.findViewById(R.id.actionbar_menu_actions);
         mMoreButton = (ImageView) this.findViewById(R.id.actionbar_menu_more);
+        initPopuMenu(context);
     }
 
     private void initPopuMenu(Context context) {

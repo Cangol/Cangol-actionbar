@@ -2,6 +2,8 @@ package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -14,7 +16,7 @@ import android.widget.TextView;
  *         Original code written by Evan Cummings:
  *         http://androidbears.stellarpc.net/?p=185
  */
-public class ScrollingTextView extends TextView {
+public class ScrollingTextView extends AppCompatTextView {
 
     public ScrollingTextView(Context context, AttributeSet attrs,
                              int defStyle) {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/actionbar_tab_bg_dark" />
+                </shape>
+            </item>
+            <item android:top="@dimen/actionbar_tab_top_checked">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/actionbar_tab_line_dark" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_checked="false">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/actionbar_tab_bg_dark" />
+                </shape>
+            </item>
+            <item android:top="@dimen/actionbar_tab_top">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/actionbar_tab_line_dark" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

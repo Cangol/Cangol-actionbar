@@ -24,8 +24,17 @@ public class ActionTabView extends RadioGroup implements OnCheckedChangeListener
     private ActionTab mActionTab;
     private OnTabSelectedListener mOnTabSelectedListener;
 
+    public ActionTabView(Context context) {
+        super(context);
+        initViews(context);
+    }
+
     public ActionTabView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initViews(context);
+    }
+
+    private void initViews(Context context) {
         this.setOrientation(HORIZONTAL);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.setOnCheckedChangeListener(this);

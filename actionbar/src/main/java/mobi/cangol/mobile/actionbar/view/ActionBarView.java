@@ -2,15 +2,20 @@ package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
 import android.graphics.drawable.Animatable;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -61,8 +66,28 @@ public class ActionBarView extends RelativeLayout {
     private int mHomeId, mUpId;
     private String[] mListNavigation;
 
+    public ActionBarView(Context context) {
+        super(context);
+        initView(context);
+    }
+
+    public ActionBarView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public ActionBarView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        initView(context);
+    }
+
     public ActionBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initView(context);
+    }
+
+    public void initView(Context context) {
         mActionBarActivity = (ActionBarActivity) context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -72,12 +97,12 @@ public class ActionBarView extends RelativeLayout {
         context.getTheme().resolveAttribute(R.attr.actionbar_indicator, typedValue, true);
         mDrawerArrowDrawable.setStrokeColor(typedValue.data);
 
-        mInflater.inflate(R.layout.actionbar_layout, this);
+        mInflater.inflate(R.layout.actionbar_layout, this,true);
         mRootView = this.findViewById(R.id.actionbar_main_layout);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
-        mRefreshView= (ImageView) this.findViewById(R.id.actionbar_main_refresh);
+        mRefreshView = (ImageView) this.findViewById(R.id.actionbar_main_refresh);
         mCustomLayout = (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
@@ -293,6 +318,7 @@ public class ActionBarView extends RelativeLayout {
         mTitleLayout.setGravity(gravity);
         mTitleView.setGravity(gravity);
     }
+
     public int getTitleGravity() {
         return mTitleView.getVisibility();
     }
@@ -376,22 +402,26 @@ public class ActionBarView extends RelativeLayout {
         mCustomLayout.removeAllViews();
         mTitleLayout.setVisibility(View.VISIBLE);
     }
+
     public void enableRefresh(boolean enable) {
-        Animatable ad = (Animatable ) mRefreshView.getDrawable();
-        if(enable){
+        if (enable) {
             mRefreshView.setVisibility(View.VISIBLE);
-            ad.stop();
-        }else{
+        } else {
             mRefreshView.setVisibility(View.GONE);
-            ad.stop();
         }
     }
+
     public void refreshing(boolean refresh) {
-        Animatable ad = (Animatable ) mRefreshView.getDrawable();
-       if(refresh){
-           ad.start();
-       }else{
-           ad.stop();
-       }
+        RotateAnimation anim = new RotateAnimation(0.0f, 360f,Animation.RELATIVE_TO_SELF, 0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setInterpolator(new LinearInterpolator());
+        anim.setRepeatCount(Animation.INFINITE);
+        anim.setDuration(400);
+        if (refresh) {
+            mRefreshView.setVisibility(View.VISIBLE);
+            mRefreshView.startAnimation(anim);
+        } else {
+            mRefreshView.setVisibility(View.GONE);
+            mRefreshView.setAnimation(null);
+        }
     }
 }

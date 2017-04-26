@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- actionbar -->
+    <color name="actionbar_title_light">#444444</color>
+    <color name="actionbar_indicator_light">#444444</color>
+    <color name="actionbar_title_shadow_light">#eee</color>
+    <color name="actionbar_background_light">#F8f8F8</color>
+
+    <!--actionbar action menu-->
+    <color name="actionbar_item_light">#00000000</color>
+    <color name="actionbar_item_pressed_light">#1f000000</color>
+    <color name="actionbar_item_text_light">@color/actionbar_title_light</color>
+
+    <!--actionbar popup menu-->
+    <color name="actionbar_popup_background_light">#F8f8F8</color>
+    <color name="actionbar_popup_text_light">#444444</color>
+    <color name="actionbar_popup_item_light">#F8f8F8</color>
+    <color name="actionbar_popup_item_pressed_light">#eee</color>
+    <color name="actionbar_popup_item_driver_light">#eee</color>
+
+    <!--actionbar tab item-->
+    <color name="actionbar_tab_bg_light">#00000000</color>
+    <color name="actionbar_tab_line_light">#eee</color>
+    <color name="actionbar_tab_text_light">#eee</color>
+    <color name="actionbar_tab_text_checked_light">#444444</color>
+
+    <!--actionbar search mode-->
+    <color name="actionbar_search_text_light">@color/actionbar_title_light</color>
+    <color name="actionbar_search_history_text_light">#999999</color>
+    <color name="actionbar_search_hint_light">#8fcccccc</color>
+    <color name="actionbar_search_background_light">@color/actionbar_background_light</color>
+    <color name="actionbar_search_mask_background_light">#af000000</color>
+
+    <!--actionbar progress mode-->
+    <color name="actionbar_progress_background_light">@color/actionbar_background_light</color>
+
+    <!--actionbar action mode-->
+    <color name="actionbar_mode_text_light">#444444</color>
+    <color name="actionbar_mode_bg_light">#F8f8F8</color>
+    <color name="actionbar_mode_bottom_line_light">#eee</color>
+    <color name="actionbar_mode_split_light">#aaa</color>>
+</resources>
