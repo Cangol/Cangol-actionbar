@@ -15,7 +15,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         versionCode 3
-        versionName "1.0.3"
+        versionName "1.0.4"
     }
     lintOptions {
         abortOnError false
