@@ -35,6 +35,9 @@
             android:name=".MenuActivity"
             android:configChanges="layoutDirection|locale"/>
         <activity
+            android:name=".LeftMenuActivity"
+            android:configChanges="layoutDirection|locale"/>
+        <activity
             android:name=".CustomViewActivity"
             android:configChanges="layoutDirection|locale"/>
     </application>

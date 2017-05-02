@@ -259,7 +259,7 @@ public class ActionBarView extends RelativeLayout {
 
     public void setDisplayShowHomeEnabled(boolean show) {
         mDisplayShowHomeEnabled = show;
-        mIndicator.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        mIndicator.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     public void displayHomeIndicator() {
@@ -269,7 +269,7 @@ public class ActionBarView extends RelativeLayout {
         } else {
             mIndicator.setImageResource(mHomeId);
         }
-        mIndicator.setVisibility(mDisplayShowHomeEnabled ? View.VISIBLE : View.INVISIBLE);
+        mIndicator.setVisibility(mDisplayShowHomeEnabled ? View.VISIBLE : View.GONE);
     }
 
     public void displayUpIndicator() {
