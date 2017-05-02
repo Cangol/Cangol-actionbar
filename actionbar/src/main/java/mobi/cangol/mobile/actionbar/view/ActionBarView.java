@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
@@ -27,6 +28,7 @@ import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -50,6 +52,7 @@ public class ActionBarView extends RelativeLayout {
     public static final String TAG = "ActionBar";
     private LayoutInflater mInflater;
     private View mRootView;
+    private LinearLayout mLeftMenu;
     private ImageView mIndicator;
     private LinearLayout mTitleLayout;
     private TextView mTitleView;
@@ -99,6 +102,7 @@ public class ActionBarView extends RelativeLayout {
 
         mInflater.inflate(R.layout.actionbar_layout, this,true);
         mRootView = this.findViewById(R.id.actionbar_main_layout);
+        mLeftMenu= (LinearLayout) this.findViewById(R.id.actionbar_left_menu);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
@@ -302,6 +306,63 @@ public class ActionBarView extends RelativeLayout {
             mDrawerArrowDrawable.setStrokeColor(color);
     }
 
+    public void setLeftMenu(final int id,final int text,int drawable,OnClickListener listener) {
+        mLeftMenu.setVisibility(View.VISIBLE);
+        mLeftMenu.removeAllViews();
+        if(drawable!=-1){
+            final View view = mInflater.inflate(R.layout.actionbar_item_icon, null, false);
+
+            ImageView labelView =(ImageView) view.findViewById(R.id.actionbar_item);
+            labelView.setImageResource(drawable);
+            view.setId(id);
+            view.setTag(getContext().getString(text));
+            labelView.setOnClickListener(listener);
+            labelView.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast toast = null;
+                    if (text != -1){
+                        toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.LEFT | Gravity.TOP, view.getLeft(), view.getBottom());
+                        toast.show();
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            });
+            mLeftMenu.addView(view);
+        }else{
+            final View view = mInflater.inflate(R.layout.actionbar_item_text, null, false);
+
+            TextView labelView = (TextView) view.findViewById(R.id.actionbar_item);
+            labelView.setText(text);
+            view.setId(id);
+            view.setTag(getContext().getString(text));
+            labelView.setOnClickListener(listener);
+            labelView.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast toast = null;
+                    if (text != -1){
+                        toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.LEFT | Gravity.TOP, view.getLeft(),view.getBottom());
+                        toast.show();
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            });
+            mLeftMenu.addView(view);
+        }
+
+
+    }
+    public void clearLeftMenu() {
+        mLeftMenu.removeAllViews();
+        mLeftMenu.setVisibility(View.GONE);
+    }
     public CharSequence getTitle() {
         return mTitleView.getText();
     }

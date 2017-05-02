@@ -1,5 +1,7 @@
 package mobi.cangol.mobile.actionbar.internal;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionTab;
@@ -13,7 +15,6 @@ import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener;
 public final class ActionTabImpl extends ActionTab {
     private ActionTabView mActionTabView;
     private ArrayList<ActionTabItem> mTabs = new ArrayList<ActionTabItem>();
-
     public ActionTabImpl(ActionTabView view) {
         this.mActionTabView = view;
         mActionTabView.setActionTab(this);

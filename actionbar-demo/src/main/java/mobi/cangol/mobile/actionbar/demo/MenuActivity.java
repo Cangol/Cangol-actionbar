@@ -19,6 +19,7 @@ package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -123,6 +124,19 @@ public class MenuActivity extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 getCustomActionBar().setBackgroundResource(R.color.blue);
+            }
+        });
+
+        this.findViewById(R.id.button_menu_11).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, -1, new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.e(">>","click me");
+                        showToast("click me");
+                    }
+                });
             }
         });
     }

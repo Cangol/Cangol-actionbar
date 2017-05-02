@@ -13,7 +13,6 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:scaleType="centerInside" />
-
     <LinearLayout
         android:id="@+id/actionbar_main_title_layout"
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/actionbar_height"
         android:layout_marginRight="@dimen/actionbar_height"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <TextView
@@ -30,12 +29,20 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/actionbar_height"
             android:ellipsize="marquee"
-            android:gravity="left|center_vertical"
+            android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:lines="1" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/actionbar_left_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/actionbar_main_indicator"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:visibility="gone"/>
 
     <mobi.cangol.mobile.actionbar.view.ActionTabView
         android:id="@+id/actionbar_main_tabview"
@@ -63,11 +70,12 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true" />
 
+
     <FrameLayout
         android:id="@+id/actionbar_main_custom_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
-        android:layout_toLeftOf="@+id/actionbar_main_menu"
+        android:layout_toLeftOf="@id/actionbar_main_menu"
         android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/actionbar_height">
 

@@ -80,4 +80,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ActionBar setBackgroundResource"/>
+
+    <Button
+        android:id="@+id/button_menu_11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left menu"/>
 </LinearLayout>

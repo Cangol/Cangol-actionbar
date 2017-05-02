@@ -53,7 +53,16 @@ public final class ActionBarImpl extends ActionBar {
     @Override
     public void setIndicatorColor(int color) {
         mActionBarView.setIndicatorColor(color);
+    }
 
+    @Override
+    public void setLeftMenu(int id, int text, int icon, OnClickListener listener) {
+        mActionBarView.setLeftMenu(id,text,icon,listener);
+    }
+
+    @Override
+    public void clearLeftMenu() {
+        mActionBarView.clearLeftMenu();
     }
 
     @Override

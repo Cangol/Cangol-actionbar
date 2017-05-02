@@ -50,6 +50,19 @@ public abstract class ActionBar {
     abstract public void setIndicatorColor(int color);
 
     /**
+     * 设置左侧按钮
+     * @param id
+     * @param text
+     * @param icon
+     * @param listener
+     */
+    abstract public void setLeftMenu(final int id, final int text, int icon, OnClickListener listener);
+
+    /**
+     * 清除左侧按钮
+     */
+    abstract public void clearLeftMenu();
+    /**
      * back时执行
      *
      * @return
