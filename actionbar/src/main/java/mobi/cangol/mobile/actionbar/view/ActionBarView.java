@@ -331,7 +331,7 @@ public class ActionBarView extends RelativeLayout {
                     }
                 }
             });
-            mLeftMenu.addView(view);
+            mLeftMenu.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }else{
             final View view = mInflater.inflate(R.layout.actionbar_item_text, null, false);
 
@@ -354,7 +354,7 @@ public class ActionBarView extends RelativeLayout {
                     }
                 }
             });
-            mLeftMenu.addView(view);
+            mLeftMenu.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
 
 
