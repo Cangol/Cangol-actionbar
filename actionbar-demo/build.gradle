@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-    compile 'com.android.support:support-v4:[25.0.0,)'
-    compile 'com.android.support:appcompat-v7:[25.0.0,)'
-    compile 'mobi.cangol.mobile:actionbar:[1.0.8,)@aar'
- //   compile project(':actionbar')
+    //compile 'com.android.support:support-v4:[25.0.0,)'
+   // compile 'com.android.support:appcompat-v7:[25.0.0,)'
+    //compile 'mobi.cangol.mobile:actionbar:[1.0.8,)@aar'
+    compile project(':actionbar')
 }
 
 android {
@@ -14,8 +14,8 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        versionCode 8
-        versionName "1.0.8"
+        versionCode 9
+        versionName "1.0.9"
     }
     lintOptions {
         abortOnError false

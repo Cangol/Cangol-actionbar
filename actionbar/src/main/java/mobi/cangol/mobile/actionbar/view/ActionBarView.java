@@ -465,24 +465,28 @@ public class ActionBarView extends RelativeLayout {
     }
 
     public void enableRefresh(boolean enable) {
+        View view=findViewById(R.id.actionbar_main_menu);
+        RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
         if (enable) {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,0);
             mRefreshView.setVisibility(View.VISIBLE);
         } else {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,1);
             mRefreshView.setVisibility(View.GONE);
         }
     }
 
     public void refreshing(boolean refresh) {
-        RotateAnimation anim = new RotateAnimation(0.0f, 360f,Animation.RELATIVE_TO_SELF, 0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
-        anim.setInterpolator(new LinearInterpolator());
-        anim.setRepeatCount(Animation.INFINITE);
-        anim.setDuration(400);
-        if (refresh) {
-            mRefreshView.setVisibility(View.VISIBLE);
-            mRefreshView.startAnimation(anim);
-        } else {
-            mRefreshView.setVisibility(View.GONE);
-            mRefreshView.setAnimation(null);
+        if(mRefreshView.getVisibility()==VISIBLE){
+            RotateAnimation anim = new RotateAnimation(0.0f, 360f,Animation.RELATIVE_TO_SELF, 0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
+            anim.setInterpolator(new LinearInterpolator());
+            anim.setRepeatCount(Animation.INFINITE);
+            anim.setDuration(400);
+            if (refresh) {
+                mRefreshView.startAnimation(anim);
+            } else {
+                mRefreshView.setAnimation(null);
+            }
         }
     }
 }
