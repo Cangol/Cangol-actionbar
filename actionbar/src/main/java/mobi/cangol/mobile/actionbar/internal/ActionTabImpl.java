@@ -1,7 +1,5 @@
 package mobi.cangol.mobile.actionbar.internal;
 
-import android.app.Activity;
-
 import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.ActionTab;

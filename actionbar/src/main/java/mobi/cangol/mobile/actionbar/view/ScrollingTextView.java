@@ -2,10 +2,8 @@ package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 /**
  * @author marco

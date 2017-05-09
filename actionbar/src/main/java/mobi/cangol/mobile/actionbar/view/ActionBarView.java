@@ -476,12 +476,16 @@ public class ActionBarView extends RelativeLayout {
         }
     }
 
+    public void setOnRefreshClickListener(OnClickListener listener) {
+        mRefreshView.setOnClickListener(listener);
+    }
+
     public void refreshing(boolean refresh) {
         if(mRefreshView.getVisibility()==VISIBLE){
             RotateAnimation anim = new RotateAnimation(0.0f, 360f,Animation.RELATIVE_TO_SELF, 0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setInterpolator(new LinearInterpolator());
             anim.setRepeatCount(Animation.INFINITE);
-            anim.setDuration(400);
+            anim.setDuration(250);
             if (refresh) {
                 mRefreshView.startAnimation(anim);
             } else {

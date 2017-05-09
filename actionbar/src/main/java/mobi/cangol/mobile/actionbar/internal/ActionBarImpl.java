@@ -152,6 +152,11 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void setOnRefreshClickListener(OnClickListener listener) {
+        mActionBarView.setOnRefreshClickListener(listener);
+    }
+
+    @Override
     public void setOnNavigationListener(OnNavigationListener onNavigationListener) {
         mActionBarView.setOnNavigationListener(onNavigationListener);
     }

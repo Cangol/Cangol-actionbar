@@ -174,6 +174,12 @@ public abstract class ActionBar {
     abstract public void refreshing(boolean refresh);
 
     /**
+     * 刷新按钮点击事件
+     * @param listener
+     */
+    abstract public void setOnRefreshClickListener(OnClickListener listener);
+
+    /**
      * 设置导航菜单
      * 此事件与setOnTitleClickListener相冲r突，只有后设置的有效
      *
