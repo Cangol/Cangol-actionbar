@@ -43,7 +43,7 @@ public class LeftMenuActivity extends ActionBarActivity{
 
     public void findViews() {
         this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
-        this.getCustomActionBar().setDisplayShowHomeEnabled(false);
+        //this.getCustomActionBar().setDisplayShowHomeEnabled(false);
         this.findViewById(R.id.button_menu_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

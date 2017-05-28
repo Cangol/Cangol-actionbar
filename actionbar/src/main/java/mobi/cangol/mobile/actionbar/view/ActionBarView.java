@@ -489,7 +489,7 @@ public class ActionBarView extends RelativeLayout {
             if (refresh) {
                 mRefreshView.startAnimation(anim);
             } else {
-                mRefreshView.setAnimation(null);
+                mRefreshView.clearAnimation();
             }
         }
     }
