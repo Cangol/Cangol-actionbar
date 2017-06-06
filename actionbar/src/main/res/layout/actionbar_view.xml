@@ -36,13 +36,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/actionbar_left_menu"
+        android:id="@+id/actionbar_left_menus"
         android:layout_width="@dimen/actionbar_height"
         android:layout_height="@dimen/actionbar_height"
-        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_margin="0dp"
-        android:layout_toRightOf="@id/actionbar_main_indicator"
+        android:layout_toRightOf="@+id/actionbar_main_indicator"
         android:gravity="right"
         android:orientation="horizontal"
         android:padding="0dp"

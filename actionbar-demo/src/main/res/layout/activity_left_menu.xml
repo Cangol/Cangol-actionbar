@@ -16,21 +16,31 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-
+    <Button
+        android:id="@+id/button_menu_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indicator show" />
 
     <Button
         android:id="@+id/button_menu_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="left menu show"/>
+        android:text="Indicator hide" />
 
     <Button
         android:id="@+id/button_menu_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="left menu hide"/>
+        android:text="left menu show" />
+
+    <Button
+        android:id="@+id/button_menu_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left menu hide" />
 </LinearLayout>

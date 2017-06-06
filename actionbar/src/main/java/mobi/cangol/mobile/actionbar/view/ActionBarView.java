@@ -1,19 +1,16 @@
 package mobi.cangol.mobile.actionbar.view;
 
 import android.content.Context;
-import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
@@ -52,7 +49,7 @@ public class ActionBarView extends RelativeLayout {
     public static final String TAG = "ActionBar";
     private LayoutInflater mInflater;
     private View mRootView;
-    private LinearLayout mLeftMenu;
+    private LinearLayout mLeftMenuLayout;
     private ImageView mIndicator;
     private LinearLayout mTitleLayout;
     private TextView mTitleView;
@@ -102,7 +99,7 @@ public class ActionBarView extends RelativeLayout {
 
         mInflater.inflate(R.layout.actionbar_layout, this,true);
         mRootView = this.findViewById(R.id.actionbar_main_layout);
-        mLeftMenu= (LinearLayout) this.findViewById(R.id.actionbar_left_menu);
+        mLeftMenuLayout = (LinearLayout) this.findViewById(R.id.actionbar_left_menus);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
@@ -307,8 +304,8 @@ public class ActionBarView extends RelativeLayout {
     }
 
     public void setLeftMenu(final int id,final int text,int drawable,OnClickListener listener) {
-        mLeftMenu.setVisibility(View.VISIBLE);
-        mLeftMenu.removeAllViews();
+        mLeftMenuLayout.setVisibility(View.VISIBLE);
+        mLeftMenuLayout.removeAllViews();
         if(drawable!=-1){
             final View view = mInflater.inflate(R.layout.actionbar_item_icon, null, false);
 
@@ -331,7 +328,7 @@ public class ActionBarView extends RelativeLayout {
                     }
                 }
             });
-            mLeftMenu.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            mLeftMenuLayout.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }else{
             final View view = mInflater.inflate(R.layout.actionbar_item_text, null, false);
 
@@ -354,14 +351,14 @@ public class ActionBarView extends RelativeLayout {
                     }
                 }
             });
-            mLeftMenu.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            mLeftMenuLayout.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
 
 
     }
     public void clearLeftMenu() {
-        mLeftMenu.removeAllViews();
-        mLeftMenu.setVisibility(View.GONE);
+        mLeftMenuLayout.removeAllViews();
+        mLeftMenuLayout.setVisibility(View.GONE);
     }
     public CharSequence getTitle() {
         return mTitleView.getText();

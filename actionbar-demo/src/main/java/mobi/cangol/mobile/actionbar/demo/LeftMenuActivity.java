@@ -43,11 +43,22 @@ public class LeftMenuActivity extends ActionBarActivity{
 
     public void findViews() {
         this.getCustomActionBar().setTitleGravity(Gravity.CENTER);
-        //this.getCustomActionBar().setDisplayShowHomeEnabled(false);
+        this.findViewById(R.id.button_menu_0).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCustomActionBar().setDisplayShowHomeEnabled(true);
+            }
+        });
         this.findViewById(R.id.button_menu_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, -1, new OnClickListener() {
+                getCustomActionBar().setDisplayShowHomeEnabled(false);
+            }
+        });
+        this.findViewById(R.id.button_menu_2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, new OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
@@ -55,7 +66,7 @@ public class LeftMenuActivity extends ActionBarActivity{
                 });
             }
         });
-        this.findViewById(R.id.button_menu_2).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_menu_3).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 getCustomActionBar().clearLeftMenu();

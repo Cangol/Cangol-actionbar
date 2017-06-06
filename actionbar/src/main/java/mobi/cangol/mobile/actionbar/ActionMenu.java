@@ -27,10 +27,10 @@ public abstract class ActionMenu {
     /**
      * 添加menu
      *
-     * @param id
-     * @param text
-     * @param drawable
-     * @param show
+     * @param id 菜单唯一Id
+     * @param text 文本资源string的id，必须有效
+     * @param drawable 图片资源的id，如果无，请填-1
+     * @param show 是否常显示
      * @return
      */
     public abstract ActionMenuItem addMenu(int id, int text, int drawable, int show);

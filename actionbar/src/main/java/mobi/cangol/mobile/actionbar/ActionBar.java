@@ -51,10 +51,10 @@ public abstract class ActionBar {
 
     /**
      * 设置左侧按钮
-     * @param id
-     * @param text
-     * @param icon
-     * @param listener
+     * @param id 菜单唯一Id
+     * @param text 文本资源string的id，必须有效
+     * @param icon 图片资源的id，如果无，请填-1
+     * @param listener 点击事件listener
      */
     abstract public void setLeftMenu(final int id, final int text, int icon, OnClickListener listener);
 
