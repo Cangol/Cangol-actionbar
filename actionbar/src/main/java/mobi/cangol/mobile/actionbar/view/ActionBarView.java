@@ -469,6 +469,7 @@ public class ActionBarView extends RelativeLayout {
             mRefreshView.setVisibility(View.VISIBLE);
         } else {
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,1);
+            mRefreshView.clearAnimation();
             mRefreshView.setVisibility(View.GONE);
         }
     }
