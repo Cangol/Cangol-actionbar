@@ -43,6 +43,12 @@ public abstract class ActionTab {
     public abstract void setTabSelected(int id);
 
     /**
+     * 获取选择的ID
+     *
+     */
+    public abstract int getTabSelected();
+
+    /**
      * 设置tab选择监听
      *
      * @param onTabSelectedListener

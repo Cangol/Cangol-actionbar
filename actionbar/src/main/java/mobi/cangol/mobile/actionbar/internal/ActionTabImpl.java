@@ -58,5 +58,10 @@ public final class ActionTabImpl extends ActionTab {
         mActionTabView.setTabSelected(id);
     }
 
+    @Override
+    public int getTabSelected() {
+        return mActionTabView.getTabSelected();
+    }
+
 
 }

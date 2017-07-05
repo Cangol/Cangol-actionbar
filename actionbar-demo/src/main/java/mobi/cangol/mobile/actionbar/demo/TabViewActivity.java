@@ -44,13 +44,16 @@ public class TabViewActivity extends ActionBarActivity{
         this.findViewById(R.id.button_tab_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTitle("");
                 actionTab();
+                getCustomActionBar().getActionTab().setTabSelected(2);
             }
         });
         this.findViewById(R.id.button_tab_2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 getCustomActionBar().getActionTab().removeAllTabs();
+                setTitle(TabViewActivity.this.getClass().getSimpleName().replace("Activity",""));
             }
         });
     }

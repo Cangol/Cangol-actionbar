@@ -87,6 +87,12 @@ public class RefreshActivity extends ActionBarActivity{
                 getCustomActionBar().refreshing(false);
             }
         });
+        getCustomActionBar().setOnRefreshClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("refreshing");
+            }
+        });
     }
     private void showToast(String string) {
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();

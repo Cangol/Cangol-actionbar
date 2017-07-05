@@ -86,7 +86,6 @@ public class ActionBarActivityDelegate {
             mActionBar.clearListNavigation();
             mActionBar.setListNavigation(navs);
 
-
             ArrayList<ActionMenuItem> menus = savedInstanceState.getParcelableArrayList("ActionBar.menus");
             mActionBar.clearActionMenus();
             mActionBar.setMenus(menus);
@@ -94,6 +93,7 @@ public class ActionBarActivityDelegate {
             ArrayList<ActionTabItem> tabs = savedInstanceState.getParcelableArrayList("ActionBar.tabs");
             mActionBar.clearActionTabs();
             mActionBar.setTabs(tabs);
+            mActionBar.getActionTab().setTabSelected(savedInstanceState.getInt("ActionBar.tabs.selected"));
 
         } else {
             mActivity.onMenuActionCreated(mActionBar.getActionMenu());
@@ -167,6 +167,7 @@ public class ActionBarActivityDelegate {
         outState.putStringArray("ActionBar.navs", mActionBar.getListNavigation());
         outState.putParcelableArrayList("ActionBar.menus", mActionBar.getMenus());
         outState.putParcelableArrayList("ActionBar.tabs", mActionBar.getTabs());
+        outState.putInt("ActionBar.tabs.selected", mActionBar.getActionTab().getTabSelected());
     }
 
     public void setTitle(int titleId) {

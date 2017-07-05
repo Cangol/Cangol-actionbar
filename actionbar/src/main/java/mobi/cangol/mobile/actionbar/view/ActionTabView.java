@@ -94,6 +94,10 @@ public class ActionTabView extends RadioGroup implements OnCheckedChangeListener
         this.check(id);
     }
 
+    public int getTabSelected() {
+        return this.getCheckedRadioButtonId();
+    }
+
     public interface OnTabSelectedListener {
         boolean onTabSelected(ActionTabItem tab);
     }

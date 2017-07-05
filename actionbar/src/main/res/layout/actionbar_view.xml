@@ -63,6 +63,8 @@
         android:layout_height="@dimen/actionbar_height"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        android:clickable="true"
         android:visibility="gone" />
 
     <mobi.cangol.mobile.actionbar.view.ActionMenuView
