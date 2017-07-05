@@ -2,6 +2,7 @@ package mobi.cangol.mobile.actionbar;
 
 import android.annotation.TargetApi;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,8 +20,6 @@ public class ActionBarActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mDelegate = new ActionBarActivityDelegate(this);
         mDelegate.onCreate(savedInstanceState);
         mTintManager = new SystemBarTintManager(this);

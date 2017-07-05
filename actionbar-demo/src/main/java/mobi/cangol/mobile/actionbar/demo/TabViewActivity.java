@@ -45,7 +45,7 @@ public class TabViewActivity extends ActionBarActivity{
             @Override
             public void onClick(View v) {
                 setTitle("");
-                actionTab();
+                initActionTab();
                 getCustomActionBar().getActionTab().setTabSelected(2);
             }
         });
@@ -56,12 +56,7 @@ public class TabViewActivity extends ActionBarActivity{
                 setTitle(TabViewActivity.this.getClass().getSimpleName().replace("Activity",""));
             }
         });
-    }
-    public void actionTab() {
-        ActionTab actionTab = this.getCustomActionBar().getActionTab();
-        actionTab.newTab(1, "推荐", 1);
-        actionTab.newTab(2, "关注", 0);
-        actionTab.setOnTabSelectedListener(new ActionTabView.OnTabSelectedListener() {
+        getCustomActionBar().getActionTab().setOnTabSelectedListener(new ActionTabView.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(ActionTabItem tab) {
                 switch (tab.getId()) {
@@ -75,5 +70,10 @@ public class TabViewActivity extends ActionBarActivity{
                 return false;
             }
         });
+    }
+    public void initActionTab() {
+        ActionTab actionTab = this.getCustomActionBar().getActionTab();
+        actionTab.newTab(1, "推荐", 1);
+        actionTab.newTab(2, "关注", 0);
     }
 }
