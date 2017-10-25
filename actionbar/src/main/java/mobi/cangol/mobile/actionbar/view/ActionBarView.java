@@ -65,7 +65,7 @@ public class ActionBarView extends RelativeLayout {
     private boolean mDisplayShowHomeEnabled;
     private int mHomeId, mUpId;
     private String[] mListNavigation;
-
+    private OnNavigationListener mOnNavigationListener;
     public ActionBarView(Context context) {
         super(context);
         initView(context);
@@ -157,9 +157,11 @@ public class ActionBarView extends RelativeLayout {
     public void clearListNavigation() {
         mTitleView.setCompoundDrawables(null, null, null, null);
         mTitleView.setOnClickListener(null);
+        this.mOnNavigationListener=null;
     }
 
     public void setOnNavigationListener(final OnNavigationListener onNavigationListener) {
+        this.mOnNavigationListener=onNavigationListener;
         BaseAdapter adapter = new BaseAdapter() {
 
             @Override
@@ -186,7 +188,7 @@ public class ActionBarView extends RelativeLayout {
             }
 
         };
-        initNavigationPopupMenu(mActionBarActivity, adapter, onNavigationListener);
+        initNavigationPopupMenu(mActionBarActivity, adapter, mOnNavigationListener);
     }
 
     private void initNavigationPopupMenu(final Context context, BaseAdapter adapter, final OnNavigationListener onNavigationListener) {
@@ -357,6 +359,7 @@ public class ActionBarView extends RelativeLayout {
 
     }
     public void clearLeftMenu() {
+        mLeftMenuLayout.findViewById(R.id.actionbar_item).setOnClickListener(null);
         mLeftMenuLayout.removeAllViews();
         mLeftMenuLayout.setVisibility(View.GONE);
     }
@@ -471,6 +474,7 @@ public class ActionBarView extends RelativeLayout {
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,1);
             mRefreshView.clearAnimation();
             mRefreshView.setVisibility(View.GONE);
+            mRefreshView.setOnClickListener(null);
         }
     }
 
