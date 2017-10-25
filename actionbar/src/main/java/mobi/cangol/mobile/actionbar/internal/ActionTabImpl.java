@@ -21,6 +21,7 @@ public final class ActionTabImpl extends ActionTab {
     @Override
     public void removeAllTabs() {
         mTabs.clear();
+        mActionTabView.setOnTabSelectedListener(null);
         mActionTabView.removeAllTabs();
     }
 

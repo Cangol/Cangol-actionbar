@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -359,7 +360,8 @@ public class ActionBarView extends RelativeLayout {
 
     }
     public void clearLeftMenu() {
-        mLeftMenuLayout.findViewById(R.id.actionbar_item).setOnClickListener(null);
+        if( mLeftMenuLayout.getChildAt(0)!=null)
+            mLeftMenuLayout.getChildAt(0).setOnClickListener(null);
         mLeftMenuLayout.removeAllViews();
         mLeftMenuLayout.setVisibility(View.GONE);
     }
