@@ -104,7 +104,6 @@ public class ActionBarView extends RelativeLayout {
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
         mTitleView = (TextView) this.findViewById(R.id.actionbar_main_title);
-        mRefreshView = (ImageView) this.findViewById(R.id.actionbar_main_refresh);
         mCustomLayout = (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
@@ -309,6 +308,15 @@ public class ActionBarView extends RelativeLayout {
     public void setLeftMenu(final int id,final int text,int drawable,OnClickListener listener) {
         mLeftMenuLayout.setVisibility(View.VISIBLE);
         mLeftMenuLayout.removeAllViews();
+        RelativeLayout.LayoutParams layoutParams= (LayoutParams) mLeftMenuLayout.getLayoutParams();
+        if (mIndicator.getVisibility()==VISIBLE) {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_indicator);
+        }else{
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,1);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF,0);
+        }
+
         if(drawable!=-1){
             final View view = mInflater.inflate(R.layout.actionbar_item_icon, null, false);
 
@@ -467,25 +475,65 @@ public class ActionBarView extends RelativeLayout {
     }
 
     public void enableRefresh(boolean enable) {
-        View view=findViewById(R.id.actionbar_main_menu);
-        RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
-        if (enable) {
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,0);
-            mRefreshView.setVisibility(View.VISIBLE);
-        } else {
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,1);
+        enableRefresh(enable,Gravity.RIGHT);
+    }
+
+    public void enableRefresh(boolean enable,int gravity) {
+        if(mRefreshView!=null){
             mRefreshView.clearAnimation();
             mRefreshView.setVisibility(View.GONE);
             mRefreshView.setOnClickListener(null);
+            if(mRefreshView.getId()==R.id.actionbar_main_refresh_left){
+                View view=findViewById(R.id.actionbar_left_menus);
+                RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
+                if(mIndicator.getVisibility()==VISIBLE){
+                    layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_indicator);
+                }else{
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,1);
+                }
+            }else{
+                View view=findViewById(R.id.actionbar_main_menu);
+                RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,1);
+            }
+            mRefreshView=null;
         }
+        mRefreshView = (ImageView) this.findViewById(gravity==Gravity.LEFT?R.id.actionbar_main_refresh_left:R.id.actionbar_main_refresh_right);
+        View view=findViewById(gravity==Gravity.LEFT?R.id.actionbar_left_menus:R.id.actionbar_main_menu);
+        RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
+        if (enable) {
+            layoutParams.addRule(gravity==Gravity.LEFT?RelativeLayout.ALIGN_PARENT_LEFT:RelativeLayout.ALIGN_PARENT_RIGHT
+                    ,0);
+            if(gravity==Gravity.LEFT){
+                layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_refresh_left);
+            }
+            mRefreshView.setVisibility(View.VISIBLE);
+        } else {
+            if(gravity==Gravity.LEFT){
+                if(mIndicator.getVisibility()==VISIBLE){
+                    layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_indicator);
+                }else{
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,1);
+                }
+            }else{
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT ,1);
+            }
+
+            mRefreshView.clearAnimation();
+            mRefreshView.setVisibility(View.GONE);
+            mRefreshView.setOnClickListener(null);
+            mRefreshView=null;
+        }
+
     }
 
     public void setOnRefreshClickListener(OnClickListener listener) {
-        mRefreshView.setOnClickListener(listener);
+        if(mRefreshView!=null)
+            mRefreshView.setOnClickListener(listener);
     }
 
     public void refreshing(boolean refresh) {
-        if(mRefreshView.getVisibility()==VISIBLE){
+        if(mRefreshView!=null&&mRefreshView.getVisibility()==VISIBLE){
             RotateAnimation anim = new RotateAnimation(0.0f, 360f,Animation.RELATIVE_TO_SELF, 0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setInterpolator(new LinearInterpolator());
             anim.setRepeatCount(Animation.INFINITE);

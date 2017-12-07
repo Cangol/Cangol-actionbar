@@ -147,6 +147,11 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void enableRefresh(boolean enable, int gravity) {
+        mActionBarView.enableRefresh(enable,gravity);
+    }
+
+    @Override
     public void refreshing(boolean refresh) {
         mActionBarView.refreshing(refresh);
     }

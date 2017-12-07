@@ -168,6 +168,12 @@ public abstract class ActionBar {
      * 开启/关闭 刷新
      */
     abstract public void enableRefresh(boolean enable);
+
+
+    /**
+     * 开启/关闭 刷新left|right
+     */
+    abstract public void enableRefresh(boolean enable,int gravity);
     /**
      * 开始/停止 刷新
      */

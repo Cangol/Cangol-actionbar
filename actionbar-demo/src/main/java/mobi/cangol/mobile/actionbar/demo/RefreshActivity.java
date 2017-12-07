@@ -19,6 +19,7 @@ package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -36,15 +37,20 @@ public class RefreshActivity extends ActionBarActivity{
         setContentView(R.layout.activity_refresh_view);
         this.getCustomActionBar().displayUpIndicator();
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
-        this.getCustomActionBar().enableRefresh(true);
         findViews();
+        getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
     @Override
     public void onMenuActionCreated(ActionMenu actionMenu) {
         super.onMenuActionCreated(actionMenu);
         actionMenu.addMenu(1, R.string.action_delete, -1, 1);
-        actionMenu.addMenu(2, R.string.action_selectAll, R.drawable.ic_action_select, 1);
-        actionMenu.addMenu(3, R.string.action_invert, R.drawable.ic_action_unselect, 0);
+//        actionMenu.addMenu(2, R.string.action_selectAll, R.drawable.ic_action_select, 1);
+//        actionMenu.addMenu(3, R.string.action_invert, R.drawable.ic_action_unselect, 0);
     }
 
     @Override
@@ -63,16 +69,28 @@ public class RefreshActivity extends ActionBarActivity{
         return super.onMenuActionSelected(action);
     }
     public void findViews() {
-        this.findViewById(R.id.button_refresh_0).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_refresh_00).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCustomActionBar().enableRefresh(true);
+                getCustomActionBar().enableRefresh(true, Gravity.LEFT);
             }
         });
-        this.findViewById(R.id.button_refresh_1).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_refresh_01).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCustomActionBar().enableRefresh(false);
+                getCustomActionBar().enableRefresh(false, Gravity.LEFT);
+            }
+        });
+        this.findViewById(R.id.button_refresh_10).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCustomActionBar().enableRefresh(true, Gravity.RIGHT);
+            }
+        });
+        this.findViewById(R.id.button_refresh_11).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCustomActionBar().enableRefresh(false, Gravity.RIGHT);
             }
         });
         this.findViewById(R.id.button_refresh_2).setOnClickListener(new OnClickListener() {
