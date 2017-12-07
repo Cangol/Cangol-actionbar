@@ -312,9 +312,11 @@ public class ActionBarView extends RelativeLayout {
         if (mIndicator.getVisibility()==VISIBLE) {
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
             layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_indicator);
+        }else if (mRefreshView!=null&&mRefreshView.getId()==R.id.actionbar_main_refresh_left&&mRefreshView.getVisibility()==VISIBLE){
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_refresh_left);
         }else{
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,1);
-            layoutParams.addRule(RelativeLayout.RIGHT_OF,0);
         }
 
         if(drawable!=-1){
@@ -502,10 +504,11 @@ public class ActionBarView extends RelativeLayout {
         View view=findViewById(gravity==Gravity.LEFT?R.id.actionbar_left_menus:R.id.actionbar_main_menu);
         RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
         if (enable) {
-            layoutParams.addRule(gravity==Gravity.LEFT?RelativeLayout.ALIGN_PARENT_LEFT:RelativeLayout.ALIGN_PARENT_RIGHT
-                    ,0);
             if(gravity==Gravity.LEFT){
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
                 layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_refresh_left);
+            }else{
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,0);
             }
             mRefreshView.setVisibility(View.VISIBLE);
         } else {
