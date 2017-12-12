@@ -67,6 +67,7 @@ public class ActionBarView extends RelativeLayout {
     private int mHomeId, mUpId;
     private String[] mListNavigation;
     private OnNavigationListener mOnNavigationListener;
+    private OnClickListener mOnRefreshClickListener;
     public ActionBarView(Context context) {
         super(context);
         initView(context);
@@ -511,6 +512,7 @@ public class ActionBarView extends RelativeLayout {
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,0);
             }
             mRefreshView.setVisibility(View.VISIBLE);
+            mRefreshView.setOnClickListener(mOnRefreshClickListener);
         } else {
             if(gravity==Gravity.LEFT){
                 if(mIndicator.getVisibility()==VISIBLE){
@@ -531,8 +533,9 @@ public class ActionBarView extends RelativeLayout {
     }
 
     public void setOnRefreshClickListener(OnClickListener listener) {
+        mOnRefreshClickListener=listener;
         if(mRefreshView!=null)
-            mRefreshView.setOnClickListener(listener);
+            mRefreshView.setOnClickListener(mOnRefreshClickListener);
     }
 
     public void refreshing(boolean refresh) {
@@ -540,7 +543,7 @@ public class ActionBarView extends RelativeLayout {
             RotateAnimation anim = new RotateAnimation(0.0f, 360f,Animation.RELATIVE_TO_SELF, 0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setInterpolator(new LinearInterpolator());
             anim.setRepeatCount(Animation.INFINITE);
-            anim.setDuration(250);
+            anim.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
             if (refresh) {
                 mRefreshView.startAnimation(anim);
             } else {
