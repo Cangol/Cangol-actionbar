@@ -48,7 +48,7 @@
 
     <LinearLayout
         android:id="@+id/actionbar_left_menus"
-        android:layout_width="@dimen/actionbar_height"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/actionbar_height"
         android:layout_centerVertical="true"
         android:layout_margin="0dp"
