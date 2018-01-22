@@ -31,7 +31,7 @@ Gradle
 
 ### Documentation
 
-[Docs] http://cangol.mobi/Cangol-actionbar/
+[Docs] http://cangol.mobi/Cangol-actionbar/  
 [Wiki] (https://github.com/Cangol/Cangol-actionbar/wiki)  
 
 *   [Title] (https://github.com/Cangol/Cangol-actionbar/wiki/Usage-Title)   
