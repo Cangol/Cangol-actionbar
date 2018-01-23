@@ -16,12 +16,12 @@ Maven
      <dependency>
          <groupId>mobi.cangol.mobile</groupId>
          <artifactId>actionbar</artifactId>
-         <version>1.0.20</version>
+         <version>1.0.22</version>
          <type>aar</type>
      </dependency>
 Gradle
  
-    compile 'mobi.cangol.mobile:actionbar:1.0.20@aar'
+    compile 'mobi.cangol.mobile:actionbar:1.0.22@aar'
 
 ### Screenshot
 
@@ -32,7 +32,7 @@ Gradle
 ### Documentation
 
 [Docs] http://cangol.mobi/Cangol-actionbar/  
-[Wiki] (https://github.com/Cangol/Cangol-actionbar/wiki)  
+[Wiki] https://github.com/Cangol/Cangol-actionbar/wiki 
 
 *   [Title] (https://github.com/Cangol/Cangol-actionbar/wiki/Usage-Title)   
 *   [ActionbarActivity] (https://github.com/Cangol/Cangol-actionbar/wiki/Usage-ActionbarActivity)  

@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("首页");
+        setStatusBarTintColor(getResources().getColor(R.color.statusbar_bg));
         this.getCustomActionBar().setDisplayShowHomeEnabled(true);
         activities.add(SearchViewActivity.class);
         activities.add(ActionModeActivity.class);
