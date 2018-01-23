@@ -1,6 +1,7 @@
 package mobi.cangol.mobile.actionbar;
 
 import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -81,8 +82,12 @@ public class ActionBarActivity extends AppCompatActivity{
      */
     @TargetApi(19)
     public void setStatusBarTintColor(int color) {
-        mTintManager.setStatusBarTintEnabled(true);
-        mTintManager.setStatusBarTintColor(color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(color);
+        }else {
+            mTintManager.setStatusBarTintEnabled(true);
+            mTintManager.setStatusBarTintColor(color);
+        }
     }
 
     /**
@@ -92,8 +97,12 @@ public class ActionBarActivity extends AppCompatActivity{
      */
     @TargetApi(19)
     public void setNavigationBarTintColor(int color) {
-        mTintManager.setNavigationBarTintEnabled(true);
-        mTintManager.setNavigationBarTintColor(color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(color);
+        }else {
+            mTintManager.setNavigationBarTintEnabled(true);
+            mTintManager.setNavigationBarTintColor(color);
+        }
     }
 
     /**

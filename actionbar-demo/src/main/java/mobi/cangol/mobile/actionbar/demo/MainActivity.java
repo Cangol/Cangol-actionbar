@@ -78,5 +78,8 @@ public class MainActivity extends ActionBarActivity{
                 startActivity(new Intent(MainActivity.this,clazz));
             }
         });
+
+        setStatusBarTintColor(getResources().getColor(R.color.green));
+        setNavigationBarTintColor(getResources().getColor(R.color.green));
     }
 }
