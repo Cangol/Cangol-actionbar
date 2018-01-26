@@ -37,6 +37,7 @@ public class LeftMenuActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left_menu);
         this.getCustomActionBar().displayUpIndicator();
+        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }

@@ -37,6 +37,7 @@ public class CustomViewActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_view);
         this.getCustomActionBar().displayUpIndicator();
+        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }

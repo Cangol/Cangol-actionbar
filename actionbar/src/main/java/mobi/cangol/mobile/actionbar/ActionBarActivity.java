@@ -80,9 +80,10 @@ public class ActionBarActivity extends AppCompatActivity{
      *
      * @param color
      */
-    @TargetApi(19)
     public void setStatusBarTintColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(color);
         }else {
             mTintManager.setStatusBarTintEnabled(true);
@@ -95,9 +96,10 @@ public class ActionBarActivity extends AppCompatActivity{
      *
      * @param color
      */
-    @TargetApi(19)
     public void setNavigationBarTintColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setNavigationBarColor(color);
         }else {
             mTintManager.setNavigationBarTintEnabled(true);
