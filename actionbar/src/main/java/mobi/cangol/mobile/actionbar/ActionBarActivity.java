@@ -23,7 +23,11 @@ public class ActionBarActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         mDelegate = new ActionBarActivityDelegate(this);
         mDelegate.onCreate(savedInstanceState);
-        mTintManager = new SystemBarTintManager(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+        }else{
+            mTintManager = new SystemBarTintManager(this);
+        }
     }
 
     /**
@@ -85,7 +89,7 @@ public class ActionBarActivity extends AppCompatActivity{
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(color);
-        }else {
+        }else if(!isFullScreen()){
             mTintManager.setStatusBarTintEnabled(true);
             mTintManager.setStatusBarTintColor(color);
         }
@@ -101,7 +105,7 @@ public class ActionBarActivity extends AppCompatActivity{
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setNavigationBarColor(color);
-        }else {
+        }else if(!isFullScreen()){
             mTintManager.setNavigationBarTintEnabled(true);
             mTintManager.setNavigationBarTintColor(color);
         }
@@ -155,7 +159,6 @@ public class ActionBarActivity extends AppCompatActivity{
      *
      * @param on
      */
-    @TargetApi(19)
     public void setTranslucent(boolean on) {
         Window win = getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
@@ -175,14 +178,31 @@ public class ActionBarActivity extends AppCompatActivity{
      */
     public void setFullScreen(boolean fullscreen) {
         if (fullscreen) {
-            this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } else {
             this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        mTintManager.setStatusBarTintEnabled(!fullscreen);
-    }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //
+        }else{
+            mTintManager.setStatusBarTintEnabled(!fullscreen);
+        }
 
+    }
+    /**
+     * 是否全屏
+     *
+     */
+
+    public boolean isFullScreen() {
+        int flag = this.getWindow().getAttributes().flags;
+        if((flag & WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
