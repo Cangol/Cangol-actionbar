@@ -222,7 +222,7 @@ public class ActionBarActivityDelegate {
     public void setActionbarShadow(boolean shadow) {
         if(shadow){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mContainerView.findViewById(R.id.actionbar_view).setElevation(6*mActivity.getResources().getDisplayMetrics().density);
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(4*mActivity.getResources().getDisplayMetrics().density);
             }
         }else{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
