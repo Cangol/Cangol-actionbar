@@ -36,6 +36,7 @@ public class MainActivity extends ActionBarActivity{
         activities.add(MenuActivity.class);
         activities.add(CustomViewActivity.class);
         activities.add(LeftMenuActivity.class);
+        activities.add(TitleActivity.class);
         mListView= (ListView) this.findViewById(R.id.listView);
         mListView.setAdapter(new BaseAdapter() {
             @Override

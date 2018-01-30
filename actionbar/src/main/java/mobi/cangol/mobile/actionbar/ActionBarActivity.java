@@ -358,4 +358,12 @@ public class ActionBarActivity extends AppCompatActivity{
         if (b) return b;
         return super.onKeyUp(keyCode, event);
     }
+
+    /**
+     *
+     * @param shadow
+     */
+    public void setActionbarShadow(boolean shadow) {
+        mDelegate.setActionbarShadow(shadow);
+    }
 }
