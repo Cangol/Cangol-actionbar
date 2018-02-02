@@ -1,5 +1,6 @@
 package mobi.cangol.mobile.actionbar;
 
+import android.support.annotation.IdRes;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -210,7 +211,6 @@ public abstract class ActionBar {
      */
     abstract public void clearListNavigation();
 
-
     /**
      * 获取actionMenu
      *
@@ -274,4 +274,9 @@ public abstract class ActionBar {
      * 移除自定义view
      */
     abstract public void removeCustomView();
+
+    /**
+     * 获取view
+     */
+    abstract public View findViewById(@IdRes int id);
 }
