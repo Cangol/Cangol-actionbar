@@ -220,7 +220,7 @@ public class SearchView extends LinearLayout {
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void setmIsSearchHistory(String[] keywords) {
+    public void setIsSearchHistory(String[] keywords) {
         if (!mIsSearchHistory) return;
         mSearchHistory.addAll(Arrays.asList(keywords));
         mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
