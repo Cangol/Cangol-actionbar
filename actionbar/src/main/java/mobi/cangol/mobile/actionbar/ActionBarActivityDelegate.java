@@ -2,6 +2,7 @@ package mobi.cangol.mobile.actionbar;
 
 import android.app.Activity;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -216,6 +217,18 @@ public class ActionBarActivityDelegate {
 
     public void setActionbarShow(boolean show) {
         mActionBar.setShow(show);
+    }
+
+    public void setActionbarShadow(boolean shadow) {
+        if(shadow){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(4*mActivity.getResources().getDisplayMetrics().density);
+            }
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(0);
+            }
+        }
     }
 
 }

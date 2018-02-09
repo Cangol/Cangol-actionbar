@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -98,6 +97,7 @@ public class ActionBarView extends RelativeLayout {
         TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.actionbar_indicator, typedValue, true);
         mDrawerArrowDrawable.setStrokeColor(typedValue.data);
+
 
         mInflater.inflate(R.layout.actionbar_layout, this,true);
         mRootView = this.findViewById(R.id.actionbar_main_layout);

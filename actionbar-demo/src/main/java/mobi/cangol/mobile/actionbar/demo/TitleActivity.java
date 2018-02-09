@@ -18,10 +18,14 @@
 package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
+import android.graphics.Outline;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewOutlineProvider;
 import android.widget.Toast;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
@@ -37,6 +41,7 @@ public class TitleActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title_view);
         this.getCustomActionBar().displayUpIndicator();
+        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }
@@ -58,6 +63,20 @@ public class TitleActivity extends ActionBarActivity{
                 }
             }
         });
+        this.findViewById(R.id.button_shadwow_1).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setActionbarShadow(true);
+               setShadow(findViewById(R.id.image),true);
+            }
+        });
+        this.findViewById(R.id.button_shadwow_2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setActionbarShadow(false);
+                setShadow(findViewById(R.id.image),false);
+            }
+        });
         //设置标题点击事件
         this.getCustomActionBar().setOnTitleClickListener(new OnClickListener() {
             @Override
@@ -66,5 +85,15 @@ public class TitleActivity extends ActionBarActivity{
             }
         });
     }
-
+    public void setShadow(View view,boolean shadow) {
+        if(shadow){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                view.setElevation(4*getResources().getDisplayMetrics().density);
+            }
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                view.setElevation(0);
+            }
+        }
+    }
 }

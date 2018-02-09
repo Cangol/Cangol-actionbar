@@ -233,5 +233,10 @@ public final class ActionBarImpl extends ActionBar {
         mActionBarView.removeCustomView();
     }
 
+    @Override
+    public View findViewById(int id) {
+        return mActionBarView.findViewById(id);
+    }
+
 
 }

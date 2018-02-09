@@ -32,13 +32,10 @@ public final class ActionTabImpl extends ActionTab {
 
     @Override
     public void setTabs(ArrayList<ActionTabItem> tabs) {
-        if (mTabs == null) {
-            mTabs = tabs;
-        } else {
-            mTabs.addAll(tabs);
+        if(null!=tabs&&!tabs.isEmpty()){
+            mTabs=tabs;
+            mActionTabView.addTabs(tabs);
         }
-
-        mActionTabView.addTabs(tabs);
     }
 
     @Override

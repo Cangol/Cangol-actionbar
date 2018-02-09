@@ -121,7 +121,7 @@ public class SystemBarTintManager {
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setTranslucentNagivation(boolean on) {
+    public void setTranslucentNavigation(boolean on) {
         Window win = mActivity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
         final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
@@ -144,7 +144,7 @@ public class SystemBarTintManager {
      */
     public void setNavigationBarTintEnabled(boolean enabled) {
         mNavBarTintEnabled = enabled;
-        setTranslucentNagivation(enabled);
+        setTranslucentNavigation(enabled);
         if (mNavBarAvailable) {
             mNavBarTintView.setVisibility(enabled ? View.VISIBLE : View.GONE);
         }

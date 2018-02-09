@@ -34,5 +34,22 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Stop Tab"/>
+    <Button
+        android:id="@+id/button_shadwow_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shadow True"/>
 
+    <Button
+        android:id="@+id/button_shadwow_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shadow false"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="#ffffff"
+        android:layout_gravity="center"/>
 </LinearLayout>

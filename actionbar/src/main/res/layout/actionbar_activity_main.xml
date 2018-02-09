@@ -16,6 +16,7 @@
         android:id="@+id/actionbar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/ActionBar"
         android:layout_alignParentTop="true">
     </mobi.cangol.mobile.actionbar.view.ActionBarView>
 

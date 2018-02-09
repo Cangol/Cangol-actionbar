@@ -40,6 +40,9 @@
         <activity
             android:name=".CustomViewActivity"
             android:configChanges="layoutDirection|locale"/>
+        <activity
+            android:name=".TitleActivity"
+            android:configChanges="layoutDirection|locale"/>
     </application>
 
 </manifest>

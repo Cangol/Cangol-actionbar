@@ -1,6 +1,8 @@
 <resources>
     <!-- Application theme. -->
     <style name="AppTheme" parent="ActionBarTheme.Dark">
+        <item name="actionbar_background">@color/actionbar_background</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     <!--<style name="ActionBarTabItem">-->
