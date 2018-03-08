@@ -179,18 +179,12 @@ public class ActionBarActivityDelegate {
         mActionBar.setTitle(title);
     }
 
-    public void setMaskView(int id) {
-        mMaskView.removeAllViews();
-        mMaskView.addView(View.inflate(mActivity, id, null));
+    public FrameLayout getMaskView() {
+        return mMaskView;
     }
 
-    public void setMaskView(View view) {
-        mMaskView.removeAllViews();
-        mMaskView.addView(view);
-    }
-
-    public void displayMaskView(boolean display) {
-        mMaskView.setVisibility(display ? View.VISIBLE : View.GONE);
+    public void displayMaskView(boolean show) {
+        mMaskView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     public SearchView startSearchMode() {
