@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
@@ -110,21 +111,11 @@ public class ActionBarActivity extends AppCompatActivity{
     }
 
     /**
-     * 遮罩整个activity的mask
-     *
-     * @param id
+     * 获取遮罩整个activity的mask
+     * @return
      */
-    public void setMaskView(int id) {
-        mDelegate.setMaskView(id);
-    }
-
-    /**
-     * 遮罩整个activity的mask
-     *
-     * @param view
-     */
-    public void setMaskView(View view) {
-        mDelegate.setMaskView(view);
+    public FrameLayout getMaskView() {
+        return mDelegate.getMaskView();
     }
 
     /**
