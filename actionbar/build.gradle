@@ -12,11 +12,11 @@ dependencies {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '26.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode Integer.decode("${POM_VERSION_CODE}")
         versionName "${POM_VERSION}"
     }
