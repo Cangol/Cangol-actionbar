@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'net.saliman.cobertura'
 apply from: '../config/quality.gradle'
 dependencies {
     implementation 'com.android.support:support-fragment:26.0.2'
@@ -50,6 +52,11 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+cobertura.coverageFormats = ['html', 'xml']
+
+tasks.coveralls {
+    dependsOn 'check'
 }
 apply from: '../maven_push.gradle'
 
