@@ -6,6 +6,7 @@ dependencies {
    // compile 'com.android.support:appcompat-v7:[25.0.0,)'
     //compile 'mobi.cangol.mobile:actionbar:[1.0.8,)@aar'
     implementation project(':actionbar')
+
 }
 
 android {
