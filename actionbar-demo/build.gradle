@@ -2,9 +2,8 @@ apply plugin: 'com.android.application'
 
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
-    //implementation 'com.android.support:support-v4:[25.0.0,)'
-    // implementation 'com.android.support:appcompat-v7:[25.0.0,)'
-    //implementation 'mobi.cangol.mobile:actionbar:[1.0.8,)@aar'
+    implementation 'com.android.support:support-fragment:26.0.2'
+    implementation 'com.android.support:appcompat-v7:26.0.2'
     implementation project(':actionbar')
 
 }
