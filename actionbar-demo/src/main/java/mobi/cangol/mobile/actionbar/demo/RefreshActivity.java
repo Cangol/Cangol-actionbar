@@ -36,7 +36,6 @@ public class RefreshActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refresh_view);
         this.getCustomActionBar().displayUpIndicator();
-        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
         getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, new OnClickListener() {

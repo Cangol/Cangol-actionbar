@@ -18,20 +18,14 @@
 package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
-import android.graphics.Outline;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewOutlineProvider;
 import android.widget.Toast;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.ActionTab;
-import mobi.cangol.mobile.actionbar.ActionTabItem;
-import mobi.cangol.mobile.actionbar.view.ActionTabView;
 
 @SuppressLint("ResourceAsColor")
 public class TitleActivity extends ActionBarActivity{
@@ -41,7 +35,6 @@ public class TitleActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title_view);
         this.getCustomActionBar().displayUpIndicator();
-        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }

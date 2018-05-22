@@ -19,15 +19,12 @@ package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.ActionMenu;
-import mobi.cangol.mobile.actionbar.ActionMenuItem;
 
 @SuppressLint("ResourceAsColor")
 public class LeftMenuActivity extends ActionBarActivity{
@@ -37,7 +34,6 @@ public class LeftMenuActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left_menu);
         this.getCustomActionBar().displayUpIndicator();
-        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }

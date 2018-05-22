@@ -6,7 +6,7 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme1">
         <activity
             android:name=".MainActivity"
             android:configChanges="layoutDirection|locale"
@@ -43,6 +43,9 @@
         <activity
             android:name=".TitleActivity"
             android:configChanges="layoutDirection|locale"/>
+      <activity
+        android:name=".ThemeActivity"
+        android:configChanges="layoutDirection|locale"/>
     </application>
 
 </manifest>

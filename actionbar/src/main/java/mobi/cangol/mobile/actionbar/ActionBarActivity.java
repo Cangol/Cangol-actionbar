@@ -1,7 +1,10 @@
 package mobi.cangol.mobile.actionbar;
 
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.AttrRes;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,8 +30,18 @@ public class ActionBarActivity extends AppCompatActivity{
         }else{
             mTintManager = new SystemBarTintManager(this);
         }
+        setStatusBarTintColor(getThemeAttrColor(R.attr.actionbar_background));
     }
 
+    @ColorInt
+    public  int getThemeAttrColor(@AttrRes int colorAttr) {
+        TypedArray array = this.obtainStyledAttributes(null, new int[]{colorAttr});
+        try {
+            return array.getColor(0, 0);
+        } finally {
+            array.recycle();
+        }
+    }
     /**
      * 设置标题
      *
@@ -110,6 +123,19 @@ public class ActionBarActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     * 设置状态栏字体图标颜色
+     * @param black
+     */
+    public void setStatusBarTextColor(boolean black) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            if (black) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//设置状态栏黑色字体
+            }else {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
+            }
+        }
+    }
     /**
      * 获取遮罩整个activity的mask
      * @return

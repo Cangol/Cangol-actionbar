@@ -17,58 +17,44 @@
 
 package mobi.cangol.mobile.actionbar.demo;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.ActionMenu;
-import mobi.cangol.mobile.actionbar.ActionMenuItem;
-import mobi.cangol.mobile.actionbar.ActionMode;
 
-@SuppressLint("ResourceAsColor")
-public class ActionModeActivity extends ActionBarActivity {
-
+public class ThemeActivity extends ActionBarActivity{
+    private static boolean light=true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("MainActivity","light=="+light);
+        if(light){
+            setTheme(R.style.AppTheme1);
+        }else {
+            setTheme(R.style.AppTheme2);
+        }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_action_mode);
+        setContentView(R.layout.activity_theme);
+        this.setActionbarShadow(true);
         this.getCustomActionBar().displayUpIndicator();
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }
 
     public void findViews() {
-        this.findViewById(R.id.button_mode_1).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startCustomActionMode(new ActionMode.Callback() {
-
-                    @Override
-                    public void onCreateActionMode(ActionMode mode,
-                                                   ActionMenu actionMenu) {
-
-                    }
-
-                    @Override
-                    public boolean onActionItemClicked(ActionMode mode,
-                                                       ActionMenuItem menuItem) {
-                        return false;
-                    }
-
-                    @Override
-                    public void onDestroyActionMode(ActionMode mode) {
-
-                    }
-
-                });
+                light=true;
+                recreate();
             }
         });
-        this.findViewById(R.id.button_mode_2).setOnClickListener(new OnClickListener() {
+        this.findViewById(R.id.button_2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopCustomActionMode();
+                light=false;
+                recreate();
             }
         });
     }

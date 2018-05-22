@@ -22,12 +22,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
-import mobi.cangol.mobile.actionbar.ActionTab;
-import mobi.cangol.mobile.actionbar.ActionTabItem;
-import mobi.cangol.mobile.actionbar.view.ActionTabView;
 
 @SuppressLint("ResourceAsColor")
 public class CustomViewActivity extends ActionBarActivity{
@@ -37,7 +33,6 @@ public class CustomViewActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_view);
         this.getCustomActionBar().displayUpIndicator();
-        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }

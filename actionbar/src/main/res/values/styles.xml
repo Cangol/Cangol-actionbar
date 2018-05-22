@@ -1,8 +1,5 @@
 <resources>
 
-    <style name="ActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
-    </style>
     <!-- ActionBar -->
     <style name="ActionBar">
         <item name="android:background">?attr/actionbar_background</item>

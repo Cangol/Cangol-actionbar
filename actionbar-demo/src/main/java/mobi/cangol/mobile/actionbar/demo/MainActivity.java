@@ -26,7 +26,6 @@ public class MainActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("首页");
-        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.getCustomActionBar().setDisplayShowHomeEnabled(true);
         activities.add(SearchViewActivity.class);
         activities.add(ActionModeActivity.class);
@@ -37,6 +36,7 @@ public class MainActivity extends ActionBarActivity{
         activities.add(CustomViewActivity.class);
         activities.add(LeftMenuActivity.class);
         activities.add(TitleActivity.class);
+        activities.add(ThemeActivity.class);
         mListView= (ListView) this.findViewById(R.id.listView);
         mListView.setAdapter(new BaseAdapter() {
             @Override
