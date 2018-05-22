@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
+import mobi.cangol.mobile.actionbar.ActionMenu;
+import mobi.cangol.mobile.actionbar.ActionTab;
 
 public class ThemeActivity extends ActionBarActivity{
     private static boolean light=true;
@@ -57,5 +59,15 @@ public class ThemeActivity extends ActionBarActivity{
                 recreate();
             }
         });
+        ActionTab actionTab = this.getCustomActionBar().getActionTab();
+        actionTab.newTab(1, "推荐", 1);
+        actionTab.newTab(2, "关注", 0);
+    }
+    @Override
+    public void onMenuActionCreated(ActionMenu actionMenu) {
+        super.onMenuActionCreated(actionMenu);
+        actionMenu.addMenu(1, R.string.action_delete, -1, 1);
+        actionMenu.addMenu(2, R.string.action_selectAll, R.drawable.ic_action_select, 1);
+        actionMenu.addMenu(3, R.string.action_invert, R.drawable.ic_action_unselect, 0);
     }
 }
