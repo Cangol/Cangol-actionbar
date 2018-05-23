@@ -17,7 +17,7 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 /**
  * @author Cangol
  */
-public class ActionBarActivity extends AppCompatActivity{
+public class ActionBarActivity extends AppCompatActivity {
     private ActionBarActivityDelegate mDelegate;
     private SystemBarTintManager mTintManager;
 
@@ -31,6 +31,7 @@ public class ActionBarActivity extends AppCompatActivity{
             mTintManager = new SystemBarTintManager(this);
         }
         setStatusBarTintColor(getThemeAttrColor(R.attr.actionbar_background));
+
     }
 
     @ColorInt

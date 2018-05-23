@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="ActionBarTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="ActionBarTheme.Light" parent="ActionBarTheme">
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <!-- actionbar -->
         <item name="actionbar_title">@color/actionbar_title_light</item>
@@ -62,7 +62,7 @@
 
     </style>
 
-    <style name="ActionBarTheme.Dark" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="ActionBarTheme.Dark" parent="ActionBarTheme">
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <!-- actionbar -->
         <item name="actionbar_title">@color/actionbar_title_dark</item>
