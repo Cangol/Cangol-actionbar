@@ -376,10 +376,19 @@ public class ActionBarActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * 设置阴影
      * @param shadow
      */
     public void setActionbarShadow(boolean shadow) {
         mDelegate.setActionbarShadow(shadow);
+    }
+
+    /**
+     * 设置阴影
+     * @param shadow
+     * @param elevation
+     */
+    public void setActionbarShadow(boolean shadow,float elevation){
+        mDelegate.setActionbarShadow(shadow,elevation);
     }
 }
