@@ -216,7 +216,7 @@ public class ActionBarActivityDelegate {
     public void setActionbarShadow(boolean shadow) {
         if(shadow){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mContainerView.findViewById(R.id.actionbar_view).setElevation(4*mActivity.getResources().getDisplayMetrics().density);
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(1.5f*mActivity.getResources().getDisplayMetrics().density);
             }
         }else{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -225,4 +225,15 @@ public class ActionBarActivityDelegate {
         }
     }
 
+    public void setActionbarShadow(boolean shadow,float elevation) {
+        if(shadow){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(elevation*mActivity.getResources().getDisplayMetrics().density);
+            }
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(elevation);
+            }
+        }
+    }
 }
