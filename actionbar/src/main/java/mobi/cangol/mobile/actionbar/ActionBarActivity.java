@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -32,6 +33,12 @@ public class ActionBarActivity extends AppCompatActivity {
         }
         setStatusBarTintColor(getThemeAttrColor(R.attr.actionbar_background));
 
+    }
+
+    public TypedValue getAttrTypedValue(@AttrRes int attr){
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(attr, typedValue, true);
+        return typedValue;
     }
 
     @ColorInt
