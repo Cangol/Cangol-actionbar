@@ -51,7 +51,7 @@ public class DrawerArrowDrawable extends Drawable {
      * Paths were generated targeting this stroke width to form the arrowhead properly, modification
      * may cause the arrow to not for nicely.
      */
-    private final static float STROKE_WIDTH_DP = 2;
+    private final static float STROKE_WIDTH_DP = 1.5f;
     private final Rect bounds;
     private final float halfStrokeWidthPixel;
     private final Paint linePaint;
