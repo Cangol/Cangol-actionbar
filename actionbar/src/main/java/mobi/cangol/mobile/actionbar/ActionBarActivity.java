@@ -136,7 +136,7 @@ public class ActionBarActivity extends AppCompatActivity {
      * @param black
      */
     public void setStatusBarTextColor(boolean black) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (black) {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//设置状态栏黑色字体
             }else {
