@@ -1,6 +1,7 @@
 package mobi.cangol.mobile.actionbar;
 
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.AttrRes;
@@ -143,6 +144,11 @@ public class ActionBarActivity extends AppCompatActivity {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
             }
         }
+//        else  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            getWindow().setStatusBarColor(Color.BLACK);
+//        }
     }
     /**
      * 获取遮罩整个activity的mask
