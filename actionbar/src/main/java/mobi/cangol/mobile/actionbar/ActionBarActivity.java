@@ -22,18 +22,24 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 public class ActionBarActivity extends AppCompatActivity {
     private ActionBarActivityDelegate mDelegate;
     private SystemBarTintManager mTintManager;
-
+    private boolean useSystemBarTintLollipop=false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDelegate = new ActionBarActivityDelegate(this);
         mDelegate.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
+            if(useSystemBarTintLollipop&&Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+                mTintManager = new SystemBarTintManager(this);
+            }
         }else{
             mTintManager = new SystemBarTintManager(this);
         }
         setStatusBarTintColor(getThemeAttrColor(R.attr.actionbar_background));
 
+    }
+
+    public void setUseSystemBarTintLollipop(boolean useSystemBarTintLollipop) {
+        this.useSystemBarTintLollipop = useSystemBarTintLollipop;
     }
 
     public TypedValue getAttrTypedValue(@AttrRes int attr){
@@ -107,9 +113,17 @@ public class ActionBarActivity extends AppCompatActivity {
      */
     public void setStatusBarTintColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(color);
+            if(useSystemBarTintLollipop&&Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+                if(!isFullScreen()) {
+                    mTintManager.setStatusBarTintEnabled(true);
+                    mTintManager.setStatusBarTintColor(color);
+                }
+            }else{
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                getWindow().setStatusBarColor(color);
+            }
+
         }else if(!isFullScreen()){
             mTintManager.setStatusBarTintEnabled(true);
             mTintManager.setStatusBarTintColor(color);
@@ -144,11 +158,6 @@ public class ActionBarActivity extends AppCompatActivity {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
             }
         }
-//        else  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            getWindow().setStatusBarColor(Color.BLACK);
-//        }
     }
     /**
      * 获取遮罩整个activity的mask

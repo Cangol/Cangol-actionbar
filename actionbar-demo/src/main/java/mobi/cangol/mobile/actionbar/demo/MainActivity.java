@@ -23,6 +23,7 @@ public class MainActivity extends ActionBarActivity{
     private static boolean light=true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        this.setUseSystemBarTintLollipop(false);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("首页");
