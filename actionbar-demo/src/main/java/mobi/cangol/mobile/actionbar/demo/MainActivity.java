@@ -3,6 +3,7 @@ package mobi.cangol.mobile.actionbar.demo;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,18 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 public class MainActivity extends ActionBarActivity{
     private ListView mListView;
     private List<Class<? extends ActionBarActivity >> activities=new ArrayList<>();
-    private static boolean light=true;
+    private static boolean light=false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        this.setUseSystemBarTintLollipop(false);
+        Log.d("MainActivity","light=="+light);
+        if(light){
+            setTheme(R.style.AppTheme1);
+            setStatusBarTextColor(true);
+        }else {
+            setTheme(R.style.AppTheme2);
+            setStatusBarTextColor(false);
+            setUseSystemBarTintLollipop(true);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("首页");

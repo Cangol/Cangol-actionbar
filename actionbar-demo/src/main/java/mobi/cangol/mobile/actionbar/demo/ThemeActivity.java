@@ -34,9 +34,11 @@ public class ThemeActivity extends ActionBarActivity{
         if(light){
             setTheme(R.style.AppTheme1);
             setStatusBarTextColor(true);
+            setUseSystemBarTintLollipop(false);
         }else {
             setTheme(R.style.AppTheme2);
             setStatusBarTextColor(false);
+            setUseSystemBarTintLollipop(true);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theme);

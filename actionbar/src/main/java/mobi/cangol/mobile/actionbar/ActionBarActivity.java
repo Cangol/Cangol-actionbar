@@ -1,7 +1,6 @@
 package mobi.cangol.mobile.actionbar;
 
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.AttrRes;
@@ -27,19 +26,21 @@ public class ActionBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mDelegate = new ActionBarActivityDelegate(this);
         mDelegate.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if(useSystemBarTintLollipop&&Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-                mTintManager = new SystemBarTintManager(this);
-            }
-        }else{
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             mTintManager = new SystemBarTintManager(this);
         }
         setStatusBarTintColor(getThemeAttrColor(R.attr.actionbar_background));
-
     }
 
+    /**
+     * 在Lollipop是否使用澄侵式系统栏(状态栏和导航栏)
+     * @param useSystemBarTintLollipop
+     */
     public void setUseSystemBarTintLollipop(boolean useSystemBarTintLollipop) {
-        this.useSystemBarTintLollipop = useSystemBarTintLollipop;
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M&&
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            this.useSystemBarTintLollipop = useSystemBarTintLollipop;
+        }
     }
 
     public TypedValue getAttrTypedValue(@AttrRes int attr){
@@ -112,18 +113,16 @@ public class ActionBarActivity extends AppCompatActivity {
      * @param color
      */
     public void setStatusBarTintColor(int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if(useSystemBarTintLollipop&&Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-                if(!isFullScreen()) {
-                    mTintManager.setStatusBarTintEnabled(true);
-                    mTintManager.setStatusBarTintColor(color);
-                }
-            }else{
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(color);
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if(useSystemBarTintLollipop){
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 getWindow().setStatusBarColor(color);
             }
-
         }else if(!isFullScreen()){
             mTintManager.setStatusBarTintEnabled(true);
             mTintManager.setStatusBarTintColor(color);
@@ -136,10 +135,16 @@ public class ActionBarActivity extends AppCompatActivity {
      * @param color
      */
     public void setNavigationBarTintColor(int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setNavigationBarColor(color);
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if(useSystemBarTintLollipop){
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                getWindow().setNavigationBarColor(color);
+            }
         }else if(!isFullScreen()){
             mTintManager.setNavigationBarTintEnabled(true);
             mTintManager.setNavigationBarTintColor(color);
@@ -220,12 +225,9 @@ public class ActionBarActivity extends AppCompatActivity {
         } else {
             this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //
-        }else{
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
             mTintManager.setStatusBarTintEnabled(!fullscreen);
         }
-
     }
     /**
      * 是否全屏
