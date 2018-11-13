@@ -2,6 +2,7 @@ package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,21 +22,24 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 public class MainActivity extends ActionBarActivity{
     private ListView mListView;
     private List<Class<? extends ActionBarActivity >> activities=new ArrayList<>();
-    private static boolean light=false;
+    private static boolean light=true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d("MainActivity","light=="+light);
         if(light){
             setTheme(R.style.AppTheme1);
-            setStatusBarTextColor(true);
+            //setStatusBarTextColor(true);
         }else {
             setTheme(R.style.AppTheme2);
-            setStatusBarTextColor(false);
-            setUseSystemBarTintLollipop(true);
+            //setStatusBarTextColor(false);
+            //setUseSystemBarTintLollipop(true);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("首页");
+        this.getCustomActionBar().setBackgroundResource(R.color.test);
+        this.setStatusBarTintColor(getResources().getColor(R.color.test));
+        this.setWindowBackground(R.drawable.ic_bg);
         this.getCustomActionBar().setDisplayShowHomeEnabled(true);
         activities.add(SearchViewActivity.class);
         activities.add(ActionModeActivity.class);

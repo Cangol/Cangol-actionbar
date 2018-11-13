@@ -7,4 +7,6 @@
     <color name="activity_background">#FAFAFA</color>
     <color name="image_backgound">#252525</color>
     <color name="actionbar_background">#ffffff</color>
+
+    <color name="test">#01000000</color>
 </resources>

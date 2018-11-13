@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
@@ -162,8 +166,29 @@ public class ActionBarActivity extends AppCompatActivity {
             }else {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
             }
+            if(Build.BRAND.equals("Xiaomi")&&Build.VERSION.SDK_INT<Build.VERSION_CODES.N){
+                setStatusBarTextColorWithXiaomi(black);
+            }
         }
     }
+    private void setStatusBarTextColorWithXiaomi(boolean black){
+        Class clazz = getWindow().getClass();
+        try {
+            int darkModeFlag = 0;
+            Class layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
+            Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
+            darkModeFlag = field.getInt(layoutParams);
+            Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
+            if(black){
+                extraFlagField.invoke(getWindow(),darkModeFlag,darkModeFlag);//状态栏透明且黑色字体
+            }else{
+                extraFlagField.invoke(getWindow(), 0, darkModeFlag);//清除黑色字体
+            }
+        }catch (Exception e){
+            Log.d("setStatusBarTextColor",e.getMessage());
+        }
+    }
+
     /**
      * 获取遮罩整个activity的mask
      * @return
