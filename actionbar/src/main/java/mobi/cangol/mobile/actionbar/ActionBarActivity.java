@@ -19,9 +19,6 @@ import java.lang.reflect.Method;
 
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
-/**
- * @author Cangol
- */
 public class ActionBarActivity extends AppCompatActivity {
     private ActionBarActivityDelegate mDelegate;
     private SystemBarTintManager mTintManager;
