@@ -242,11 +242,25 @@ public class ActionBarActivity extends AppCompatActivity {
      * @param fullscreen
      */
     public void setFullScreen(boolean fullscreen) {
-        if (fullscreen) {
-            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        } else {
-            this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            if (fullscreen) {
+                this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            } else {
+                this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
+        }else{
+            int newVisibility =  View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+
+            if(fullscreen) {
+                newVisibility |= View.SYSTEM_UI_FLAG_FULLSCREEN
+                        |  View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            }
+            // Set the visibility
+            this.getWindow().getDecorView().setSystemUiVisibility(newVisibility);
         }
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
             mTintManager.setStatusBarTintEnabled(!fullscreen);
         }
