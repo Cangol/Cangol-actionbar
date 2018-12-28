@@ -260,10 +260,6 @@ public class ActionBarActivity extends AppCompatActivity {
             // Set the visibility
             this.getWindow().getDecorView().setSystemUiVisibility(newVisibility);
         }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
-            mTintManager.setStatusBarTintEnabled(!fullscreen);
-        }
     }
     /**
      * 是否全屏
