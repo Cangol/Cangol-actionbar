@@ -7,7 +7,7 @@ An android library,custom simple actionbar
 [![Build Status](https://travis-ci.org/Cangol/Cangol-actionbar.svg?branch=master)](https://travis-ci.org/Cangol/Cangol-actionbar)
 [![codecov](https://codecov.io/gh/Cangol/Cangol-actionbar/branch/master/graph/badge.svg)](https://codecov.io/gh/Cangol/Cangol-actionbar)
 [![Gitter](https://badges.gitter.im/Cangol/Cangol-actionbar.svg)](https://gitter.im/Cangol/Cangol-actionbar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fed4a82fb50499bb3b58c4e17153695)](https://www.codacy.com/app/wxw404/Cangol-actionbar?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Cangol/Cangol-actionbar&amp;utm_campaign=Badge_Grade)
 ### Usage
 
 
