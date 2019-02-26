@@ -527,6 +527,7 @@ public class ActionBarView extends RelativeLayout {
             mRefreshView.clearAnimation();
             mRefreshView.setVisibility(View.GONE);
             mRefreshView.setOnClickListener(null);
+            mOnRefreshClickListener=null;
             mRefreshView=null;
         }
 
