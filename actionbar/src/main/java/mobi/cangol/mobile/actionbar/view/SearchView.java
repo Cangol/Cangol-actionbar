@@ -318,9 +318,9 @@ public class SearchView extends LinearLayout {
 }
 
 class SearchAdapter extends BaseAdapter {
-    List<String> list;
-    Context context;
-    LayoutInflater inflater;
+    private List<String> list;
+    private Context context;
+    private LayoutInflater inflater;
     private OnClearClickListener onClearClickListener;
 
     public SearchAdapter(Context context) {
@@ -359,7 +359,7 @@ class SearchAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (convertView == null) {
             convertView = this.inflater.inflate(R.layout.actionbar_search_list_item, parent, false);
             holder = new ViewHolder();
@@ -393,8 +393,8 @@ class SearchAdapter extends BaseAdapter {
 
     }
 
-    class ViewHolder {
-        TextView labelView;
-        ImageView clearView;
+    static class ViewHolder {
+        private TextView labelView;
+        private ImageView clearView;
     }
 }

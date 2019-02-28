@@ -18,8 +18,8 @@ import mobi.cangol.mobile.actionbar.R;
  */
 public class ClearableEditText extends AppCompatEditText {
 
-    Drawable imgX;
-    TextWatcher textWatcher;
+    private Drawable imgX;
+    private TextWatcher textWatcher;
     public ClearableEditText(Context context) {
         super(context);
         initViews();
