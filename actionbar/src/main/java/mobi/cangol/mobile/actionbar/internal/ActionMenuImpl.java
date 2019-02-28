@@ -3,6 +3,7 @@ package mobi.cangol.mobile.actionbar.internal;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import mobi.cangol.mobile.actionbar.ActionMenu;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
@@ -13,7 +14,7 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
  * @author Cangol
  */
 public final class ActionMenuImpl extends ActionMenu {
-    private ArrayList<ActionMenuItem> mActions = new ArrayList<ActionMenuItem>();
+    private List<ActionMenuItem> mActions = new ArrayList<>();
     private ActionMenuView mActionMenuView;
 
     public ActionMenuImpl(ActionMenuView view) {
@@ -22,12 +23,12 @@ public final class ActionMenuImpl extends ActionMenu {
     }
 
     @Override
-    public ArrayList<ActionMenuItem> getActions() {
+    public List<ActionMenuItem> getActions() {
         return mActions;
     }
 
     @Override
-    public void setActions(ArrayList<ActionMenuItem> actions) {
+    public void setActions(List<ActionMenuItem> actions) {
         if (actions != null){
             mActions=actions;
         }

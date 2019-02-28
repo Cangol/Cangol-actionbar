@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,6 @@ public class ActionBarActivityDelegate {
     private FrameLayout mContentView;
     private FrameLayout mMaskView;
     private SearchView mSearchView;
-    private ActionMenuInflater mActionMenuInflater;
     private boolean mActionbarOverlay = false;
 
     public ActionBarActivityDelegate(ActionBarActivity activity) {
@@ -43,14 +43,6 @@ public class ActionBarActivityDelegate {
         mActionBar = new ActionBarImpl((ActionBarView) mContainerView.findViewById(R.id.actionbar_view));
     }
 
-    public ActionMenuInflater getActionMenuInflater() {
-        if (mActionMenuInflater == null) {
-            ActionBar ab = getCustomActionBar();
-            mActionMenuInflater = new ActionMenuInflater(ab.getActionMenu(), mActivity);
-        }
-        return mActionMenuInflater;
-    }
-
     public boolean isActionbarOverlay() {
         return mActionbarOverlay;
     }
@@ -62,7 +54,6 @@ public class ActionBarActivityDelegate {
         } else {
             ((RelativeLayout.LayoutParams) mContentView.getLayoutParams()).topMargin = (int) (mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height));
         }
-        this.mActionbarOverlay = mActionbarOverlay;
     }
 
     public ActionBar getCustomActionBar() {
@@ -166,8 +157,8 @@ public class ActionBarActivityDelegate {
     public void onSaveInstanceState(Bundle outState) {
         outState.putCharSequence("ActionBar.title", mActionBar.getTitle());
         outState.putStringArray("ActionBar.navs", mActionBar.getListNavigation());
-        outState.putParcelableArrayList("ActionBar.menus", mActionBar.getMenus());
-        outState.putParcelableArrayList("ActionBar.tabs", mActionBar.getTabs());
+        outState.putParcelableArrayList("ActionBar.menus", (ArrayList<? extends Parcelable>) mActionBar.getMenus());
+        outState.putParcelableArrayList("ActionBar.tabs", (ArrayList<? extends Parcelable>) mActionBar.getTabs());
         outState.putInt("ActionBar.tabs.selected", mActionBar.getActionTab().getTabSelected());
     }
 

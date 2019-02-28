@@ -27,7 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
 import mobi.cangol.mobile.actionbar.ActionMenu;
@@ -63,7 +63,8 @@ public class ActionBarView extends RelativeLayout {
     private DrawerArrowDrawable mDrawerArrowDrawable;
     private boolean mIsCustomHomeAsUpIndicator;
     private boolean mDisplayShowHomeEnabled;
-    private int mHomeId, mUpId;
+    private int mHomeId;
+    private int mUpId;
     private String[] mListNavigation;
     private OnNavigationListener mOnNavigationListener;
     private OnClickListener mOnRefreshClickListener;
@@ -422,11 +423,11 @@ public class ActionBarView extends RelativeLayout {
         mActionMenu.clear();
     }
 
-    public ArrayList<ActionMenuItem> getActions() {
+    public List<ActionMenuItem> getActions() {
         return mActionMenu.getActions();
     }
 
-    public void setActions(ArrayList<ActionMenuItem> actions) {
+    public void setActions(List<ActionMenuItem> actions) {
         mActionMenu.setActions(actions);
     }
 
@@ -439,11 +440,11 @@ public class ActionBarView extends RelativeLayout {
         setTitleVisibility(View.VISIBLE);
     }
 
-    public ArrayList<ActionTabItem> getTabs() {
+    public List<ActionTabItem> getTabs() {
         return mActionTab.getTabs();
     }
 
-    public void setTabs(ArrayList<ActionTabItem> tabs) {
+    public void setTabs(List<ActionTabItem> tabs) {
         setTitleVisibility(View.GONE);
         mActionTab.setTabs(tabs);
     }

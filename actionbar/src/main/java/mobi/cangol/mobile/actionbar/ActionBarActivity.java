@@ -22,7 +22,8 @@ import mobi.cangol.mobile.actionbar.view.SearchView;
 public class ActionBarActivity extends AppCompatActivity {
     private ActionBarActivityDelegate mDelegate;
     private SystemBarTintManager mTintManager;
-    private boolean useSystemBarTintLollipop=false;
+    private boolean useSystemBarTintLollipop = false;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDelegate = new ActionBarActivityDelegate(this);
@@ -35,23 +36,24 @@ public class ActionBarActivity extends AppCompatActivity {
 
     /**
      * 在Lollipop是否使用澄侵式系统栏(状态栏和导航栏)
+     *
      * @param useSystemBarTintLollipop
      */
     public void setUseSystemBarTintLollipop(boolean useSystemBarTintLollipop) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M&&
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M &&
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             this.useSystemBarTintLollipop = useSystemBarTintLollipop;
         }
     }
 
-    public TypedValue getAttrTypedValue(@AttrRes int attr){
+    public TypedValue getAttrTypedValue(@AttrRes int attr) {
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(attr, typedValue, true);
         return typedValue;
     }
 
     @ColorInt
-    public  int getThemeAttrColor(@AttrRes int colorAttr) {
+    public int getThemeAttrColor(@AttrRes int colorAttr) {
         TypedArray array = this.obtainStyledAttributes(null, new int[]{colorAttr});
         try {
             return array.getColor(0, 0);
@@ -59,6 +61,7 @@ public class ActionBarActivity extends AppCompatActivity {
             array.recycle();
         }
     }
+
     /**
      * 设置标题
      *
@@ -118,13 +121,13 @@ public class ActionBarActivity extends AppCompatActivity {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(color);
-        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if(useSystemBarTintLollipop){
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (useSystemBarTintLollipop) {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 getWindow().setStatusBarColor(color);
             }
-        }else if(!isFullScreen()){
+        } else if (!isFullScreen()) {
             mTintManager.setStatusBarTintEnabled(true);
             mTintManager.setStatusBarTintColor(color);
         }
@@ -140,13 +143,13 @@ public class ActionBarActivity extends AppCompatActivity {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setNavigationBarColor(color);
-        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if(useSystemBarTintLollipop){
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (useSystemBarTintLollipop) {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 getWindow().setNavigationBarColor(color);
             }
-        }else if(!isFullScreen()){
+        } else if (!isFullScreen()) {
             mTintManager.setNavigationBarTintEnabled(true);
             mTintManager.setNavigationBarTintColor(color);
         }
@@ -154,21 +157,23 @@ public class ActionBarActivity extends AppCompatActivity {
 
     /**
      * 设置状态栏字体图标颜色
+     *
      * @param black
      */
     public void setStatusBarTextColor(boolean black) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (black) {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//设置状态栏黑色字体
-            }else {
+            } else {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
             }
-            if(Build.BRAND.equals("Xiaomi")&&Build.VERSION.SDK_INT<Build.VERSION_CODES.N){
+            if (Build.BRAND.equals("Xiaomi") && Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 setStatusBarTextColorWithXiaomi(black);
             }
         }
     }
-    private void setStatusBarTextColorWithXiaomi(boolean black){
+
+    private void setStatusBarTextColorWithXiaomi(boolean black) {
         Class clazz = getWindow().getClass();
         try {
             int darkModeFlag = 0;
@@ -176,18 +181,19 @@ public class ActionBarActivity extends AppCompatActivity {
             Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
             darkModeFlag = field.getInt(layoutParams);
             Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
-            if(black){
-                extraFlagField.invoke(getWindow(),darkModeFlag,darkModeFlag);//状态栏透明且黑色字体
-            }else{
+            if (black) {
+                extraFlagField.invoke(getWindow(), darkModeFlag, darkModeFlag);//状态栏透明且黑色字体
+            } else {
                 extraFlagField.invoke(getWindow(), 0, darkModeFlag);//清除黑色字体
             }
-        }catch (Exception e){
-            Log.d("setStatusBarTextColor",e.getMessage());
+        } catch (Exception e) {
+            Log.d("setStatusBarTextColor", e.getMessage());
         }
     }
 
     /**
      * 获取遮罩整个activity的mask
+     *
      * @return
      */
     public FrameLayout getMaskView() {
@@ -242,38 +248,32 @@ public class ActionBarActivity extends AppCompatActivity {
      * @param fullscreen
      */
     public void setFullScreen(boolean fullscreen) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (fullscreen) {
                 this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             } else {
                 this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             }
-        }else{
-            int newVisibility =  View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        } else {
+            int newVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 
-            if(fullscreen) {
+            if (fullscreen) {
                 newVisibility |= View.SYSTEM_UI_FLAG_FULLSCREEN
-                        |  View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
             }
             // Set the visibility
             this.getWindow().getDecorView().setSystemUiVisibility(newVisibility);
         }
     }
+
     /**
      * 是否全屏
-     *
      */
 
     public boolean isFullScreen() {
-        int flag = this.getWindow().getAttributes().flags;
-        if((flag & WindowManager.LayoutParams.FLAG_FULLSCREEN)
-                == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
-            return true;
-        }else {
-            return false;
-        }
+        return (this.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN;
     }
 
     @Override
@@ -322,22 +322,9 @@ public class ActionBarActivity extends AppCompatActivity {
      * @param show
      */
     public void setActionbarShow(boolean show) {
-        if (show) {
-            this.mDelegate.setActionbarOverlay(false);
-        } else {
-            this.mDelegate.setActionbarOverlay(true);
-        }
+        this.mDelegate.setActionbarOverlay(!show);
         this.mDelegate.setActionbarShow(show);
 
-    }
-
-    /**
-     * 获取菜单的Inflater
-     *
-     * @return
-     */
-    public ActionMenuInflater getActionMenuInflater() {
-        return mDelegate.getActionMenuInflater();
     }
 
     /**
@@ -407,18 +394,20 @@ public class ActionBarActivity extends AppCompatActivity {
     public ActionMode startCustomActionMode(ActionMode.Callback callback) {
         return getCustomActionBar().startActionMode(callback);
     }
+
     /**
      * 停止自定义actionmode
-     *
      */
     public void stopCustomActionMode() {
-         getCustomActionBar().stopActionMode();
+        getCustomActionBar().stopActionMode();
     }
+
     /**
      * 导航回调
      *
      * @return
      */
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
@@ -433,6 +422,7 @@ public class ActionBarActivity extends AppCompatActivity {
 
     /**
      * 设置阴影
+     *
      * @param shadow
      */
     public void setActionbarShadow(boolean shadow) {
@@ -441,10 +431,11 @@ public class ActionBarActivity extends AppCompatActivity {
 
     /**
      * 设置阴影
+     *
      * @param shadow
      * @param elevation
      */
-    public void setActionbarShadow(boolean shadow,float elevation){
-        mDelegate.setActionbarShadow(shadow,elevation);
+    public void setActionbarShadow(boolean shadow, float elevation) {
+        mDelegate.setActionbarShadow(shadow, elevation);
     }
 }

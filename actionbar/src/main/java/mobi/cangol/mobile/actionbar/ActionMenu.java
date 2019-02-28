@@ -2,7 +2,7 @@ package mobi.cangol.mobile.actionbar;
 
 import android.view.View;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
 
@@ -15,14 +15,14 @@ public abstract class ActionMenu {
      *
      * @return
      */
-    public abstract ArrayList<ActionMenuItem> getActions();
+    public abstract List<ActionMenuItem> getActions();
 
     /**
      * 设置menuItem列表
      *
      * @param actions
      */
-    public abstract void setActions(ArrayList<ActionMenuItem> actions);
+    public abstract void setActions(List<ActionMenuItem> actions);
 
     /**
      * 添加menu

@@ -37,19 +37,18 @@ import mobi.cangol.mobile.actionbar.R;
  */
 
 public class SearchView extends LinearLayout {
-    private static final String TAG = "SearchView";
+    private static final String SHARED_NAME ="search_history";
+    private static final String KEY_HISTORY ="history";
     private ClearableEditText mSearchEditText;
     private ImageView mActionButton;
-    private ImageView mIndicatoButton;
     private ListView mListView;
-    private LinearLayout mContentView;
     private SearchAdapter mSearchAdapter;
     private OnSearchTextListener mOnSearchTextListener;
     private OnIndicatorClickListener mOnIndicatorClickListener;
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private Set<String> mSearchHistory = new HashSet<String>();
+    private Set<String> mSearchHistory = new HashSet<>();
     private SharedPreferences mSharedPreferences;
     private boolean mIsSearchHistory = true;
     private boolean mOnTouchOutSiteDismiss = false;
@@ -57,7 +56,7 @@ public class SearchView extends LinearLayout {
     public SearchView(Context context) {
         super(context);
         mContext = context;
-        mSharedPreferences = mContext.getSharedPreferences("search_history", Context.MODE_PRIVATE);
+        mSharedPreferences = mContext.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mInflater.inflate(R.layout.actionbar_search_view, this, true);
         initViews();
@@ -67,7 +66,7 @@ public class SearchView extends LinearLayout {
     public SearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
-        mSharedPreferences = mContext.getSharedPreferences("search_history", Context.MODE_PRIVATE);
+        mSharedPreferences = mContext.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mInflater.inflate(R.layout.actionbar_search_view, this, true);
         initViews();
@@ -80,7 +79,7 @@ public class SearchView extends LinearLayout {
         arrow.setStrokeColor(typedValue.data);
         arrow.setParameter(1);
 
-        mIndicatoButton = (ImageView) this.findViewById(R.id.actionbar_search_indicator);
+        ImageView mIndicatoButton = (ImageView) this.findViewById(R.id.actionbar_search_indicator);
         mIndicatoButton.setImageDrawable(arrow);
         mSearchEditText = (ClearableEditText) this.findViewById(R.id.actionbar_search_text);
         mActionButton = (ImageView) this.findViewById(R.id.actionbar_search_action);
@@ -105,9 +104,7 @@ public class SearchView extends LinearLayout {
         mSearchEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus)
-//                    showHistoryList();
-
+                //do nothings
             }
         });
         mActionButton.setOnClickListener(new OnClickListener() {
@@ -156,7 +153,7 @@ public class SearchView extends LinearLayout {
                 String item = mSearchAdapter.getItem(position);
                 removeSearchHistory(item);
                 mSearchAdapter.remove(position);
-                if (mSearchAdapter.getList().size() > 0) {
+                if (!mSearchAdapter.getList().isEmpty()) {
                     mListView.setVisibility(View.VISIBLE);
                 } else {
                     mListView.setVisibility(View.GONE);
@@ -164,8 +161,7 @@ public class SearchView extends LinearLayout {
             }
         });
 
-        mContentView = (LinearLayout) this.findViewById(R.id.actionbar_search_content);
-        mContentView.setOnClickListener(new OnClickListener() {
+        findViewById(R.id.actionbar_search_content).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnTouchOutSiteDismiss)
@@ -198,7 +194,7 @@ public class SearchView extends LinearLayout {
         }
         mSearchAdapter.setList(list);
         mSearchAdapter.notifyDataSetChanged();
-        if (list.size() > 0) {
+        if (!list.isEmpty()) {
             mListView.setVisibility(View.VISIBLE);
         } else {
             mListView.setVisibility(View.GONE);
@@ -209,21 +205,21 @@ public class SearchView extends LinearLayout {
     private void saveSearchHistory(String keywords) {
         if (!mIsSearchHistory) return;
         mSearchHistory.add(keywords);
-        mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
+        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).commit();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void removeSearchHistory(String keywords) {
         if (!mIsSearchHistory) return;
         mSearchHistory.remove(keywords);
-        mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
+        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).commit();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void setIsSearchHistory(String[] keywords) {
         if (!mIsSearchHistory) return;
         mSearchHistory.addAll(Arrays.asList(keywords));
-        mSharedPreferences.edit().putStringSet("history", mSearchHistory).commit();
+        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).commit();
     }
 
     public void clearSearchHistory() {
@@ -235,7 +231,7 @@ public class SearchView extends LinearLayout {
     public void setSearchHistoryEnable(boolean enable) {
         mIsSearchHistory = enable;
         if (mIsSearchHistory) {
-            if (mSearchAdapter.getList().size() > 0) {
+            if (!mSearchAdapter.getList().isEmpty()) {
                 mListView.setVisibility(View.VISIBLE);
             } else {
                 mListView.setVisibility(View.GONE);
@@ -261,7 +257,6 @@ public class SearchView extends LinearLayout {
         this.clearSearchText();
 
         geSearchEditText().requestFocus();
-        //geSearchEditText().setFocusable(true);
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(geSearchEditText(), 0);
     }
@@ -331,7 +326,7 @@ class SearchAdapter extends BaseAdapter {
     public SearchAdapter(Context context) {
         this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        list = new ArrayList<String>();
+        list = new ArrayList<>();
     }
 
     public List<String> getList() {

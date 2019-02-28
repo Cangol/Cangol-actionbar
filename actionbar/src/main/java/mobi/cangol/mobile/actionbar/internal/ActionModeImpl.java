@@ -3,7 +3,6 @@ package mobi.cangol.mobile.actionbar.internal;
 import android.app.Activity;
 import android.view.View;
 
-import mobi.cangol.mobile.actionbar.ActionMenuInflater;
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
 import mobi.cangol.mobile.actionbar.ActionMode;
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;

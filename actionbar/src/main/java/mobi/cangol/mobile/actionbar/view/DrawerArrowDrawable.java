@@ -42,22 +42,22 @@ public class DrawerArrowDrawable extends Drawable {
     /**
      * Paths were generated at a 3px/dp density; this is the scale factor for different densities.
      */
-    private final static float PATH_GEN_DENSITY = 3;
+    private static final  float PATH_GEN_DENSITY = 3;
     /**
      * Paths were generated with at this size for {@link DrawerArrowDrawable#PATH_GEN_DENSITY}.
      */
-    private final static float DIMEN_DP = 23.5f;
+    private static final  float DIMEN_DP = 23.5f;
     /**
      * Paths were generated targeting this stroke width to form the arrowhead properly, modification
      * may cause the arrow to not for nicely.
      */
-    private final static float STROKE_WIDTH_DP = 1.5f;
+    private static final float STROKE_WIDTH_DP = 1.5f;
     private final Rect bounds;
     private final float halfStrokeWidthPixel;
     private final Paint linePaint;
     private final boolean rounded;
-    private final float coordsA[] = {0f, 0f};
-    private final float coordsB[] = {0f, 0f};
+    private float[] coordsA = {0f, 0f};
+    private float[] coordsB = {0f, 0f};
     private BridgingLine topLine;
     private BridgingLine middleLine;
     private BridgingLine bottomLine;
@@ -65,7 +65,11 @@ public class DrawerArrowDrawable extends Drawable {
     private float parameter;
 
     // Helper fields during drawing calculations.
-    private float vX, vY, magnitude, paramA, paramB;
+    private float vX;
+    private float vY;
+    private float magnitude;
+    private float paramA;
+    private float paramB;
     public DrawerArrowDrawable(Resources resources) {
         this(resources, false);
     }
@@ -84,8 +88,10 @@ public class DrawerArrowDrawable extends Drawable {
         int dimen = (int) (DIMEN_DP * density);
         bounds = new Rect(0, 0, dimen, dimen);
 
-        Path first, second;
-        JoinedPath joinedA, joinedB;
+        Path first;
+        Path second;
+        JoinedPath joinedA;
+        JoinedPath joinedB;
 
         // Top
         first = new Path();

@@ -108,11 +108,14 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
 
             Toast toast = null;
             if (action.getText() != -1)
-                toast = Toast.makeText(this.getContext(), action.getText(), Toast.LENGTH_SHORT);
+                toast = Toast.makeText(this.getContext().getApplicationContext(), action.getText(), Toast.LENGTH_SHORT);
 
             int left = ((mActionMenu.size() - mShowActions) > 0 ? mMoreButton.getWidth() : 0) + view.getWidth() * (mShowActions) - view.getLeft();
-            toast.setGravity(Gravity.RIGHT | Gravity.TOP, left, this.getBottom());
-            toast.show();
+
+            if(toast!=null){
+                toast.setGravity(Gravity.RIGHT | Gravity.TOP, left, this.getBottom());
+                toast.show();
+            }
         }
         return true;
     }
@@ -129,9 +132,6 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
      * @param action the action to add
      */
     public void addAction(ActionMenuItem action) {
-
-        //final int size = mActionMenu.size();
-        //int showActions=size-c;
         if (action.isShow()) {
             if (mShowActions < 1) {
                 mActionsView.addView(action.isIcon() ? inflateActionIcon(action) : inflateActionText(action));

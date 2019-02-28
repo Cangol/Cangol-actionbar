@@ -428,8 +428,6 @@ public class SystemBarTintManager {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 if (getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
                     return getInternalDimensionSize(res, NAV_BAR_WIDTH_RES_NAME);
-                } else {
-                    //
                 }
             }
             return result;
@@ -455,7 +453,6 @@ public class SystemBarTintManager {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 activity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
             } else {
-                // TODO this is not correct, but we don't really care pre-kitkat
                 activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
             }
             float widthDp = metrics.widthPixels / metrics.density;

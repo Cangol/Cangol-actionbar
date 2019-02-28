@@ -9,7 +9,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import mobi.cangol.mobile.actionbar.ActionTab;
@@ -86,7 +85,7 @@ public class ActionTabView extends RadioGroup implements OnCheckedChangeListener
         }
     }
 
-    public ArrayList<ActionTabItem> getTabs() {
+    public List<ActionTabItem> getTabs() {
         return mActionTab.getTabs();
     }
 
