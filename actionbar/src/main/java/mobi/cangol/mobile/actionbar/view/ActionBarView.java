@@ -109,7 +109,7 @@ public class ActionBarView extends RelativeLayout {
         mCustomLayout = (FrameLayout) this.findViewById(R.id.actionbar_main_custom_layout);
         mActionTab = new ActionTabImpl((ActionTabView) this.findViewById(R.id.actionbar_main_tabview));
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_main_menu));
-        mActionMode = new ActionModeImpl(mActionBarActivity, (ActionModeView) this.findViewById(R.id.actionbar_main_mode));
+        mActionMode = new ActionModeImpl((ActionModeView) this.findViewById(R.id.actionbar_main_mode));
         setTitle(context.getApplicationInfo().name);
         initListeners();
     }

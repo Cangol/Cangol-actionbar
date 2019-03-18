@@ -1,6 +1,5 @@
 package mobi.cangol.mobile.actionbar.internal;
 
-import android.app.Activity;
 import android.view.View;
 
 import mobi.cangol.mobile.actionbar.ActionMenuItem;
@@ -15,10 +14,8 @@ public final class ActionModeImpl extends ActionMode {
     private ActionModeView mActionModeView;
     private ActionMode.Callback mActionModeCallback;
     private boolean mActionMode;
-    private Activity mContext;
 
-    public ActionModeImpl(Activity context, ActionModeView view) {
-        mContext = context;
+    public ActionModeImpl(ActionModeView view) {
         mActionModeView = view;
         mActionModeView.setActionMode(this);
     }
@@ -68,11 +65,6 @@ public final class ActionModeImpl extends ActionMode {
         });
 
         mActionMode = true;
-    }
-
-    @Override
-    public ActionMenuInflater getMenuInflater() {
-        return new ActionMenuInflater(mActionModeView.getActionMenu(), mContext);
     }
 
     @Override
