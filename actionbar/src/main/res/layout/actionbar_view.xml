@@ -90,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/actionbar_height"
+        android:layout_toRightOf="@+id/actionbar_main_indicator"
         android:layout_toLeftOf="@id/actionbar_main_menu">
 
     </FrameLayout>

@@ -41,6 +41,7 @@ public class CustomViewActivity extends ActionBarActivity{
         this.findViewById(R.id.button_custom_1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                getCustomActionBar().setDisplayShowHomeEnabled(false);
                 getCustomActionBar().setCustomView(new EditText(CustomViewActivity.this));
             }
         });
