@@ -16,12 +16,12 @@ Maven
      <dependency>
          <groupId>mobi.cangol.mobile</groupId>
          <artifactId>actionbar</artifactId>
-         <version>1.0.45</version>
+         <version>1.0.47</version>
          <type>aar</type>
      </dependency>
 Gradle
  
-    compile 'mobi.cangol.mobile:actionbar:1.0.45@aar'
+    compile 'mobi.cangol.mobile:actionbar:1.0.47@aar'
 
 ### Screenshot
 
