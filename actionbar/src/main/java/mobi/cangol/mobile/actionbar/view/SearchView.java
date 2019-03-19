@@ -205,27 +205,27 @@ public class SearchView extends LinearLayout {
     private void saveSearchHistory(String keywords) {
         if (!mIsSearchHistory) return;
         mSearchHistory.add(keywords);
-        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).commit();
+        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).apply();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void removeSearchHistory(String keywords) {
         if (!mIsSearchHistory) return;
         mSearchHistory.remove(keywords);
-        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).commit();
+        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).apply();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void setIsSearchHistory(String[] keywords) {
         if (!mIsSearchHistory) return;
         mSearchHistory.addAll(Arrays.asList(keywords));
-        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).commit();
+        mSharedPreferences.edit().putStringSet(KEY_HISTORY, mSearchHistory).apply();
     }
 
     public void clearSearchHistory() {
         if (!mIsSearchHistory) return;
         mSearchHistory.clear();
-        mSharedPreferences.edit().clear().commit();
+        mSharedPreferences.edit().clear().apply();
     }
 
     public void setSearchHistoryEnable(boolean enable) {

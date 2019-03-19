@@ -18,6 +18,7 @@
         android:layout_height="@dimen/actionbar_height"
         android:scaleType="fitCenter"
         android:src="?actionbar_more"
+        android:contentDescription="@string/image_description"
         android:visibility="gone" />
 
 </merge>

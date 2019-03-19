@@ -68,6 +68,7 @@ public class ActionBarView extends RelativeLayout {
     private String[] mListNavigation;
     private OnNavigationListener mOnNavigationListener;
     private OnClickListener mOnRefreshClickListener;
+
     public ActionBarView(Context context) {
         super(context);
         initView(context);
@@ -100,7 +101,7 @@ public class ActionBarView extends RelativeLayout {
         mDrawerArrowDrawable.setStrokeColor(typedValue.data);
 
 
-        mInflater.inflate(R.layout.actionbar_layout, this,true);
+        mInflater.inflate(R.layout.actionbar_layout, this, true);
         mRootView = this.findViewById(R.id.actionbar_main_layout);
         mLeftMenuLayout = (LinearLayout) this.findViewById(R.id.actionbar_left_menus);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
@@ -159,11 +160,11 @@ public class ActionBarView extends RelativeLayout {
     public void clearListNavigation() {
         mTitleView.setCompoundDrawables(null, null, null, null);
         mTitleView.setOnClickListener(null);
-        this.mOnNavigationListener=null;
+        this.mOnNavigationListener = null;
     }
 
     public void setOnNavigationListener(final OnNavigationListener onNavigationListener) {
-        this.mOnNavigationListener=onNavigationListener;
+        this.mOnNavigationListener = onNavigationListener;
         BaseAdapter adapter = new BaseAdapter() {
 
             @Override
@@ -183,10 +184,21 @@ public class ActionBarView extends RelativeLayout {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                View view = mInflater.inflate(R.layout.actionbar_navigation_list_item, parent, false);
-                TextView labelView = (TextView) view.findViewById(R.id.actionbar_navigation_item_text);
-                labelView.setText(mListNavigation[position]);
-                return view;
+                ViewHolder holder;
+                if (convertView == null) {
+                    convertView = mInflater.inflate(R.layout.actionbar_navigation_list_item, parent, false);
+                    holder = new ViewHolder();
+                    holder.labelView = (TextView) convertView.findViewById(R.id.actionbar_navigation_item_text);
+                    convertView.setTag(holder);
+                } else {
+                    holder = (ViewHolder) convertView.getTag();
+                }
+                holder.labelView.setText(mListNavigation[position]);
+                return convertView;
+            }
+
+            class ViewHolder {
+                private TextView labelView;
             }
 
         };
@@ -307,24 +319,24 @@ public class ActionBarView extends RelativeLayout {
             mDrawerArrowDrawable.setStrokeColor(color);
     }
 
-    public void setLeftMenu(final int id,final int text,int drawable,OnClickListener listener) {
+    public void setLeftMenu(final int id, final int text, int drawable, OnClickListener listener) {
         mLeftMenuLayout.setVisibility(View.VISIBLE);
         mLeftMenuLayout.removeAllViews();
-        RelativeLayout.LayoutParams layoutParams= (LayoutParams) mLeftMenuLayout.getLayoutParams();
-        if (mIndicator.getVisibility()==VISIBLE) {
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
-            layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_indicator);
-        }else if (mRefreshView!=null&&mRefreshView.getId()==R.id.actionbar_main_refresh_left&&mRefreshView.getVisibility()==VISIBLE){
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
-            layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_refresh_left);
-        }else{
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,1);
+        RelativeLayout.LayoutParams layoutParams = (LayoutParams) mLeftMenuLayout.getLayoutParams();
+        if (mIndicator.getVisibility() == VISIBLE) {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF, R.id.actionbar_main_indicator);
+        } else if (mRefreshView != null && mRefreshView.getId() == R.id.actionbar_main_refresh_left && mRefreshView.getVisibility() == VISIBLE) {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF, R.id.actionbar_main_refresh_left);
+        } else {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 1);
         }
 
-        if(drawable!=-1){
+        if (drawable != -1) {
             final View view = mInflater.inflate(R.layout.actionbar_item_icon, null, false);
 
-            ImageView labelView =(ImageView) view.findViewById(R.id.actionbar_item);
+            ImageView labelView = (ImageView) view.findViewById(R.id.actionbar_item);
             labelView.setImageResource(drawable);
             view.setId(id);
             view.setTag(getContext().getString(text));
@@ -333,18 +345,18 @@ public class ActionBarView extends RelativeLayout {
                 @Override
                 public boolean onLongClick(View v) {
                     Toast toast = null;
-                    if (text != -1){
+                    if (text != -1) {
                         toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.LEFT | Gravity.TOP, view.getLeft(), view.getBottom());
                         toast.show();
                         return true;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
             });
-            mLeftMenuLayout.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        }else{
+            mLeftMenuLayout.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        } else {
             final View view = mInflater.inflate(R.layout.actionbar_item_text, null, false);
 
             TextView labelView = (TextView) view.findViewById(R.id.actionbar_item);
@@ -356,27 +368,29 @@ public class ActionBarView extends RelativeLayout {
                 @Override
                 public boolean onLongClick(View v) {
                     Toast toast = null;
-                    if (text != -1){
+                    if (text != -1) {
                         toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.LEFT | Gravity.TOP, view.getLeft(),view.getBottom());
+                        toast.setGravity(Gravity.LEFT | Gravity.TOP, view.getLeft(), view.getBottom());
                         toast.show();
                         return true;
-                    }else{
+                    } else {
                         return false;
                     }
                 }
             });
-            mLeftMenuLayout.addView(view,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            mLeftMenuLayout.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
 
 
     }
+
     public void clearLeftMenu() {
-        if( mLeftMenuLayout.getChildAt(0)!=null)
+        if (mLeftMenuLayout.getChildAt(0) != null)
             mLeftMenuLayout.getChildAt(0).setOnClickListener(null);
         mLeftMenuLayout.removeAllViews();
         mLeftMenuLayout.setVisibility(View.GONE);
     }
+
     public CharSequence getTitle() {
         return mTitleView.getText();
     }
@@ -479,70 +493,70 @@ public class ActionBarView extends RelativeLayout {
     }
 
     public void enableRefresh(boolean enable) {
-        enableRefresh(enable,Gravity.RIGHT);
+        enableRefresh(enable, Gravity.RIGHT);
     }
 
-    public void enableRefresh(boolean enable,int gravity) {
-        if(mRefreshView!=null){
+    public void enableRefresh(boolean enable, int gravity) {
+        if (mRefreshView != null) {
             mRefreshView.clearAnimation();
             mRefreshView.setVisibility(View.GONE);
             mRefreshView.setOnClickListener(null);
-            if(mRefreshView.getId()==R.id.actionbar_main_refresh_left){
-                View view=findViewById(R.id.actionbar_left_menus);
-                RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
-                if(mIndicator.getVisibility()==VISIBLE){
-                    layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_indicator);
-                }else{
-                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,1);
+            if (mRefreshView.getId() == R.id.actionbar_main_refresh_left) {
+                View view = findViewById(R.id.actionbar_left_menus);
+                RelativeLayout.LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+                if (mIndicator.getVisibility() == VISIBLE) {
+                    layoutParams.addRule(RelativeLayout.RIGHT_OF, R.id.actionbar_main_indicator);
+                } else {
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 1);
                 }
-            }else{
-                View view=findViewById(R.id.actionbar_main_menu);
-                RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,1);
+            } else {
+                View view = findViewById(R.id.actionbar_main_menu);
+                RelativeLayout.LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 1);
             }
-            mRefreshView=null;
+            mRefreshView = null;
         }
-        mRefreshView = (ImageView) this.findViewById(gravity==Gravity.LEFT?R.id.actionbar_main_refresh_left:R.id.actionbar_main_refresh_right);
-        View view=findViewById(gravity==Gravity.LEFT?R.id.actionbar_left_menus:R.id.actionbar_main_menu);
-        RelativeLayout.LayoutParams layoutParams= (LayoutParams) view.getLayoutParams();
+        mRefreshView = (ImageView) this.findViewById(gravity == Gravity.LEFT ? R.id.actionbar_main_refresh_left : R.id.actionbar_main_refresh_right);
+        View view = findViewById(gravity == Gravity.LEFT ? R.id.actionbar_left_menus : R.id.actionbar_main_menu);
+        RelativeLayout.LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
         if (enable) {
-            if(gravity==Gravity.LEFT){
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,0);
-                layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_refresh_left);
-            }else{
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,0);
+            if (gravity == Gravity.LEFT) {
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
+                layoutParams.addRule(RelativeLayout.RIGHT_OF, R.id.actionbar_main_refresh_left);
+            } else {
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
             }
             mRefreshView.setVisibility(View.VISIBLE);
             mRefreshView.setOnClickListener(mOnRefreshClickListener);
         } else {
-            if(gravity==Gravity.LEFT){
-                if(mIndicator.getVisibility()==VISIBLE){
-                    layoutParams.addRule(RelativeLayout.RIGHT_OF,R.id.actionbar_main_indicator);
-                }else{
-                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,1);
+            if (gravity == Gravity.LEFT) {
+                if (mIndicator.getVisibility() == VISIBLE) {
+                    layoutParams.addRule(RelativeLayout.RIGHT_OF, R.id.actionbar_main_indicator);
+                } else {
+                    layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 1);
                 }
-            }else{
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT ,1);
+            } else {
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 1);
             }
 
             mRefreshView.clearAnimation();
             mRefreshView.setVisibility(View.GONE);
             mRefreshView.setOnClickListener(null);
-            mOnRefreshClickListener=null;
-            mRefreshView=null;
+            mOnRefreshClickListener = null;
+            mRefreshView = null;
         }
 
     }
 
     public void setOnRefreshClickListener(OnClickListener listener) {
-        mOnRefreshClickListener=listener;
-        if(mRefreshView!=null)
+        mOnRefreshClickListener = listener;
+        if (mRefreshView != null)
             mRefreshView.setOnClickListener(mOnRefreshClickListener);
     }
 
     public void refreshing(boolean refresh) {
-        if(mRefreshView!=null&&mRefreshView.getVisibility()==VISIBLE){
-            RotateAnimation anim = new RotateAnimation(0.0f, 360f,Animation.RELATIVE_TO_SELF, 0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
+        if (mRefreshView != null && mRefreshView.getVisibility() == VISIBLE) {
+            RotateAnimation anim = new RotateAnimation(0.0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             anim.setInterpolator(new LinearInterpolator());
             anim.setRepeatCount(Animation.INFINITE);
             anim.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));

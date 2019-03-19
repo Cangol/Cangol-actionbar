@@ -16,6 +16,7 @@
             android:id="@+id/actionbar_search_indicator"
             style="@style/ActionBarIconItem"
             android:scaleType="centerInside"
+            android:contentDescription="@string/image_description"
             />
 
         <mobi.cangol.mobile.actionbar.view.ClearableEditText
@@ -36,6 +37,7 @@
             style="@style/ActionBarIconItem"
             android:scaleType="centerInside"
             android:src="?actionbar_search"
+            android:contentDescription="@string/image_description"
             android:visibility="gone"/>
 
     </LinearLayout>
