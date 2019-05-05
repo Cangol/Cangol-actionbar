@@ -1,8 +1,8 @@
 package mobi.cangol.mobile.actionbar.demo;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity;
 @SuppressLint("ResourceAsColor")
 public class MainActivity extends ActionBarActivity{
     private ListView mListView;
-    private List<Class<? extends ActionBarActivity >> activities=new ArrayList<>();
+    private List<Class<? extends Activity>> activities=new ArrayList<>();
     private static boolean light=true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,8 @@ public class MainActivity extends ActionBarActivity{
         activities.add(LeftMenuActivity.class);
         activities.add(TitleActivity.class);
         activities.add(ThemeActivity.class);
+        activities.add(TransparentActivity.class);
+        activities.add(TransparentNativeActivity.class);
         mListView= (ListView) this.findViewById(R.id.listView);
         mListView.setAdapter(new BaseAdapter() {
             @Override

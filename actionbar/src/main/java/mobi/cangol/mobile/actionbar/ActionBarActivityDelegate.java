@@ -2,9 +2,11 @@ package mobi.cangol.mobile.actionbar;
 
 import android.app.Activity;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,9 +52,11 @@ public class ActionBarActivityDelegate {
     public void setActionbarOverlay(boolean mActionbarOverlay) {
         this.mActionbarOverlay = mActionbarOverlay;
         if (mActionbarOverlay) {
-            ((RelativeLayout.LayoutParams) mContentView.getLayoutParams()).topMargin = 0;
+            mContentView.setPadding(0,0,0,0);
+            //((RelativeLayout.LayoutParams) mContentView.getLayoutParams()).topMargin = 0;
         } else {
-            ((RelativeLayout.LayoutParams) mContentView.getLayoutParams()).topMargin = (int) (mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height));
+            //((RelativeLayout.LayoutParams) mContentView.getLayoutParams()).topMargin = (int) (mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height));
+            mContentView.setPadding(0,(mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height)),0,0);
         }
     }
 
@@ -114,6 +118,9 @@ public class ActionBarActivityDelegate {
                 mContainerView.setBackgroundResource(background);
         }
         decor.removeView(decorChild);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            layout.setFitsSystemWindows(decorChild.getFitsSystemWindows());
+        }
         decor.addView(layout, 0);
         setContent(decorChild);
     }
@@ -227,4 +234,5 @@ public class ActionBarActivityDelegate {
             }
         }
     }
+
 }

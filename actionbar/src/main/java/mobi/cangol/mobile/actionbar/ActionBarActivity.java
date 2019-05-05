@@ -1,6 +1,7 @@
 package mobi.cangol.mobile.actionbar;
 
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.AttrRes;
@@ -61,7 +62,6 @@ public class ActionBarActivity extends AppCompatActivity {
             array.recycle();
         }
     }
-
     /**
      * 设置标题
      *
@@ -133,6 +133,39 @@ public class ActionBarActivity extends AppCompatActivity {
         }
     }
 
+    public void setFitsSystemWindows(int layoutId){
+        if(layoutId==R.id.container_view){
+            findViewById(R.id.container_view).setFitsSystemWindows(true);
+        }else{
+            findViewById(R.id.container_view).setFitsSystemWindows(false);
+            findViewById(layoutId).setFitsSystemWindows(true);
+        }
+    }
+
+    public void setStatusBarTranslucent() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.parseColor("#1f000000"));
+            setSystemUiFloatFullScreen(true);
+        }
+    }
+
+    public void setStatusBarTransparent() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            setSystemUiFloatFullScreen(true);
+        }
+    }
+
+
+    public void setSystemUiFloatFullScreen(boolean enable) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decorView = this.getWindow().getDecorView();
+            int option = enable ? (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+                    : (View.SYSTEM_UI_FLAG_FULLSCREEN);
+            decorView.setSystemUiVisibility(option);
+            decorView.requestApplyInsets();
+        }
+    }
     /**
      * 设置导航栏颜色
      *

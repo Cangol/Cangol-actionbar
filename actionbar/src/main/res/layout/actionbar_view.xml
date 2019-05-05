@@ -3,6 +3,7 @@
     android:id="@+id/actionbar_main_layout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/actionbar_height"
+    style="@style/ActionBar"
     android:gravity="center_vertical">
 
     <ImageView
