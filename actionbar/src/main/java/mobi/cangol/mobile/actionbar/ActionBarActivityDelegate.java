@@ -118,9 +118,7 @@ public class ActionBarActivityDelegate {
                 mContainerView.setBackgroundResource(background);
         }
         decor.removeView(decorChild);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            layout.setFitsSystemWindows(decorChild.getFitsSystemWindows());
-        }
+        decorChild.setFitsSystemWindows(false);
         decor.addView(layout, 0);
         setContent(decorChild);
     }
