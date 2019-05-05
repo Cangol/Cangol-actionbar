@@ -1,12 +1,15 @@
 package mobi.cangol.mobile.actionbar;
 
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.FitWindowsLinearLayout;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -133,6 +136,7 @@ public class ActionBarActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void setFitsSystemWindows(int layoutId){
         if(layoutId==R.id.container_view){
             findViewById(R.id.container_view).setFitsSystemWindows(true);
@@ -159,12 +163,27 @@ public class ActionBarActivity extends AppCompatActivity {
 
     public void setSystemUiFloatFullScreen(boolean enable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if(enable){
+                findViewById(R.id.container_view).setFitsSystemWindows(false);
+                findViewById(R.id.container_view).setPadding(0,0,0,0);
+            }else{
+                findViewById(R.id.container_view).setFitsSystemWindows(true);
+                findViewById(R.id.container_view).setPadding(0,getStatusBarHeight(),0,0);
+            }
             View decorView = this.getWindow().getDecorView();
             int option = enable ? (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
                     : (View.SYSTEM_UI_FLAG_FULLSCREEN);
             decorView.setSystemUiVisibility(option);
             decorView.requestApplyInsets();
         }
+    }
+    private int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = this.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = this.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
     /**
      * 设置导航栏颜色

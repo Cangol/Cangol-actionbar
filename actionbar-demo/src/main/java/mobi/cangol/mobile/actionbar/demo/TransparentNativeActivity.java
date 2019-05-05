@@ -17,7 +17,7 @@ public class TransparentNativeActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transparent_view);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.setTitle(this.getClass().getSimpleName().replace("Activity", ""));
         findViews();
     }
@@ -27,30 +27,30 @@ public class TransparentNativeActivity extends AppCompatActivity {
         this.findViewById(R.id.button_transparent_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportActionBar().show();
+                //getSupportActionBar().show();
                 setStatusBarTranslucent();
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getColor(R.color.translucent)));
+                //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getColor(R.color.translucent)));
             }
         });
         this.findViewById(R.id.button_transparent_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportActionBar().show();
+                //getSupportActionBar().show();
                 setStatusBarTransparent();
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }
         });
         this.findViewById(R.id.button_transparent_3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportActionBar().hide();
+                //getSupportActionBar().hide();
                 setSystemUiFloatFullScreen(true);
             }
         });
         this.findViewById(R.id.button_transparent_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportActionBar().hide();
+                //getSupportActionBar().hide();
                 setSystemUiFloatFullScreen(false);
             }
         });

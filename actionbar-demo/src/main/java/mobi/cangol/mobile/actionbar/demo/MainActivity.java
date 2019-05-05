@@ -41,6 +41,7 @@ public class MainActivity extends ActionBarActivity{
         this.setStatusBarTintColor(getResources().getColor(R.color.test));
         this.setWindowBackground(R.drawable.ic_bg);
         this.getCustomActionBar().setDisplayShowHomeEnabled(true);
+        this.setActionbarShadow(true);
         activities.add(SearchViewActivity.class);
         activities.add(ActionModeActivity.class);
         activities.add(RefreshActivity.class);
