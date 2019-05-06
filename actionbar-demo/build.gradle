@@ -12,7 +12,7 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 23
         targetSdkVersion 27
         versionCode Integer.decode("${POM_VERSION_CODE}")
         versionName "${POM_VERSION}"

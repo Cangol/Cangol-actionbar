@@ -1,6 +1,5 @@
 package mobi.cangol.mobile.actionbar;
 
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
@@ -9,7 +8,6 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.FitWindowsLinearLayout;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -17,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -166,14 +165,28 @@ public class ActionBarActivity extends AppCompatActivity {
             if(enable){
                 findViewById(R.id.container_view).setFitsSystemWindows(false);
                 findViewById(R.id.container_view).setPadding(0,0,0,0);
+                //findViewById(R.id.actionbar_view).setPadding(0,getStatusBarHeight(),0,0);
+                ((RelativeLayout.LayoutParams)findViewById(R.id.actionbar_view).getLayoutParams()).topMargin=getStatusBarHeight();
             }else{
                 findViewById(R.id.container_view).setFitsSystemWindows(true);
                 findViewById(R.id.container_view).setPadding(0,getStatusBarHeight(),0,0);
+                //findViewById(R.id.actionbar_view).setPadding(0,0,0,0);
+                ((RelativeLayout.LayoutParams)findViewById(R.id.actionbar_view).getLayoutParams()).topMargin=0;
             }
             View decorView = this.getWindow().getDecorView();
-            int option = enable ? (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-                    : (View.SYSTEM_UI_FLAG_FULLSCREEN);
+
+//            int option = enable ? (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+//                    : (View.SYSTEM_UI_FLAG_VISIBLE | View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_VISIBLE);
+
+            int option = decorView.getSystemUiVisibility();
+            if (enable) {
+                option |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            } else {
+                option &= ~View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            }
+
             decorView.setSystemUiVisibility(option);
+
             decorView.requestApplyInsets();
         }
     }
@@ -214,11 +227,13 @@ public class ActionBarActivity extends AppCompatActivity {
      */
     public void setStatusBarTextColor(boolean black) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int systemUiVisibility = getWindow().getDecorView().getSystemUiVisibility();
             if (black) {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//设置状态栏黑色字体
+                systemUiVisibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             } else {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
+                systemUiVisibility &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             }
+            getWindow().getDecorView().setSystemUiVisibility(systemUiVisibility);
             if (Build.BRAND.equals("Xiaomi") && Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 setStatusBarTextColorWithXiaomi(black);
             }

@@ -2,62 +2,99 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/trabsparent_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/layout_status_padding"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/ic_bg"
+            android:orientation="vertical"
             android:paddingTop="24dp">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="marginTop=0dp" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:text="marginTop=48dp" />
-        </FrameLayout>
+        </LinearLayout>
 
         <Button
-            android:id="@+id/button_transparent_1"
+            android:id="@+id/button_transparent_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="TRANSLUCENT" />
+            android:text="recovery" />
 
-        <Button
-            android:id="@+id/button_transparent_2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="TRANSPARENT" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_transparent_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="SystemUiFloatFullScreen true" />
+            <Button
+                android:id="@+id/button_transparent_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TRANSLUCENT" />
 
-        <Button
-            android:id="@+id/button_transparent_4"
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button_transparent_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TRANSPARENT" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="SystemUiFloatFullScreen false" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_transparent_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SystemUiFloatFullScreen true" />
+
+            <Button
+                android:id="@+id/button_transparent_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SystemUiFloatFullScreen false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_transparent_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="actionbar show" />
+
+            <Button
+                android:id="@+id/button_transparent_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="actionbar hide" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

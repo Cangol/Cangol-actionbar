@@ -51,7 +51,7 @@
             android:configChanges="layoutDirection|locale"/>
         <activity
             android:name=".TransparentNativeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:configChanges="layoutDirection|locale"/>
     </application>
 
