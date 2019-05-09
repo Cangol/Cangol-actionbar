@@ -48,7 +48,6 @@ import mobi.cangol.mobile.actionbar.internal.ActionTabImpl;
 public class ActionBarView extends RelativeLayout {
     public static final String TAG = "ActionBar";
     private LayoutInflater mInflater;
-    private View mRootView;
     private LinearLayout mLeftMenuLayout;
     private ImageView mIndicator;
     private LinearLayout mTitleLayout;
@@ -102,7 +101,6 @@ public class ActionBarView extends RelativeLayout {
 
 
         mInflater.inflate(R.layout.actionbar_layout, this, true);
-        mRootView = this.findViewById(R.id.actionbar_main_layout);
         mLeftMenuLayout = (LinearLayout) this.findViewById(R.id.actionbar_left_menus);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
         mTitleLayout = (LinearLayout) this.findViewById(R.id.actionbar_main_title_layout);
@@ -113,14 +111,6 @@ public class ActionBarView extends RelativeLayout {
         mActionMode = new ActionModeImpl((ActionModeView) this.findViewById(R.id.actionbar_main_mode));
         setTitle(context.getApplicationInfo().name);
         initListeners();
-    }
-
-    public void setBackgroundColor(int color) {
-        mRootView.setBackgroundColor(color);
-    }
-
-    public void setBackgroundResource(int resId) {
-        mRootView.setBackgroundResource(resId);
     }
 
     private void initListeners() {

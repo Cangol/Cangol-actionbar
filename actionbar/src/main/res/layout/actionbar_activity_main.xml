@@ -13,8 +13,9 @@
 
     <mobi.cangol.mobile.actionbar.view.ActionBarView
         android:id="@+id/actionbar_view"
+        style="@style/ActionBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/actionbar_height"
         android:layout_alignParentTop="true" />
 
     <FrameLayout

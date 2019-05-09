@@ -8,7 +8,6 @@
     <color name="image_backgound">#252525</color>
     <color name="actionbar_background">#ffffff</color>
 
-    <color name="test">#01000000</color>
     <color name="transparent">#00000000</color>
     <color name="translucent">#1f000000</color>
 </resources>

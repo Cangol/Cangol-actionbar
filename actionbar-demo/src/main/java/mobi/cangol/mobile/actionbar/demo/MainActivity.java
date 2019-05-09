@@ -37,11 +37,12 @@ public class MainActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("首页");
-        this.getCustomActionBar().setBackgroundResource(R.color.test);
-        this.setStatusBarTintColor(getResources().getColor(R.color.test));
+        this.setStatusBarTintColor(getResources().getColor(R.color.red));
         this.setWindowBackground(R.drawable.ic_bg);
         this.getCustomActionBar().setDisplayShowHomeEnabled(true);
-        this.setActionbarShadow(true);
+        this.setActionbarShadow(true,8);
+        this.getCustomActionBar().setBackgroundResource(R.color.red);
+
         activities.add(SearchViewActivity.class);
         activities.add(ActionModeActivity.class);
         activities.add(RefreshActivity.class);
