@@ -1,5 +1,7 @@
 package mobi.cangol.mobile.actionbar;
 
+import android.widget.TextView;
+
 import java.util.List;
 
 import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener;
@@ -54,4 +56,9 @@ public abstract class ActionTab {
      * @param onTabSelectedListener
      */
     public abstract void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener);
+
+    /**
+     * 获取view
+     */
+    public abstract TextView getTabView(int id);
 }

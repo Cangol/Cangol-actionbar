@@ -1,5 +1,7 @@
 package mobi.cangol.mobile.actionbar.internal;
 
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,11 @@ public final class ActionTabImpl extends ActionTab {
     @Override
     public void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener) {
         mActionTabView.setOnTabSelectedListener(onTabSelectedListener);
+    }
+
+    @Override
+    public TextView getTabView(int id) {
+        return mActionTabView.findViewById(id);
     }
 
     @Override

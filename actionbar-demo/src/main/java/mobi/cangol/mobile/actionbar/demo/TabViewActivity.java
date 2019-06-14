@@ -47,7 +47,7 @@ public class TabViewActivity extends ActionBarActivity{
             public void onClick(View v) {
                 setTitle("");
                 initActionTab();
-                getCustomActionBar().getActionTab().setTabSelected(2);
+                getCustomActionBar().getActionTab().getTabView(2).setText("tab_1");
             }
         });
         this.findViewById(R.id.button_tab_2).setOnClickListener(new OnClickListener() {

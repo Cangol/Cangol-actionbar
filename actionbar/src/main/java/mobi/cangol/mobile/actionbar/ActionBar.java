@@ -283,5 +283,5 @@ public abstract class ActionBar {
     /**
      * 获取view
      */
-    public abstract View findViewById(@IdRes int id);
+    public abstract <T extends View> T findViewById(@IdRes int id);
 }
