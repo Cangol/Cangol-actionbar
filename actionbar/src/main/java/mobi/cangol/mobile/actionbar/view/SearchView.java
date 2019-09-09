@@ -250,7 +250,7 @@ public class SearchView extends LinearLayout {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void show() {
         if (mIsSearchHistory) {
-            mSearchHistory = mSharedPreferences.getStringSet("history", new HashSet<String>());
+            mSearchHistory = mSharedPreferences.getStringSet(SearchView.KEY_HISTORY, new HashSet<String>());
             showHistoryList();
         }
         this.setVisibility(View.VISIBLE);
@@ -319,12 +319,10 @@ public class SearchView extends LinearLayout {
 
 class SearchAdapter extends BaseAdapter {
     private List<String> list;
-    private Context context;
     private LayoutInflater inflater;
     private OnClearClickListener onClearClickListener;
 
     public SearchAdapter(Context context) {
-        this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         list = new ArrayList<>();
     }

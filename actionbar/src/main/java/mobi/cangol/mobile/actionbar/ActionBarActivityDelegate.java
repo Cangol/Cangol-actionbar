@@ -2,11 +2,9 @@ package mobi.cangol.mobile.actionbar;
 
 import android.app.Activity;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,9 +51,7 @@ public class ActionBarActivityDelegate {
         this.mActionbarOverlay = mActionbarOverlay;
         if (mActionbarOverlay) {
             mContentView.setPadding(0,0,0,0);
-            //((RelativeLayout.LayoutParams) mContentView.getLayoutParams()).topMargin = 0;
         } else {
-            //((RelativeLayout.LayoutParams) mContentView.getLayoutParams()).topMargin = (int) (mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height));
             mContentView.setPadding(0,(mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height)),0,0);
         }
     }
@@ -95,7 +91,7 @@ public class ActionBarActivityDelegate {
             mActivity.onMenuActionCreated(mActionBar.getActionMenu());
         }
 
-        if (mActionBar.getTabs().size() > 0) {
+        if (!mActionBar.getTabs().isEmpty()) {
             mActionBar.setTitleVisibility(View.GONE);
         } else {
             mActionBar.setTitleVisibility(View.VISIBLE);

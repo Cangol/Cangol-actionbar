@@ -165,19 +165,13 @@ public class ActionBarActivity extends AppCompatActivity {
             if(enable){
                 findViewById(R.id.container_view).setFitsSystemWindows(false);
                 findViewById(R.id.container_view).setPadding(0,0,0,0);
-                //findViewById(R.id.actionbar_view).setPadding(0,getStatusBarHeight(),0,0);
                 ((RelativeLayout.LayoutParams)findViewById(R.id.actionbar_view).getLayoutParams()).topMargin=getStatusBarHeight();
             }else{
                 findViewById(R.id.container_view).setFitsSystemWindows(true);
                 findViewById(R.id.container_view).setPadding(0,getStatusBarHeight(),0,0);
-                //findViewById(R.id.actionbar_view).setPadding(0,0,0,0);
                 ((RelativeLayout.LayoutParams)findViewById(R.id.actionbar_view).getLayoutParams()).topMargin=0;
             }
             View decorView = this.getWindow().getDecorView();
-
-//            int option = enable ? (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-//                    : (View.SYSTEM_UI_FLAG_VISIBLE | View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_VISIBLE);
-
             int option = decorView.getSystemUiVisibility();
             if (enable) {
                 option |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;

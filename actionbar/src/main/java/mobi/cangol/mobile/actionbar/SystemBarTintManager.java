@@ -420,17 +420,20 @@ public class SystemBarTintManager {
         private int getNavigationBarWidth(Context context) {
             Resources res = context.getResources();
             int result = 0;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                if (getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
-                    return getInternalDimensionSize(res, NAV_BAR_WIDTH_RES_NAME);
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH
+                &&getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
+              return getInternalDimensionSize(res, NAV_BAR_WIDTH_RES_NAME);
             }
             return result;
         }
 
         private boolean getInternalBoolean(Resources res, String key) {
             int resourceId = res.getIdentifier(key, "bool", "android");
-            return (resourceId > 0) ? res.getBoolean(resourceId) : false;
+            if(resourceId>0){
+                return res.getBoolean(resourceId);
+            }else{
+                return false;
+            }
         }
 
         private int getInternalDimensionSize(Resources res, String key) {
