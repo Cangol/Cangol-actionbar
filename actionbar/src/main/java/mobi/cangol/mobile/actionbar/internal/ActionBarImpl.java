@@ -31,8 +31,18 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void resetCustomHomeAsUpIndicator() {
+        mActionBarView.resetCustomHomeAsUpIndicator();
+    }
+
+    @Override
     public void setDisplayShowHomeEnabled(boolean show) {
         mActionBarView.setDisplayShowHomeEnabled(show);
+    }
+
+    @Override
+    public void hideHomeAsUpIndicator() {
+        mActionBarView.hideHomeAsUpIndicator();
     }
 
     @Override

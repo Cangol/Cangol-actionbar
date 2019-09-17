@@ -260,6 +260,13 @@ public class ActionBarView extends RelativeLayout {
         mIndicator.setImageResource(homeId);
     }
 
+    public void resetCustomHomeAsUpIndicator() {
+        mIsCustomHomeAsUpIndicator = false;
+        mHomeId = 0;
+        mUpId = 0;
+        mDrawerArrowDrawable.setParameter(0);
+        mIndicator.setImageDrawable(mDrawerArrowDrawable);
+    }
     public void setDisplayShowHomeEnabled(boolean show) {
         mDisplayShowHomeEnabled = show;
         mIndicator.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -274,7 +281,9 @@ public class ActionBarView extends RelativeLayout {
         }
         mIndicator.setVisibility(mDisplayShowHomeEnabled ? View.VISIBLE : View.GONE);
     }
-
+    public void hideHomeAsUpIndicator() {
+        mIndicator.setVisibility(View.GONE);
+    }
     public void displayUpIndicator() {
         if (!mIsCustomHomeAsUpIndicator) {
             mDrawerArrowDrawable.setParameter(1);

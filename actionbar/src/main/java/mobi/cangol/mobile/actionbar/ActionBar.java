@@ -20,12 +20,18 @@ public abstract class ActionBar {
     public abstract void setCustomHomeAsUpIndicator(int homeId, int upId);
 
     /**
+     */
+    public abstract void resetCustomHomeAsUpIndicator();
+
+    /**
      * 设置home的显示
      *
      * @param show
      */
     public abstract void setDisplayShowHomeEnabled(boolean show);
 
+
+    public abstract void hideHomeAsUpIndicator();
     /**
      * 显示home指示器
      */
