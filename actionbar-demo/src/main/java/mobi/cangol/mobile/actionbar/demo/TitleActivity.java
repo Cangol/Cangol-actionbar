@@ -49,6 +49,12 @@ public class TitleActivity extends ActionBarActivity{
         this.findViewById(R.id.button_title_2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                getCustomActionBar().setTitleGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
+            }
+        });
+        this.findViewById(R.id.button_title_2).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if(getCustomActionBar().getTitleVisibility()==View.VISIBLE){
                     getCustomActionBar().setTitleVisibility(View.VISIBLE);
                 }else{
