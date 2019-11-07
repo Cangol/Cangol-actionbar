@@ -4,7 +4,8 @@ dependencies {
     implementation "com.android.support:support-fragment:$support_version"
     implementation "com.android.support:design:$support_version"
     implementation project(':actionbar')
-
+    //leak canary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
 }
 
 android {
