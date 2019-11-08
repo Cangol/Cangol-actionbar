@@ -1,28 +1,24 @@
-package mobi.cangol.mobile.actionbar;
+package mobi.cangol.mobile.actionbar
 
-import android.view.View;
+import android.view.View
 
-import java.util.List;
-
-import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
+import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener
 
 /**
  * @author Cangol
  */
-public abstract class ActionMenu {
+abstract class ActionMenu {
     /**
      * 获取所有menuItem
      *
      * @return
      */
-    public abstract List<ActionMenuItem> getActions();
-
     /**
      * 设置menuItem列表
      *
      * @param actions
      */
-    public abstract void setActions(List<ActionMenuItem> actions);
+    abstract var actions: MutableList<ActionMenuItem>
 
     /**
      * 添加menu
@@ -33,19 +29,19 @@ public abstract class ActionMenu {
      * @param show 是否常显示
      * @return
      */
-    public abstract ActionMenuItem addMenu(int id, int text, int drawable, int show);
+    abstract fun addMenu(id: Int, text: Int, drawable: Int, show: Int): ActionMenuItem
 
     /**
      * 清除菜单
      */
-    public abstract void clear();
+    abstract fun clear()
 
     /**
      * 获取菜单数据
      *
      * @return
      */
-    public abstract int size();
+    abstract fun size(): Int
 
     /**
      * 通过索引获取菜单
@@ -53,7 +49,7 @@ public abstract class ActionMenu {
      * @param index
      * @return
      */
-    public abstract ActionMenuItem getAction(int index);
+    abstract fun getAction(index: Int): ActionMenuItem
 
     /**
      * 通过id获取menu的view
@@ -61,12 +57,12 @@ public abstract class ActionMenu {
      * @param id
      * @return
      */
-    public abstract View getActionMenuItemView(int id);
+    abstract fun getActionMenuItemView(id: Int): View
 
     /**
      * 设置事件监听
      *
      * @param onActionClickListener
      */
-    public abstract void setOnActionClickListener(OnActionClickListener onActionClickListener);
+    abstract fun setOnActionClickListener(onActionClickListener: OnActionClickListener)
 }
