@@ -15,17 +15,14 @@ import mobi.cangol.mobile.actionbar.R
 import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener
 
+
 /**
  * @author Cangol
  */
 class ActionModeView : LinearLayout {
     private var mTitleText: TextView? = null
-    var actionMenu: ActionMenu? = null
-        private set
+    private var mActionMenu: ActionMenu? = null
     private var mActionMode: ActionMode? = null
-
-    val title: CharSequence
-        get() = mTitleText!!.text
 
     constructor(context: Context) : super(context) {
         initViews(context)
@@ -44,18 +41,18 @@ class ActionModeView : LinearLayout {
         initViews(context)
     }
 
-    fun setActionMode(mActionMode: ActionMode) {
-        this.mActionMode = mActionMode
-    }
-
     private fun initViews(context: Context) {
         val mInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         mInflater.inflate(R.layout.actionbar_action_mode, this)
 
-        actionMenu = ActionMenuImpl(this.findViewById(R.id.actionbar_mode_menu))
+        mActionMenu = ActionMenuImpl(this.findViewById(R.id.actionbar_mode_menu))
         val mDoneButton = this.findViewById(R.id.actionbar_mode_done) as ImageView
         mTitleText = this.findViewById(R.id.actionbar_mode_title)
         mDoneButton.setOnClickListener { mActionMode?.finish() }
+    }
+
+    fun getTitle(): CharSequence {
+        return mTitleText?.text.toString()
     }
 
     fun setTitle(resId: Int) {
@@ -72,7 +69,13 @@ class ActionModeView : LinearLayout {
     }
 
     fun setOnActionClickListener(onActionClickListener: OnActionClickListener) {
-        actionMenu?.setOnActionClickListener(onActionClickListener)
+        mActionMenu?.setOnActionClickListener(onActionClickListener)
     }
 
+    fun setActionMode(mActionMode: ActionMode) {
+        this.mActionMode = mActionMode
+    }
+    fun getActionMenu(): ActionMenu {
+        return mActionMenu!!
+    }
 }

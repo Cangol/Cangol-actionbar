@@ -29,7 +29,7 @@ class ActionModeImpl(private val mActionModeView: ActionModeView) : ActionMode()
     }
 
     override fun finish() {
-        mActionModeView.actionMenu?.clear()
+        mActionModeView.getActionMenu()?.clear()
         mActionModeView.visibility = View.GONE
         mActionModeCallback?.onDestroyActionMode(this)
         isActionMode = false
@@ -38,7 +38,7 @@ class ActionModeImpl(private val mActionModeView: ActionModeView) : ActionMode()
     override fun start(callback: Callback) {
         mActionModeView.visibility = View.VISIBLE
         mActionModeCallback = callback
-        mActionModeCallback?.onCreateActionMode(this, mActionModeView.actionMenu!!)
+        mActionModeCallback?.onCreateActionMode(this, mActionModeView.getActionMenu()!!)
         mActionModeView.setOnActionClickListener(object : OnActionClickListener {
 
             override fun onActionClick(action: ActionMenuItem): Boolean {

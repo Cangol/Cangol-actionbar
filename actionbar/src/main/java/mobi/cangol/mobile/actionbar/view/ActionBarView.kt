@@ -21,6 +21,7 @@ import mobi.cangol.mobile.actionbar.internal.ActionMenuImpl
 import mobi.cangol.mobile.actionbar.internal.ActionModeImpl
 import mobi.cangol.mobile.actionbar.internal.ActionTabImpl
 
+
 /**
  * @author Cangol
  */
@@ -32,11 +33,9 @@ class ActionBarView : RelativeLayout {
     private var mTitleView: TextView? = null
     private var mPopupMenu: PopupWindow? = null
     private var mRefreshView: ImageView? = null
-    var actionMenu: ActionMenu? = null
-        private set
+    private var mActionMenu: ActionMenu? = null
     private var mActionMode: ActionMode? = null
-    var actionTab: ActionTab? = null
-        private set
+    private var mActionTab: ActionTab? = null
     private var mCustomLayout: FrameLayout? = null
     private var mActionBarActivity: ActionBarActivity? = null
     private var mDrawerArrowDrawable: DrawerArrowDrawable? = null
@@ -44,40 +43,36 @@ class ActionBarView : RelativeLayout {
     private var mDisplayShowHomeEnabled: Boolean = false
     private var mHomeId: Int = 0
     private var mUpId: Int = 0
-    var listNavigation: Array<String>? = null
+    private var mListNavigation: Array<String>? = null
     private var mOnNavigationListener: OnNavigationListener? = null
     private var mOnRefreshClickListener: OnClickListener? = null
 
-    var titleGravity: Int
-        get() = mTitleView?.visibility?: View.GONE
-        set(gravity) {
-            mTitleLayout?.gravity = gravity
-            mTitleView?.gravity = gravity
-        }
-
     fun addActions(actions: MutableList<ActionMenuItem>) {
-        actionMenu?.setActions(actions)
+        mActionMenu?.setActions(actions)
     }
 
     fun getActions(): MutableList<ActionMenuItem> {
-        return actionMenu?.getActions()!!
+        return mActionMenu?.getActions()!!
     }
 
     fun setTabs(tabs: MutableList<ActionTabItem>) {
         if (tabs.isNotEmpty()) {
-            titleVisibility = View.GONE
-            actionTab?.setTabs(tabs)
+            setTitleVisibility(View.GONE)
+            mActionTab?.setTabs(tabs)
         }
     }
 
     fun getTabs(): MutableList<ActionTabItem> {
-        return actionTab?.getTabs()!!
+        return mActionTab?.getTabs()!!
     }
-    var titleVisibility: Int
-        get() = mTitleLayout?.visibility?: View.GONE
-        set(visibility) {
-            mTitleLayout?.visibility = visibility
-        }
+
+    fun setTitleVisibility(visibility: Int) {
+        mTitleLayout?.visibility = visibility
+    }
+
+    fun getTitleVisibility(): Int {
+        return mTitleLayout?.visibility!!
+    }
 
     constructor(context: Context) : super(context) {
         initView(context)
@@ -113,8 +108,8 @@ class ActionBarView : RelativeLayout {
         mTitleLayout = this.findViewById(R.id.actionbar_main_title_layout)
         mTitleView = this.findViewById(R.id.actionbar_main_title)
         mCustomLayout = this.findViewById(R.id.actionbar_main_custom_layout)
-        actionTab = ActionTabImpl(this.findViewById(R.id.actionbar_main_tabview))
-        actionMenu = ActionMenuImpl(this.findViewById(R.id.actionbar_main_menu))
+        mActionTab = ActionTabImpl(this.findViewById(R.id.actionbar_main_tabview))
+        mActionMenu = ActionMenuImpl(this.findViewById(R.id.actionbar_main_menu))
         mActionMode = ActionModeImpl(this.findViewById(R.id.actionbar_main_mode))
         setTitle(context.getApplicationInfo().name)
         initListeners()
@@ -127,7 +122,7 @@ class ActionBarView : RelativeLayout {
         mIndicator?.setOnClickListener {
             mActionBarActivity?.onSupportNavigateUp()
         }
-        actionMenu?.setOnActionClickListener(object : ActionMenuView.OnActionClickListener {
+        mActionMenu?.setOnActionClickListener(object : ActionMenuView.OnActionClickListener {
 
             override fun onActionClick(action: ActionMenuItem): Boolean {
                 return mActionBarActivity?.onMenuActionSelected(action) ?: false
@@ -135,7 +130,12 @@ class ActionBarView : RelativeLayout {
 
         })
     }
-
+    fun getListNavigation(): Array<String>? {
+        return mListNavigation
+    }
+    fun setListNavigation(listNavigation: Array<String>) {
+        this.mListNavigation = listNavigation
+    }
     fun clearListNavigation() {
         mTitleView?.setCompoundDrawables(null, null, null, null)
         mTitleView?.setOnClickListener(null)
@@ -148,11 +148,11 @@ class ActionBarView : RelativeLayout {
         val adapter = object : BaseAdapter() {
 
             override fun getCount(): Int {
-                return listNavigation!!.size
+                return mListNavigation!!.size
             }
 
             override fun getItem(position: Int): String {
-                return listNavigation!![position]
+                return mListNavigation!![position]
             }
 
             override fun getItemId(position: Int): Long {
@@ -162,10 +162,10 @@ class ActionBarView : RelativeLayout {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
                 var convertView = convertView
                 if (convertView == null) {
-                    convertView = inflater.inflate(R.layout.actionbar_navigation_list_item, parent,false)
+                    convertView = inflater.inflate(R.layout.actionbar_navigation_list_item, parent, false)
                 }
                 val labelView = convertView?.findViewById<TextView>(R.id.actionbar_navigation_item_text)
-                labelView?.text = listNavigation!![position]
+                labelView?.text = mListNavigation!![position]
                 return convertView
             }
 
@@ -345,9 +345,10 @@ class ActionBarView : RelativeLayout {
         mLeftMenuLayout?.visibility = View.GONE
     }
 
-    fun getTitle():CharSequence {
+    fun getTitle(): CharSequence {
         return mTitleView?.text!!
     }
+
     fun setTitle(resId: Int) {
         mTitleView?.setText(resId)
     }
@@ -355,7 +356,13 @@ class ActionBarView : RelativeLayout {
     fun setTitle(title: CharSequence?) {
         mTitleView?.text = title
     }
-
+    fun setTitleGravity(gravity: Int) {
+        mTitleLayout?.gravity = gravity
+        mTitleView?.gravity = gravity
+    }
+    fun getTitleGravity(): Int {
+        return mTitleView?.getVisibility()!!
+    }
     fun setOnTitleClickListener(listener: OnClickListener) {
         mTitleView?.setOnClickListener(listener)
     }
@@ -372,14 +379,18 @@ class ActionBarView : RelativeLayout {
             mActionMode?.finish()
         }
     }
-
-    fun clearActions() {
-        actionMenu?.clear()
+    fun getActionMenu(): ActionMenu {
+        return mActionMenu!!
     }
-
+    fun clearActions() {
+        mActionMenu?.clear()
+    }
+    fun getActionTab(): ActionTab {
+        return mActionTab!!
+    }
     fun clearActionTabs() {
-        actionTab?.removeAllTabs()
-        titleVisibility = View.VISIBLE
+        mActionTab?.removeAllTabs()
+        setTitleVisibility(View.VISIBLE)
     }
 
     fun onBackPressed(): Boolean {
@@ -395,7 +406,7 @@ class ActionBarView : RelativeLayout {
         mCustomLayout?.removeAllViews()
         mCustomLayout?.addView(view)
         mTitleLayout?.visibility = View.GONE
-        actionTab?.removeAllTabs()
+        mActionTab?.removeAllTabs()
     }
 
     fun removeCustomView() {

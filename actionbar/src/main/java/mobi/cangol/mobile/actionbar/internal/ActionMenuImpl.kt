@@ -3,7 +3,6 @@ package mobi.cangol.mobile.actionbar.internal
 import android.view.View
 import mobi.cangol.mobile.actionbar.ActionMenu
 import mobi.cangol.mobile.actionbar.ActionMenuItem
-import mobi.cangol.mobile.actionbar.ActionTabItem
 import mobi.cangol.mobile.actionbar.view.ActionMenuView
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener
 

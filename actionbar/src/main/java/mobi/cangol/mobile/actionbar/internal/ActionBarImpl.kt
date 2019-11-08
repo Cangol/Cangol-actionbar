@@ -22,38 +22,38 @@ class ActionBarImpl(private val mActionBarView: ActionBarView) : ActionBar() {
 
     }
     override fun setTitleGravity(gravity: Int) {
-        mActionBarView.titleGravity = gravity
+        mActionBarView.setTitleGravity(gravity)
     }
 
     override fun getTitleGravity(): Int {
-        return mActionBarView.titleGravity
+        return mActionBarView.getTitleGravity()
     }
 
     override fun setTitleVisibility(visibility: Int) {
-        mActionBarView.titleVisibility = visibility
+        mActionBarView.setTitleVisibility(visibility)
     }
 
     override fun getTitleVisibility(): Int {
-        return mActionBarView.titleVisibility
+        return mActionBarView.getTitleVisibility()
     }
 
     override fun getListNavigation(): Array<String>? {
-        return mActionBarView.listNavigation
+        return mActionBarView.getListNavigation()
     }
 
     override fun setListNavigation(navs: Array<String>?) {
-        mActionBarView.listNavigation = navs
+        mActionBarView.setListNavigation(navs!!)
     }
 
     override fun getTitle():CharSequence {
         return mActionBarView.getTitle()
     }
     override fun getActionTab(): ActionTab {
-        return mActionBarView.actionTab!!
+        return mActionBarView.getActionTab()!!
     }
 
     override fun getActionMenu(): ActionMenu {
-        return mActionBarView.actionMenu!!
+        return mActionBarView.getActionMenu()!!
     }
 
     override fun addMenus(actions: MutableList<ActionMenuItem>) {
@@ -175,7 +175,7 @@ class ActionBarImpl(private val mActionBarView: ActionBarView) : ActionBar() {
     }
 
     override fun clearActionTabs() {
-        mActionBarView.titleVisibility = View.VISIBLE
+        mActionBarView.setTitleVisibility(View.VISIBLE)
         mActionBarView.clearActionTabs()
     }
 
