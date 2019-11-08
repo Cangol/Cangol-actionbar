@@ -42,18 +42,18 @@ class ActionBarImpl(private val mActionBarView: ActionBarView) : ActionBar() {
     }
 
     override fun setListNavigation(navs: Array<String>?) {
-        mActionBarView.setListNavigation(navs!!)
+        mActionBarView.setListNavigation(navs)
     }
 
     override fun getTitle():CharSequence {
         return mActionBarView.getTitle()
     }
     override fun getActionTab(): ActionTab {
-        return mActionBarView.getActionTab()!!
+        return mActionBarView.getActionTab()
     }
 
     override fun getActionMenu(): ActionMenu {
-        return mActionBarView.getActionMenu()!!
+        return mActionBarView.getActionMenu()
     }
 
     override fun addMenus(actions: MutableList<ActionMenuItem>) {
@@ -69,7 +69,7 @@ class ActionBarImpl(private val mActionBarView: ActionBarView) : ActionBar() {
     }
 
     override fun getTabs(): MutableList<ActionTabItem> {
-        return mActionBarView?.getTabs()!!
+        return mActionBarView?.getTabs()
     }
 
     override fun setCustomHomeAsUpIndicator(homeId: Int, upId: Int) {

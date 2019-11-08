@@ -130,12 +130,15 @@ class ActionBarView : RelativeLayout {
 
         })
     }
+
     fun getListNavigation(): Array<String>? {
         return mListNavigation
     }
-    fun setListNavigation(listNavigation: Array<String>) {
+
+    fun setListNavigation(listNavigation: Array<String>?) {
         this.mListNavigation = listNavigation
     }
+
     fun clearListNavigation() {
         mTitleView?.setCompoundDrawables(null, null, null, null)
         mTitleView?.setOnClickListener(null)
@@ -356,13 +359,16 @@ class ActionBarView : RelativeLayout {
     fun setTitle(title: CharSequence?) {
         mTitleView?.text = title
     }
+
     fun setTitleGravity(gravity: Int) {
         mTitleLayout?.gravity = gravity
         mTitleView?.gravity = gravity
     }
+
     fun getTitleGravity(): Int {
-        return mTitleView?.getVisibility()!!
+        return mTitleView?.visibility!!
     }
+
     fun setOnTitleClickListener(listener: OnClickListener) {
         mTitleView?.setOnClickListener(listener)
     }
@@ -379,15 +385,19 @@ class ActionBarView : RelativeLayout {
             mActionMode?.finish()
         }
     }
+
     fun getActionMenu(): ActionMenu {
         return mActionMenu!!
     }
+
     fun clearActions() {
         mActionMenu?.clear()
     }
+
     fun getActionTab(): ActionTab {
         return mActionTab!!
     }
+
     fun clearActionTabs() {
         mActionTab?.removeAllTabs()
         setTitleVisibility(View.VISIBLE)

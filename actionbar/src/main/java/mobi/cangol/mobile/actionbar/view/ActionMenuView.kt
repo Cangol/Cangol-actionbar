@@ -174,8 +174,8 @@ class ActionMenuView : LinearLayout, OnClickListener, OnLongClickListener {
     }
 
     private fun inflateMenuAction(action: ActionMenuItem): View {
-        val view = mInflater!!.inflate(R.layout.actionbar_popup_item, mPopupActionsView, false)
-        val labelView = view.findViewById(R.id.actionbar_popup_item_text) as TextView
+        val view = mInflater?.inflate(R.layout.actionbar_popup_item, mPopupActionsView, false)
+        val labelView = view?.findViewById(R.id.actionbar_popup_item_text) as TextView
         /**
          * if(action.getDrawable()>0){
          * Drawable img=getResources().getDrawable(action.getDrawable());

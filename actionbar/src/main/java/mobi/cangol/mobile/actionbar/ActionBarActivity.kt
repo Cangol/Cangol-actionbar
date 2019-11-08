@@ -73,7 +73,7 @@ open class ActionBarActivity : AppCompatActivity() {
      * @return
      */
     fun isActionbarOverlay(): Boolean {
-        return mDelegate?.isActionbarOverlay()!!
+        return mDelegate?.isActionbarOverlay()?:false
     }
 
     /**
