@@ -24,7 +24,7 @@ import mobi.cangol.mobile.actionbar.ActionBarActivity
 import mobi.cangol.mobile.actionbar.ActionMenu
 
 class ThemeActivity : ActionBarActivity() {
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("MainActivity", "light==$light")
         if (light) {
             setTheme(R.style.AppTheme1)
@@ -44,11 +44,11 @@ class ThemeActivity : ActionBarActivity() {
     }
 
     fun findViews() {
-        this.findViewById<View>(R.id.button_1)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_1)?.setOnClickListener {
             light = true
             recreate()
         }
-        this.findViewById<View>(R.id.button_2)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_2)?.setOnClickListener {
             light = false
             recreate()
         }

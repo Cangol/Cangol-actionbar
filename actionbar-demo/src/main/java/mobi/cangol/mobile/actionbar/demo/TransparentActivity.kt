@@ -22,25 +22,33 @@ class TransparentActivity : ActionBarActivity() {
 
     fun findViews() {
         isActionbarOverlay = true
-        this.findViewById<View>(R.id.button_transparent_0)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_transparent_0)?.setOnClickListener {
             setSystemUiFloatFullScreen(false)
             isActionbarShow = true
-            setStatusBarTintColor( ContextCompat.getColor(applicationContext,R.color.actionbar_background))
+            setStatusBarTintColor(ContextCompat.getColor(applicationContext, R.color.actionbar_background))
             customActionBar.setBackgroundResource(R.color.actionbar_background)
         }
-        this.findViewById<View>(R.id.button_transparent_1)!!.setOnClickListener {
-            setStatusBarTintColor( ContextCompat.getColor(applicationContext,R.color.translucent))
+        this.findViewById<View>(R.id.button_transparent_1)?.setOnClickListener {
+            setStatusBarTintColor(ContextCompat.getColor(applicationContext, R.color.translucent))
             customActionBar.setBackgroundResource(R.color.translucent)
         }
-        this.findViewById<View>(R.id.button_transparent_2)!!.setOnClickListener {
-            setStatusBarTintColor( ContextCompat.getColor(applicationContext,R.color.transparent))
+        this.findViewById<View>(R.id.button_transparent_2)?.setOnClickListener {
+            setStatusBarTintColor(ContextCompat.getColor(applicationContext, R.color.transparent))
             customActionBar.setBackgroundResource(R.color.transparent)
         }
 
-        this.findViewById<View>(R.id.button_transparent_3)!!.setOnClickListener { setSystemUiFloatFullScreen(true) }
-        this.findViewById<View>(R.id.button_transparent_4)!!.setOnClickListener { setSystemUiFloatFullScreen(false) }
+        this.findViewById<View>(R.id.button_transparent_3)?.setOnClickListener {
+            setSystemUiFloatFullScreen(true)
+        }
+        this.findViewById<View>(R.id.button_transparent_4)?.setOnClickListener {
+            setSystemUiFloatFullScreen(false)
+        }
 
-        this.findViewById<View>(R.id.button_transparent_5)!!.setOnClickListener { isActionbarShow = true }
-        this.findViewById<View>(R.id.button_transparent_6)!!.setOnClickListener { isActionbarShow = false }
+        this.findViewById<View>(R.id.button_transparent_5)?.setOnClickListener {
+            isActionbarShow = true
+        }
+        this.findViewById<View>(R.id.button_transparent_6)?.setOnClickListener {
+            isActionbarShow = false
+        }
     }
 }

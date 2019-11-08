@@ -50,15 +50,15 @@ class TabViewActivity : ActionBarActivity() {
         customActionBar.actionTab.setOnTabSelectedListener(object : ActionTabView.OnTabSelectedListener {
             override fun onTabSelected(tab: ActionTabItem): Boolean {
                 when (tab.id) {
-                    1 -> Toast.makeText(this@TabViewActivity, tab.text, Toast.LENGTH_SHORT).show()
-                    2 -> Toast.makeText(this@TabViewActivity, tab.text, Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(applicationContext, tab.text, Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(applicationContext, tab.text, Toast.LENGTH_SHORT).show()
                 }
                 return false
             }
         })
     }
 
-    fun initActionTab() {
+    private fun initActionTab() {
         val actionTab = this.customActionBar.actionTab
         actionTab.newTab(1, "推荐", 1)
         actionTab.newTab(2, "关注", 0)

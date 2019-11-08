@@ -47,13 +47,14 @@ class SearchViewActivity : ActionBarActivity() {
                 }
             })
         }
-        this.findViewById<View>(R.id.button_search_2)!!.setOnClickListener { stopSearchMode() }
-        this.findViewById<View>(R.id.button_search_3)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_search_2)?.setOnClickListener {
+            stopSearchMode()
+        }
+        this.findViewById<View>(R.id.button_search_3)?.setOnClickListener {
             history = !history
         }
-        this.findViewById<View>(R.id.button_search_4)!!.setOnClickListener {
-            if (searchView != null)
-                searchView!!.clearSearchHistory()
+        this.findViewById<View>(R.id.button_search_4)?.setOnClickListener {
+                searchView?.clearSearchHistory()
         }
 
 

@@ -35,10 +35,12 @@ class CustomViewActivity : ActionBarActivity() {
     }
 
     fun findViews() {
-        this.findViewById<View>(R.id.button_custom_1)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_custom_1)?.setOnClickListener {
             customActionBar.setDisplayShowHomeEnabled(false)
-            customActionBar.setCustomView(EditText(this@CustomViewActivity))
+            customActionBar.setCustomView(EditText(applicationContext))
         }
-        this.findViewById<View>(R.id.button_custom_2)!!.setOnClickListener { customActionBar.removeCustomView() }
+        this.findViewById<View>(R.id.button_custom_2)?.setOnClickListener {
+            customActionBar.removeCustomView()
+        }
     }
 }

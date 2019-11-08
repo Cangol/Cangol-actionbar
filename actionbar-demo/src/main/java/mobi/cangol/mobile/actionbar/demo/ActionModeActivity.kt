@@ -37,25 +37,23 @@ class ActionModeActivity : ActionBarActivity() {
     }
 
     fun findViews() {
-        this.findViewById<View>(R.id.button_mode_1)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_mode_1)?.setOnClickListener {
             startCustomActionMode(object : ActionMode.Callback {
 
-                override fun onCreateActionMode(mode: ActionMode,
-                                                actionMenu: ActionMenu) {
-
+                override fun onCreateActionMode(mode: ActionMode,actionMenu: ActionMenu) {
                 }
 
-                override fun onActionItemClicked(mode: ActionMode,
-                                                 menuItem: ActionMenuItem): Boolean {
+                override fun onActionItemClicked(mode: ActionMode,menuItem: ActionMenuItem): Boolean {
                     return false
                 }
 
                 override fun onDestroyActionMode(mode: ActionMode) {
-
                 }
 
             })
         }
-        this.findViewById<View>(R.id.button_mode_2)!!.setOnClickListener { stopCustomActionMode() }
+        this.findViewById<View>(R.id.button_mode_2)?.setOnClickListener {
+            stopCustomActionMode()
+        }
     }
 }

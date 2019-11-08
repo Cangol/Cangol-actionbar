@@ -36,8 +36,10 @@ class NavViewActivity : ActionBarActivity() {
     }
 
     fun findViews() {
-        this.findViewById<View>(R.id.button_nav_1)!!.setOnClickListener { actionNav() }
-        this.findViewById<View>(R.id.button_nav_2)!!.setOnClickListener { customActionBar.clearListNavigation() }
+        this.findViewById<View>(R.id.button_nav_1)?.setOnClickListener {
+            actionNav() }
+        this.findViewById<View>(R.id.button_nav_2)?.setOnClickListener {
+            customActionBar.clearListNavigation() }
     }
 
     fun actionNav() {
@@ -45,9 +47,8 @@ class NavViewActivity : ActionBarActivity() {
         this.customActionBar.listNavigation = navs
         this.customActionBar.setOnNavigationListener(object : OnNavigationListener {
 
-            override fun onNavigationItemSelected(itemPosition: Int,
-                                                  itemId: Long): Boolean {
-                Toast.makeText(this@NavViewActivity, "Navigation " + navs[itemPosition], Toast.LENGTH_SHORT).show()
+            override fun onNavigationItemSelected(itemPosition: Int,itemId: Long): Boolean {
+                Toast.makeText(applicationContext, "Navigation " + navs[itemPosition], Toast.LENGTH_SHORT).show()
                 customActionBar.setTitle(navs[itemPosition])
                 return true
             }

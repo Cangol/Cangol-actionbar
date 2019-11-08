@@ -50,8 +50,8 @@ class MainActivity : ActionBarActivity() {
         activities.add(ThemeActivity::class.java)
         activities.add(TransparentActivity::class.java)
         activities.add(TransparentNativeActivity::class.java)
-        mListView = this.findViewById<View>(R.id.listView) as ListView?
-        mListView!!.adapter = object : BaseAdapter() {
+        mListView = this.findViewById(R.id.listView)
+        mListView?.adapter = object : BaseAdapter() {
             override fun getCount(): Int {
                 return activities.size
             }
@@ -84,7 +84,7 @@ class MainActivity : ActionBarActivity() {
                 var text: TextView? = null
             }
         }
-        mListView!!.onItemClickListener = object : AdapterView.OnItemClickListener {
+        mListView?.onItemClickListener = object : AdapterView.OnItemClickListener {
             override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val clazz = parent.getItemAtPosition(position) as Class<*>
                 startActivity(Intent(this@MainActivity, clazz))

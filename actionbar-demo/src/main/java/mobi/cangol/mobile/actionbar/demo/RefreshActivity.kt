@@ -37,14 +37,16 @@ class RefreshActivity : ActionBarActivity() {
         this.customActionBar.displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
-        customActionBar.setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener { })
+        customActionBar.setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener {
+
+        })
     }
 
     override fun onMenuActionCreated(actionMenu: ActionMenu) {
         super.onMenuActionCreated(actionMenu)
         actionMenu.addMenu(1, R.string.action_delete, -1, 1)
-        //        actionMenu.addMenu(2, R.string.action_selectAll, R.drawable.ic_action_select, 1);
-        //        actionMenu.addMenu(3, R.string.action_invert, R.drawable.ic_action_unselect, 0);
+        //actionMenu.addMenu(2, R.string.action_selectAll, R.drawable.ic_action_select, 1);
+        //actionMenu.addMenu(3, R.string.action_invert, R.drawable.ic_action_unselect, 0);
     }
 
     override fun onMenuActionSelected(action: ActionMenuItem): Boolean {
@@ -57,12 +59,24 @@ class RefreshActivity : ActionBarActivity() {
     }
 
     fun findViews() {
-        this.findViewById<View>(R.id.button_refresh_00)!!.setOnClickListener { customActionBar.enableRefresh(true, Gravity.LEFT) }
-        this.findViewById<View>(R.id.button_refresh_01)!!.setOnClickListener { customActionBar.enableRefresh(false, Gravity.LEFT) }
-        this.findViewById<View>(R.id.button_refresh_10)!!.setOnClickListener { customActionBar.enableRefresh(true, Gravity.RIGHT) }
-        this.findViewById<View>(R.id.button_refresh_11)!!.setOnClickListener { customActionBar.enableRefresh(false, Gravity.RIGHT) }
-        this.findViewById<View>(R.id.button_refresh_2)!!.setOnClickListener { customActionBar.refreshing(true) }
-        this.findViewById<View>(R.id.button_refresh_3)!!.setOnClickListener { customActionBar.refreshing(false) }
+        this.findViewById<View>(R.id.button_refresh_00)?.setOnClickListener {
+            customActionBar.enableRefresh(true, Gravity.LEFT)
+        }
+        this.findViewById<View>(R.id.button_refresh_01)?.setOnClickListener {
+            customActionBar.enableRefresh(false, Gravity.LEFT)
+        }
+        this.findViewById<View>(R.id.button_refresh_10)?.setOnClickListener {
+            customActionBar.enableRefresh(true, Gravity.RIGHT)
+        }
+        this.findViewById<View>(R.id.button_refresh_11)?.setOnClickListener {
+            customActionBar.enableRefresh(false, Gravity.RIGHT)
+        }
+        this.findViewById<View>(R.id.button_refresh_2)?.setOnClickListener {
+            customActionBar.refreshing(true)
+        }
+        this.findViewById<View>(R.id.button_refresh_3)?.setOnClickListener {
+            customActionBar.refreshing(false)
+        }
         customActionBar.setOnRefreshClickListener(OnClickListener { showToast("refreshing") })
     }
 

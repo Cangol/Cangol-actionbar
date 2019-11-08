@@ -37,12 +37,20 @@ class LeftMenuActivity : ActionBarActivity() {
         findViews()
     }
 
-    fun findViews() {
+    private fun findViews() {
         this.customActionBar.titleGravity = Gravity.CENTER
-        this.findViewById<View>(R.id.button_menu_0)!!.setOnClickListener { customActionBar.setDisplayShowHomeEnabled(true) }
-        this.findViewById<View>(R.id.button_menu_1)!!.setOnClickListener { customActionBar.setDisplayShowHomeEnabled(false) }
-        this.findViewById<View>(R.id.button_menu_2)!!.setOnClickListener { customActionBar.setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener { }) }
-        this.findViewById<View>(R.id.button_menu_3)!!.setOnClickListener { customActionBar.clearLeftMenu() }
+        this.findViewById<View>(R.id.button_menu_0)?.setOnClickListener {
+            customActionBar.setDisplayShowHomeEnabled(true)
+        }
+        this.findViewById<View>(R.id.button_menu_1)?.setOnClickListener {
+            customActionBar.setDisplayShowHomeEnabled(false)
+        }
+        this.findViewById<View>(R.id.button_menu_2)?.setOnClickListener {
+            customActionBar.setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener { })
+        }
+        this.findViewById<View>(R.id.button_menu_3)?.setOnClickListener {
+            customActionBar.clearLeftMenu()
+        }
     }
 
     private fun showToast(string: String) {

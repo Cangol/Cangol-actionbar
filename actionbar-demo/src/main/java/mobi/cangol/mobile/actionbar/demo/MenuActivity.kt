@@ -40,7 +40,7 @@ class MenuActivity : ActionBarActivity() {
     }
 
     fun findViews() {
-        this.findViewById<View>(R.id.button_menu_1)!!.setOnClickListener(object : OnClickListener {
+        this.findViewById<View>(R.id.button_menu_1)?.setOnClickListener(object : OnClickListener {
             var fullScreen: Boolean = false
             override fun onClick(v: View) {
                 if (!fullScreen) {
@@ -53,11 +53,15 @@ class MenuActivity : ActionBarActivity() {
 
             }
         })
-        this.findViewById<View>(R.id.button_menu_2)!!.setOnClickListener { isActionbarShow = !isActionbarShow }
+        this.findViewById<View>(R.id.button_menu_2)?.setOnClickListener {
+            isActionbarShow = !isActionbarShow
+        }
 
-        this.findViewById<View>(R.id.button_menu_3)!!.setOnClickListener { isActionbarOverlay = !isActionbarOverlay }
+        this.findViewById<View>(R.id.button_menu_3)?.setOnClickListener {
+            isActionbarOverlay = !isActionbarOverlay
+        }
 
-        this.findViewById<View>(R.id.button_menu_4)!!.setOnClickListener(object : OnClickListener {
+        this.findViewById<View>(R.id.button_menu_4)?.setOnClickListener(object : OnClickListener {
             var displayHome = true
             override fun onClick(v: View) {
                 if (!displayHome) {
@@ -70,7 +74,7 @@ class MenuActivity : ActionBarActivity() {
             }
         })
         //this.setMaskView();
-        this.findViewById<View>(R.id.button_menu_5)!!.setOnClickListener(object : OnClickListener {
+        this.findViewById<View>(R.id.button_menu_5)?.setOnClickListener(object : OnClickListener {
             var maskView: Boolean = false
             override fun onClick(v: View) {
                 if (!maskView) {
@@ -82,13 +86,23 @@ class MenuActivity : ActionBarActivity() {
                 }
             }
         })
-        this.findViewById<View>(R.id.button_menu_6)!!.setOnClickListener { setWindowBackground(R.color.red) }
-        this.findViewById<View>(R.id.button_menu_7)!!.setOnClickListener { setBackgroundResource(R.color.activity_background) }
-        this.findViewById<View>(R.id.button_menu_8)!!.setOnClickListener { setStatusBarTintColor(resources.getColor(R.color.blue)) }
-        this.findViewById<View>(R.id.button_menu_9)!!.setOnClickListener { setNavigationBarTintColor(resources.getColor(R.color.red)) }
-        this.findViewById<View>(R.id.button_menu_10)!!.setOnClickListener { customActionBar.setBackgroundResource(R.color.blue) }
+        this.findViewById<View>(R.id.button_menu_6)?.setOnClickListener {
+            setWindowBackground(R.color.red)
+        }
+        this.findViewById<View>(R.id.button_menu_7)?.setOnClickListener {
+            setBackgroundResource(R.color.activity_background)
+        }
+        this.findViewById<View>(R.id.button_menu_8)?.setOnClickListener {
+            setStatusBarTintColor(resources.getColor(R.color.blue))
+        }
+        this.findViewById<View>(R.id.button_menu_9)?.setOnClickListener {
+            setNavigationBarTintColor(resources.getColor(R.color.red))
+        }
+        this.findViewById<View>(R.id.button_menu_10)?.setOnClickListener {
+            customActionBar.setBackgroundResource(R.color.blue)
+        }
 
-        this.findViewById<View>(R.id.button_menu_11)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_menu_11)?.setOnClickListener {
             customActionBar.setLeftMenu(0x11, R.string.action_setting, -1, OnClickListener {
                 Log.e(">>", "click me")
                 showToast("click me")
