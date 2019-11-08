@@ -10,24 +10,27 @@ import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener
 abstract class ActionTab {
 
     /**
-     * 获取所有tabItem
-     */
-
-    /**
      * 设置tabItem列表
      */
-    abstract var tabs: MutableList<ActionTabItem>
+    abstract fun setTabs(tabs: MutableList<ActionTabItem>)
 
     /**
-     * 获取选择的ID
-     *
+     * 获取所有tabItem
      */
+    abstract fun getTabs(): MutableList<ActionTabItem>
+
     /**
      * 选择tab
      *
      * @param id tabItem唯一标示
      */
-    abstract var tabSelected: Int
+    abstract fun setTabSelected(id: Int)
+
+    /**
+     * 获取所选择tab
+     *
+     */
+    abstract fun getTabSelected(): Int
 
     /**
      * 移除所有tabItem

@@ -32,23 +32,23 @@ class TitleActivity : ActionBarActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_title_view)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
 
     fun findViews() {
         this.findViewById<View>(R.id.button_title_1)?.setOnClickListener {
-            customActionBar.titleGravity = Gravity.CENTER
+            getCustomActionBar().setTitleGravity(Gravity.CENTER)
         }
         this.findViewById<View>(R.id.button_title_2)?.setOnClickListener {
-            customActionBar.titleGravity = Gravity.LEFT or Gravity.CENTER_VERTICAL
+            getCustomActionBar().setTitleGravity(Gravity.LEFT or Gravity.CENTER_VERTICAL)
         }
         this.findViewById<View>(R.id.button_title_2)?.setOnClickListener {
-            if (customActionBar.titleVisibility == View.VISIBLE) {
-                customActionBar.titleVisibility = View.VISIBLE
+            if (getCustomActionBar().getTitleVisibility() == View.VISIBLE) {
+                getCustomActionBar().setTitleVisibility(View.VISIBLE)
             } else {
-                customActionBar.titleVisibility = View.INVISIBLE
+                getCustomActionBar().setTitleVisibility(View.INVISIBLE)
             }
         }
         this.findViewById<View>(R.id.button_shadwow_1)?.setOnClickListener {
@@ -61,7 +61,7 @@ class TitleActivity : ActionBarActivity() {
 
         }
         //设置标题点击事件
-        this.customActionBar.setOnTitleClickListener(OnClickListener {
+        this.getCustomActionBar().setOnTitleClickListener(OnClickListener {
             Toast.makeText(applicationContext, "Click Title", Toast.LENGTH_SHORT).show()
         })
     }

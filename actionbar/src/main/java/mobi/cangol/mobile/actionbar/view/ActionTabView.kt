@@ -20,13 +20,6 @@ class ActionTabView : RadioGroup, OnCheckedChangeListener {
     private var mActionTab: ActionTab? = null
     private var mOnTabSelectedListener: OnTabSelectedListener? = null
 
-    val tabs: List<ActionTabItem>
-        get() = mActionTab!!.tabs
-
-    var tabSelected: Int
-        get() = this.checkedRadioButtonId
-        set(id) = this.check(id)
-
     constructor(context: Context) : super(context) {
         initViews(context)
     }
@@ -39,6 +32,14 @@ class ActionTabView : RadioGroup, OnCheckedChangeListener {
         this.orientation = LinearLayout.HORIZONTAL
         mInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         this.setOnCheckedChangeListener(this)
+    }
+
+    fun selectTab(id: Int) {
+        this.check(id)
+    }
+
+    fun getSelectTabId(): Int {
+        return this.checkedRadioButtonId
     }
 
     fun setActionTab(actionTab: ActionTab) {
@@ -73,13 +74,15 @@ class ActionTabView : RadioGroup, OnCheckedChangeListener {
     fun setOnTabSelectedListener(onTabSelectedListener: OnTabSelectedListener) {
         this.mOnTabSelectedListener = onTabSelectedListener
     }
+
     fun removeTabSelectedListener() {
         this.mOnTabSelectedListener = null
     }
+
     override fun onCheckedChanged(group: RadioGroup, checkedId: Int) {
         val view = this.findViewById<View>(checkedId) ?: return
         if (view.tag is ActionTabItem) {
-           mOnTabSelectedListener?.onTabSelected(view.tag as ActionTabItem)
+            mOnTabSelectedListener?.onTabSelected(view.tag as ActionTabItem)
         }
     }
 

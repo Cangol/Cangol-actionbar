@@ -27,11 +27,10 @@ import mobi.cangol.mobile.actionbar.view.SearchView
 @SuppressLint("ResourceAsColor")
 class SearchViewActivity : ActionBarActivity() {
     private var searchView: SearchView? = null
-    internal var history = true
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_view)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
@@ -39,8 +38,8 @@ class SearchViewActivity : ActionBarActivity() {
     fun findViews() {
         this.findViewById<View>(R.id.button_search_1)!!.setOnClickListener {
             searchView = startSearchMode()
-            searchView!!.setSearchHistoryEnable(history)
-            searchView!!.setOnSearchTextListener(object : SearchView.OnSearchTextListener {
+            searchView?.setSearchHistoryEnable(true)
+            searchView?.setOnSearchTextListener(object : SearchView.OnSearchTextListener {
                 override fun onSearchText(keywords: String): Boolean {
                     Toast.makeText(applicationContext, keywords, Toast.LENGTH_SHORT).show()
                     return true
@@ -51,7 +50,8 @@ class SearchViewActivity : ActionBarActivity() {
             stopSearchMode()
         }
         this.findViewById<View>(R.id.button_search_3)?.setOnClickListener {
-            history = !history
+            var history=searchView?.searchHistoryEnable()?:false
+            searchView?.setSearchHistoryEnable(!history)
         }
         this.findViewById<View>(R.id.button_search_4)?.setOnClickListener {
                 searchView?.clearSearchHistory()

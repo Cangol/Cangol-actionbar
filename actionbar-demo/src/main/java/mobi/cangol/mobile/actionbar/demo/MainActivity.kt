@@ -34,9 +34,9 @@ class MainActivity : ActionBarActivity() {
         title = "首页"
         this.setStatusBarTintColor(resources.getColor(R.color.red))
         this.setWindowBackground(R.drawable.ic_bg)
-        this.customActionBar.setDisplayShowHomeEnabled(true)
+        this.getCustomActionBar().setDisplayShowHomeEnabled(true)
         this.setActionbarShadow(true, 8f)
-        this.customActionBar.setBackgroundResource(R.color.red)
+        this.getCustomActionBar().setBackgroundResource(R.color.red)
 
         activities.add(SearchViewActivity::class.java)
         activities.add(ActionModeActivity::class.java)
@@ -90,7 +90,6 @@ class MainActivity : ActionBarActivity() {
                 startActivity(Intent(this@MainActivity, clazz))
             }
         }
-
     }
 
     companion object {

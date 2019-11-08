@@ -16,15 +16,6 @@ import android.view.WindowManager
  */
 class TransparentNativeActivity : AppCompatActivity() {
 
-    private val statusBarHeight: Int
-        get() {
-            var result = 0
-            val resourceId = this.resources.getIdentifier("status_bar_height", "dimen", "android")
-            if (resourceId > 0) {
-                result = this.resources.getDimensionPixelSize(resourceId)
-            }
-            return result
-        }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,14 +45,18 @@ class TransparentNativeActivity : AppCompatActivity() {
             supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
         this.findViewById<View>(R.id.button_transparent_3).setOnClickListener {
-            setSystemUiFloatFullScreen(true) }
+            setSystemUiFloatFullScreen(true)
+        }
         this.findViewById<View>(R.id.button_transparent_4).setOnClickListener {
-            setSystemUiFloatFullScreen(false) }
+            setSystemUiFloatFullScreen(false)
+        }
 
         this.findViewById<View>(R.id.button_transparent_5).setOnClickListener {
-            supportActionBar!!.show() }
+            supportActionBar?.show()
+        }
         this.findViewById<View>(R.id.button_transparent_6).setOnClickListener {
-            supportActionBar!!.hide() }
+            supportActionBar?.hide()
+        }
     }
 
     private fun setStatusBarTranslucent() {
@@ -112,6 +107,16 @@ class TransparentNativeActivity : AppCompatActivity() {
     }
 
     private fun setPaddingTop(id: Int) {
-        findViewById<View>(id).setPadding(0, statusBarHeight, 0, 0)
+        findViewById<View>(id).setPadding(0, getStatusBarHeight(), 0, 0)
     }
+
+    private fun getStatusBarHeight() :Int{
+        var result = 0
+        val resourceId = this.resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = this.resources.getDimensionPixelSize(resourceId)
+        }
+        return result
+    }
+
 }

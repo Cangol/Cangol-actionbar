@@ -3,6 +3,7 @@ package mobi.cangol.mobile.actionbar.internal
 import android.view.View
 import mobi.cangol.mobile.actionbar.ActionMenu
 import mobi.cangol.mobile.actionbar.ActionMenuItem
+import mobi.cangol.mobile.actionbar.ActionTabItem
 import mobi.cangol.mobile.actionbar.view.ActionMenuView
 import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener
 
@@ -12,15 +13,17 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener
 class ActionMenuImpl(private val mActionMenuView: ActionMenuView) : ActionMenu() {
     private var mActions: MutableList<ActionMenuItem> = mutableListOf()
 
-    override var actions: MutableList<ActionMenuItem>
-        get() = mActions
-        set(actions) {
-            mActions = actions
-            mActionMenuView.addActions(mActions)
-        }
-
     init {
         this.mActionMenuView.setActionMenu(this)
+    }
+
+    override fun setActions(actions: MutableList<ActionMenuItem>) {
+        mActions=actions
+        mActionMenuView.addActions(mActions)
+    }
+
+    override fun getActions(): MutableList<ActionMenuItem> {
+        return mActions
     }
 
     override fun addMenu(id: Int, text: Int, drawable: Int, show: Int): ActionMenuItem {

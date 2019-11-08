@@ -1,6 +1,5 @@
 package mobi.cangol.mobile.actionbar
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +16,7 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import mobi.cangol.mobile.actionbar.view.SearchView
 
+
 open class ActionBarActivity : AppCompatActivity() {
     private var mDelegate: ActionBarActivityDelegate? = null
     private var mTintManager: SystemBarTintManager? = null
@@ -31,27 +31,16 @@ open class ActionBarActivity : AppCompatActivity() {
             return result
         }
 
-    /**
-     * 获取遮罩整个activity的mask
-     *
-     * @return
-     */
-    val maskView: FrameLayout?
-        get() = mDelegate?.maskView
 
-    /**
-     * 是否全屏
-     */
+
 
     /**
      * 设置全屏
      *
      * @param fullscreen
      */
-    // Set the visibility
-    var isFullScreen: Boolean
-        get() = this.window.attributes.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN == WindowManager.LayoutParams.FLAG_FULLSCREEN
-        set(fullscreen) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    fun setFullScreen(fullscreen: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (fullscreen) {
                 this.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             } else {
@@ -65,48 +54,64 @@ open class ActionBarActivity : AppCompatActivity() {
             if (fullscreen) {
                 newVisibility = newVisibility or (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
             }
+            // Set the visibility
             this.window.decorView.systemUiVisibility = newVisibility
         }
+    }
+
+    /**
+     * 是否全屏
+     */
+
+    fun isFullScreen(): Boolean {
+        return this.window.attributes.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN == WindowManager.LayoutParams.FLAG_FULLSCREEN
+    }
 
     /**
      * 返回actionbar是否悬浮
      *
      * @return
      */
+    fun isActionbarOverlay(): Boolean {
+        return mDelegate?.isActionbarOverlay()!!
+    }
+
     /**
      * 设置actionbar是否悬浮
      *
-     * @param overlay
+     * @param mActionbarOverlay
      */
-    var isActionbarOverlay: Boolean
-        get() = mDelegate?.isActionbarOverlay ?: false
-        set(overlay) {
-            this.mDelegate?.isActionbarOverlay = overlay
-        }
+    fun setActionbarOverlay(mActionbarOverlay: Boolean) {
+        this.mDelegate?.setActionbarOverlay(mActionbarOverlay)
+    }
 
     /**
      * 返回actionbar的显示
      */
+    fun isActionbarShow(): Boolean {
+        return mDelegate?.isActionbarShow()!!
+
+    }
+
     /**
      * 设置actionbar的显示
      *
      * @param show
      */
-    var isActionbarShow: Boolean
-        get() = mDelegate?.isActionbarShow ?: false
-        set(show) {
-            this.mDelegate?.isActionbarOverlay = !show
-            this.mDelegate?.isActionbarShow = show
+    fun setActionbarShow(show: Boolean) {
+        this.mDelegate?.setActionbarOverlay(!show)
+        this.mDelegate?.setActionbarShow(show)
 
-        }
+    }
 
     /**
      * 获取自定义actionbar
      *
      * @return
      */
-    val customActionBar: ActionBar
-        get() = mDelegate?.customActionBar!!
+    fun getCustomActionBar(): ActionBar {
+        return mDelegate?.getCustomActionBar()!!
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -208,7 +213,7 @@ open class ActionBarActivity : AppCompatActivity() {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                 window.statusBarColor = color
             }
-        } else if (!isFullScreen) {
+        } else if (!isFullScreen()) {
             mTintManager?.isStatusBarTintEnabled = true
             mTintManager?.setStatusBarTintColor(color)
         }
@@ -280,7 +285,7 @@ open class ActionBarActivity : AppCompatActivity() {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                 window.navigationBarColor = color
             }
-        } else if (!isFullScreen) {
+        } else if (!isFullScreen()) {
             mTintManager?.setNavigationBarTintEnabled(true)
             mTintManager?.setNavigationBarTintColor(color)
         }
@@ -308,7 +313,7 @@ open class ActionBarActivity : AppCompatActivity() {
 
     private fun setStatusBarTextColorWithXiaomi(black: Boolean) {
         try {
-            var darkModeFlag = 0
+            var darkModeFlag :Int= 0
             val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
             val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
             darkModeFlag = field.getInt(layoutParams)
@@ -323,7 +328,14 @@ open class ActionBarActivity : AppCompatActivity() {
         }
 
     }
-
+    /**
+     * 获取遮罩整个activity的mask
+     *
+     * @return
+     */
+    fun getMaskView(): FrameLayout {
+        return mDelegate?.getMaskView()!!
+    }
     /**
      * 显示遮罩
      *
@@ -431,14 +443,14 @@ open class ActionBarActivity : AppCompatActivity() {
      * @return
      */
     fun startCustomActionMode(callback: ActionMode.Callback): ActionMode {
-        return customActionBar?.startActionMode(callback)
+        return getCustomActionBar()?.startActionMode(callback)
     }
 
     /**
      * 停止自定义actionmode
      */
     fun stopCustomActionMode() {
-        customActionBar?.stopActionMode()
+        getCustomActionBar()?.stopActionMode()
     }
 
     /**
@@ -452,10 +464,10 @@ open class ActionBarActivity : AppCompatActivity() {
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
-        if(mDelegate?.onKeyUp(keyCode, event)?:false){
-            return  true
+        return if(mDelegate?.onKeyUp(keyCode, event) == true){
+            true
         }else{
-            return  super.onKeyUp(keyCode, event)
+            super.onKeyUp(keyCode, event)
         }
     }
 

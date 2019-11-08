@@ -13,7 +13,7 @@ class TransparentActivity : ActionBarActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transparent_view)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.setActionbarShadow(true, 9f)
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
@@ -21,20 +21,21 @@ class TransparentActivity : ActionBarActivity() {
     }
 
     fun findViews() {
-        isActionbarOverlay = true
+        setActionbarOverlay(true)
         this.findViewById<View>(R.id.button_transparent_0)?.setOnClickListener {
             setSystemUiFloatFullScreen(false)
-            isActionbarShow = true
+            setActionbarShow(true)
             setStatusBarTintColor(ContextCompat.getColor(applicationContext, R.color.actionbar_background))
-            customActionBar.setBackgroundResource(R.color.actionbar_background)
+            getCustomActionBar().setBackgroundResource(R.color.actionbar_background)
         }
         this.findViewById<View>(R.id.button_transparent_1)?.setOnClickListener {
             setStatusBarTintColor(ContextCompat.getColor(applicationContext, R.color.translucent))
-            customActionBar.setBackgroundResource(R.color.translucent)
+            getCustomActionBar().setBackgroundResource(R.color.translucent)
+
         }
         this.findViewById<View>(R.id.button_transparent_2)?.setOnClickListener {
             setStatusBarTintColor(ContextCompat.getColor(applicationContext, R.color.transparent))
-            customActionBar.setBackgroundResource(R.color.transparent)
+            getCustomActionBar().setBackgroundResource(R.color.transparent)
         }
 
         this.findViewById<View>(R.id.button_transparent_3)?.setOnClickListener {
@@ -45,10 +46,11 @@ class TransparentActivity : ActionBarActivity() {
         }
 
         this.findViewById<View>(R.id.button_transparent_5)?.setOnClickListener {
-            isActionbarShow = true
+            setActionbarShow(true)
+
         }
         this.findViewById<View>(R.id.button_transparent_6)?.setOnClickListener {
-            isActionbarShow = false
+            setActionbarShow(false)
         }
     }
 }

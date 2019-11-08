@@ -38,12 +38,12 @@ class ThemeActivity : ActionBarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theme)
         this.setActionbarShadow(true)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
 
-    fun findViews() {
+    private fun findViews() {
         this.findViewById<View>(R.id.button_1)?.setOnClickListener {
             light = true
             recreate()
@@ -52,7 +52,7 @@ class ThemeActivity : ActionBarActivity() {
             light = false
             recreate()
         }
-        val actionTab = this.customActionBar.actionTab
+        val actionTab = this.getCustomActionBar().getActionTab()
         actionTab.newTab(1, "推荐", 1)
         actionTab.newTab(2, "关注", 0)
     }

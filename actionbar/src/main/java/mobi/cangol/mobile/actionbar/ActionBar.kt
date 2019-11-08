@@ -15,89 +15,110 @@ abstract class ActionBar {
      *
      * @return
      */
+    abstract fun isShow(): Boolean
+
     /**
      * 设置显示
      *
      * @param show
      */
-    abstract var isShow: Boolean
+    abstract fun setShow(show: Boolean)
 
     /**
      * 获取标题
      *
      * @return
      */
-    abstract val title: CharSequence
+    abstract fun getTitle(): CharSequence
+
+    /**
+     * 设置标题
+     *
+     * @param title
+     */
+    abstract fun setTitle(title: CharSequence)
+
+    /**
+     * 设置标题
+     *
+     * @param resId
+     */
+    abstract fun setTitle(resId: Int)
 
     /**
      * 获取标题对其方式
      *
      * @return
      */
+    abstract fun getTitleGravity(): Int
+
     /**
      * 设置标题对其方式
      *
      * @param gravity
      */
-    abstract var titleGravity: Int
+    abstract fun setTitleGravity(gravity: Int)
+
 
     /**
      * 获取标题显示
      */
+    abstract fun getTitleVisibility(): Int
+
     /**
      * 设置标题显示
      *
-     * @param visibly
+     * @param visibility
      */
-    abstract var titleVisibility: Int
+    abstract fun setTitleVisibility(visibility: Int)
 
     /**
      * 获取导航菜单
      */
+    abstract fun getListNavigation(): Array<String>?
+
     /**
      * 设置导航菜单
      *
      * @param navs
      */
-    abstract var listNavigation: Array<String>?
+    abstract fun setListNavigation(navs: Array<String>?)
 
     /**
      * 获取actionMenu
      *
      * @return
      */
-    abstract val actionMenu: ActionMenu
+    abstract fun getActionMenu(): ActionMenu
 
     /**
      * 获取所有菜单按钮
      *
      * @return
      */
+    abstract fun getMenus(): MutableList<ActionMenuItem>
+
     /**
      * 设置菜单按钮
      *
      * @param actions
      */
-    abstract var menus: MutableList<ActionMenuItem>
+    abstract fun addMenus(actions: MutableList<ActionMenuItem>)
 
     /**
-     * 创建ActionTab
-     *
-     * @return
+     * 获取ActionTab
      */
-    abstract val actionTab: ActionTab
+    abstract fun getActionTab(): ActionTab
+
+    /**
+     * 设置标题栏tabItems
+     */
+    abstract fun setTabs(tabs: MutableList<ActionTabItem>)
 
     /**
      * 获取所有tabItem
-     *
-     * @return
      */
-    /**
-     * 设置标题栏tabItems
-     *
-     * @param tabs
-     */
-    abstract var tabs: MutableList<ActionTabItem>
+    abstract fun getTabs(): MutableList<ActionTabItem>
 
     /**
      * 设置自定义的home和up
@@ -179,20 +200,6 @@ abstract class ActionBar {
      * @param resId
      */
     abstract fun setBackgroundResource(resId: Int)
-
-    /**
-     * 设置标题
-     *
-     * @param resId
-     */
-    abstract fun setTitle(resId: Int)
-
-    /**
-     * 设置标题
-     *
-     * @param title
-     */
-    abstract fun setTitle(title: CharSequence)
 
     /**
      * 设置标题点击事件监听
@@ -277,4 +284,6 @@ abstract class ActionBar {
      * 获取view
      */
     abstract fun <T : View> findViewById(@IdRes id: Int): T?
+
+
 }

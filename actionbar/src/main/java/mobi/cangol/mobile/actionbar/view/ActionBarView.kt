@@ -48,9 +48,6 @@ class ActionBarView : RelativeLayout {
     private var mOnNavigationListener: OnNavigationListener? = null
     private var mOnRefreshClickListener: OnClickListener? = null
 
-    val title: CharSequence
-        get() = mTitleView?.text.toString()
-
     var titleGravity: Int
         get() = mTitleView?.visibility?: View.GONE
         set(gravity) {
@@ -58,19 +55,24 @@ class ActionBarView : RelativeLayout {
             mTitleView?.gravity = gravity
         }
 
-    var actions: MutableList<ActionMenuItem>
-        get() = actionMenu?.actions!!
-        set(actions) {
-            actionMenu?.actions = actions
-        }
+    fun addActions(actions: MutableList<ActionMenuItem>) {
+        actionMenu?.setActions(actions)
+    }
 
-    var tabs: MutableList<ActionTabItem>
-        get() = actionTab?.tabs!!
-        set(tabs) {
+    fun getActions(): MutableList<ActionMenuItem> {
+        return actionMenu?.getActions()!!
+    }
+
+    fun setTabs(tabs: MutableList<ActionTabItem>) {
+        if (tabs.isNotEmpty()) {
             titleVisibility = View.GONE
-            actionTab?.tabs = tabs
+            actionTab?.setTabs(tabs)
         }
+    }
 
+    fun getTabs(): MutableList<ActionTabItem> {
+        return actionTab?.getTabs()!!
+    }
     var titleVisibility: Int
         get() = mTitleLayout?.visibility?: View.GONE
         set(visibility) {
@@ -343,6 +345,9 @@ class ActionBarView : RelativeLayout {
         mLeftMenuLayout?.visibility = View.GONE
     }
 
+    fun getTitle():CharSequence {
+        return mTitleView?.text!!
+    }
     fun setTitle(resId: Int) {
         mTitleView?.setText(resId)
     }
@@ -356,14 +361,14 @@ class ActionBarView : RelativeLayout {
     }
 
     fun startActionMode(callback: Callback): ActionMode {
-        if (!mActionMode!!.isActionMode) {
+        if (!mActionMode?.isActionMode()!!) {
             mActionMode?.start(callback)
         }
         return mActionMode!!
     }
 
     fun stopActionMode() {
-        if (mActionMode!!.isActionMode) {
+        if (mActionMode?.isActionMode()!!) {
             mActionMode?.finish()
         }
     }
@@ -378,7 +383,7 @@ class ActionBarView : RelativeLayout {
     }
 
     fun onBackPressed(): Boolean {
-        if (mActionMode!!.isActionMode) {
+        if (mActionMode?.isActionMode()!!) {
             stopActionMode()
             return true
         }

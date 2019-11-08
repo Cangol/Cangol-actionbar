@@ -16,38 +16,40 @@ import mobi.cangol.mobile.actionbar.view.ActionBarView
 import mobi.cangol.mobile.actionbar.view.SearchView
 import java.util.*
 
+
 /**
  * @author Cangol
  */
 class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
     private var mContainerView: ViewGroup? = null
-    var customActionBar: ActionBar? = null
-        private set
+    private var mActionBar: ActionBar? = null
     private var mContentView: FrameLayout? = null
-    var maskView: FrameLayout? = null
-        private set
+    private var mMaskView: FrameLayout? = null
     private var mSearchView: SearchView? = null
-    var isActionbarOverlay = false
-        set(mActionbarOverlay) {
-            field = mActionbarOverlay
-            if (mActionbarOverlay) {
-                mContentView?.setPadding(0, 0, 0, 0)
-            } else {
-                mContentView?.setPadding(0, mActivity.resources.getDimensionPixelSize(R.dimen.actionbar_height), 0, 0)
-            }
-        }
-
-    var isActionbarShow: Boolean
-        get() = customActionBar?.isShow?:false
-        set(show) {
-            customActionBar?.isShow = show
-        }
+    private var mActionbarOverlay: Boolean = false
 
     fun onCreate(savedInstanceState: Bundle?) {
         mContainerView = LayoutInflater.from(mActivity).inflate(R.layout.actionbar_activity_main, null) as ViewGroup
         mContentView = mContainerView?.findViewById(R.id.actionbar_content_view)
-        maskView = mContainerView?.findViewById(R.id.actionbar_mask_view)
-        customActionBar = ActionBarImpl(mContainerView?.findViewById(R.id.actionbar_view) as ActionBarView)
+        mMaskView = mContainerView?.findViewById(R.id.actionbar_mask_view)
+        mActionBar = ActionBarImpl(mContainerView?.findViewById(R.id.actionbar_view) as ActionBarView)
+    }
+
+    fun isActionbarOverlay(): Boolean {
+        return mActionbarOverlay
+    }
+
+    fun setActionbarOverlay(mActionbarOverlay: Boolean) {
+        this.mActionbarOverlay = mActionbarOverlay
+        if (mActionbarOverlay) {
+            mContentView?.setPadding(0, 0, 0, 0)
+        } else {
+            mContentView?.setPadding(0, mActivity.resources.getDimensionPixelSize(R.dimen.actionbar_height), 0, 0)
+        }
+    }
+
+    fun getCustomActionBar(): ActionBar {
+        return mActionBar!!
     }
 
     fun setBackgroundColor(color: Int) {
@@ -61,30 +63,30 @@ class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
     fun onPostCreate(savedInstanceState: Bundle?) {
         attachToActivity(mActivity, mContainerView)
         if (savedInstanceState != null) {
-            val title = savedInstanceState.getCharSequence("ActionBar.title","")
-            customActionBar?.setTitle(title)
+            val title = savedInstanceState.getCharSequence("ActionBar.title", "")
+            mActionBar?.setTitle(title)
 
             val navs = savedInstanceState.getStringArray("ActionBar.navs")
-            customActionBar?.clearListNavigation()
-            customActionBar?.listNavigation = navs
+            mActionBar?.clearListNavigation()
+            mActionBar?.setListNavigation(navs)
 
             val menus = savedInstanceState.getParcelableArrayList<ActionMenuItem>("ActionBar.menus")
-            customActionBar?.clearActionMenus()
-            customActionBar?.menus = menus
+            mActionBar?.clearActionMenus()
+            mActionBar?.addMenus(menus)
 
             val tabs = savedInstanceState.getParcelableArrayList<ActionTabItem>("ActionBar.tabs")
-            customActionBar?.clearActionTabs()
-            customActionBar?.tabs = tabs
-            customActionBar?.actionTab?.tabSelected = savedInstanceState.getInt("ActionBar.tabs.selected")
+            mActionBar?.clearActionTabs()
+            mActionBar?.setTabs(tabs)
+            mActionBar?.getActionTab()?.setTabSelected(savedInstanceState.getInt("ActionBar.tabs.selected"))
 
         } else {
-            customActionBar?.actionMenu?.let { mActivity.onMenuActionCreated(it) }
+            mActionBar?.getActionMenu()?.let { mActivity.onMenuActionCreated(it) }
         }
 
-        if (customActionBar?.tabs?.isNullOrEmpty() == false) {
-            customActionBar?.titleVisibility = View.GONE
+        if (mActionBar?.getTabs()?.isNullOrEmpty() == false) {
+            mActionBar?.setTitleVisibility(View.GONE)
         } else {
-            customActionBar?.titleVisibility = View.VISIBLE
+            mActionBar?.setTitleVisibility(View.VISIBLE)
         }
     }
 
@@ -123,7 +125,7 @@ class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
         mContentView?.addView(v, params)
     }
 
-    fun <T:View> findViewById(id: Int): T ?{
+    fun <T : View> findViewById(id: Int): T? {
         return mContainerView?.findViewById(id)
     }
 
@@ -133,37 +135,43 @@ class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
                 stopSearchMode()
                 return true
             } else {
-                return customActionBar?.onBackPressed()?:false
+                return mActionBar?.onBackPressed() ?: false
             }
         }
         return false
     }
 
     fun onSaveInstanceState(outState: Bundle) {
-        outState.putCharSequence("ActionBar.title", customActionBar?.title)
-        outState.putStringArray("ActionBar.navs", customActionBar?.listNavigation)
-        outState.putParcelableArrayList("ActionBar.menus", customActionBar?.menus as ArrayList<out Parcelable>)
-        outState.putParcelableArrayList("ActionBar.tabs", customActionBar?.tabs as ArrayList<out Parcelable>)
-        outState.putInt("ActionBar.tabs.selected", customActionBar?.actionTab?.tabSelected?:0)
+        outState.putCharSequence("ActionBar.title", mActionBar?.getTitle())
+        outState.putStringArray("ActionBar.navs", mActionBar?.getListNavigation())
+        outState.putParcelableArrayList("ActionBar.menus", mActionBar?.getMenus() as ArrayList<out Parcelable>)
+        outState.putParcelableArrayList("ActionBar.tabs", mActionBar?.getTabs() as ArrayList<out Parcelable>)
+        outState.putInt("ActionBar.tabs.selected", mActionBar?.getActionTab()?.getTabSelected()
+                ?: 0)
     }
 
     fun setTitle(resId: Int) {
-        customActionBar?.setTitle(resId)
+        mActionBar?.setTitle(resId)
     }
 
     fun setTitle(title: CharSequence) {
-        customActionBar?.setTitle(title)
+        mActionBar?.setTitle(title)
+    }
+
+    fun getMaskView(): FrameLayout {
+        return mMaskView!!
     }
 
     fun displayMaskView(show: Boolean) {
-        maskView?.visibility = if (show) View.VISIBLE else View.GONE
+        mMaskView?.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     fun startSearchMode(): SearchView? {
         val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT)
         mSearchView = SearchView(this.mActivity)
-        val aIndex = mContainerView?.indexOfChild(mContainerView?.findViewById(R.id.actionbar_view))?:0
+        val aIndex = mContainerView?.indexOfChild(mContainerView?.findViewById(R.id.actionbar_view))
+                ?: 0
         mContainerView?.addView(mSearchView, aIndex + 1, layoutParams)
         mSearchView?.show()
         return mSearchView
@@ -175,6 +183,14 @@ class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
             mSearchView?.hide()
             mSearchView = null
         }
+    }
+
+    fun isActionbarShow(): Boolean {
+        return mActionBar?.isShow()!!
+    }
+
+    fun setActionbarShow(show: Boolean) {
+        mActionBar?.setShow(show)
     }
 
     fun setActionbarShadow(shadow: Boolean) {

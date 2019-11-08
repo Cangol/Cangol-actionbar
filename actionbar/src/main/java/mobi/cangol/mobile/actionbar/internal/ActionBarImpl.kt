@@ -7,56 +7,70 @@ import mobi.cangol.mobile.actionbar.*
 import mobi.cangol.mobile.actionbar.ActionMode.Callback
 import mobi.cangol.mobile.actionbar.view.ActionBarView
 
+
 /**
  * @author Cangol
  */
 class ActionBarImpl(private val mActionBarView: ActionBarView) : ActionBar() {
 
-    override var isShow: Boolean
-        get() = mActionBarView.visibility == View.VISIBLE
-        set(show) {
-            mActionBarView.visibility = if (show) View.VISIBLE else View.GONE
-        }
+    override fun isShow(): Boolean {
+        return mActionBarView.visibility == View.VISIBLE
+    }
 
-    override val title: CharSequence
-        get() = mActionBarView.title
+    override fun setShow(show: Boolean) {
+        mActionBarView.visibility = if (show) View.VISIBLE else View.GONE
 
-    override var titleGravity: Int
-        get() = mActionBarView.titleGravity
-        set(gravity) {
-            mActionBarView.titleGravity = gravity
-        }
+    }
+    override fun setTitleGravity(gravity: Int) {
+        mActionBarView.titleGravity = gravity
+    }
 
-    override var titleVisibility: Int
-        get() = mActionBarView.titleVisibility
-        set(visibility) {
-            mActionBarView.titleVisibility = visibility
-        }
+    override fun getTitleGravity(): Int {
+        return mActionBarView.titleGravity
+    }
 
-    override var listNavigation: Array<String>?
-        get() = mActionBarView.listNavigation
-        set(navs) {
-            mActionBarView.listNavigation = navs
-        }
+    override fun setTitleVisibility(visibility: Int) {
+        mActionBarView.titleVisibility = visibility
+    }
 
+    override fun getTitleVisibility(): Int {
+        return mActionBarView.titleVisibility
+    }
 
-    override val actionMenu: ActionMenu
-        get() = mActionBarView.actionMenu!!
+    override fun getListNavigation(): Array<String>? {
+        return mActionBarView.listNavigation
+    }
 
-    override var menus: MutableList<ActionMenuItem>
-        get() = mActionBarView.actions
-        set(actions) {
-            mActionBarView.actions = actions
-        }
+    override fun setListNavigation(navs: Array<String>?) {
+        mActionBarView.listNavigation = navs
+    }
 
-    override val actionTab: ActionTab
-        get() = mActionBarView.actionTab!!
+    override fun getTitle():CharSequence {
+        return mActionBarView.getTitle()
+    }
+    override fun getActionTab(): ActionTab {
+        return mActionBarView.actionTab!!
+    }
 
-    override var tabs: MutableList<ActionTabItem>
-        get() = mActionBarView.tabs
-        set(tabs) {
-            mActionBarView.tabs = tabs
-        }
+    override fun getActionMenu(): ActionMenu {
+        return mActionBarView.actionMenu!!
+    }
+
+    override fun addMenus(actions: MutableList<ActionMenuItem>) {
+        mActionBarView.addActions(actions)
+    }
+
+    override fun getMenus(): MutableList<ActionMenuItem> {
+        return mActionBarView.getActions()
+    }
+
+    override fun setTabs(tabs: MutableList<ActionTabItem>) {
+        mActionBarView.setTabs(tabs)
+    }
+
+    override fun getTabs(): MutableList<ActionTabItem> {
+        return mActionBarView?.getTabs()!!
+    }
 
     override fun setCustomHomeAsUpIndicator(homeId: Int, upId: Int) {
         mActionBarView.setCustomHomeAsUpIndicator(homeId, upId)

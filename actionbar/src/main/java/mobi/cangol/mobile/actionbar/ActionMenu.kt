@@ -8,17 +8,18 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener
  * @author Cangol
  */
 abstract class ActionMenu {
-    /**
-     * 获取所有menuItem
-     *
-     * @return
-     */
+
     /**
      * 设置menuItem列表
-     *
-     * @param actions
+     *  @param actions
      */
-    abstract var actions: MutableList<ActionMenuItem>
+    abstract fun setActions(actions: MutableList<ActionMenuItem>)
+
+    /**
+     *
+     * 设获取所有menuItem
+     */
+    abstract fun getActions(): MutableList<ActionMenuItem>
 
     /**
      * 添加menu

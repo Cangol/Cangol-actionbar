@@ -23,6 +23,7 @@ import android.view.View
 import android.widget.Toast
 import mobi.cangol.mobile.actionbar.ActionBarActivity
 import mobi.cangol.mobile.actionbar.OnNavigationListener
+import java.text.FieldPosition
 
 @SuppressLint("ResourceAsColor")
 class NavViewActivity : ActionBarActivity() {
@@ -30,26 +31,26 @@ class NavViewActivity : ActionBarActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nav_view)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
 
     fun findViews() {
         this.findViewById<View>(R.id.button_nav_1)?.setOnClickListener {
-            actionNav() }
+            initNavigation() }
         this.findViewById<View>(R.id.button_nav_2)?.setOnClickListener {
-            customActionBar.clearListNavigation() }
+            getCustomActionBar().clearListNavigation() }
     }
 
-    fun actionNav() {
+    private fun initNavigation() {
         val navs = arrayOf("首页", "游戏", "壁纸", "资讯")
-        this.customActionBar.listNavigation = navs
-        this.customActionBar.setOnNavigationListener(object : OnNavigationListener {
+        this.getCustomActionBar().setListNavigation(navs)
+        this.getCustomActionBar().setOnNavigationListener(object : OnNavigationListener {
 
-            override fun onNavigationItemSelected(itemPosition: Int,itemId: Long): Boolean {
-                Toast.makeText(applicationContext, "Navigation " + navs[itemPosition], Toast.LENGTH_SHORT).show()
-                customActionBar.setTitle(navs[itemPosition])
+            override fun onNavigationItemSelected(position: Int,id: Long): Boolean {
+                Toast.makeText(applicationContext, "Navigation " + navs[position], Toast.LENGTH_SHORT).show()
+                getCustomActionBar().setTitle(navs[position])
                 return true
             }
         })

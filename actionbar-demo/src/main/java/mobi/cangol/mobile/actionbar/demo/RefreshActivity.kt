@@ -34,10 +34,10 @@ class RefreshActivity : ActionBarActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_refresh_view)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
-        customActionBar.setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener {
+        getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener {
 
         })
     }
@@ -60,24 +60,24 @@ class RefreshActivity : ActionBarActivity() {
 
     fun findViews() {
         this.findViewById<View>(R.id.button_refresh_00)?.setOnClickListener {
-            customActionBar.enableRefresh(true, Gravity.LEFT)
+            getCustomActionBar().enableRefresh(true, Gravity.LEFT)
         }
         this.findViewById<View>(R.id.button_refresh_01)?.setOnClickListener {
-            customActionBar.enableRefresh(false, Gravity.LEFT)
+            getCustomActionBar().enableRefresh(false, Gravity.LEFT)
         }
         this.findViewById<View>(R.id.button_refresh_10)?.setOnClickListener {
-            customActionBar.enableRefresh(true, Gravity.RIGHT)
+            getCustomActionBar().enableRefresh(true, Gravity.RIGHT)
         }
         this.findViewById<View>(R.id.button_refresh_11)?.setOnClickListener {
-            customActionBar.enableRefresh(false, Gravity.RIGHT)
+            getCustomActionBar().enableRefresh(false, Gravity.RIGHT)
         }
         this.findViewById<View>(R.id.button_refresh_2)?.setOnClickListener {
-            customActionBar.refreshing(true)
+            getCustomActionBar().refreshing(true)
         }
         this.findViewById<View>(R.id.button_refresh_3)?.setOnClickListener {
-            customActionBar.refreshing(false)
+            getCustomActionBar().refreshing(false)
         }
-        customActionBar.setOnRefreshClickListener(OnClickListener { showToast("refreshing") })
+        getCustomActionBar().setOnRefreshClickListener(OnClickListener { showToast("refreshing") })
     }
 
     private fun showToast(string: String) {

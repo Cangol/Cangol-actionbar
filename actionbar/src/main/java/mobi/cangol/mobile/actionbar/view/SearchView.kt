@@ -196,7 +196,7 @@ class SearchView : LinearLayout {
         return mIsSearchHistory
     }
 
-    fun setmOnTouchOutSiteDismiss(mOnTouchOutSiteDismiss: Boolean) {
+    fun setOnTouchOutSiteDismiss(mOnTouchOutSiteDismiss: Boolean) {
         this.mOnTouchOutSiteDismiss = mOnTouchOutSiteDismiss
     }
 
@@ -275,14 +275,9 @@ class SearchView : LinearLayout {
 }
 
 internal class SearchAdapter(context: Context) : BaseAdapter() {
-    private var list: MutableList<String>? = null
-    private val inflater: LayoutInflater
+    private var list: MutableList<String> = mutableListOf()
+    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private var onClearClickListener: OnClearClickListener? = null
-
-    init {
-        inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        list = ArrayList()
-    }
 
     fun getList(): List<String>? {
         return list
@@ -293,11 +288,11 @@ internal class SearchAdapter(context: Context) : BaseAdapter() {
     }
 
     override fun getCount(): Int {
-        return list!!.size
+        return list.size
     }
 
     override fun getItem(position: Int): String {
-        return list!![position]
+        return list[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -305,7 +300,7 @@ internal class SearchAdapter(context: Context) : BaseAdapter() {
     }
 
     fun remove(position: Int) {
-        list!!.removeAt(position)
+        list.removeAt(position)
         this.notifyDataSetChanged()
     }
 
@@ -315,10 +310,10 @@ internal class SearchAdapter(context: Context) : BaseAdapter() {
             convertView = this.inflater.inflate(R.layout.actionbar_search_list_item, parent, false)
         }
         var labelView = convertView?.findViewById(R.id.actionbar_search_item_text) as TextView
-        var clearView = convertView?.findViewById(R.id.actionbar_search_item_clear) as ImageView
-        labelView?.text = getItem(position)
-        clearView?.setOnClickListener {
-                onClearClickListener?.onClearClick(position)
+        var clearView = convertView.findViewById(R.id.actionbar_search_item_clear) as ImageView
+        labelView.text = getItem(position)
+        clearView.setOnClickListener {
+            onClearClickListener?.onClearClick(position)
         }
         return convertView
     }

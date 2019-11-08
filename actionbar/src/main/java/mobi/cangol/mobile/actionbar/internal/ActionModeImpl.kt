@@ -12,19 +12,18 @@ import mobi.cangol.mobile.actionbar.view.ActionModeView
  */
 class ActionModeImpl(private val mActionModeView: ActionModeView) : ActionMode() {
     private var mActionModeCallback: Callback? = null
-    override var isActionMode: Boolean = false
-        private set
-
-    override var title: CharSequence
-        get() = mActionModeView.title
-        set(title) {
-            mActionModeView.setTitle(title)
-        }
-
+    private var isActionMode: Boolean = false
     init {
         mActionModeView.setActionMode(this)
     }
 
+    override fun isActionMode(): Boolean {
+       return isActionMode
+    }
+
+    override fun setTitle(title: CharSequence) {
+        mActionModeView.setTitle(title)
+    }
     override fun setTitle(resId: Int) {
         mActionModeView.setTitle(resId)
     }

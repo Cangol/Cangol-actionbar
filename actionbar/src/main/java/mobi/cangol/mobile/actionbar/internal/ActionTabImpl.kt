@@ -11,22 +11,27 @@ import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener
  */
 class ActionTabImpl(private val mActionTabView: ActionTabView) : ActionTab() {
     private var mTabs: MutableList<ActionTabItem> = mutableListOf()
+    init {
+        mActionTabView.setActionTab(this)
+    }
 
-    override var tabs: MutableList<ActionTabItem>
-        get() = mTabs
-        set(tabs) {
+    override fun getTabSelected(): Int {
+        return mActionTabView.getSelectTabId()
+    }
+
+    override fun setTabSelected(id: Int){
+        mActionTabView.selectTab(id)
+    }
+
+    override fun setTabs(tabs: MutableList<ActionTabItem>) {
+        if(tabs.isNotEmpty()){
             mTabs = tabs
             mActionTabView.addTabs(tabs)
         }
+    }
 
-    override var tabSelected: Int
-        get() = mActionTabView.tabSelected
-        set(id) {
-            mActionTabView.tabSelected = id
-        }
-
-    init {
-        mActionTabView.setActionTab(this)
+    override fun getTabs(): MutableList<ActionTabItem> {
+        return mTabs
     }
 
     override fun removeAllTabs() {

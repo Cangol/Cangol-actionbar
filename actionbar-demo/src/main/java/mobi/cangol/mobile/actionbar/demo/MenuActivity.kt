@@ -34,7 +34,7 @@ class MenuActivity : ActionBarActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_view)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
@@ -43,46 +43,45 @@ class MenuActivity : ActionBarActivity() {
         this.findViewById<View>(R.id.button_menu_1)?.setOnClickListener(object : OnClickListener {
             var fullScreen: Boolean = false
             override fun onClick(v: View) {
-                if (!fullScreen) {
-                    isFullScreen = true
-                    fullScreen = true
+                fullScreen= if (!fullScreen) {
+                    setFullScreen(true)
+                     true
                 } else {
-                    isFullScreen = false
-                    fullScreen = false
+                    setFullScreen(false)
+                    false
                 }
 
             }
         })
         this.findViewById<View>(R.id.button_menu_2)?.setOnClickListener {
-            isActionbarShow = !isActionbarShow
+            setActionbarShow(!isActionbarShow())
         }
 
         this.findViewById<View>(R.id.button_menu_3)?.setOnClickListener {
-            isActionbarOverlay = !isActionbarOverlay
+            setActionbarOverlay(!isActionbarOverlay())
         }
 
         this.findViewById<View>(R.id.button_menu_4)?.setOnClickListener(object : OnClickListener {
             var displayHome = true
             override fun onClick(v: View) {
-                if (!displayHome) {
-                    customActionBar.setDisplayShowHomeEnabled(true)
-                    displayHome = true
+                displayHome = if (!displayHome) {
+                    getCustomActionBar().setDisplayShowHomeEnabled(true)
+                    true
                 } else {
-                    customActionBar.setDisplayShowHomeEnabled(false)
-                    displayHome = false
+                    getCustomActionBar().setDisplayShowHomeEnabled(false)
+                    false
                 }
             }
         })
-        //this.setMaskView();
         this.findViewById<View>(R.id.button_menu_5)?.setOnClickListener(object : OnClickListener {
             var maskView: Boolean = false
             override fun onClick(v: View) {
-                if (!maskView) {
+                maskView = if (!maskView) {
                     displayMaskView(true)
-                    maskView = true
+                    true
                 } else {
                     displayMaskView(false)
-                    maskView = false
+                    false
                 }
             }
         })
@@ -99,11 +98,11 @@ class MenuActivity : ActionBarActivity() {
             setNavigationBarTintColor(resources.getColor(R.color.red))
         }
         this.findViewById<View>(R.id.button_menu_10)?.setOnClickListener {
-            customActionBar.setBackgroundResource(R.color.blue)
+            getCustomActionBar().setBackgroundResource(R.color.blue)
         }
 
         this.findViewById<View>(R.id.button_menu_11)?.setOnClickListener {
-            customActionBar.setLeftMenu(0x11, R.string.action_setting, -1, OnClickListener {
+            getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, -1, OnClickListener {
                 Log.e(">>", "click me")
                 showToast("click me")
             })

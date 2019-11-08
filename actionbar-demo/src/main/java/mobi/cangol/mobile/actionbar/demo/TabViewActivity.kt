@@ -32,22 +32,22 @@ class TabViewActivity : ActionBarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tab_view)
         this.setActionbarShadow(true, 3.0f)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
 
     fun findViews() {
-        this.findViewById<View>(R.id.button_tab_1)!!.setOnClickListener {
+        this.findViewById<View>(R.id.button_tab_1)?.setOnClickListener {
             title = ""
             initActionTab()
-            customActionBar.actionTab.getTabView(2).text = "tab_1"
+            getCustomActionBar().getActionTab().getTabView(2).text = "tab_1"
         }
-        this.findViewById<View>(R.id.button_tab_2)!!.setOnClickListener {
-            customActionBar.actionTab.removeAllTabs()
+        this.findViewById<View>(R.id.button_tab_2)?.setOnClickListener {
+            getCustomActionBar().getActionTab().removeAllTabs()
             title = this@TabViewActivity.javaClass.simpleName.replace("Activity", "")
         }
-        customActionBar.actionTab.setOnTabSelectedListener(object : ActionTabView.OnTabSelectedListener {
+        getCustomActionBar().getActionTab().setOnTabSelectedListener(object : ActionTabView.OnTabSelectedListener {
             override fun onTabSelected(tab: ActionTabItem): Boolean {
                 when (tab.id) {
                     1 -> Toast.makeText(applicationContext, tab.text, Toast.LENGTH_SHORT).show()
@@ -59,7 +59,7 @@ class TabViewActivity : ActionBarActivity() {
     }
 
     private fun initActionTab() {
-        val actionTab = this.customActionBar.actionTab
+        val actionTab = this.getCustomActionBar().getActionTab()
         actionTab.newTab(1, "推荐", 1)
         actionTab.newTab(2, "关注", 0)
     }

@@ -23,5 +23,5 @@ package mobi.cangol.mobile.actionbar
  */
 interface OnNavigationListener {
 
-    fun onNavigationItemSelected(itemPosition: Int, itemId: Long): Boolean
+    fun onNavigationItemSelected(position: Int, id: Long): Boolean
 }

@@ -29,18 +29,18 @@ class CustomViewActivity : ActionBarActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
 
     fun findViews() {
         this.findViewById<View>(R.id.button_custom_1)?.setOnClickListener {
-            customActionBar.setDisplayShowHomeEnabled(false)
-            customActionBar.setCustomView(EditText(applicationContext))
+            getCustomActionBar().setDisplayShowHomeEnabled(false)
+            getCustomActionBar().setCustomView(EditText(applicationContext))
         }
         this.findViewById<View>(R.id.button_custom_2)?.setOnClickListener {
-            customActionBar.removeCustomView()
+            getCustomActionBar().removeCustomView()
         }
     }
 }

@@ -32,24 +32,26 @@ class LeftMenuActivity : ActionBarActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_left_menu)
-        this.customActionBar.displayUpIndicator()
+        this.getCustomActionBar().displayUpIndicator()
         this.title = this.javaClass.simpleName.replace("Activity", "")
         findViews()
     }
 
     private fun findViews() {
-        this.customActionBar.titleGravity = Gravity.CENTER
+        this.getCustomActionBar().setTitleGravity(Gravity.CENTER)
         this.findViewById<View>(R.id.button_menu_0)?.setOnClickListener {
-            customActionBar.setDisplayShowHomeEnabled(true)
+            getCustomActionBar().setDisplayShowHomeEnabled(true)
         }
         this.findViewById<View>(R.id.button_menu_1)?.setOnClickListener {
-            customActionBar.setDisplayShowHomeEnabled(false)
+            getCustomActionBar().setDisplayShowHomeEnabled(false)
         }
         this.findViewById<View>(R.id.button_menu_2)?.setOnClickListener {
-            customActionBar.setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener { })
+            getCustomActionBar().setLeftMenu(0x11, R.string.action_setting, R.drawable.actionbar_clear_dark, OnClickListener {
+
+            })
         }
         this.findViewById<View>(R.id.button_menu_3)?.setOnClickListener {
-            customActionBar.clearLeftMenu()
+            getCustomActionBar().clearLeftMenu()
         }
     }
 

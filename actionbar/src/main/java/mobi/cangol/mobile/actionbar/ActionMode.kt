@@ -10,14 +10,7 @@ abstract class ActionMode {
      *
      * @param title
      */
-    abstract var title: CharSequence
-
-    /**
-     * 返回模式是运行
-     *
-     * @return
-     */
-    abstract val isActionMode: Boolean
+    abstract fun setTitle(title: CharSequence)
 
     /**
      * 设置标题
@@ -25,6 +18,13 @@ abstract class ActionMode {
      * @param resId
      */
     abstract fun setTitle(resId: Int)
+
+    /**
+     * 返回模式是运行
+     *
+     * @return
+     */
+    abstract fun isActionMode() :Boolean
 
     /**
      * 启动action
