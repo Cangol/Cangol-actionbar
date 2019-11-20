@@ -355,31 +355,6 @@ public class ActionBarActivity extends AppCompatActivity {
             this.getWindow().getDecorView().setSystemUiVisibility(newVisibility);
         }
     }
-    public void setFullScreenNoActionBar(boolean fullscreen) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (fullscreen) {
-                setActionbarShow(true);
-                findViewById(R.id.container_view).setFitsSystemWindows(true);
-                int option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-                this.getWindow().getDecorView().setSystemUiVisibility(option);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    WindowManager.LayoutParams lp = this.getWindow().getAttributes();
-                    lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-                    this.getWindow().setAttributes(lp);
-                }
-            } else {
-                this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            }
-        } else {
-            int newVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 
     public void setFullScreenNoActionBar(boolean fullscreen) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
