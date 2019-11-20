@@ -26,6 +26,7 @@ public class ActionBarActivityDelegate {
 
     private ActionBarActivity mActivity;
     private ViewGroup mContainerView;
+    private RelativeLayout mRootView;
     private ActionBar mActionBar;
     private FrameLayout mContentView;
     private FrameLayout mMaskView;
@@ -38,9 +39,14 @@ public class ActionBarActivityDelegate {
 
     protected void onCreate(Bundle savedInstanceState) {
         mContainerView = (ViewGroup) LayoutInflater.from(mActivity).inflate(R.layout.actionbar_activity_main, null);
+        mRootView = mContainerView.findViewById(R.id.container_view);
         mContentView = (FrameLayout) mContainerView.findViewById(R.id.actionbar_content_view);
         mMaskView = (FrameLayout) mContainerView.findViewById(R.id.actionbar_mask_view);
         mActionBar = new ActionBarImpl((ActionBarView) mContainerView.findViewById(R.id.actionbar_view));
+    }
+
+    public RelativeLayout getRootView() {
+        return mRootView;
     }
 
     public boolean isActionbarOverlay() {
@@ -50,9 +56,9 @@ public class ActionBarActivityDelegate {
     public void setActionbarOverlay(boolean mActionbarOverlay) {
         this.mActionbarOverlay = mActionbarOverlay;
         if (mActionbarOverlay) {
-            mContentView.setPadding(0,0,0,0);
+            mContentView.setPadding(0, 0, 0, 0);
         } else {
-            mContentView.setPadding(0,(mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height)),0,0);
+            mContentView.setPadding(0, (mActivity.getResources().getDimensionPixelSize(R.dimen.actionbar_height)), 0, 0);
         }
     }
 
@@ -206,23 +212,23 @@ public class ActionBarActivityDelegate {
     }
 
     public void setActionbarShadow(boolean shadow) {
-        if(shadow){
+        if (shadow) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mContainerView.findViewById(R.id.actionbar_view).setElevation(1.5f*mActivity.getResources().getDisplayMetrics().density);
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(1.5f * mActivity.getResources().getDisplayMetrics().density);
             }
-        }else{
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mContainerView.findViewById(R.id.actionbar_view).setElevation(0);
             }
         }
     }
 
-    public void setActionbarShadow(boolean shadow,float elevation) {
-        if(shadow){
+    public void setActionbarShadow(boolean shadow, float elevation) {
+        if (shadow) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mContainerView.findViewById(R.id.actionbar_view).setElevation(elevation*mActivity.getResources().getDisplayMetrics().density);
+                mContainerView.findViewById(R.id.actionbar_view).setElevation(elevation * mActivity.getResources().getDisplayMetrics().density);
             }
-        }else{
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mContainerView.findViewById(R.id.actionbar_view).setElevation(elevation);
             }

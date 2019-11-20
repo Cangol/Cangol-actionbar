@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/trabsparent_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash1" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/layout_status_padding"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/ic_bg"
-            android:orientation="vertical"
-            android:paddingTop="24dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="marginTop=0dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:text="marginTop=48dp" />
-        </LinearLayout>
 
         <Button
             android:id="@+id/button_transparent_0"
@@ -95,9 +84,5 @@
                 android:layout_weight="1"
                 android:text="actionbar hide" />
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="400dp" />
     </LinearLayout>
-</ScrollView>
+</FrameLayout>
