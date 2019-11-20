@@ -64,6 +64,7 @@ public class ActionBarActivity extends AppCompatActivity {
             array.recycle();
         }
     }
+
     /**
      * 设置标题
      *
@@ -72,6 +73,17 @@ public class ActionBarActivity extends AppCompatActivity {
     @Override
     public void setTitle(CharSequence title) {
         mDelegate.setTitle(title);
+    }
+
+    private void setRootViewFitsSystemWindows(boolean fitsSystemWindows) {
+        mDelegate.getRootView().setFitsSystemWindows(fitsSystemWindows);
+        if (fitsSystemWindows) {
+            mDelegate.getRootView().setPadding(0, getStatusBarHeight(), 0, 0);
+            ((RelativeLayout.LayoutParams) findViewById(R.id.actionbar_view).getLayoutParams()).topMargin = 0;
+        } else {
+            mDelegate.getRootView().setPadding(0, 0, 0, 0);
+            ((RelativeLayout.LayoutParams) findViewById(R.id.actionbar_view).getLayoutParams()).topMargin = getStatusBarHeight();
+        }
     }
 
     /**
@@ -136,10 +148,10 @@ public class ActionBarActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    public void setFitsSystemWindows(int layoutId){
-        if(layoutId==R.id.container_view){
+    public void setFitsSystemWindows(int layoutId) {
+        if (layoutId == R.id.container_view) {
             findViewById(R.id.container_view).setFitsSystemWindows(true);
-        }else{
+        } else {
             findViewById(R.id.container_view).setFitsSystemWindows(false);
             findViewById(layoutId).setFitsSystemWindows(true);
         }
@@ -162,14 +174,14 @@ public class ActionBarActivity extends AppCompatActivity {
 
     public void setSystemUiFloatFullScreen(boolean enable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if(enable){
+            if (enable) {
                 findViewById(R.id.container_view).setFitsSystemWindows(false);
-                findViewById(R.id.container_view).setPadding(0,0,0,0);
-                ((RelativeLayout.LayoutParams)findViewById(R.id.actionbar_view).getLayoutParams()).topMargin=getStatusBarHeight();
-            }else{
+                findViewById(R.id.container_view).setPadding(0, 0, 0, 0);
+                ((RelativeLayout.LayoutParams) findViewById(R.id.actionbar_view).getLayoutParams()).topMargin = getStatusBarHeight();
+            } else {
                 findViewById(R.id.container_view).setFitsSystemWindows(true);
-                findViewById(R.id.container_view).setPadding(0,getStatusBarHeight(),0,0);
-                ((RelativeLayout.LayoutParams)findViewById(R.id.actionbar_view).getLayoutParams()).topMargin=0;
+                findViewById(R.id.container_view).setPadding(0, getStatusBarHeight(), 0, 0);
+                ((RelativeLayout.LayoutParams) findViewById(R.id.actionbar_view).getLayoutParams()).topMargin = 0;
             }
             View decorView = this.getWindow().getDecorView();
             int option = decorView.getSystemUiVisibility();
@@ -184,6 +196,7 @@ public class ActionBarActivity extends AppCompatActivity {
             decorView.requestApplyInsets();
         }
     }
+
     private int getStatusBarHeight() {
         int result = 0;
         int resourceId = this.getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -192,6 +205,7 @@ public class ActionBarActivity extends AppCompatActivity {
         }
         return result;
     }
+
     /**
      * 设置导航栏颜色
      *
@@ -312,6 +326,43 @@ public class ActionBarActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (fullscreen) {
                 this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            } else {
+                this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
+        } else {
+            int newVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+
+            if (fullscreen) {
+                newVisibility |= View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            }
+            // Set the visibility
+            this.getWindow().getDecorView().setSystemUiVisibility(newVisibility);
+        }
+    }
+
+
+    public void setFullScreenNoActionBar(boolean fullscreen) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (fullscreen) {
+                setRootViewFitsSystemWindows(false);
+                setActionbarShow(false);
+                int option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                this.getWindow().getDecorView().setSystemUiVisibility(option);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    WindowManager.LayoutParams lp = this.getWindow().getAttributes();
+                    lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+                    this.getWindow().setAttributes(lp);
+                }
+                this.getWindow().getDecorView().requestApplyInsets();
             } else {
                 this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             }
