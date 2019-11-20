@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import mobi.cangol.mobile.actionbar.internal.ActionBarImpl;
 import mobi.cangol.mobile.actionbar.view.ActionBarView;
-import mobi.cangol.mobile.actionbar.view.FitSystemWindowRelativeLayout;
 import mobi.cangol.mobile.actionbar.view.SearchView;
 
 /**
@@ -27,7 +26,7 @@ public class ActionBarActivityDelegate {
 
     private ActionBarActivity mActivity;
     private ViewGroup mContainerView;
-    private FitSystemWindowRelativeLayout mRootView;
+    private RelativeLayout mRootView;
     private ActionBar mActionBar;
     private FrameLayout mContentView;
     private FrameLayout mMaskView;
@@ -46,7 +45,7 @@ public class ActionBarActivityDelegate {
         mActionBar = new ActionBarImpl((ActionBarView) mContainerView.findViewById(R.id.actionbar_view));
     }
 
-    public FitSystemWindowRelativeLayout getRootView() {
+    public RelativeLayout getRootView() {
         return mRootView;
     }
 
