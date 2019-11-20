@@ -229,9 +229,8 @@ public class SystemBarTintManager {
      *
      * @param alpha The alpha to use
      */
-    @TargetApi(11)
     public void setStatusBarAlpha(float alpha) {
-        if (mStatusBarAvailable && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if (mStatusBarAvailable) {
             mStatusBarTintView.setAlpha(alpha);
         }
     }
@@ -275,9 +274,8 @@ public class SystemBarTintManager {
      *
      * @param alpha The alpha to use
      */
-    @TargetApi(11)
     public void setNavigationBarAlpha(float alpha) {
-        if (mNavBarAvailable && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if (mNavBarAvailable) {
             mNavBarTintView.setAlpha(alpha);
         }
     }
@@ -405,8 +403,8 @@ public class SystemBarTintManager {
         private int getNavigationBarHeight(Context context) {
             Resources res = context.getResources();
             int result = 0;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                if (getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH
+                && getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
                     String key;
                     if (mInPortrait) {
                         key = NAV_BAR_HEIGHT_RES_NAME;
@@ -414,9 +412,6 @@ public class SystemBarTintManager {
                         key = NAV_BAR_HEIGHT_LANDSCAPE_RES_NAME;
                     }
                     return getInternalDimensionSize(res, key);
-                } else {
-                    //
-                }
             }
             return result;
         }
@@ -425,19 +420,20 @@ public class SystemBarTintManager {
         private int getNavigationBarWidth(Context context) {
             Resources res = context.getResources();
             int result = 0;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                if (getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
-                    return getInternalDimensionSize(res, NAV_BAR_WIDTH_RES_NAME);
-                } else {
-                    //
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH
+                &&getInternalBoolean(res, SHOW_NAV_BAR_RES_NAME)) {
+              return getInternalDimensionSize(res, NAV_BAR_WIDTH_RES_NAME);
             }
             return result;
         }
 
         private boolean getInternalBoolean(Resources res, String key) {
             int resourceId = res.getIdentifier(key, "bool", "android");
-            return (resourceId > 0) ? res.getBoolean(resourceId) : false;
+            if(resourceId>0){
+                return res.getBoolean(resourceId);
+            }else{
+                return false;
+            }
         }
 
         private int getInternalDimensionSize(Resources res, String key) {
@@ -455,7 +451,6 @@ public class SystemBarTintManager {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 activity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
             } else {
-                // TODO this is not correct, but we don't really care pre-kitkat
                 activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
             }
             float widthDp = metrics.widthPixels / metrics.density;

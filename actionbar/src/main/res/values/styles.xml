@@ -1,7 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="ActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
     </style>
     <!-- ActionBar -->
     <style name="ActionBar">
@@ -89,7 +88,7 @@
         <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
         <item name="android:textSize">16.0sp</item>
         <item name="android:textColor">?attr/actionbar_tab_text_selector</item>
-        <item name="android:background">@drawable/actionbar_tab_bg_dark</item>
+        <item name="android:background">?attr/actionbar_tab_bg_selector</item>
         <item name="android:padding">8dp</item>
         <item name="android:button">@null</item>
     </style>

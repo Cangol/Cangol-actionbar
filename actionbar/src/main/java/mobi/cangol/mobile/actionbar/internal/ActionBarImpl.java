@@ -3,7 +3,7 @@ package mobi.cangol.mobile.actionbar.internal;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import mobi.cangol.mobile.actionbar.ActionBar;
 import mobi.cangol.mobile.actionbar.ActionMenu;
@@ -31,8 +31,18 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void resetCustomHomeAsUpIndicator() {
+        mActionBarView.resetCustomHomeAsUpIndicator();
+    }
+
+    @Override
     public void setDisplayShowHomeEnabled(boolean show) {
         mActionBarView.setDisplayShowHomeEnabled(show);
+    }
+
+    @Override
+    public void hideHomeAsUpIndicator() {
+        mActionBarView.hideHomeAsUpIndicator();
     }
 
     @Override
@@ -188,12 +198,12 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public ArrayList<ActionMenuItem> getMenus() {
+    public List<ActionMenuItem> getMenus() {
         return mActionBarView.getActions();
     }
 
     @Override
-    public void setMenus(ArrayList<ActionMenuItem> actions) {
+    public void setMenus(List<ActionMenuItem> actions) {
         mActionBarView.setActions(actions);
     }
 
@@ -208,12 +218,12 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
-    public ArrayList<ActionTabItem> getTabs() {
+    public List<ActionTabItem> getTabs() {
         return mActionBarView.getTabs();
     }
 
     @Override
-    public void setTabs(ArrayList<ActionTabItem> tabs) {
+    public void setTabs(List<ActionTabItem> tabs) {
         mActionBarView.setTabs(tabs);
     }
 

@@ -18,8 +18,8 @@ import mobi.cangol.mobile.actionbar.R;
  */
 public class ClearableEditText extends AppCompatEditText {
 
-    Drawable imgX;
-
+    private Drawable imgX;
+    private TextWatcher textWatcher;
     public ClearableEditText(Context context) {
         super(context);
         initViews();
@@ -35,7 +35,7 @@ public class ClearableEditText extends AppCompatEditText {
         initViews();
     }
 
-    void initViews() {
+    private void initViews() {
         TypedValue typedValue = new TypedValue();
         getContext().getTheme().resolveAttribute(R.attr.actionbar_clear, typedValue, true);
         imgX = getResources().getDrawable(typedValue.resourceId);
@@ -64,11 +64,10 @@ public class ClearableEditText extends AppCompatEditText {
                 return false;
             }
         });
-
-        this.addTextChangedListener(new TextWatcher() {
+        textWatcher=new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                //do nothings
             }
 
             @Override
@@ -78,8 +77,10 @@ public class ClearableEditText extends AppCompatEditText {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //do nothings
             }
-        });
+        };
+        this.addTextChangedListener(textWatcher);
         this.setOnFocusChangeListener(new OnFocusChangeListener() {
 
             @Override
@@ -93,7 +94,7 @@ public class ClearableEditText extends AppCompatEditText {
         });
     }
 
-    void manageClearButton() {
+    private void manageClearButton() {
         if (this.getText().toString().equals("")) {
             removeClearButton();
         } else if (this.hasFocus()) {
@@ -102,18 +103,23 @@ public class ClearableEditText extends AppCompatEditText {
 
     }
 
-    void addClearButton() {
+    private void addClearButton() {
         this.setCompoundDrawables(this.getCompoundDrawables()[0],
                 this.getCompoundDrawables()[1],
                 getError() == null ? imgX : this.getCompoundDrawables()[2],
                 this.getCompoundDrawables()[3]);
     }
 
-    void removeClearButton() {
+    private void removeClearButton() {
         this.setCompoundDrawables(this.getCompoundDrawables()[0],
                 this.getCompoundDrawables()[1],
                 getError() == null ? null : this.getCompoundDrawables()[2],
                 this.getCompoundDrawables()[3]);
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        this.removeTextChangedListener(textWatcher);
+        super.onDetachedFromWindow();
+    }
 }

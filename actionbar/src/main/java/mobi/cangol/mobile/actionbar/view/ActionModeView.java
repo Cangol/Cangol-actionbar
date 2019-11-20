@@ -22,8 +22,6 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener;
  * @author Cangol
  */
 public class ActionModeView extends LinearLayout {
-    private LayoutInflater mInflater;
-    private ImageView mDoneButton;
     private TextView mTitleText;
     private ActionMenu mActionMenu;
     private ActionMode mActionMode;
@@ -54,11 +52,11 @@ public class ActionModeView extends LinearLayout {
     }
 
     private void initViews(Context context) {
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mInflater.inflate(R.layout.actionbar_action_mode, this);
 
         mActionMenu = new ActionMenuImpl((ActionMenuView) this.findViewById(R.id.actionbar_mode_menu));
-        mDoneButton = (ImageView) this.findViewById(R.id.actionbar_mode_done);
+        ImageView mDoneButton = (ImageView) this.findViewById(R.id.actionbar_mode_done);
         mTitleText = (TextView) this.findViewById(R.id.actionbar_mode_title);
 
         mDoneButton.setOnClickListener(new OnClickListener() {

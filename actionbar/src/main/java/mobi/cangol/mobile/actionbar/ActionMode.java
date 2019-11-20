@@ -38,13 +38,6 @@ public abstract class ActionMode {
     public abstract void finish();
 
     /**
-     * 获取菜单Inflater
-     *
-     * @return
-     */
-    public abstract ActionMenuInflater getMenuInflater();
-
-    /**
      * 返回模式是运行
      *
      * @return

@@ -8,7 +8,14 @@
     <string name="action_selectAll">Select All</string>
     <string name="action_invert">Invert</string>
     <string name="action_setting">Settings</string>
-    
+
+
+    <string name="on_refresh">ON</string>
+    <string name="off_refresh">OFF</string>
+
+    <string name="start_refresh">Star</string>
+    <string name="stop_refresh">Stop</string>
+
     <string name="startProgress">startProgress</string>
     <string name="stopProgress">stopProgress</string>
     <string name="startSearchMode">startSearchMode</string>

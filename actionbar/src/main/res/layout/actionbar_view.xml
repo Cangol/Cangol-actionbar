@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/actionbar_main_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/actionbar_height"
+    android:layout_height="match_parent"
     android:gravity="center_vertical">
 
     <ImageView
@@ -10,6 +9,7 @@
         style="@style/ActionBarIconItem"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/image_description"
         android:scaleType="centerInside" />
 
     <LinearLayout
@@ -43,6 +43,8 @@
         android:layout_centerVertical="true"
         android:scaleType="centerInside"
         android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/image_description"
         android:visibility="gone" />
 
     <LinearLayout
@@ -75,6 +77,8 @@
         android:layout_alignParentRight="true"
         android:scaleType="centerInside"
         android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/image_description"
         android:visibility="gone" />
 
     <mobi.cangol.mobile.actionbar.view.ActionMenuView
@@ -90,7 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionbar_height"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/actionbar_height"
+        android:layout_toRightOf="@+id/actionbar_main_refresh_left"
         android:layout_toLeftOf="@id/actionbar_main_menu">
 
     </FrameLayout>

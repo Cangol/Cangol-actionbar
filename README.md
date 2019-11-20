@@ -5,9 +5,9 @@ An android library,custom simple actionbar
 
 [![Download](https://api.bintray.com/packages/cangol/maven/Cangol-actionbar/images/download.svg) ](https://bintray.com/cangol/maven/Cangol-actionbar/_latestVersion)
 [![Build Status](https://travis-ci.org/Cangol/Cangol-actionbar.svg?branch=master)](https://travis-ci.org/Cangol/Cangol-actionbar)
-[![Coverage Status](https://coveralls.io/repos/github/Cangol/Cangol-actionbar/badge.svg?branch=master)](https://coveralls.io/github/Cangol/Cangol-actionbar?branch=master)
+[![codecov](https://codecov.io/gh/Cangol/Cangol-actionbar/branch/master/graph/badge.svg)](https://codecov.io/gh/Cangol/Cangol-actionbar)
 [![Gitter](https://badges.gitter.im/Cangol/Cangol-actionbar.svg)](https://gitter.im/Cangol/Cangol-actionbar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fed4a82fb50499bb3b58c4e17153695)](https://www.codacy.com/app/wxw404/Cangol-actionbar?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Cangol/Cangol-actionbar&amp;utm_campaign=Badge_Grade)
 ### Usage
 
 
@@ -16,12 +16,12 @@ Maven
      <dependency>
          <groupId>mobi.cangol.mobile</groupId>
          <artifactId>actionbar</artifactId>
-         <version>1.0.22</version>
+         <version>1.1.8</version>
          <type>aar</type>
      </dependency>
 Gradle
  
-    compile 'mobi.cangol.mobile:actionbar:1.0.22@aar'
+    compile 'mobi.cangol.mobile:actionbar:1.1.8@aar'
 
 ### Screenshot
 

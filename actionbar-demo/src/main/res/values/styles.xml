@@ -1,18 +1,28 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Application theme. -->
-    <style name="AppTheme" parent="ActionBarTheme.Dark">
-        <item name="actionbar_background">@color/actionbar_background</item>
-        <!--<item name="android:windowFullscreen">true</item>-->
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="AppTheme1" parent="ActionBarTheme.Light">
     </style>
-    <!--<style name="ActionBarTabItem">-->
-        <!--<item name="android:layout_width">wrap_content</item>-->
-        <!--<item name="android:layout_height">wrap_content</item>-->
-        <!--<item name="android:minWidth">@dimen/actionbar_item_min_width</item>-->
-        <!--<item name="android:textSize">16.0sp</item>-->
-        <!--<item name="android:textColor">@color/my_actionbar_tab_text_selector</item>-->
-        <!--<item name="android:background">@drawable/my_actionbar_tab_selector</item>-->
-        <!--<item name="android:padding">8dp</item>-->
-        <!--<item name="android:button">@null</item>-->
-    <!--</style>-->
+    <style name="AppTheme2" parent="ActionBarTheme.Dark">
+    </style>
+    <style name="ActionBarTabItem">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/my_actionbar_tab_text_selector</item>
+        <item name="android:background">@drawable/my_actionbar_tab_selector2</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="ActionBarTextItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/actionbar_height</item>
+        <item name="android:minWidth">@dimen/actionbar_item_min_width</item>
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">@color/my_actionbar_item_text_selector</item>
+        <item name="android:background">?attr/actionbar_item_bg_selector</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
 </resources>

@@ -35,8 +35,8 @@ public class TabViewActivity extends ActionBarActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_view);
+        this.setActionbarShadow(true,3.0f);
         this.getCustomActionBar().displayUpIndicator();
-        setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }
@@ -47,7 +47,7 @@ public class TabViewActivity extends ActionBarActivity{
             public void onClick(View v) {
                 setTitle("");
                 initActionTab();
-                getCustomActionBar().getActionTab().setTabSelected(2);
+                getCustomActionBar().getActionTab().getTabView(2).setText("tab_1");
             }
         });
         this.findViewById(R.id.button_tab_2).setOnClickListener(new OnClickListener() {

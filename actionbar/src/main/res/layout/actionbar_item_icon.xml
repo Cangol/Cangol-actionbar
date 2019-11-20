@@ -7,4 +7,5 @@
     android:scaleType="centerInside"
     android:lines="1"
     android:visibility="visible"
+    android:contentDescription="@string/image_description"
     />

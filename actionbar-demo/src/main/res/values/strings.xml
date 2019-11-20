@@ -3,7 +3,7 @@
 
     <string name="app_name">Actionbar</string>
     <string name="hello_world">你好</string>
-    
+
     <string name="action_delete">删除</string>
     <string name="action_selectAll">全选</string>
     <string name="action_invert">反选</string>
@@ -14,8 +14,11 @@
 
     <string name="start_refresh">开始</string>
     <string name="stop_refresh">停止</string>
+    <string name="startProgress">startProgress</string>
+    <string name="stopProgress">stopProgress</string>
     <string name="startSearchMode">启动搜索模式</string>
     <string name="stopSearchMode">停止搜索模式</string>
+    <string name="startCustomActionMode">startCustomActionMode</string>
 
-      <string name="language">语言</string>
+    <string name="language">语言</string>
 </resources>

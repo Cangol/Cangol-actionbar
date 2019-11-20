@@ -20,9 +20,9 @@
 
     <!--actionbar tab item-->
     <color name="actionbar_tab_bg_light">#00000000</color>
-    <color name="actionbar_tab_line_light">#eee</color>
-    <color name="actionbar_tab_text_light">#eee</color>
-    <color name="actionbar_tab_text_checked_light">#444444</color>
+    <color name="actionbar_tab_line_light">@color/actionbar_title_light</color>
+    <color name="actionbar_tab_text_light">#aaa</color>
+    <color name="actionbar_tab_text_checked_light">@color/actionbar_title_light</color>
 
     <!--actionbar search mode-->
     <color name="actionbar_search_text_light">@color/actionbar_title_light</color>

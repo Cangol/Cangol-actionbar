@@ -4,28 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    
+
     <FrameLayout
         android:id="@+id/actionbar_content_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/actionbar_height">
-    </FrameLayout>
-    
-	<mobi.cangol.mobile.actionbar.view.ActionBarView
+        android:paddingTop="@dimen/actionbar_height" />
+
+    <mobi.cangol.mobile.actionbar.view.ActionBarView
         android:id="@+id/actionbar_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         style="@style/ActionBar"
-        android:layout_alignParentTop="true">
-    </mobi.cangol.mobile.actionbar.view.ActionBarView>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_alignParentTop="true" />
 
     <FrameLayout
         android:id="@+id/actionbar_mask_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
-    </FrameLayout>
-
+        android:visibility="gone" />
 
 </RelativeLayout>

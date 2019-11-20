@@ -1,6 +1,8 @@
 package mobi.cangol.mobile.actionbar;
 
-import java.util.ArrayList;
+import android.widget.TextView;
+
+import java.util.List;
 
 import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener;
 
@@ -13,12 +15,12 @@ public abstract class ActionTab {
      * 获取所有tabItem
      */
 
-    public abstract ArrayList<ActionTabItem> getTabs();
+    public abstract List<ActionTabItem> getTabs();
 
     /**
      * 设置tabItem列表
      */
-    public abstract void setTabs(ArrayList<ActionTabItem> tabs);
+    public abstract void setTabs(List<ActionTabItem> tabs);
 
     /**
      * 移除所有tabItem
@@ -54,4 +56,9 @@ public abstract class ActionTab {
      * @param onTabSelectedListener
      */
     public abstract void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener);
+
+    /**
+     * 获取view
+     */
+    public abstract TextView getTabView(int id);
 }
