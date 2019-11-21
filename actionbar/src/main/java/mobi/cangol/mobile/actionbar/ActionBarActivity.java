@@ -363,6 +363,8 @@ public class ActionBarActivity extends AppCompatActivity {
                 }
                 this.getWindow().getDecorView().requestApplyInsets();
             } else {
+                setRootViewFitsSystemWindows(true);
+                setActionbarShow(true);
                 this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             }
         } else {
