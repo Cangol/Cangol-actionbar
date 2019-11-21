@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'org.jetbrains.dokka-android'
+
 apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'net.saliman.cobertura'
 apply from: '../config/quality.gradle'
@@ -35,11 +37,9 @@ android {
             testCoverageEnabled true
         }
     }
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    androidExtensions {
+        experimental = true
+    }
 }
 
 task javadoc(type: Javadoc) {
@@ -52,12 +52,20 @@ task javadoc(type: Javadoc) {
     }
     destinationDir = file("../docs/")
 }
+//同时添加三个方法
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = javadoc.destinationDir
+}
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
-
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
 artifacts {
     archives javadocJar
     archives sourcesJar
