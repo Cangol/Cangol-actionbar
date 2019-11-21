@@ -59,8 +59,6 @@ class DrawerArrowDrawable constructor(resources: Resources, private val rounded:
         linePaint.style = STROKE
         linePaint.strokeWidth = strokeWidthPixel
 
-        val dimen = (DIMEN_DP * density).toInt()
-
         var first: Path
         var second: Path
         var joinedA: JoinedPath
@@ -208,14 +206,14 @@ class DrawerArrowDrawable constructor(resources: Resources, private val rounded:
          * internal paths connect.
          */
         internal fun getPointOnLine(parameter: Float, coords: FloatArray) {
-            var parameter = parameter
-            if (parameter <= .5f) {
-                parameter *= 2f
-                measureFirst.getPosTan(lengthFirst * parameter, coords, null)
+            var param = parameter
+            if (param <= .5f) {
+                param *= 2f
+                measureFirst.getPosTan(lengthFirst * param, coords, null)
             } else {
-                parameter -= .5f
-                parameter *= 2f
-                measureSecond.getPosTan(lengthSecond * parameter, coords, null)
+                param -= .5f
+                param *= 2f
+                measureSecond.getPosTan(lengthSecond * param, coords, null)
             }
         }
     }

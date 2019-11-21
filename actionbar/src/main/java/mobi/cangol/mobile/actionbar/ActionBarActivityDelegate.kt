@@ -28,7 +28,7 @@ class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
     private var mSearchView: SearchView? = null
     private var mActionbarOverlay: Boolean = false
 
-    fun onCreate(savedInstanceState: Bundle?) {
+    fun onCreate() {
         mContainerView = LayoutInflater.from(mActivity).inflate(R.layout.actionbar_activity_main, null) as ViewGroup
         mContentView = mContainerView?.findViewById(R.id.actionbar_content_view)
         mMaskView = mContainerView?.findViewById(R.id.actionbar_mask_view)
@@ -63,20 +63,16 @@ class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
     fun onPostCreate(savedInstanceState: Bundle?) {
         attachToActivity(mActivity, mContainerView)
         if (savedInstanceState != null) {
-            val title = savedInstanceState.getCharSequence("ActionBar.title", "")
-            mActionBar?.setTitle(title)
+            mActionBar?.setTitle(savedInstanceState.getCharSequence("ActionBar.title", ""))
 
-            val navs = savedInstanceState.getStringArray("ActionBar.navs")
             mActionBar?.clearListNavigation()
-            mActionBar?.setListNavigation(navs)
+            mActionBar?.setListNavigation(savedInstanceState.getStringArray("ActionBar.navs"))
 
-            val menus = savedInstanceState.getParcelableArrayList<ActionMenuItem>("ActionBar.menus")
             mActionBar?.clearActionMenus()
-            mActionBar?.addMenus(menus)
+            mActionBar?.addMenus(savedInstanceState.getParcelableArrayList<ActionMenuItem>("ActionBar.menus"))
 
-            val tabs = savedInstanceState.getParcelableArrayList<ActionTabItem>("ActionBar.tabs")
             mActionBar?.clearActionTabs()
-            mActionBar?.setTabs(tabs)
+            mActionBar?.setTabs(savedInstanceState.getParcelableArrayList<ActionTabItem>("ActionBar.tabs"))
             mActionBar?.getActionTab()?.setTabSelected(savedInstanceState.getInt("ActionBar.tabs.selected"))
 
         } else {
@@ -99,8 +95,8 @@ class ActionBarActivityDelegate(private val mActivity: ActionBarActivity) {
         val decor = activity.window.decorView as ViewGroup
         val decorChild = decor.getChildAt(0) as ViewGroup
         if (decorChild.background != null) {
-            mContainerView?.setBackgroundDrawable(decorChild.background)
-            decorChild.setBackgroundDrawable(null)
+            mContainerView?.background=decorChild.background
+            decorChild.background=null
         } else {
             if (mContainerView?.background == null)
                 mContainerView?.setBackgroundResource(background)

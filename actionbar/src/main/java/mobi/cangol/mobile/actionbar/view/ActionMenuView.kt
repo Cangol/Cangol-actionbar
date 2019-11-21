@@ -1,7 +1,9 @@
 package mobi.cangol.mobile.actionbar.view
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.util.AttributeSet
@@ -63,7 +65,7 @@ class ActionMenuView : LinearLayout, OnClickListener, OnLongClickListener {
         mPopupActionsView = popuLayout?.findViewById(R.id.actionbar_popup_actions)
         val width = (180 * context.resources.displayMetrics.density).toInt()
         mPopuMenu = PopupWindow(popuLayout, width, LayoutParams.WRAP_CONTENT, true)
-        mPopuMenu?.setBackgroundDrawable(BitmapDrawable())
+        mPopuMenu?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mMoreButton?.setOnClickListener { mPopuMenu?.showAsDropDown(mMoreButton) }
     }
 

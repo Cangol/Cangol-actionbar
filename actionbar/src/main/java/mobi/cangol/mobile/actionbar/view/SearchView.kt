@@ -4,6 +4,7 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
+import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -63,8 +64,8 @@ class SearchView : LinearLayout {
         indicatorButton.setImageDrawable(arrow)
         mSearchEditText = this.findViewById(R.id.actionbar_search_text)
         mActionButton = this.findViewById(R.id.actionbar_search_action)
-        mSearchEditText?.setOnEditorActionListener { v, actionId, event ->
-            var result = false
+        mSearchEditText?.setOnEditorActionListener { _, _, _ ->
+            var result: Boolean
             val keywords = mSearchEditText?.text.toString()
             if (TextUtils.isEmpty(keywords)) {
                 mSearchEditText?.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
@@ -75,9 +76,6 @@ class SearchView : LinearLayout {
                 hide()
             }
             result
-        }
-        mSearchEditText?.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
-            //do nothings
         }
         mActionButton?.setOnClickListener {
             val keywords = mSearchEditText?.text.toString()
@@ -97,7 +95,7 @@ class SearchView : LinearLayout {
         mListView = this.findViewById<View>(R.id.actionbar_search_list) as ListView
         mSearchAdapter = SearchAdapter(context)
         mListView?.adapter = mSearchAdapter
-        mListView?.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+        mListView?.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
             val keywords = parent.getItemAtPosition(position) as String
             mOnSearchTextListener?.onSearchText(keywords)
             hide()
@@ -128,8 +126,8 @@ class SearchView : LinearLayout {
     fun setSearchDrawableShow(show: Boolean) {
         val typedValue = TypedValue()
         context.theme.resolveAttribute(R.attr.actionbar_search, typedValue, true)
-        val imgSearch = resources.getDrawable(typedValue.resourceId)
-        imgSearch.setBounds(0, 0, imgSearch.intrinsicWidth, imgSearch.intrinsicHeight)
+        val imgSearch = ContextCompat.getDrawable(context,typedValue.resourceId)
+        imgSearch?.setBounds(0, 0, imgSearch.intrinsicWidth, imgSearch.intrinsicHeight)
         mSearchEditText?.setCompoundDrawables(if (show) imgSearch else null,
                 mSearchEditText?.compoundDrawables?.get(1),
                 mSearchEditText?.compoundDrawables?.get(2),
@@ -141,7 +139,7 @@ class SearchView : LinearLayout {
         val list = mutableListOf<String>()
         val iterator = mSearchHistory?.iterator()
         while (iterator?.hasNext() == true) {
-            list.add(iterator?.next())
+            list.add(iterator.next())
         }
         mSearchAdapter?.setList(list)
         mSearchAdapter?.notifyDataSetChanged()
@@ -305,17 +303,17 @@ internal class SearchAdapter(context: Context) : BaseAdapter() {
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
-        if (convertView == null) {
-            convertView = this.inflater.inflate(R.layout.actionbar_search_list_item, parent, false)
+        var itemView = convertView
+        if (itemView == null) {
+            itemView = this.inflater.inflate(R.layout.actionbar_search_list_item, parent, false)
         }
-        var labelView = convertView?.findViewById(R.id.actionbar_search_item_text) as TextView
-        var clearView = convertView.findViewById(R.id.actionbar_search_item_clear) as ImageView
+        var labelView = itemView?.findViewById(R.id.actionbar_search_item_text) as TextView
+        var clearView = itemView.findViewById(R.id.actionbar_search_item_clear) as ImageView
         labelView.text = getItem(position)
         clearView.setOnClickListener {
             onClearClickListener?.onClearClick(position)
         }
-        return convertView
+        return itemView
     }
 
     fun setOnClearClickListener(onClearClickListener: OnClearClickListener) {

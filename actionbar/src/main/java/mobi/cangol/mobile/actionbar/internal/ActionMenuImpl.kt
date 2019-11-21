@@ -10,7 +10,7 @@ import mobi.cangol.mobile.actionbar.view.ActionMenuView.OnActionClickListener
  * @author Cangol
  */
 class ActionMenuImpl(private val mActionMenuView: ActionMenuView) : ActionMenu() {
-    private var mActions: MutableList<ActionMenuItem> = mutableListOf()
+    private var mActions:MutableList<ActionMenuItem> = ArrayList()
 
     init {
         this.mActionMenuView.setActionMenu(this)

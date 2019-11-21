@@ -2,6 +2,7 @@ package mobi.cangol.mobile.actionbar.view
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.text.Editable
 import android.text.TextUtils
@@ -37,7 +38,7 @@ class ClearableEditText : AppCompatEditText {
     private fun initViews() {
         val typedValue = TypedValue()
         context.theme.resolveAttribute(R.attr.actionbar_clear, typedValue, true)
-        imgX = resources.getDrawable(typedValue.resourceId)
+        imgX = ContextCompat.getDrawable(context,typedValue.resourceId)
 
         // Set bounds of our X button
         imgX?.setBounds(0, 0, imgX?.intrinsicWidth?:0, imgX?.intrinsicHeight?:0)
@@ -45,7 +46,7 @@ class ClearableEditText : AppCompatEditText {
         // There may be initial text in the field, so we may need to display the button
         manageClearButton()
 
-        this.setOnTouchListener(OnTouchListener { v, event ->
+        this.setOnTouchListener(OnTouchListener { _, event ->
             val et = this@ClearableEditText
 
             // Is there an X showing?
@@ -73,7 +74,7 @@ class ClearableEditText : AppCompatEditText {
             }
         }
         this.addTextChangedListener(textWatcher)
-        this.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
+        this.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 removeClearButton()
             } else {

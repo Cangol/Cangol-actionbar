@@ -116,7 +116,7 @@ open class ActionBarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mDelegate = ActionBarActivityDelegate(this)
-        mDelegate?.onCreate(savedInstanceState)
+        mDelegate?.onCreate()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             mTintManager = SystemBarTintManager(this)
         }
@@ -313,10 +313,9 @@ open class ActionBarActivity : AppCompatActivity() {
 
     private fun setStatusBarTextColorWithXiaomi(black: Boolean) {
         try {
-            var darkModeFlag :Int= 0
             val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
             val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
-            darkModeFlag = field.getInt(layoutParams)
+            var  darkModeFlag = field.getInt(layoutParams)
             val extraFlagField = window.javaClass.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
             if (black) {
                 extraFlagField.invoke(window, darkModeFlag, darkModeFlag)//状态栏透明且黑色字体
@@ -407,30 +406,6 @@ open class ActionBarActivity : AppCompatActivity() {
         return false
     }
 
-    /**
-     * 指派菜单监听事件
-     *
-     * @param actionMenu
-     * @return
-     */
-    protected fun dispatchActionSelected(actionMenu: ActionMenuItem): Boolean {
-        return if (onMenuActionSelected(actionMenu)) {
-            true
-        } else {
-            dispatchFragmentActionSelected(actionMenu)
-        }
-    }
-
-    /**
-     * 指派菜单监听事件到fragment
-     *
-     * @param actionMenu
-     * @return
-     */
-    private fun dispatchFragmentActionSelected(actionMenu: ActionMenuItem): Boolean {
-        return false
-    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         mDelegate?.onSaveInstanceState(outState)
@@ -443,14 +418,14 @@ open class ActionBarActivity : AppCompatActivity() {
      * @return
      */
     fun startCustomActionMode(callback: ActionMode.Callback): ActionMode {
-        return getCustomActionBar()?.startActionMode(callback)
+        return getCustomActionBar().startActionMode(callback)
     }
 
     /**
      * 停止自定义actionmode
      */
     fun stopCustomActionMode() {
-        getCustomActionBar()?.stopActionMode()
+        getCustomActionBar().stopActionMode()
     }
 
     /**

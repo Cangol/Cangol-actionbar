@@ -69,7 +69,7 @@ class ActionBarImpl(private val mActionBarView: ActionBarView) : ActionBar() {
     }
 
     override fun getTabs(): MutableList<ActionTabItem> {
-        return mActionBarView?.getTabs()
+        return mActionBarView.getTabs()
     }
 
     override fun setCustomHomeAsUpIndicator(homeId: Int, upId: Int) {

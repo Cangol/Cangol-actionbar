@@ -1,9 +1,12 @@
 package mobi.cangol.mobile.actionbar.view
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.support.annotation.RequiresApi
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -163,13 +166,13 @@ class ActionBarView : RelativeLayout {
             }
 
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-                var convertView = convertView
-                if (convertView == null) {
-                    convertView = inflater.inflate(R.layout.actionbar_navigation_list_item, parent, false)
+                var itemView = convertView
+                if (itemView == null) {
+                    itemView = inflater.inflate(R.layout.actionbar_navigation_list_item, parent, false)
                 }
-                val labelView = convertView?.findViewById<TextView>(R.id.actionbar_navigation_item_text)
+                val labelView = itemView?.findViewById<TextView>(R.id.actionbar_navigation_item_text)
                 labelView?.text = mListNavigation!![position]
-                return convertView
+                return itemView
             }
 
         }
@@ -182,30 +185,30 @@ class ActionBarView : RelativeLayout {
         listView.adapter = adapter
         val width = (200 * context.resources.displayMetrics.density).toInt()
         mPopupMenu = PopupWindow(popuLayout, width, RelativeLayout.LayoutParams.WRAP_CONTENT, true)
-        mPopupMenu?.setBackgroundDrawable(BitmapDrawable())
+        mPopupMenu?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mPopupMenu?.setOnDismissListener {
             val typedValue = TypedValue()
             context.theme.resolveAttribute(R.attr.actionbar_dropdown, typedValue, true)
-            val imgV = resources.getDrawable(typedValue.resourceId)
-            imgV.setBounds(0, 0, imgV.intrinsicWidth, imgV.intrinsicHeight)
+            val imgV = ContextCompat.getDrawable(context,typedValue.resourceId)
+            imgV?.setBounds(0, 0, imgV.intrinsicWidth, imgV.intrinsicHeight)
             mTitleView?.setCompoundDrawables(null, null, imgV, null)
         }
-        listView.onItemClickListener = OnItemClickListener { parent, view, position, id ->
+        listView.onItemClickListener = OnItemClickListener { _, _, position, id ->
             onNavigationListener?.onNavigationItemSelected(position, id)
             mPopupMenu?.dismiss()
         }
         val typedValue = TypedValue()
         context.theme.resolveAttribute(R.attr.actionbar_dropdown, typedValue, true)
-        val imgV = resources.getDrawable(typedValue.resourceId)
-        imgV.setBounds(0, 0, imgV.intrinsicWidth, imgV.intrinsicHeight)
+        val imgV = ContextCompat.getDrawable(context,typedValue.resourceId)
+        imgV?.setBounds(0, 0, imgV.intrinsicWidth, imgV.intrinsicHeight)
         mTitleView?.setCompoundDrawables(null, null, imgV, null)
         mTitleView?.setOnClickListener {
             if (!mPopupMenu!!.isShowing) {
-                val typedValue = TypedValue()
-                context.theme.resolveAttribute(R.attr.actionbar_dropup, typedValue, true)
-                val imgV = resources.getDrawable(typedValue.resourceId)
-                imgV.setBounds(0, 0, imgV.intrinsicWidth, imgV.intrinsicHeight)
-                mTitleView?.setCompoundDrawables(null, null, imgV, null)
+                val value = TypedValue()
+                context.theme.resolveAttribute(R.attr.actionbar_dropup, value, true)
+                val img = ContextCompat.getDrawable(context,value.resourceId)
+                img?.setBounds(0, 0, img.intrinsicWidth, img.intrinsicHeight)
+                mTitleView?.setCompoundDrawables(null, null, img, null)
 
                 val xoff = -(width - mTitleView!!.width) / 2
                 if (mTitleView!!.gravity == Gravity.CENTER) {

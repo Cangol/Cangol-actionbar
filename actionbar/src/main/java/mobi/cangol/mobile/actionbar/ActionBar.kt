@@ -118,7 +118,7 @@ abstract class ActionBar {
     /**
      * 获取所有tabItem
      */
-    abstract fun getTabs(): MutableList<ActionTabItem>
+    abstract fun getTabs():MutableList<ActionTabItem>
 
     /**
      * 设置自定义的home和up

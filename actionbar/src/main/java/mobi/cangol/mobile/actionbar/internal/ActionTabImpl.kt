@@ -10,7 +10,7 @@ import mobi.cangol.mobile.actionbar.view.ActionTabView.OnTabSelectedListener
  * @author Cangol
  */
 class ActionTabImpl(private val mActionTabView: ActionTabView) : ActionTab() {
-    private var mTabs: MutableList<ActionTabItem> = mutableListOf()
+    private var mTabs: MutableList<ActionTabItem> = ArrayList()
     init {
         mActionTabView.setActionTab(this)
     }
