@@ -71,7 +71,9 @@ public class TransparentActivity extends ActionBarActivity {
         this.findViewById(R.id.button_transparent_5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setActionbarShow(true);
+//                setActionbarShow(true);
+                setFullScreenNoActionBar(false);
+                setStatusBarTintColor(getResources().getColor(R.color.red));
             }
         });
         this.findViewById(R.id.button_transparent_6).setOnClickListener(new View.OnClickListener() {
