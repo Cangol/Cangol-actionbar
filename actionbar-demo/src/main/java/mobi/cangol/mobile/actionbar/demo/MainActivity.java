@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.AttrRes;
+import android.support.annotation.ColorInt;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,12 @@ public class MainActivity extends ActionBarActivity{
     private ListView mListView;
     private List<Class<? extends Activity>> activities=new ArrayList<>();
     private static boolean light=true;
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return super.onSupportNavigateUp();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d("MainActivity","light=="+light);
@@ -100,4 +108,5 @@ public class MainActivity extends ActionBarActivity{
         });
 
     }
+
 }

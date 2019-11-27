@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.AttrRes
 import android.support.annotation.ColorInt
+import android.support.annotation.IdRes
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -21,17 +22,16 @@ open class ActionBarActivity : AppCompatActivity() {
     private var mDelegate: ActionBarActivityDelegate? = null
     private var mTintManager: SystemBarTintManager? = null
     private var useSystemBarTintLollipop = false
-    private val statusBarHeight: Int
-        get() {
-            var result = 0
-            val resourceId = this.resources.getIdentifier("status_bar_height", "dimen", "android")
-            if (resourceId > 0) {
-                result = this.resources.getDimensionPixelSize(resourceId)
-            }
-            return result
+
+
+    private fun getStatusBarHeight(): Int {
+        var result = 0
+        val resourceId = this.resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = this.resources.getDimensionPixelSize(resourceId)
         }
-
-
+        return result
+    }
 
 
     /**
@@ -39,7 +39,7 @@ open class ActionBarActivity : AppCompatActivity() {
      *
      * @param fullscreen
      */
-    fun setFullScreen(fullscreen: Boolean) {
+    open fun setFullScreen(fullscreen: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (fullscreen) {
                 this.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -134,14 +134,13 @@ open class ActionBarActivity : AppCompatActivity() {
         }
     }
 
-    fun getAttrTypedValue(@AttrRes attr: Int): TypedValue {
+    open fun getAttrTypedValue(@AttrRes attr: Int): TypedValue {
         val typedValue = TypedValue()
         theme.resolveAttribute(attr, typedValue, true)
         return typedValue
     }
 
-    @ColorInt
-    fun getThemeAttrColor(@AttrRes colorAttr: Int): Int {
+    open fun getThemeAttrColor(@AttrRes colorAttr: Int): Int {
         val array = this.obtainStyledAttributes(null, intArrayOf(colorAttr))
         try {
             return array.getColor(0, 0)
@@ -173,7 +172,7 @@ open class ActionBarActivity : AppCompatActivity() {
      *
      * @param color
      */
-    fun setBackgroundColor(color: Int) {
+    open fun setBackgroundColor(color: Int) {
         mDelegate?.setBackgroundColor(color)
     }
 
@@ -182,7 +181,7 @@ open class ActionBarActivity : AppCompatActivity() {
      *
      * @param resId
      */
-    fun setBackgroundResource(resId: Int) {
+    open fun setBackgroundResource(resId: Int) {
         mDelegate?.setBackgroundResource(resId)
     }
 
@@ -192,7 +191,7 @@ open class ActionBarActivity : AppCompatActivity() {
      *
      * @param resId
      */
-    fun setWindowBackground(resId: Int) {
+    open fun setWindowBackground(resId: Int) {
         //替换背景
         this.window.setBackgroundDrawableResource(resId)
     }
@@ -249,18 +248,18 @@ open class ActionBarActivity : AppCompatActivity() {
             if (enable) {
                 findViewById<View>(R.id.container_view)?.fitsSystemWindows = false
                 findViewById<View>(R.id.container_view)?.setPadding(0, 0, 0, 0)
-                (findViewById<View>(R.id.actionbar_view)?.layoutParams as RelativeLayout.LayoutParams).topMargin = statusBarHeight
+                (findViewById<View>(R.id.actionbar_view)?.layoutParams as RelativeLayout.LayoutParams).topMargin = getStatusBarHeight()
             } else {
                 findViewById<View>(R.id.container_view)?.fitsSystemWindows = true
-                findViewById<View>(R.id.container_view)?.setPadding(0, statusBarHeight, 0, 0)
+                findViewById<View>(R.id.container_view)?.setPadding(0, getStatusBarHeight(), 0, 0)
                 (findViewById<View>(R.id.actionbar_view)?.layoutParams as RelativeLayout.LayoutParams).topMargin = 0
             }
             val decorView = this.window.decorView
             var option = decorView.systemUiVisibility
-            if (enable) {
-                option = option or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            option = if (enable) {
+                option or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             } else {
-                option = option and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN.inv()
+                option and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN.inv()
             }
 
             decorView.systemUiVisibility = option
@@ -332,7 +331,7 @@ open class ActionBarActivity : AppCompatActivity() {
      *
      * @return
      */
-    fun getMaskView(): FrameLayout {
+    open fun getMaskView(): FrameLayout {
         return mDelegate?.getMaskView()!!
     }
     /**
@@ -340,7 +339,7 @@ open class ActionBarActivity : AppCompatActivity() {
      *
      * @param display
      */
-    fun displayMaskView(display: Boolean) {
+    open fun displayMaskView(display: Boolean) {
         mDelegate?.displayMaskView(display)
     }
 
@@ -378,12 +377,12 @@ open class ActionBarActivity : AppCompatActivity() {
         win.attributes = winParams
     }
 
-    public override fun onPostCreate(savedInstanceState: Bundle?) {
+    override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         mDelegate?.onPostCreate(savedInstanceState)
     }
 
-    override fun <T : View> findViewById(id: Int): T? {
+    override fun <T : View> findViewById(@IdRes id: Int): T? {
         return super.findViewById(id) ?: mDelegate?.findViewById(id)
     }
 
