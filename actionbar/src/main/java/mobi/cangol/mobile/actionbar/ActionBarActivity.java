@@ -365,7 +365,8 @@ public class ActionBarActivity extends AppCompatActivity {
             } else {
                 setRootViewFitsSystemWindows(true);
                 setActionbarShow(true);
-                this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+                this.getWindow().getDecorView().requestApplyInsets();
             }
         } else {
             int newVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
