@@ -36,45 +36,53 @@ public class TransparentNativeActivity extends AppCompatActivity {
                 resetSystemUi();
             }
         });
-        this.findViewById(R.id.button_transparent_1).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_01).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setStatusBarTranslucent();
+                getSupportActionBar().show();
+            }
+        });
+        this.findViewById(R.id.button_transparent_02).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportActionBar().hide();
+            }
+        });
+
+        this.findViewById(R.id.button_transparent_11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.translucent)));
             }
         });
-        this.findViewById(R.id.button_transparent_2).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_12).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setStatusBarTransparent();
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }
         });
-        this.findViewById(R.id.button_transparent_3).setOnClickListener(new View.OnClickListener() {
+
+        this.findViewById(R.id.button_transparent_21).setVisibility(View.GONE);
+        this.findViewById(R.id.button_transparent_22).setVisibility(View.GONE);
+
+        this.findViewById(R.id.button_transparent_31).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setSystemUiFloatFullScreen(true);
             }
         });
-        this.findViewById(R.id.button_transparent_4).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_32).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setSystemUiFloatFullScreen(false);
             }
         });
 
-        this.findViewById(R.id.button_transparent_5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportActionBar().show();
-            }
-        });
-        this.findViewById(R.id.button_transparent_6).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportActionBar().hide();
-            }
-        });
+        this.findViewById(R.id.button_transparent_41).setVisibility(View.GONE);
+        this.findViewById(R.id.button_transparent_42).setVisibility(View.GONE);
+
+        this.findViewById(R.id.button_transparent_51).setVisibility(View.GONE);
+        this.findViewById(R.id.button_transparent_52).setVisibility(View.GONE);
     }
 
     public void setStatusBarTranslucent() {

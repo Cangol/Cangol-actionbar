@@ -36,50 +36,88 @@ public class TransparentActivity extends ActionBarActivity {
             public void onClick(View v) {
                 setSystemUiFloatFullScreen(false);
                 setActionbarShow(true);
-                setStatusBarTintColor(getColor(R.color.actionbar_background));
+                setStatusBarTintColor(getResources().getColor(R.color.actionbar_background));
                 getCustomActionBar().setBackgroundResource(R.color.actionbar_background);
             }
         });
-        this.findViewById(R.id.button_transparent_1).setOnClickListener(new View.OnClickListener() {
+
+        this.findViewById(R.id.button_transparent_01).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setStatusBarTintColor(getColor(R.color.translucent));
+                setActionbarShow(true);
+            }
+        });
+        this.findViewById(R.id.button_transparent_02).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setActionbarShow(false);
+            }
+        });
+
+        this.findViewById(R.id.button_transparent_11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setStatusBarTintColor(getResources().getColor(R.color.translucent));
                 getCustomActionBar().setBackgroundResource(R.color.translucent);
             }
         });
-        this.findViewById(R.id.button_transparent_2).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_12).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setStatusBarTintColor(getColor(R.color.transparent));
+                setStatusBarTintColor(getResources().getColor(R.color.transparent));
                 getCustomActionBar().setBackgroundResource(R.color.transparent);
             }
         });
 
-        this.findViewById(R.id.button_transparent_3).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_21).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTranslucent(true);
+                getCustomActionBar().setBackgroundResource(R.color.translucent);
+            }
+        });
+        this.findViewById(R.id.button_transparent_22).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTranslucent(false);
+            }
+        });
+
+        this.findViewById(R.id.button_transparent_31).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setSystemUiFloatFullScreen(true);
             }
         });
-        this.findViewById(R.id.button_transparent_4).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_32).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setSystemUiFloatFullScreen(false);
             }
         });
 
-        this.findViewById(R.id.button_transparent_5).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_41).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                setActionbarShow(true);
-                setFullScreenNoActionBar(false);
-                setStatusBarTintColor(getResources().getColor(R.color.red));
+                setFullScreen(true);
             }
         });
-        this.findViewById(R.id.button_transparent_6).setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.button_transparent_42).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                setActionbarShow(false);
+                setFullScreen(false);
+            }
+        });
+
+        this.findViewById(R.id.button_transparent_51).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFullScreenNoActionBar(false);
+            }
+        });
+        this.findViewById(R.id.button_transparent_52).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 setFullScreenNoActionBar(true);
             }
         });
