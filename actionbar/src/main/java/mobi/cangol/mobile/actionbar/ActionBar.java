@@ -133,7 +133,18 @@ public abstract class ActionBar {
      * @param gravity
      */
     public abstract void setTitleGravity(int gravity);
-
+    /**
+     * 设置标题Color
+     *
+     * @param color
+     */
+    public abstract void setTitleColor(int color);
+    /**
+     * 设置标题size
+     *
+     * @param size
+     */
+    public abstract void setTitleSize(float size);
     /**
      * 获取标题对其方式
      *

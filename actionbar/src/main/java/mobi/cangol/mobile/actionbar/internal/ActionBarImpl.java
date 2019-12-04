@@ -120,6 +120,16 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void setTitleColor(int color) {
+        mActionBarView.setTitleColor(color);
+    }
+
+    @Override
+    public void setTitleSize(float size) {
+        mActionBarView.setTitleSize(size);
+    }
+
+    @Override
     public int getTitleGravity() {
         return mActionBarView.getTitleGravity();
     }

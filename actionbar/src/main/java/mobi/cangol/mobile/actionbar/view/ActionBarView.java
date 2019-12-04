@@ -411,6 +411,15 @@ public class ActionBarView extends RelativeLayout {
         return mTitleView.getVisibility();
     }
 
+
+    public void setTitleColor(int color) {
+        mTitleView.setTextColor(color);
+    }
+
+    public void setTitleSize(float size) {
+        mTitleView.setTextSize(size);
+    }
+
     public void setOnTitleClickListener(OnClickListener listener) {
         mTitleView.setOnClickListener(listener);
     }
@@ -566,4 +575,5 @@ public class ActionBarView extends RelativeLayout {
             }
         }
     }
+
 }

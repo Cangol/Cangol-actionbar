@@ -57,14 +57,14 @@ public class TransparentActivity extends ActionBarActivity {
         this.findViewById(R.id.button_transparent_11).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setStatusBarTintColor(getResources().getColor(R.color.translucent));
+                //setStatusBarTintColor(getResources().getColor(R.color.translucent));
                 getCustomActionBar().setBackgroundResource(R.color.translucent);
             }
         });
         this.findViewById(R.id.button_transparent_12).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setStatusBarTintColor(getResources().getColor(R.color.transparent));
+                //setStatusBarTintColor(getResources().getColor(R.color.transparent));
                 getCustomActionBar().setBackgroundResource(R.color.transparent);
             }
         });
@@ -73,7 +73,6 @@ public class TransparentActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 setTranslucent(true);
-                getCustomActionBar().setBackgroundResource(R.color.translucent);
             }
         });
         this.findViewById(R.id.button_transparent_22).setOnClickListener(new View.OnClickListener() {
@@ -112,13 +111,13 @@ public class TransparentActivity extends ActionBarActivity {
         this.findViewById(R.id.button_transparent_51).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFullScreenNoActionBar(false);
+                setFullScreenNoActionBar(true);
             }
         });
         this.findViewById(R.id.button_transparent_52).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFullScreenNoActionBar(true);
+                setFullScreenNoActionBar(false);
             }
         });
     }
