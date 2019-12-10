@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -73,11 +74,11 @@ public class SearchView extends LinearLayout {
     }
 
     private void initViews() {
-        DrawerArrowDrawable arrow = new DrawerArrowDrawable(this.getResources(), true);
+        DrawerArrowDrawable arrow = new DrawerArrowDrawable(mContext);
         TypedValue typedValue = new TypedValue();
         mContext.getTheme().resolveAttribute(R.attr.actionbar_indicator, typedValue, true);
-        arrow.setStrokeColor(typedValue.data);
-        arrow.setParameter(1);
+        arrow.setColor(typedValue.data);
+        arrow.setProgress(0);
 
         ImageView mIndicatoButton = (ImageView) this.findViewById(R.id.actionbar_search_indicator);
         mIndicatoButton.setImageDrawable(arrow);

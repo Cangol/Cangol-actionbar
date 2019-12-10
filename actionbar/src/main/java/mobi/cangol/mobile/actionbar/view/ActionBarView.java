@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -93,11 +94,11 @@ public class ActionBarView extends RelativeLayout {
         mActionBarActivity = (ActionBarActivity) context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        mDrawerArrowDrawable = new DrawerArrowDrawable(context.getResources(), false);
+        mDrawerArrowDrawable = new DrawerArrowDrawable(context);
 
         TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.actionbar_indicator, typedValue, true);
-        mDrawerArrowDrawable.setStrokeColor(typedValue.data);
+        mDrawerArrowDrawable.setColor(typedValue.data);
 
 
         mInflater.inflate(R.layout.actionbar_layout, this, true);
@@ -115,7 +116,7 @@ public class ActionBarView extends RelativeLayout {
 
     private void initListeners() {
         if (!mIsCustomHomeAsUpIndicator)
-            mDrawerArrowDrawable.setParameter(0);
+            mDrawerArrowDrawable.setProgress(0);
         mIndicator.setImageDrawable(mDrawerArrowDrawable);
         mIndicator.setOnClickListener(new OnClickListener() {
 
@@ -264,7 +265,7 @@ public class ActionBarView extends RelativeLayout {
         mIsCustomHomeAsUpIndicator = false;
         mHomeId = 0;
         mUpId = 0;
-        mDrawerArrowDrawable.setParameter(0);
+        mDrawerArrowDrawable.setProgress(0);
         mIndicator.setImageDrawable(mDrawerArrowDrawable);
     }
     public void setDisplayShowHomeEnabled(boolean show) {
@@ -274,7 +275,7 @@ public class ActionBarView extends RelativeLayout {
 
     public void displayHomeIndicator() {
         if (!mIsCustomHomeAsUpIndicator) {
-            mDrawerArrowDrawable.setParameter(0);
+            mDrawerArrowDrawable.setProgress(0);
             mIndicator.setImageDrawable(mDrawerArrowDrawable);
         } else {
             mIndicator.setImageResource(mHomeId);
@@ -286,7 +287,7 @@ public class ActionBarView extends RelativeLayout {
     }
     public void displayUpIndicator() {
         if (!mIsCustomHomeAsUpIndicator) {
-            mDrawerArrowDrawable.setParameter(1);
+            mDrawerArrowDrawable.setProgress(1);
             mIndicator.setImageDrawable(mDrawerArrowDrawable);
         } else {
             mIndicator.setImageResource(mUpId);
@@ -297,11 +298,11 @@ public class ActionBarView extends RelativeLayout {
     public void displayIndicator(float slideOffset) {
         if (!mIsCustomHomeAsUpIndicator) {
             if (slideOffset >= .995) {
-                mDrawerArrowDrawable.setFlip(true);
+                mDrawerArrowDrawable.setFilterBitmap(true);
             } else if (slideOffset <= .005) {
-                mDrawerArrowDrawable.setFlip(false);
+                mDrawerArrowDrawable.setFilterBitmap(false);
             }
-            mDrawerArrowDrawable.setParameter(slideOffset);
+            mDrawerArrowDrawable.setProgress(slideOffset);
             mIndicator.setImageDrawable(mDrawerArrowDrawable);
         } else {
             if (slideOffset >= .995) {
@@ -315,7 +316,7 @@ public class ActionBarView extends RelativeLayout {
 
     public void setIndicatorColor(int color) {
         if (!mIsCustomHomeAsUpIndicator)
-            mDrawerArrowDrawable.setStrokeColor(color);
+            mDrawerArrowDrawable.setColor(color);
     }
 
     public void setLeftMenu(final int id, final int text, int drawable, OnClickListener listener) {
