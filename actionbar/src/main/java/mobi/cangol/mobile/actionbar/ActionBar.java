@@ -26,7 +26,7 @@ public abstract class ActionBar {
     /**
      * 设置home的显示
      *
-     * @param show
+     * @param show 是否显示
      */
     public abstract void setDisplayShowHomeEnabled(boolean show);
 
@@ -223,6 +223,7 @@ public abstract class ActionBar {
 
     /**
      * 获取导航菜单
+     * @return 导航菜单list
      */
     public abstract String[] getListNavigation();
 
