@@ -14,7 +14,7 @@
     <ImageView
         android:id="@+id/actionbar_menu_more"
         style="@style/ActionBarItem"
-        android:layout_width="@dimen/actionbar_item_min_width"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/actionbar_height"
         android:scaleType="fitCenter"
         android:src="?actionbar_more"

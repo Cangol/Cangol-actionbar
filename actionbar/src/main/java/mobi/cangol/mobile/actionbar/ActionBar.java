@@ -14,8 +14,8 @@ public abstract class ActionBar {
     /**
      * 设置自定义的home和up
      *
-     * @param homeId
-     * @param upId
+     * @param homeId home资源id
+     * @param upId up资源id
      */
     public abstract void setCustomHomeAsUpIndicator(int homeId, int upId);
 
@@ -45,14 +45,14 @@ public abstract class ActionBar {
     /**
      * 设置指示器显示的offset，只对原生指示器起作用
      *
-     * @param slideOffset
+     * @param slideOffset 指示器的offset
      */
     public abstract void displayIndicator(float slideOffset);
 
     /**
      * 设置指示器显示的颜色，只对原生指示器起作用
      *
-     * @param color
+     * @param color 颜色
      */
     public abstract void setIndicatorColor(int color);
 
@@ -74,93 +74,94 @@ public abstract class ActionBar {
     /**
      * back时执行
      *
-     * @return
+     * @return 是否执行
      */
     protected abstract boolean onBackPressed();
 
     /**
      * 返回是否显示
      *
-     * @return
+     * @return 是否显示
      */
     protected abstract boolean isShow();
 
     /**
      * 设置显示
      *
-     * @param show
+     * @param show 是否显示
      */
     protected abstract void setShow(boolean show);
 
     /**
      * 设置背景颜色
      *
-     * @param color
+     * @param color 颜色
      */
     public abstract void setBackgroundColor(int color);
 
     /**
      * 设置背景
      *
-     * @param resId
+     * @param resId 背景资源id
      */
     public abstract void setBackgroundResource(int resId);
 
     /**
      * 获取标题
      *
-     * @return
+     * @return 标题
      */
     public abstract CharSequence getTitle();
 
     /**
      * 设置标题
      *
-     * @param resid
+     * @param resId 标题资源id
      */
-    public abstract void setTitle(int resid);
+    public abstract void setTitle(int resId);
 
     /**
      * 设置标题
      *
-     * @param title
+     * @param title 标题
      */
     public abstract void setTitle(CharSequence title);
 
     /**
      * 设置标题对其方式
      *
-     * @param gravity
+     * @param gravity 对其方式
      */
     public abstract void setTitleGravity(int gravity);
     /**
      * 设置标题Color
      *
-     * @param color
+     * @param color 颜色
      */
     public abstract void setTitleColor(int color);
     /**
      * 设置标题size
      *
-     * @param size
+     * @param size 字体大小
      */
     public abstract void setTitleSize(float size);
     /**
      * 获取标题对其方式
      *
-     * @return
+     * @return 对其方式
      */
     public abstract int getTitleGravity();
 
     /**
      * 设置标题显示
      *
-     * @param visibly
+     * @param visibly 显示状态
      */
     public abstract void setTitleVisibility(int visibly);
 
     /**
      * 获取标题显示
+     * @return 显示状态
      */
     public abstract int getTitleVisibility();
 
@@ -168,15 +169,15 @@ public abstract class ActionBar {
      * 设置标题点击事件监听
      * 此事件与setOnNavigationListener相冲突，只有后设置的有效
      *
-     * @param listener
+     * @param listener 监听
      */
     public abstract void setOnTitleClickListener(OnClickListener listener);
 
     /**
      * 启动ActionMode
      *
-     * @param callback
-     * @return
+     * @param callback 回调
+     * @return ActionMode
      */
     public abstract ActionMode startActionMode(ActionMode.Callback callback);
 
@@ -187,24 +188,28 @@ public abstract class ActionBar {
 
     /**
      * 开启/关闭 刷新
+     * @param enable 是否刷新
      */
     public abstract void enableRefresh(boolean enable);
 
 
     /**
      * 开启/关闭 刷新left|right
+     * @param enable 是否刷新
+     * @param gravity  位置
      */
     public abstract void enableRefresh(boolean enable, int gravity);
 
     /**
      * 开始/停止 刷新
+     * @param refresh 是否刷新
      */
     public abstract void refreshing(boolean refresh);
 
     /**
      * 刷新按钮点击事件
      *
-     * @param listener
+     * @param listener 监听
      */
     public abstract void setOnRefreshClickListener(OnClickListener listener);
 
@@ -224,7 +229,7 @@ public abstract class ActionBar {
     /**
      * 设置导航菜单
      *
-     * @param navs
+     * @param navs 导航菜单
      */
     public abstract void setListNavigation(String[] navs);
 
@@ -236,23 +241,23 @@ public abstract class ActionBar {
     /**
      * 获取actionMenu
      *
-     * @return
+     * @return ActionMenu
      */
     public abstract ActionMenu getActionMenu();
 
     /**
      * 获取所有菜单按钮
      *
-     * @return
+     * @return 菜单列表
      */
     public abstract List<ActionMenuItem> getMenus();
 
     /**
      * 设置菜单按钮
      *
-     * @param actions
+     * @param menus 菜单
      */
-    protected abstract void setMenus(List<ActionMenuItem> actions);
+    protected abstract void setMenus(List<ActionMenuItem> menus);
 
     /**
      * 清除所有菜单按钮
@@ -262,21 +267,21 @@ public abstract class ActionBar {
     /**
      * 创建ActionTab
      *
-     * @return
+     * @return ActionTab
      */
     public abstract ActionTab getActionTab();
 
     /**
      * 获取所有tabItem
      *
-     * @return
+     * @return tabItem列表
      */
     public abstract List<ActionTabItem> getTabs();
 
     /**
      * 设置标题栏tabItems
      *
-     * @param tabs
+     * @param tabs tabItem列表
      */
     protected abstract void setTabs(List<ActionTabItem> tabs);
 
@@ -289,6 +294,7 @@ public abstract class ActionBar {
      * 添加自定义view
      * 背景透明，所占空间为[指示器右侧到menu左侧]
      * 此时title会被隐藏，tab会被移除
+     * @param view 自定义view
      */
     public abstract void setCustomView(View view);
 
@@ -297,8 +303,12 @@ public abstract class ActionBar {
      */
     public abstract void removeCustomView();
 
+
     /**
      * 获取view
+     * @param id 资源id
+     * @param <T> view
+     * @return view
      */
     public abstract <T extends View> T findViewById(@IdRes int id);
 }

@@ -40,7 +40,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 在Lollipop是否使用澄侵式系统栏(状态栏和导航栏)
      *
-     * @param useSystemBarTintLollipop
+     * @param useSystemBarTintLollipop  Lollipop是否使用澄侵式系统栏
      */
     public void setUseSystemBarTintLollipop(boolean useSystemBarTintLollipop) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M &&
@@ -68,7 +68,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置标题
      *
-     * @param title
+     * @param title 标题
      */
     @Override
     public void setTitle(CharSequence title) {
@@ -89,7 +89,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置标题
      *
-     * @param titleId
+     * @param titleId 标题id
      */
     @Override
     public void setTitle(int titleId) {
@@ -99,7 +99,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置背景颜色
      *
-     * @param color
+     * @param color 颜色
      */
     public void setBackgroundColor(int color) {
         mDelegate.setBackgroundColor(color);
@@ -108,7 +108,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置背景颜色
      *
-     * @param resId
+     * @param resId 背景资源id
      */
     public void setBackgroundResource(int resId) {
         mDelegate.setBackgroundResource(resId);
@@ -118,7 +118,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置window背景颜色
      *
-     * @param resId
+     * @param resId 背景资源id
      */
     public void setWindowBackground(int resId) {
         //替换背景
@@ -128,7 +128,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置状态栏颜色
      *
-     * @param color
+     * @param color 颜色
      */
     public void setStatusBarTintColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -209,7 +209,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置导航栏颜色
      *
-     * @param color
+     * @param color 颜色
      */
     public void setNavigationBarTintColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -231,7 +231,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置状态栏字体图标颜色
      *
-     * @param black
+     * @param black 是否黑色
      */
     public void setStatusBarTextColor(boolean black) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -269,7 +269,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 获取遮罩整个activity的mask
      *
-     * @return
+     * @return 遮罩view
      */
     public FrameLayout getMaskView() {
         return mDelegate.getMaskView();
@@ -278,7 +278,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 显示遮罩
      *
-     * @param display
+     * @param display 是否遮罩
      */
     public void displayMaskView(boolean display) {
         mDelegate.displayMaskView(display);
@@ -287,7 +287,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 开启搜索模式，与stopSearchMode成对使用
      *
-     * @return
+     * @return SearchView
      */
     public SearchView startSearchMode() {
         return mDelegate.startSearchMode();
@@ -303,7 +303,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置为导航栏 状态栏 透明
      *
-     * @param on
+     * @param on 是否透明
      */
     public void setTranslucent(boolean on) {
         Window win = getWindow();
@@ -320,7 +320,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置全屏
      *
-     * @param fullscreen
+     * @param fullscreen 是否全屏
      */
     public void setFullScreen(boolean fullscreen) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -383,9 +383,9 @@ public class ActionBarActivity extends AppCompatActivity {
     }
 
     /**
-     * 是否全屏
+     * 返回是否全屏
+     * @return 是否全屏
      */
-
     public boolean isFullScreen() {
         return (this.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN;
     }
@@ -407,7 +407,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 返回actionbar是否悬浮
      *
-     * @return
+     * @return 是否悬浮
      */
     public boolean isActionbarOverlay() {
         return mDelegate.isActionbarOverlay();
@@ -416,7 +416,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置actionbar是否悬浮
      *
-     * @param mActionbarOverlay
+     * @param mActionbarOverlay 是否悬浮
      */
     public void setActionbarOverlay(boolean mActionbarOverlay) {
         this.mDelegate.setActionbarOverlay(mActionbarOverlay);
@@ -424,6 +424,7 @@ public class ActionBarActivity extends AppCompatActivity {
 
     /**
      * 返回actionbar的显示
+     * @return 是否显示
      */
     public boolean isActionbarShow() {
         return mDelegate.isActionbarShow();
@@ -433,7 +434,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置actionbar的显示
      *
-     * @param show
+     * @param show 是否显示
      */
     public void setActionbarShow(boolean show) {
         this.mDelegate.setActionbarOverlay(!show);
@@ -444,7 +445,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * menu菜单创建方法
      *
-     * @param actionMenu
+     * @param actionMenu 菜单
      */
     public void onMenuActionCreated(ActionMenu actionMenu) {
         //do somethings
@@ -453,36 +454,13 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * menu菜单选择监听方法
      *
-     * @param actionMenu
-     * @return
+     * @param actionMenu  菜单
+     * @return 是否添加
      */
     public boolean onMenuActionSelected(ActionMenuItem actionMenu) {
         return false;
     }
 
-    /**
-     * 指派菜单监听事件
-     *
-     * @param actionMenu
-     * @return
-     */
-    protected boolean dispatchActionSelected(ActionMenuItem actionMenu) {
-        if (onMenuActionSelected(actionMenu)) {
-            return true;
-        } else {
-            return dispatchFragmentActionSelected(actionMenu);
-        }
-    }
-
-    /**
-     * 指派菜单监听事件到fragment
-     *
-     * @param actionMenu
-     * @return
-     */
-    protected boolean dispatchFragmentActionSelected(ActionMenuItem actionMenu) {
-        return false;
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -493,7 +471,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 获取自定义actionbar
      *
-     * @return
+     * @return 自定义actionbar
      */
     public ActionBar getCustomActionBar() {
         return mDelegate.getCustomActionBar();
@@ -502,8 +480,8 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 启动自定义actionmode
      *
-     * @param callback
-     * @return
+     * @param callback 回调
+     * @return ActionMode
      */
     public ActionMode startCustomActionMode(ActionMode.Callback callback) {
         return getCustomActionBar().startActionMode(callback);
@@ -519,7 +497,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 导航回调
      *
-     * @return
+     * @return 是否操作
      */
     @Override
     public boolean onSupportNavigateUp() {
@@ -537,7 +515,7 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置阴影
      *
-     * @param shadow
+     * @param shadow 是否阴影
      */
     public void setActionbarShadow(boolean shadow) {
         mDelegate.setActionbarShadow(shadow);
@@ -546,8 +524,8 @@ public class ActionBarActivity extends AppCompatActivity {
     /**
      * 设置阴影
      *
-     * @param shadow
-     * @param elevation
+     * @param shadow 是否阴影
+     * @param elevation 阴影半径
      */
     public void setActionbarShadow(boolean shadow, float elevation) {
         mDelegate.setActionbarShadow(shadow, elevation);

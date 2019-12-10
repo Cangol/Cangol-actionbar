@@ -7,28 +7,28 @@ public abstract class ActionMode {
     /**
      * 设置标题
      *
-     * @param title
+     * @param title 标题
      */
     public abstract void setTitle(CharSequence title);
 
     /**
      * 获取标题
      *
-     * @return
+     * @return 标题
      */
     public abstract CharSequence getTitle();
 
     /**
      * 设置标题
      *
-     * @param resId
+     * @param resId 标题资源id
      */
     public abstract void setTitle(int resId);
 
     /**
      * 启动action
      *
-     * @param callback
+     * @param callback 回调
      */
     public abstract void start(Callback callback);
 
@@ -40,7 +40,7 @@ public abstract class ActionMode {
     /**
      * 返回模式是运行
      *
-     * @return
+     * @return 是否ActionMode模式
      */
     public abstract boolean isActionMode();
 
