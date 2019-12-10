@@ -9,6 +9,7 @@
         <item name="actionbar_background">@color/actionbar_background_light</item>
 
         <!--actionbar action menu-->
+        <item name="actionbar_item_icon">@color/actionbar_item_icon_light</item>
         <item name="actionbar_item">@color/actionbar_item_light</item>
         <item name="actionbar_item_pressed">@color/actionbar_item_pressed_light</item>
         <item name="actionbar_item_text">@color/actionbar_item_text_light</item>
@@ -71,6 +72,7 @@
         <item name="actionbar_background">@color/actionbar_background_dark</item>
 
         <!--actionbar action menu-->
+        <item name="actionbar_item_icon">@color/actionbar_item_icon_dark</item>
         <item name="actionbar_item">@color/actionbar_item_dark</item>
         <item name="actionbar_item_pressed">@color/actionbar_item_pressed_dark</item>
         <item name="actionbar_item_text">@color/actionbar_item_text_dark</item>

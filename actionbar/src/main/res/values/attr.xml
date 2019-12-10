@@ -9,6 +9,7 @@
         <attr name="actionbar_background" format="reference|color" />
 
         <!--actionbar action menu-->
+        <attr name="actionbar_item_icon" format="reference|color" />
         <attr name="actionbar_item" format="reference|color" />
         <attr name="actionbar_item_pressed" format="reference|color" />
         <attr name="actionbar_item_text" format="reference|color" />

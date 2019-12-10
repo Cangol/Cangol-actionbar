@@ -7,6 +7,7 @@
     <color name="actionbar_background_light">#F8f8F8</color>
 
     <!--actionbar action menu-->
+    <color name="actionbar_item_icon_light">#000000</color>
     <color name="actionbar_item_light">#00000000</color>
     <color name="actionbar_item_pressed_light">#1f000000</color>
     <color name="actionbar_item_text_light">@color/actionbar_title_light</color>

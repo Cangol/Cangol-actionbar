@@ -7,6 +7,7 @@
     <color name="actionbar_background_dark">#111111</color>
 
     <!--actionbar action menu-->
+    <color name="actionbar_item_icon_dark">#ffffff</color>
     <color name="actionbar_item_dark">#00000000</color>
     <color name="actionbar_item_pressed_dark">#66000000</color>
     <color name="actionbar_item_text_dark">#ffffff</color>

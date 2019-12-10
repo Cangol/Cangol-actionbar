@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,18 +85,20 @@ public class ActionBarActivityDelegate {
             mActionBar.clearListNavigation();
             mActionBar.setListNavigation(navs);
 
-            ArrayList<ActionMenuItem> menus = savedInstanceState.getParcelableArrayList("ActionBar.menus");
-            mActionBar.clearActionMenus();
-            mActionBar.setMenus(menus);
+//            ArrayList<ActionMenuItem> menus = savedInstanceState.getParcelableArrayList("ActionBar.menus");
+//            mActionBar.clearActionMenus();
+//            mActionBar.setMenus(menus);
 
             ArrayList<ActionTabItem> tabs = savedInstanceState.getParcelableArrayList("ActionBar.tabs");
             mActionBar.clearActionTabs();
             mActionBar.setTabs(tabs);
             mActionBar.getActionTab().setTabSelected(savedInstanceState.getInt("ActionBar.tabs.selected"));
 
-        } else {
-            mActivity.onMenuActionCreated(mActionBar.getActionMenu());
+
         }
+
+        mActivity.onMenuActionCreated(mActionBar.getActionMenu());
+
 
         if (!mActionBar.getTabs().isEmpty()) {
             mActionBar.setTitleVisibility(View.GONE);
