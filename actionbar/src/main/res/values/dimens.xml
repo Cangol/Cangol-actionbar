@@ -2,7 +2,7 @@
 
 	<dimen name="actionbar_height">48dp</dimen>
     <dimen name="actionbar_item_height">48dp</dimen>
-    <dimen name="actionbar_item_min_width">36dp</dimen>
+    <dimen name="actionbar_item_min_width">48dp</dimen>
     <dimen name="actionbar_tab_top">48dp</dimen>
     <dimen name="actionbar_tab_top_checked">45dp</dimen>
     <dimen name="actionbar_title_left">96dp</dimen>

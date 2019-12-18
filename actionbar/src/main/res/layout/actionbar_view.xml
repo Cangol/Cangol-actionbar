@@ -10,7 +10,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/image_description"
-        android:scaleType="centerInside" />
+        android:padding="12dp"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:id="@+id/actionbar_main_title_layout"
