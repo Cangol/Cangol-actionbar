@@ -36,6 +36,7 @@ public class MenuActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_view);
         this.getCustomActionBar().displayUpIndicator();
+        this.getCustomActionBar().setArrowDrawableThickness(5f);
         this.setTitle(this.getClass().getSimpleName().replace("Activity",""));
         findViews();
     }

@@ -107,6 +107,10 @@ public abstract class ActionBar {
     public abstract void setBackgroundResource(int resId);
 
     /**
+     * 修改箭头线的宽度 默认7
+     */
+    public abstract void setArrowDrawableThickness(float width);
+    /**
      * 获取标题
      *
      * @return 标题

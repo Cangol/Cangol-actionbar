@@ -26,6 +26,10 @@ public final class ActionBarImpl extends ActionBar {
     }
 
     @Override
+    public void setArrowDrawableThickness(float width){
+        mActionBarView.setArrowDrawableThickness(width);
+    }
+    @Override
     public void setCustomHomeAsUpIndicator(int homeId, int upId) {
         mActionBarView.setCustomHomeAsUpIndicator(homeId, upId);
     }
