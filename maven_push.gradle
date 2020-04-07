@@ -6,9 +6,8 @@ version = POM_VERSION
 group= POM_GROUP_ID
 
 bintray (){
-    user = 'cangol'
-    key = '60f11531c76078139c54e6bb10af74b3f2965bef'
-
+    user = System.env.BINTRAY_USER
+    key = System.env.BINTRAY_APIKEY
 
     override = true
     configurations = ['archives']
@@ -29,7 +28,7 @@ bintray (){
             desc = POM_DESCRIPTION
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = 'wxw3606266'
+                passphrase = System.env.BINTRAY_GPG_PASSWORD
                 //Optional. The passphrase for GPG signing'
             }
         }
