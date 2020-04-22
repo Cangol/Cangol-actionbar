@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trabsparent_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+       <WebView
+           android:id="@+id/webView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:scrollbars="none" />
+
+       <EditText
+           android:id="@+id/trabsparent_input"
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:background="@color/actionbar_background"
+           android:hint="native input"/>
+   </LinearLayout>
+</FrameLayout>
