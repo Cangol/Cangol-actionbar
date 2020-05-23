@@ -143,8 +143,10 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
                 mShowActions++;
             } else {
                 if (mShowActions == 2) {
-                    mActionsView.removeViewAt(1);
-                    mPopupActionsView.addView(inflateMenuAction(mActionMenu.getAction(2)));
+                    View view=mActionsView.getChildAt(1);
+                    ActionMenuItem tag= (ActionMenuItem) view.getTag();
+                    mActionsView.removeView(view);
+                    mPopupActionsView.addView(inflateMenuAction(tag));
                     mMoreButton.setVisibility(View.VISIBLE);
                 }
                 mPopupActionsView.addView(inflateMenuAction(action));
@@ -152,8 +154,10 @@ public class ActionMenuView extends LinearLayout implements OnClickListener, OnL
             }
         } else {
             if (mShowActions == 2) {
-                mActionsView.removeViewAt(1);
-                mPopupActionsView.addView(inflateMenuAction(mActionMenu.getAction(2)));
+                View view=mActionsView.getChildAt(1);
+                ActionMenuItem tag= (ActionMenuItem) view.getTag();
+                mActionsView.removeView(view);
+                mPopupActionsView.addView(inflateMenuAction(tag));
                 mMoreButton.setVisibility(View.VISIBLE);
             }
             mPopupActionsView.addView(inflateMenuAction(action));
