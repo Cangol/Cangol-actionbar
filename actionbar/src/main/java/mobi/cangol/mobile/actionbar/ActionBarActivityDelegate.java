@@ -124,7 +124,7 @@ public class ActionBarActivityDelegate {
         }
         decor.removeView(decorChild);
         decorChild.setFitsSystemWindows(false);
-        decor.addView(layout, 0);
+        decor.addView(layout, 0,decorChild.getLayoutParams());
         setContent(decorChild);
     }
 
