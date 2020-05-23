@@ -101,6 +101,7 @@ public class ActionBarView extends RelativeLayout {
         mDrawerArrowDrawable.setColor(typedValue.data);
 
 
+
         mInflater.inflate(R.layout.actionbar_layout, this, true);
         mLeftMenuLayout = (LinearLayout) this.findViewById(R.id.actionbar_left_menus);
         mIndicator = (ImageView) this.findViewById(R.id.actionbar_main_indicator);
@@ -138,6 +139,9 @@ public class ActionBarView extends RelativeLayout {
             }
 
         });
+    }
+    public void setArrowDrawableThickness(float width){
+        mDrawerArrowDrawable.setBarThickness(width);
     }
 
     public String[] getListNavigation() {

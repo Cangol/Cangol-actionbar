@@ -72,6 +72,7 @@ public class ActionBarActivity extends AppCompatActivity {
      */
     @Override
     public void setTitle(CharSequence title) {
+        super.setTitle(title);
         mDelegate.setTitle(title);
     }
 
