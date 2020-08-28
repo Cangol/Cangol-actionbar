@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 dependencies {
-    implementation 'androidx.fragment:fragment:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.fragment:fragment:1.2.5'
+    implementation 'com.google.android.material:material:1.2.0'
     implementation project(':actionbar')
     //leak canary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }
 
 android {
