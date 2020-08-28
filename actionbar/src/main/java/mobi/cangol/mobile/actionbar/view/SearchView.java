@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v7.graphics.drawable.DrawerArrowDrawable;
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;

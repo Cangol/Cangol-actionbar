@@ -1,21 +1,18 @@
 package mobi.cangol.mobile.actionbar;
 
 import android.app.Activity;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v7.widget.FitWindowsFrameLayout;
-import android.util.Log;
-import android.view.Gravity;
+import androidx.appcompat.widget.FitWindowsFrameLayout;
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;

@@ -1,13 +1,12 @@
 package mobi.cangol.mobile.actionbar.demo;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.FitWindowsFrameLayout;
-import android.support.v7.widget.FitWindowsLinearLayout;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.FitWindowsFrameLayout;
+import androidx.appcompat.widget.FitWindowsLinearLayout;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
 import mobi.cangol.mobile.actionbar.ActionBarActivity;
@@ -25,7 +24,7 @@ public class TransparentActivity extends ActionBarActivity {
         this.setActionbarShadow(true,9);
         this.setTitle(this.getClass().getSimpleName().replace("Activity", ""));
         findViews();
-        findViewById(android.support.v7.appcompat.R.id.action_mode_bar_stub);
+        findViewById(R.id.action_mode_bar_stub);
     }
 
     public void findViews() {
