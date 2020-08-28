@@ -302,23 +302,6 @@ public class ActionBarActivity extends AppCompatActivity {
     }
 
     /**
-     * 设置为导航栏 状态栏 透明
-     *
-     * @param on 是否透明
-     */
-    public void setTranslucent(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
-
-    /**
      * 设置全屏
      *
      * @param fullscreen 是否全屏
