@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Application theme. -->
     <style name="AppTheme1" parent="ActionBarTheme.Light">
+        <item name="android:windowBackground">#f2f2f2</item>
     </style>
     <style name="AppTheme2" parent="ActionBarTheme.Dark">
+        <item name="android:windowBackground">#000000</item>
     </style>
     <style name="ActionBarTabItem">
         <item name="android:layout_width">60dp</item>
