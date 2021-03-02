@@ -5,8 +5,8 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.appcompat.widget.FitWindowsFrameLayout;
-
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 
@@ -77,7 +79,7 @@ public class ActionBarActivityDelegate {
     }
 
     protected void onPostCreate(Bundle savedInstanceState) {
-        attachToActivity(mActivity, mContainerView);
+        this.attachToActivity(mActivity, mContainerView);
         if (savedInstanceState != null) {
             CharSequence title = savedInstanceState.getCharSequence("ActionBar.title");
             mActionBar.setTitle(title);
@@ -108,20 +110,34 @@ public class ActionBarActivityDelegate {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void attachToActivity(Activity activity, View layout) {
         // get the window background
-        TypedArray a = activity.getTheme().obtainStyledAttributes(new int[]{android.R.attr.windowBackground});
-        int background = a.getResourceId(0, 0);
-        a.recycle();
+        int background=0;
+        int type=0;
+        {
+            TypedArray a= activity.getTheme().obtainStyledAttributes(new int[]{android.R.attr.windowBackground});
+            type=a.getType(0);
+            if(type==TypedValue.TYPE_INT_COLOR_RGB8){
+                background = a.getColor(0, 0);
+            }else {
+                background = a.getResourceId(0, 0);
+            }
+            a.recycle();
+        }
 
         ViewGroup decor = (ViewGroup) activity.getWindow().getDecorView();
         ViewGroup decorChild = (ViewGroup) decor.getChildAt(0);
+        if(decor.getBackground()==null){
+            if(type==TypedValue.TYPE_INT_COLOR_RGB8){
+                decor.setBackgroundColor(background);
+            }else{
+                decor.setBackgroundResource(background);
+            }
+        }
         if (decorChild.getBackground() != null) {
             mContainerView.setBackgroundDrawable(decorChild.getBackground());
             decorChild.setBackgroundDrawable(null);
-        } else {
-            if (mContainerView.getBackground() == null)
-                mContainerView.setBackgroundResource(background);
         }
         decor.removeView(decorChild);
         decor.addView(layout, 0,decorChild.getLayoutParams());
