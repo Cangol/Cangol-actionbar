@@ -64,6 +64,5 @@ cobertura.coverageFormats = ['html', 'xml']
 tasks.coveralls {
     dependsOn 'check'
 }
-apply from: '../maven_push.gradle'
 
 
